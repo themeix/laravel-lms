@@ -49,7 +49,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('admin', [AdminDashboardController::class, 'index'])->name('admin');
 
     //Course Management Routs

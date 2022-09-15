@@ -22,10 +22,13 @@ class Instructor
          */
 
 
-        if (auth()->user()->role == 2 && auth()->user()->instructor->status == 1) {
+        if (auth()->user()->type == 2) {
             return $next($request);
         } else {
             abort('403');
         }
+
+
+
     }
 }

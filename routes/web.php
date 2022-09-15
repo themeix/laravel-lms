@@ -19,6 +19,16 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\Instructor\InstructorDashboardController;
+
+
+
+use App\Http\Controllers\Student\StudentDashboardController;
+
+
+use App\Http\Controllers\Frontend\FrontendIndexController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,37 +51,105 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
+
+
+
+
+/*
+ *
+ * FrontEnd Routes
+ * */
+
+Route::get('/', [FrontendIndexController::class, 'index'])->name('/');
+
+
+
+
+
+
+
+
 Auth::routes(['register' => false, 'reset' => false]);
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+
 Auth::routes();
 
 
-//-------------Frontend Routes----------------------
-Route::middleware(['guest'])->group(function () {
 
-});
+/*
+ * Instructor Routes
+ *
+ * */
 
-
-//--------------------------Instructor Routes-------------------
 Route::middleware(['auth','instructor'])->group(function () {
-
+    Route::get('instructor', [InstructorDashboardController::class, 'index'])->name('instructor');
 });
 
 
-//---------------------Student Routes---------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * Student Routes
+ *
+ * */
+
 Route::middleware(['auth','student'])->group(function () {
+    Route::get('student', [StudentDashboardController::class, 'index'])->name('student');
 
 });
 
 
 
 
-//------------------------Admin Routes------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ *
+ * Admin Routes
+ *
+ * */
+
 Route::middleware(['auth','admin'])->group(function () {
 
     Route::get('admin', [AdminDashboardController::class, 'index'])->name('admin');

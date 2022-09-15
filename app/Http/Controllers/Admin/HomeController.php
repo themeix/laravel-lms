@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,20 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+
+        /*if (Auth::user()->is_admin())
+        {
+            return redirect(route('admin'));
+
+        } else if (Auth::user()->is_instructor()) {
+            return redirect(route('instructor'));
+        }
+
+        else if (Auth::user()->is_student()) {
+            return redirect(route('student'));
+        }*/
     }
+
+
+
 }

@@ -22,12 +22,15 @@ class Student
          * role 3 student
          */
 
-        if (auth()->user()->role == 3 && auth()->user()->student->status == 1) {
+        if (auth()->user()->type == 3) {
             return $next($request);
         }
         else {
             abort('403');
         }
+
+
+
 
     }
 }

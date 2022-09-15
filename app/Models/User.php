@@ -41,4 +41,44 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    /**
+     * @return bool
+     */
+
+    public function is_admin()
+    {
+        if ($this->type == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+
+    public function is_instructor()
+    {
+        if ($this->type == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+
+    public function is_student()
+    {
+        if ($this->type == 3) {
+            return true;
+        }
+        return false;
+    }
+
+
 }

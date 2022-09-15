@@ -7,6 +7,7 @@ use App\Traits\General;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CourseCategoryController extends Controller
 {

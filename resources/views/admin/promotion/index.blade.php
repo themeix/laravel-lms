@@ -1,4 +1,4 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Promotion List')
 @section('content')
 

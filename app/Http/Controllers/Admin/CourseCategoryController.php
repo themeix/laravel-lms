@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\CourseCategory;
-use App\Traits\ImageSaveTrait;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use App\Traits\General;
-
-
+use App\Traits\ImageSaveTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
 
 class CourseCategoryController extends Controller
 {

@@ -1,4 +1,4 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Rules & Benifits')
 @section('content')
 

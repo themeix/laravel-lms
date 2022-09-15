@@ -1,4 +1,4 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Create Blog Category')
 @section('content')
 
@@ -15,7 +15,8 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('blogCategory.index')}}">Blog Category List</a>
+                                <li class="breadcrumb-item"><a href="{{route('blogCategory.index')}}">Blog Category
+                                        List</a>
                                 </li>
 
                                 <li class="breadcrumb-item active">Create Blog Category
@@ -49,13 +50,13 @@
                                             <label class="form-label" for="basic-addon-name">Name</label>
 
                                             <input
-                                                type="text"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="Blog Category Name"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="text"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="Blog Category Name"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter Blog Category name.</div>

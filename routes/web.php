@@ -1,23 +1,23 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\CourseCategoryController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\DifficultyLevelController;
-use App\Http\Controllers\PromotionalTagController;
-use App\Http\Controllers\RulesBenifitsController;
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\CourseCategoryController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\DifficultyLevelController;
+use App\Http\Controllers\Admin\EmailManagementController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\PromotionalTagController;
+use App\Http\Controllers\Admin\PromotionController;
+use App\Http\Controllers\Admin\RulesBenifitsController;
+use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\SupportTicketController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\CouponController;
-Use App\Http\Controllers\PromotionController;
-use App\Http\Controllers\SupportTicketController;
-use App\Http\Controllers\EmailManagementController;
-use App\Http\Controllers\BlogCategoryController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,18 +41,40 @@ use App\Http\Controllers\BlogCategoryController;
 
 
 
-    Auth::routes(['register' => false, 'reset' => false]);
+Auth::routes(['register' => false, 'reset' => false]);
 Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
-Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('admin', [AdminDashboardController::class, 'index'])->name('admin');
 
-    //Course Management Routs
+
+//-------------Frontend Routes----------------------
+Route::middleware(['guest'])->group(function () {
+
+});
+
+
+//--------------------------Instructor Routes-------------------
+Route::middleware(['auth','instructor'])->group(function () {
+
+});
+
+
+//---------------------Student Routes---------------------
+Route::middleware(['auth','student'])->group(function () {
+
+});
+
+
+
+
+//------------------------Admin Routes------------------------
+Route::middleware(['auth','admin'])->group(function () {
+
+    Route::get('admin', [AdminDashboardController::class, 'index'])->name('admin');
 
     //Category
     Route::get('admin/category/index', [CourseCategoryController::class, 'index'])->name('category.index');
@@ -153,3 +175,4 @@ Route::middleware(['auth'])->group(function () {
 
 
 });
+

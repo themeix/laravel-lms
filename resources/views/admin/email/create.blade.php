@@ -1,4 +1,4 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Create Email Template')
 
 
@@ -24,7 +24,8 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('emailTemplate.index')}}">Email Template List</a>
+                                <li class="breadcrumb-item"><a href="{{route('emailTemplate.index')}}">Email Template
+                                        List</a>
                                 </li>
 
                                 <li class="breadcrumb-item active">Create Email Template
@@ -58,13 +59,13 @@
                                             <label class="form-label" for="basic-addon-name">Name</label>
 
                                             <input
-                                                type="text"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="Name"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="text"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="Name"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your name.</div>
@@ -81,13 +82,13 @@
                                             <label class="form-label" for="basic-addon-name">Subject</label>
 
                                             <input
-                                                type="text"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="Subject"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="text"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="Subject"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your Subject.</div>
@@ -101,11 +102,11 @@
                                         <div class="mb-1">
                                             <label class="d-block form-label" for="validationBioBootstrap">Body</label>
                                             <textarea
-                                                class="form-control"
-                                                id="validationBioBootstrap"
-                                                name="validationBioBootstrap"
-                                                rows="10"
-                                                required
+                                                    class="form-control"
+                                                    id="validationBioBootstrap"
+                                                    name="validationBioBootstrap"
+                                                    rows="10"
+                                                    required
                                             ></textarea>
                                         </div>
                                     </div>

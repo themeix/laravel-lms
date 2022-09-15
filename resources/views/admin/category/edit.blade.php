@@ -1,7 +1,6 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Edit Category')
 @section('content')
-
 
     <!-- BEGIN: Content-->
 
@@ -28,7 +27,9 @@
             </div>
             <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
                 <div class="mb-1 breadcrumb-right">
-                    <a href="{{route('category.index')}}"> <button type="button" class="btn btn-primary">Category List</button> </a>
+                    <a href="{{route('category.index')}}">
+                        <button type="button" class="btn btn-primary">Category List</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -43,22 +44,24 @@
                                 <h4 class="card-title">Multiple Column</h4>
                             </div>--}}
                             <div class="card-body">
-                                <form class="form" action="{{route('category.store')}}" method="post" enctype="multipart/form-data">
+                                <form class="form" action="{{route('category.store')}}" method="post"
+                                      enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12 col-12">
                                             <div class="mb-1">
                                                 <label class="form-label" for="name">Name</label>
                                                 <input
-                                                    value="{{ old('name') }}"
-                                                    type="text"
-                                                    id="name"
-                                                    class="form-control"
-                                                    placeholder="Name"
-                                                    name="name"
+                                                        value="{{ old('name') }}"
+                                                        type="text"
+                                                        id="name"
+                                                        class="form-control"
+                                                        placeholder="Name"
+                                                        name="name"
                                                 />
                                                 @if ($errors->has('name'))
-                                                    <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
+                                                    <span class="text-danger"><i
+                                                                class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -70,16 +73,17 @@
                                                 <label class="form-label" for="image">Image</label>
                                                 <img src="">
                                                 <input
-                                                    type="file"
-                                                    id="image"
-                                                    class="form-control"
-                                                    accept="image/*"
-                                                    onchange="previewFile(this)"
-                                                    name="image"
+                                                        type="file"
+                                                        id="image"
+                                                        class="form-control"
+                                                        accept="image/*"
+                                                        onchange="previewFile(this)"
+                                                        name="image"
                                                 />
 
                                                 @if ($errors->has('image'))
-                                                    <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
+                                                    <span class="text-danger"><i
+                                                                class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
                                                 @endif
 
                                                 <div class="pt-2 pb-2">
@@ -100,23 +104,19 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox"
                                                            id="is_feature"
-                                                           value= "0" {{old('is_feature') == "0" ? 'checked' : '' }} checked
+                                                           value="0"
+                                                           {{old('is_feature') == "0" ? 'checked' : '' }} checked
                                                            name="is_feature"
 
                                                     />
-                                                    <label class="form-check-label" for="inlineCheckbox1">Checked</label>
+                                                    <label class="form-check-label"
+                                                           for="inlineCheckbox1">Checked</label>
                                                 </div>
-
 
 
                                             </div>
                                         </div>
                                     </div>
-
-
-
-
-
 
 
                                     <div class="col-12">

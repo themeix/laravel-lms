@@ -1,4 +1,4 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Edit Coupon')
 
 
@@ -58,13 +58,13 @@
                                             <label class="form-label" for="basic-addon-name">Coupon Code Name</label>
 
                                             <input
-                                                type="text"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="Coupon Code Name"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="text"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="Coupon Code Name"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your Coupon Code Name.</div>
@@ -76,7 +76,8 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="bsDob">Start Date</label>
-                                            <input type="text" class="form-control picker" name="dob" id="bsDob" required />
+                                            <input type="text" class="form-control picker" name="dob" id="bsDob"
+                                                   required/>
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your Start Date.</div>
                                         </div>
@@ -88,14 +89,13 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="bsDob">End Date</label>
-                                            <input type="text" class="form-control picker" name="dob" id="bsDob" required />
+                                            <input type="text" class="form-control picker" name="dob" id="bsDob"
+                                                   required/>
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your End Date.</div>
                                         </div>
                                     </div>
                                 </div>
-
-
 
 
                                 <div class="row">
@@ -117,53 +117,51 @@
                                 </div>
 
 
-
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Discount (Percentage %)(Ex: 5, 10, 15...)</label>
+                                            <label class="form-label" for="basic-addon-name">Discount (Percentage %)(Ex:
+                                                5, 10, 15...)</label>
 
                                             <input
-                                                type="number"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="%"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="number"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="%"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Discount (Percentage %).</div>
+                                            <div class="invalid-feedback">Please enter your Discount (Percentage %).
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
 
-
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Minimum Amount To Apply Coupon</label>
+                                            <label class="form-label" for="basic-addon-name">Minimum Amount To Apply
+                                                Coupon</label>
 
                                             <input
-                                                type="number"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="Minimum Amount To Apply Coupon"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="number"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="Minimum Amount To Apply Coupon"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Minimum Amount To Apply Coupon.</div>
+                                            <div class="invalid-feedback">Please enter your Minimum Amount To Apply
+                                                Coupon.
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
 
 
                                 <div class="row">

@@ -1,4 +1,4 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Create Promotion')
 
 
@@ -58,13 +58,13 @@
                                             <label class="form-label" for="basic-addon-name">Name</label>
 
                                             <input
-                                                type="text"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="Name"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="text"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="Name"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your Name.</div>
@@ -76,7 +76,8 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="bsDob">Start Date</label>
-                                            <input type="text" class="form-control picker" name="dob" id="bsDob" required />
+                                            <input type="text" class="form-control picker" name="dob" id="bsDob"
+                                                   required/>
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your Start Date.</div>
                                         </div>
@@ -88,16 +89,13 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="bsDob">End Date</label>
-                                            <input type="text" class="form-control picker" name="dob" id="bsDob" required />
+                                            <input type="text" class="form-control picker" name="dob" id="bsDob"
+                                                   required/>
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your End Date.</div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
 
 
                                 <div class="row">
@@ -106,22 +104,20 @@
                                             <label class="form-label" for="basic-addon-name">Percentage (%)</label>
 
                                             <input
-                                                type="number"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="%"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="number"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="%"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Discount (Percentage %).</div>
+                                            <div class="invalid-feedback">Please enter your Discount (Percentage %).
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
 
 
                                 <div class="row">

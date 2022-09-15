@@ -1,5 +1,4 @@
-
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Blocked Instructor')
 
 

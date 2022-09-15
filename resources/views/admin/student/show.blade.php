@@ -1,11 +1,13 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Show Student')
 
 
 @push('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.min.css')}}">
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/forms/form-validation.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/extensions/ext-component-sweet-alerts.min.css')}}">
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('app-assets/css/plugins/extensions/ext-component-sweet-alerts.min.css')}}">
 @endpush
 
 @section('content')
@@ -26,11 +28,11 @@
                                 <div class="user-avatar-section">
                                     <div class="d-flex align-items-center flex-column">
                                         <img
-                                            class="img-fluid rounded mt-3 mb-2"
-                                            src="{{ asset('custom/image/download.jfif') }}"
-                                            height="110"
-                                            width="110"
-                                            alt="User avatar"
+                                                class="img-fluid rounded mt-3 mb-2"
+                                                src="{{ asset('custom/image/download.jfif') }}"
+                                                height="110"
+                                                width="110"
+                                                alt="User avatar"
                                         />
                                         <div class="user-info text-center">
                                             <h4>Gertrude Barton</h4>
@@ -139,7 +141,6 @@
 
         </div>
     </div>
-
 
 @endsection
 

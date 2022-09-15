@@ -1,4 +1,4 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Create Language')
 @section('content')
 
@@ -49,13 +49,13 @@
                                             <label class="form-label" for="basic-addon-name">Language Name</label>
 
                                             <input
-                                                type="text"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="Language Name"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="text"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="Language Name"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter Language name.</div>

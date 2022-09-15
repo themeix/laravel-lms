@@ -1,4 +1,4 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Edit Promotional Tag')
 @section('content')
 
@@ -15,7 +15,8 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('promotionalTag.index')}}">Promotional Tag List</a>
+                                <li class="breadcrumb-item"><a href="{{route('promotionalTag.index')}}">Promotional Tag
+                                        List</a>
                                 </li>
 
                                 <li class="breadcrumb-item active">Edit Promotional Tag
@@ -49,13 +50,13 @@
                                             <label class="form-label" for="basic-addon-name">Tag Name</label>
 
                                             <input
-                                                type="text"
-                                                id="basic-addon-name"
-                                                class="form-control"
-                                                placeholder="Tag Name"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
+                                                    type="text"
+                                                    id="basic-addon-name"
+                                                    class="form-control"
+                                                    placeholder="Tag Name"
+                                                    aria-label="Name"
+                                                    aria-describedby="basic-addon-name"
+                                                    required
                                             />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter Promotional Tag name.</div>

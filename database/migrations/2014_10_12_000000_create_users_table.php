@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            $table->tinyInteger('role')->comment('1=admin, 2=instructor, 3=student');
+            $table->tinyInteger('type')->comment('1=admin, 2=instructor, 3=student');
             $table->string('phone_number', 50)->nullable();
             $table->mediumText('address')->nullable();
 

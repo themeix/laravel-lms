@@ -1,4 +1,4 @@
-@extends('layouts.dashboardMaster')
+@extends('layouts.adminMaster')
 @section('title','Enroll In Course')
 @section('content')
 
@@ -42,8 +42,6 @@
                         </div>--}}
                         <div class="card-body">
                             <form class="needs-validation" novalidate>
-
-
 
 
                                 <div class="row">

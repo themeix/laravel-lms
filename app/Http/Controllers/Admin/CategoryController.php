@@ -7,13 +7,12 @@ use App\Models\Category;
 use App\Tools\Repositories\Crud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Traits\General;
 use App\Traits\ImageSaveTrait;
 
 class CategoryController extends Controller
 {
     private $model;
-    use General, ImageSaveTrait;
+    use  ImageSaveTrait;
     public function __construct(Category $category)
     {
         $this->model = new Crud($category);
@@ -26,7 +25,16 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index');
+
+        /*if (!Auth::user()->can('manage_course_category')) {
+            abort('403');
+        } */
+
+        // end permission checking
+
+        $data['categories'] = $this->model->getOrderById('DESC', 25);
+
+        return view('admin.category.index', $data);
     }
 
     /**
@@ -62,7 +70,8 @@ class CategoryController extends Controller
 
         $this->model->create($data); // create new category
 
-        return $this->controlRedirection($request, 'category', 'Category');
+        return redirect()->route('category.index')->with('message', 'Category add successfully.');
+
     }
 
     /**
@@ -82,9 +91,20 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($uuid)
     {
-        return view('admin.category.edit');
+
+        /*if (!Auth::user()->can('manage_course_category')) {
+            abort('403');
+        } */
+
+
+        // end permission checking
+
+        $data['category'] = $this->model->getRecordByUuid($uuid);
+
+
+        return view('admin.category.edit', $data);
     }
 
     /**
@@ -94,9 +114,36 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
-        //
+        /*if (!Auth::user()->can('manage_course_category')) {
+            abort('403');
+        } */
+
+        // end permission checking
+
+        $category = $this->model->getRecordByUuid($uuid);
+
+        if ($request->image)
+        {
+            $this->deleteFile($category->image); // delete file from server
+
+            $image = $this->saveImage('category', $request->image, null, null); // new file upload into server
+
+        } else {
+            $image = $category->image;
+        }
+
+        $data = [
+            'name' => $request->name,
+            'is_feature' => $request->is_feature ? 'yes' : 'no',
+            'slug' => Str::slug($request->name),
+            'image' => $image
+        ];
+
+        $this->model->updateByUuid($data, $uuid); // update category
+
+        return redirect()->route('category.index')->with('message', 'Category Updated successfully.');
     }
 
     /**
@@ -105,8 +152,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($uuid)
     {
-        //
+        /*if (!Auth::user()->can('manage_course_category')) {
+            abort('403');
+        } */
+
+        // end permission checking
+
+        $category = $this->model->getRecordByUuid($uuid);
+        $this->deleteFile($category->image); // delete file from server
+        $this->model->deleteByUuid($uuid); // delete record
+
+        return redirect()->route('category.index')->with('message', 'Category Deleted successfully.');
     }
 }

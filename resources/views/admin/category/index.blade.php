@@ -4,6 +4,31 @@
 
     <!-- BEGIN: Content-->
 
+
+    @if(Session::has('message'))
+
+        <div class="toast-container">
+            <div class="toast basic-toast position-fixed top-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img
+                        src="{{asset('logo.svg')}}"
+                        class="me-1"
+                        alt="Toast image"
+                        height="18"
+                        width="25"
+                    />
+                    <strong class="me-auto">Learn</strong>
+                    {{--<small class="text-muted">11 mins ago</small>--}}
+                    <button type="button" class="ms-1 btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ Session::get('message') }}
+                </div>
+            </div>
+        </div>
+    @endif
+
+
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper container-xxl p-0">
@@ -49,6 +74,37 @@
                                         <th>Action</th>
                                     </tr>
                                     </thead>
+                                    @foreach($categories as $category)
+                                        <tr class="removable-item">
+                                            <td>
+                                                {{$category->name}}
+                                            </td>
+                                            <td>
+                                                @if($category->is_feature == 'yes')
+                                                    <span class="status active">Yes</span>
+                                                @else
+                                                    <span class="status blocked">No</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{ @$category->courses->count() }}
+                                            </td>
+                                            <td>
+                                                <div class="action__buttons">
+                                                    <a href="{{route('category.edit', [$category->uuid])}}" class="btn-action" title="Edit">
+                                                        <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
+                                                    </a>
+                                                    <a href="javascript:void(0);" data-url="{{route('category.delete', [$category->uuid])}}" class="btn-action delete" title="Delete">
+                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                    @endforeach
+                                    <tbody>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -61,3 +117,5 @@
     <!-- END: Content-->
 
 @endsection
+
+

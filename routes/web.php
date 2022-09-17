@@ -158,7 +158,14 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin/category/index', [CategoryController::class, 'index'])->name('category.index');
     Route::get('admin/category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('admin/category/store', [CategoryController::class, 'store'])->name('category.store')/*->middleware('isDemo')*/;
-    Route::get('admin/category/edit', [CategoryController::class, 'edit'])->name('category.edit');
+
+    Route::get('admin/category/edit/{uuid}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('admin/category/update/{uuid}', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('delete/{uuid}', [CategoryController::class, 'delete'])->name('category.delete')/*->middleware('isDemo')*/;
+
+
+
+
 
     //SubCategory
     Route::get('admin/subCategory/index', [SubCategoryController::class, 'index'])->name('subCategory.index');

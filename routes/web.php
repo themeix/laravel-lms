@@ -161,7 +161,7 @@ Route::middleware(['auth','admin'])->group(function () {
 
     Route::get('admin/category/edit/{uuid}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('admin/category/update/{uuid}', [CategoryController::class, 'update'])->name('category.update');
-    Route::get('delete/{uuid}', [CategoryController::class, 'delete'])->name('category.delete')/*->middleware('isDemo')*/;
+    Route::get('admin/category/delete/{uuid}', [CategoryController::class, 'destroy'])->name('category.delete')/*->middleware('isDemo')*/;
 
 
 

@@ -44,7 +44,7 @@
                                 <h4 class="card-title">Multiple Column</h4>
                             </div>--}}
                             <div class="card-body">
-                                <form class="form" action="{{route('category.store')}}" method="post"
+                                <form class="form" action="{{route('category.update', [$category->uuid])}}" method="post"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
@@ -52,7 +52,7 @@
                                             <div class="mb-1">
                                                 <label class="form-label" for="name">Name</label>
                                                 <input
-                                                        value="{{ old('name') }}"
+                                                        value="{{$category->name}}"
                                                         type="text"
                                                         id="name"
                                                         class="form-control"
@@ -104,16 +104,12 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox"
                                                            id="is_feature"
-                                                           value="0"
-                                                           {{old('is_feature') == "0" ? 'checked' : '' }} checked
+                                                           value="yes" {{$category->is_feature == 'yes' ? 'checked' : '' }}
                                                            name="is_feature"
-
                                                     />
                                                     <label class="form-check-label"
                                                            for="inlineCheckbox1">Checked</label>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </div>

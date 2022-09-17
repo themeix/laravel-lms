@@ -767,8 +767,6 @@
 <script src="{{asset('app-assets/js/scripts/tables/table-datatables-advanced.min.js')}}"></script>
 
 
-
-
 <script>
     $(window).on('load',  function(){
         if (feather) {

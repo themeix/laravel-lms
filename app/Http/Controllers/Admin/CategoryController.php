@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Traits\ImageSaveTrait;
 
+
 class CategoryController extends Controller
 {
     private $model;
-    use  ImageSaveTrait;
+    use   ImageSaveTrait;
     public function __construct(Category $category)
     {
         $this->model = new Crud($category);
@@ -70,7 +71,7 @@ class CategoryController extends Controller
 
         $this->model->create($data); // create new category
 
-        return redirect()->route('category.index')->with('message', 'Category add successfully.');
+        return redirect()->route('category.index')->with('create-message', 'Category added successfully.');
 
     }
 
@@ -143,7 +144,7 @@ class CategoryController extends Controller
 
         $this->model->updateByUuid($data, $uuid); // update category
 
-        return redirect()->route('category.index')->with('message', 'Category Updated successfully.');
+        return redirect()->route('category.index')->with('update-message', 'Category Updated successfully.');
     }
 
     /**
@@ -164,6 +165,7 @@ class CategoryController extends Controller
         $this->deleteFile($category->image); // delete file from server
         $this->model->deleteByUuid($uuid); // delete record
 
-        return redirect()->route('category.index')->with('message', 'Category Deleted successfully.');
+        return redirect()->route('category.index')->with('delete-message', 'Category Deleted successfully.');
     }
+
 }

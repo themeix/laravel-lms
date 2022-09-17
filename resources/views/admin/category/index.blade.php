@@ -4,29 +4,30 @@
 
     <!-- BEGIN: Content-->
 
-
-    @if(Session::has('message'))
-
-        <div class="toast-container">
-            <div class="toast basic-toast position-fixed top-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img
-                        src="{{asset('logo.svg')}}"
-                        class="me-1"
-                        alt="Toast image"
-                        height="18"
-                        width="25"
-                    />
-                    <strong class="me-auto">Learn</strong>
-                    {{--<small class="text-muted">11 mins ago</small>--}}
-                    <button type="button" class="ms-1 btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    {{ Session::get('message') }}
-                </div>
+    @if(Session::has('create-message'))
+        <div class="alert alert-success" role="alert">
+            <div class="alert-body">
+                {{ Session::get('create-message') }}
             </div>
         </div>
     @endif
+
+    @if(Session::has('update-message'))
+        <div class="alert alert-success" role="alert">
+            <div class="alert-body">
+                {{ Session::get('update-message') }}
+            </div>
+        </div>
+    @endif
+
+    @if(Session::has('delete-message'))
+        <div class="alert alert-danger" role="alert">
+            <div class="alert-body">
+                {{ Session::get('delete-message') }}
+            </div>
+        </div>
+    @endif
+
 
 
     <div class="content-overlay"></div>
@@ -55,6 +56,8 @@
                     </a>
                 </div>
             </div>
+
+
         </div>
         <div class="content-body">
             <section id="ajax-datatable">
@@ -94,7 +97,7 @@
                                                     <a href="{{route('category.edit', [$category->uuid])}}" class="btn-action" title="Edit">
                                                         <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                     </a>
-                                                    <a href="javascript:void(0);" data-url="{{route('category.delete', [$category->uuid])}}" class="btn-action delete" title="Delete">
+                                                    <a href="{{route('category.delete', [$category->uuid])}}"  class="btn-action delete" title="Delete">
                                                         <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
                                                     </a>
                                                 </div>

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\CouponController;
-use App\Http\Controllers\Admin\CourseCategoryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DifficultyLevelController;
 use App\Http\Controllers\Admin\EmailManagementController;
@@ -155,10 +155,10 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin', [AdminDashboardController::class, 'index'])->name('admin');
 
     //Category
-    Route::get('admin/category/index', [CourseCategoryController::class, 'index'])->name('category.index');
-    Route::get('admin/category/create', [CourseCategoryController::class, 'create'])->name('category.create');
-    Route::get('admin/category/store', [CourseCategoryController::class, 'store'])->name('category.store');
-    Route::get('admin/category/edit', [CourseCategoryController::class, 'edit'])->name('category.edit');
+    Route::get('admin/category/index', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('admin/category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('admin/category/store', [CategoryController::class, 'store'])->name('category.store')/*->middleware('isDemo')*/;
+    Route::get('admin/category/edit', [CategoryController::class, 'edit'])->name('category.edit');
 
     //SubCategory
     Route::get('admin/subCategory/index', [SubCategoryController::class, 'index'])->name('subCategory.index');

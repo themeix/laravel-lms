@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('course_categories', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('name');
             $table->string('image')->nullable();
-            $table->tinyInteger('is_feature')->default(1)->comment('0=no, 1=yes');
+            $table->string('is_feature', 10)->default('no')->comment('yes, no');
             $table->string('slug');
-
-            $table->tinyInteger('status')->default(1)->comment('0=inactive, 1=active');
-            $table->tinyInteger('existence')->default(1)->comment('0=deleted, 1=active');
-
+            $table->tinyInteger('status')->default(1)->comment('1=active, 0=inactive');
             $table->timestamps();
         });
     }
@@ -35,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_categories');
+        Schema::dropIfExists('categories');
     }
 };

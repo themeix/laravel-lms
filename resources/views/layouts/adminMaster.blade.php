@@ -758,6 +758,19 @@
 
 <!-- END: Page JS-->
 
+
+@if (@$errors->any())
+    <script>
+        "use strict";
+        @foreach ($errors->all() as $error)
+            toastr.options.positionClass = 'toast-bottom-right';
+        toastr.error("{{ $error }}")
+        @endforeach
+    </script>
+@endif
+
+
+
 <script>
     $(window).on('load',  function(){
         if (feather) {

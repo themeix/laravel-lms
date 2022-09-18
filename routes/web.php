@@ -26,7 +26,7 @@ Route::get('/local/{ln}', function ($ln) {
 
 /*Route::get('notification-url/{uuid}', [InstallerController::class, 'notificationUrl'])->name('notification.url');*/
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [LoginController::class, 'logout']);

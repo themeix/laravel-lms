@@ -8,7 +8,7 @@ use App\Tools\Repositories\Crud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Traits\ImageSaveTrait;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class CategoryController extends Controller
@@ -64,6 +64,8 @@ class CategoryController extends Controller
         ];
 
         $this->model->create($data); // create new category
+
+
 
         return redirect()->route('category.index')->with('create-message', 'Category created successfully.');
 
@@ -126,6 +128,7 @@ class CategoryController extends Controller
         ];
 
         $this->model->updateByUuid($data, $uuid); // update category
+        Alert::toast('Category Updated Successfully.', 'success');
 
         return redirect()->route('category.index')->with('update-message', 'Category Updated successfully.');
     }
@@ -140,6 +143,8 @@ class CategoryController extends Controller
         // end permission checking
 
         $category = $this->model->getRecordByUuid($uuid);
+        
+
         $this->deleteFile($category->image); // delete file from server
         $this->model->deleteByUuid($uuid); // delete record
 

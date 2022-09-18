@@ -8,6 +8,38 @@
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
+
+
+
+            @if(Session::has('create-message'))
+                <div class="alert alert-success" role="alert">
+                    <div class="alert-body">
+                        {{ Session::get('create-message') }}
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('update-message'))
+                <div class="alert alert-success" role="alert">
+                    <div class="alert-body">
+                        {{ Session::get('update-message') }}
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('delete-message'))
+                <div class="alert alert-danger" role="alert">
+                    <div class="alert-body">
+                        {{ Session::get('delete-message') }}
+                    </div>
+                </div>
+            @endif
+
+
+
+
+
+
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">

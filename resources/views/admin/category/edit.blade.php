@@ -119,7 +119,7 @@
 
                                         <button type="submit" class="btn btn-primary me-1">Submit</button>
 
-                                        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                        {{--<button type="reset" class="btn btn-outline-secondary">Reset</button>--}}
 
 
                                     </div>

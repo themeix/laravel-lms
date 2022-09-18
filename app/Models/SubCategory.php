@@ -17,9 +17,9 @@ class SubCategory extends Model
     ];
 
 
-    public function course_category()
+    public function category()
     {
-        return $this->belongsTo(CourseCategory::class);
+        return $this->belongsTo(Category::class);
     }
 
     protected static function boot()

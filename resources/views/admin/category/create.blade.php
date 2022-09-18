@@ -107,15 +107,16 @@
 
 
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox"
+                                                    {{--<input class="form-check-input" type="checkbox"
                                                            id="is_feature"
-                                                           value="0"
-                                                           {{old('is_feature') == "0" ? 'checked' : '' }} checked
-                                                           name="is_feature"
+                                                           value="0" name="is_feature"
+                                                        {{old('is_feature') == 'yes' ? 'checked' : '' }} > Yes />--}}
 
-                                                    />
-                                                    <label class="form-check-label"
-                                                           for="inlineCheckbox1">Checked</label>
+                                                    <label class="form-check-label" > <input class="form-check-input" type="checkbox" name="is_feature" id="is_feature" value="yes" {{old('is_feature') == 'yes' ? 'checked' : '' }} > Yes </label>
+
+
+                                                   {{-- <label class="form-check-label"
+                                                           for="inlineCheckbox1">Checked</label>--}}
                                                 </div>
 
 
@@ -128,7 +129,7 @@
 
                                         <button type="submit" class="btn btn-primary me-1">Submit</button>
 
-                                        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                        {{--<button type="reset" class="btn btn-outline-secondary">Reset</button>--}}
 
 
                                     </div>

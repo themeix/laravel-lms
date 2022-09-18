@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+
 class DifficultyLevel extends Model
 {
     use HasFactory;
@@ -13,6 +14,16 @@ class DifficultyLevel extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'difficulty_level_id');
+    }
+
+    public function activeCourses()
+    {
+        return $this->hasMany(Course::class, 'difficulty_level_id')->where('status', 1);
+    }
 
 
     protected static function boot()

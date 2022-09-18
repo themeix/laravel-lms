@@ -25,9 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        /*return view('home');*/
 
-        /*if (Auth::user()->is_admin())
+        if (Auth::user()->is_admin())
         {
             return redirect(route('admin'));
 
@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         else if (Auth::user()->is_student()) {
             return redirect(route('student'));
-        }*/
+        }
     }
 
 

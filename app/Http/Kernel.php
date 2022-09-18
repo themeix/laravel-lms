@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\LocalizationMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -71,6 +72,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'student' => \App\Http\Middleware\Student::class,
         'instructor' => \App\Http\Middleware\Instructor::class,
+        'local' =>  LocalizationMiddleware::class,
 
     ];
 }

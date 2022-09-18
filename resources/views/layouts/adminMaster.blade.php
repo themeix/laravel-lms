@@ -801,7 +801,7 @@
 
 <!-- BEGIN: Page Vendor JS-->
 <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js') }}"></script>
-<script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
+{{--<script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>--}}
 <script src="{{asset('app-assets/vendors/js/extensions/moment.min.js') }}"></script>
 <script src="{{asset('app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
 <!-- END: Page Vendor JS-->

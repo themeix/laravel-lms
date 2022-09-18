@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class HomeController extends Controller
@@ -31,12 +32,18 @@ class HomeController extends Controller
         {
             return redirect(route('admin'));
 
+
+
         } else if (Auth::user()->is_instructor()) {
             return redirect(route('instructor'));
+
+
         }
 
         else if (Auth::user()->is_student()) {
             return redirect(route('student'));
+
+
         }
     }
 

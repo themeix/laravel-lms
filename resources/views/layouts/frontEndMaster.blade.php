@@ -51,6 +51,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static   menu-collapsed" data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
+
+@include('sweetalert::alert')
+
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     @yield('content');

@@ -53,6 +53,8 @@
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
+@include('sweetalert::alert')
+
 <!-- BEGIN: Header-->
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
     <div class="navbar-container d-flex content">
@@ -765,7 +767,7 @@
 
 <!-- BEGIN: Page Vendor JS-->
 <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js') }}"></script>
-<script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
+{{--<script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>--}}
 <script src="{{asset('app-assets/vendors/js/extensions/moment.min.js') }}"></script>
 <script src="{{asset('app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{asset('app-assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>

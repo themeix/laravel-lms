@@ -128,6 +128,7 @@ class CategoryController extends Controller
         ];
 
         $this->model->updateByUuid($data, $uuid); // update category
+
         Alert::toast('Category Updated Successfully.', 'success');
 
         return redirect()->route('category.index')->with('update-message', 'Category Updated successfully.');
@@ -143,10 +144,13 @@ class CategoryController extends Controller
         // end permission checking
 
         $category = $this->model->getRecordByUuid($uuid);
-        
+
+        Alert::warning('Are you want to delete it ?', 'Warning Message');
 
         $this->deleteFile($category->image); // delete file from server
         $this->model->deleteByUuid($uuid); // delete record
+
+        Alert::toast('Category Deleted Successfully.', 'error');
 
         return redirect()->route('category.index')->with('delete-message', 'Category Deleted successfully.');
     }

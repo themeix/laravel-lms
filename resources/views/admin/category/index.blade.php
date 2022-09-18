@@ -34,10 +34,6 @@
                 </div>
             @endif
 
-
-
-
-
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
@@ -62,65 +58,78 @@
             </div>
         </div>
         <div class="content-body">
-            <section id="ajax-datatable">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            {{--<div class="card-header border-bottom">
-                                <h4 class="card-title">Ajax Sourced Server-side</h4>
-                            </div>--}}
-                            <div class="card-datatable">
-                                <table class="datatables-ajax table table-responsive">
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Is Feature</th>
-                                        <th>Total Course</th>
-                                        <th>Action</th>
+            <section id="column-search-datatable">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-12">
+                            <table id="example" class="table table-striped table-responsive dataTables_info">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Is Feature</th>
+                                    <th>Total Course</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($categories as $category)
+                                    <tr class="removable-item">
+                                        <td>
+                                            {{$category->id}}
+                                        </td>
+                                        <td>
+                                            {{$category->name}}
+                                        </td>
+                                        <td>
+                                            @if($category->is_feature == 'yes')
+                                                <span class="status active">Yes</span>
+                                            @else
+                                                <span class="status blocked">No</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ @$category->courses->count() }}
+                                        </td>
+                                        <td>
+                                            <div class="action__buttons">
+                                                <a href="{{route('category.edit', [$category->uuid])}}" class="btn-action" title="Edit">
+                                                    <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
+                                                </a>
+                                                <a href="{{route('category.delete', [$category->uuid])}}"  class="btn-action delete" title="Delete">
+                                                    <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
+                                                </a>
+                                            </div>
+                                        </td>
                                     </tr>
-                                    </thead>
-                                    @foreach($categories as $category)
-                                        <tr class="removable-item">
-                                            <td>
-                                                {{$category->name}}
-                                            </td>
-                                            <td>
-                                                @if($category->is_feature == 'yes')
-                                                    <span class="status active">Yes</span>
-                                                @else
-                                                    <span class="status blocked">No</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                {{ @$category->courses->count() }}
-                                            </td>
-                                            <td>
-                                                <div class="action__buttons">
-                                                    <a href="{{route('category.edit', [$category->uuid])}}" class="btn-action" title="Edit">
-                                                        <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
-                                                    </a>
-                                                    <a href="{{route('category.delete', [$category->uuid])}}"  class="btn-action delete" title="Delete">
-                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
 
 
-                                    @endforeach
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </section>
+
+
+
         </div>
     </div>
 
     <!-- END: Content-->
 
 @endsection
+
+
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+@endpush
 
 

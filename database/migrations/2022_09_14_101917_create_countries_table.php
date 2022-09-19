@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->string('short_name', 10);
-            $table->string('country_name');
-            $table->string('flag');
+            $table->string('country_name')->unique();
+            $table->string('flag')->nullable();
             $table->string('slug');
             $table->string('phonecode');
             $table->string('continent');

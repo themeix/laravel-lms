@@ -614,6 +614,41 @@
                 </ul>
             </li>
 
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='slack'></i><span class="menu-title text-truncate" data-i18n="User">Application Settings</span></a>
+                <ul class="menu-content">
+
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Location</span></a>
+
+
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{route('country.index')}}"><span class="menu-item text-truncate" data-i18n="Basic">Country</span></a>
+                            </li>
+                            <li><a class="d-flex align-items-center" href="{{route('state.index')}}"><span class="menu-item text-truncate" data-i18n="Cover">State</span></a>
+                            </li>
+                            <li><a class="d-flex align-items-center" href="{{route('city.index')}}"><span class="menu-item text-truncate" data-i18n="Cover">City</span></a>
+                            </li>
+                        </ul>
+
+
+
+
+
+                    </li>
+
+                    <li><a class="d-flex align-items-center" href="{{route('emailTemplate.sendEmail')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Blog</span></a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center" href="{{route('emailTemplate.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Blog</span></a>
+                    </li>
+
+
+                    <li><a class="d-flex align-items-center" href="{{route('emailTemplate.sendEmail')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Blog Comment List</span></a>
+                    </li>
+
+                </ul>
+            </li>
+
+
         </ul>
     </div>
 </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class State extends Model
 {
@@ -24,5 +25,13 @@ class State extends Model
     public function cities()
     {
         return $this->hasMany(City::class, 'state_id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        self::creating(function($model){
+            $model->uuid =  Str::uuid()->toString();
+        });
     }
 }

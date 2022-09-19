@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\StateController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -16,8 +19,8 @@ use App\Http\Controllers\Admin\RulesBenifitsController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SupportTicketController;
 use App\Http\Controllers\Admin\TagController;
-use App\Http\Controllers\InstructorController;
-use App\Http\Controllers\StudentController;
+/*use App\Http\Controllers\InstructorController;*/
+use App\Http\Controllers\Admin\StudentController;
 
 
 
@@ -115,8 +118,17 @@ Route::get('instructor/approved', [InstructorController::class, 'approvedInstruc
 //Student
 Route::get('student/index', [StudentController::class, 'index'])->name('student.index');
 Route::get('student/create', [StudentController::class, 'create'])->name('student.create');
-Route::get('student/edit', [StudentController::class, 'edit'])->name('student.edit');
 Route::get('student/show', [StudentController::class, 'show'])->name('student.show');
+
+Route::post('student/store', [StudentController::class, 'store'])->name('student.store')->middleware('isDemo');
+Route::get('student/show/{uuid}', [StudentController::class, 'show'])->name('student.show');
+Route::get('student/edit/{uuid}', [StudentController::class, 'edit'])->name('student.edit');
+
+Route::post('student/update/{uuid}', [StudentController::class, 'update'])->name('student.update')/*->middleware('isDemo')*/;
+
+Route::delete('student/delete/{uuid}', [StudentController::class, 'delete'])->name('student.delete')/*->middleware('isDemo')*/;
+
+Route::post('student/change-student-status', [StudentController::class, 'changeStudentStatus'])->name('admin.student.changeStudentStatus')/*->middleware('isDemo')*/;
 
 
 //Coupon
@@ -149,3 +161,34 @@ Route::get('emailTemplate/sendEmail', [EmailManagementController::class, 'sendEm
 Route::get('blogCategory/index', [BlogCategoryController::class, 'index'])->name('blogCategory.index');
 Route::get('blogCategory/create', [BlogCategoryController::class, 'create'])->name('blogCategory.create');
 Route::get('blogCategory/edit', [BlogCategoryController::class, 'edit'])->name('blogCategory.edit');
+
+
+//Location - Country
+Route::get('country/index', [CountryController::class, 'index'])->name('country.index');
+Route::get('country/create', [CountryController::class, 'create'])->name('country.create');
+Route::post('country/store', [CountryController::class, 'store'])->name('country.store')/*->middleware('isDemo')*/;
+Route::get('country/edit/{uuid}', [CountryController::class, 'edit'])->name('country.edit');
+Route::post('country/update/{uuid}', [CountryController::class, 'update'])->name('country.update')/*->middleware('isDemo')*/;
+Route::get('country/delete/{uuid}', [CountryController::class, 'delete'])->name('country.delete')/*->middleware('isDemo')*/;
+
+
+
+
+
+
+
+//Location - State
+Route::get('state/index', [StateController::class, 'index'])->name('state.index');
+Route::get('state/create', [StateController::class, 'create'])->name('state.create');
+Route::post('state/store', [StateController::class, 'store'])->name('state.store')/*->middleware('isDemo')*/;
+Route::get('state/edit/{uuid}', [StateController::class, 'edit'])->name('state.edit');
+Route::post('state/update/{uuid}', [StateController::class, 'update'])->name('state.update')/*->middleware('isDemo')*/;
+Route::get('state/delete/{uuid}', [StateController::class, 'delete'])->name('state.delete')/*->middleware('isDemo')*/;
+
+//Location - Country
+Route::get('city/index', [CityController::class, 'index'])->name('city.index');
+Route::get('city/create', [CityController::class, 'create'])->name('city.create');
+Route::post('city/store', [CityController::class, 'store'])->name('city.store')/*->middleware('isDemo')*/;
+Route::get('city/edit/{uuid}', [CityController::class, 'edit'])->name('city.edit');
+Route::post('city/update/{uuid}', [CityController::class, 'update'])->name('city.update')/*->middleware('isDemo')*/;
+Route::get('city/delete/{uuid}', [CityController::class, 'delete'])->name('city.delete')/*->middleware('isDemo')*/;

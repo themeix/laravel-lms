@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('name');
-            $table->string('color');
+            $table->string('color')->nullable(true);
             $table->timestamps();
         });
     }

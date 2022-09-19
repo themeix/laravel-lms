@@ -8,6 +8,7 @@ use App\Tools\Repositories\Crud;
 use App\Traits\ImageSaveTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LanguageController extends Controller
 {
@@ -56,7 +57,7 @@ class LanguageController extends Controller
         // end permission checking
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255','unique']
+            'name' => ['required', 'unique:languages', 'string', 'max:255']
         ]);
 
         $data = [
@@ -64,6 +65,8 @@ class LanguageController extends Controller
         ];
 
         $this->model->create($data); // create new Language
+
+        Alert::toast('Language created Successfully.', 'success');
 
         return redirect()->route('language.index')->with('create-message', 'Language created successfully.');
 
@@ -95,7 +98,7 @@ class LanguageController extends Controller
         // end permission checking
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255','unique']
+            'name' => ['required', 'unique:languages', 'string', 'max:255']
         ]);
 
         $data = [
@@ -104,6 +107,7 @@ class LanguageController extends Controller
 
         $this->model->updateByUuid($data, $uuid); // update language
 
+        Alert::toast('Language Updated Successfully.', 'success');
 
         return redirect()->route('language.index')->with('update-message', 'Language updated successfully.');
     }
@@ -120,6 +124,8 @@ class LanguageController extends Controller
 
 
         $this->model->deleteByUuid($uuid); // delete record
+
+        Alert::toast('Language Deleted Successfully.', 'warning');
 
         return redirect()->route('language.index')->with('delete-message', 'Language deleted successfully.');
     }

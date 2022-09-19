@@ -117,7 +117,7 @@
 
                                     <div class="col-12">
 
-                                        <button type="submit" class="btn btn-primary me-1">Submit</button>
+                                        <button type="submit" class="btn btn-primary me-1">Update</button>
 
                                         {{--<button type="reset" class="btn btn-outline-secondary">Reset</button>--}}
 

@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
         // end permission checking
 
-        $data['categories'] = $this->model->getOrderById('DESC', 25);
+        $data['categories'] = $this->model->getOrderById('DESC');
 
         return view('admin.category.index', $data);
     }
@@ -65,7 +65,7 @@ class CategoryController extends Controller
 
         $this->model->create($data); // create new category
 
-
+        Alert::toast('Category Created Successfully.', 'success');
 
         return redirect()->route('category.index')->with('create-message', 'Category created successfully.');
 
@@ -150,7 +150,7 @@ class CategoryController extends Controller
         $this->deleteFile($category->image); // delete file from server
         $this->model->deleteByUuid($uuid); // delete record
 
-        Alert::toast('Category Deleted Successfully.', 'error');
+        Alert::toast('Category Deleted Successfully.', 'warning');
 
         return redirect()->route('category.index')->with('delete-message', 'Category Deleted successfully.');
     }

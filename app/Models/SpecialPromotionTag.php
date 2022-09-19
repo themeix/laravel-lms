@@ -10,6 +10,11 @@ class SpecialPromotionTag extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id',
+        'name',
+    ];
+
     public static function boot()
     {
         parent::boot();

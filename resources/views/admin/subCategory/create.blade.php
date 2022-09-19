@@ -42,22 +42,22 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
-
+                            <form action="{{route('subCategory.store')}}" method="post" class="needs-validation" enctype="multipart/form-data" >
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1">Select Category</label>
-                                            <select class="form-select" id="select-country1" required>
-                                                <option value="">Select Category</option>
-                                                <option value="usa">USA</option>
-                                                <option value="uk">UK</option>
-                                                <option value="france">France</option>
-                                                <option value="australia">Australia</option>
-                                                <option value="spain">Spain</option>
+                                            <select class="form-select" name="category_id" id="category_id" required>
+                                                <option value="">---Select Category----</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                                                @endforeach
                                             </select>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please select Category</div>
+                                            @if ($errors->has('category_id'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('category_id') }}</span>
+                                                @endif
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -65,19 +65,24 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Sub Category Name</label>
+                                            <label class="form-label" for="name">Sub Category Name</label>
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    name="name" id="name"
+                                                    value="{{old('name')}}"
                                                     class="form-control"
                                                     placeholder="Sub Category Name"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter Sub Category name.</div>
+
+                                            @if ($errors->has('name'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
+                                            @endif
+
+
                                         </div>
                                     </div>
                                 </div>

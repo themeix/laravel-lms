@@ -39,28 +39,50 @@ Route::get('category/delete/{uuid}', [CategoryController::class, 'destroy'])->na
 //SubCategory
 Route::get('subCategory/index', [SubCategoryController::class, 'index'])->name('subCategory.index');
 Route::get('subCategory/create', [SubCategoryController::class, 'create'])->name('subCategory.create');
-Route::get('subCategory/edit', [SubCategoryController::class, 'edit'])->name('subCategory.edit');
+Route::post('subcategory/store', [SubcategoryController::class, 'store'])->name('subCategory.store')/*->middleware('isDemo')*/;
+Route::get('subCategory/edit/{uuid}', [SubCategoryController::class, 'edit'])->name('subCategory.edit');
+Route::post('subCategory/update/{uuid}', [SubcategoryController::class, 'update'])->name('subCategory.update')/*->middleware('isDemo')*/;
+Route::get('subCategory/delete/{uuid}', [SubcategoryController::class, 'delete'])->name('subCategory.delete')/*->middleware('isDemo')*/;
 
 //Tag
 Route::get('tag/index', [TagController::class, 'index'])->name('tag.index');
 Route::get('tag/create', [TagController::class, 'create'])->name('tag.create');
-Route::get('tag/edit', [TagController::class, 'edit'])->name('tag.edit');
+Route::post('tag/store', [TagController::class, 'store'])->name('tag.store')/*->middleware('isDemo')*/;
+Route::get('edit/{uuid}', [TagController::class, 'edit'])->name('tag.edit');
+Route::post('update/{uuid}', [TagController::class, 'update'])->name('tag.update')/*->middleware('isDemo')*/;
+Route::get('delete/{uuid}', [TagController::class, 'delete'])->name('tag.delete')/*->middleware('isDemo')*/;
+
+
 
 //Language
 Route::get('language/index', [LanguageController::class, 'index'])->name('language.index');
 Route::get('language/create', [LanguageController::class, 'create'])->name('language.create');
-Route::get('language/edit', [LanguageController::class, 'edit'])->name('language.edit');
+Route::post('language/store', [LanguageController::class, 'store'])->name('language.store')/*->middleware('isDemo')*/;
+Route::get('language/edit/{uuid}', [LanguageController::class, 'edit'])->name('language.edit');
+Route::post('language/update/{uuid}', [LanguageController::class, 'update'])->name('language.update')/*->middleware('isDemo')*/;
+Route::get('language/delete/{uuid}', [LanguageController::class, 'delete'])->name('language.delete')/*->middleware('isDemo')*/;
+
+
 
 //Difficulty Level
 Route::get('difficultyLevel/index', [DifficultyLevelController::class, 'index'])->name('difficultyLevel.index');
 Route::get('difficultyLevel/create', [DifficultyLevelController::class, 'create'])->name('difficultyLevel.create');
-Route::get('difficultyLevel/edit', [DifficultyLevelController::class, 'edit'])->name('difficultyLevel.edit');
+Route::post('difficultyLevel/store', [difficultyLevelController::class, 'store'])->name('difficultyLevel.store')/*->middleware('isDemo')*/;
+Route::get('difficultyLevel/edit/{uuid}', [difficultyLevelController::class, 'edit'])->name('difficultyLevel.edit');
+Route::post('difficultyLevel/update/{uuid}', [difficultyLevelController::class, 'update'])->name('difficultyLevel.update')/*->middleware('isDemo')*/;
+Route::get('difficultyLevel/delete/{uuid}', [difficultyLevelController::class, 'delete'])->name('difficultyLevel.delete')/*->middleware('isDemo')*/;
+
 
 //Promotional Tag
 
 Route::get('promotionalTag/index', [SpecialPromotionalTagController::class, 'index'])->name('promotionalTag.index');
 Route::get('promotionalTag/create', [SpecialPromotionalTagController::class, 'create'])->name('promotionalTag.create');
 Route::get('promotionalTag/edit', [SpecialPromotionalTagController::class, 'edit'])->name('promotionalTag.edit');
+
+Route::post('promotionalTag/store', [SpecialPromotionalTagController::class, 'store'])->name('promotionalTag.store')/*->middleware('isDemo')*/;
+Route::get('promotionalTag/edit/{uuid}', [SpecialPromotionalTagController::class, 'edit'])->name('promotionalTag.edit');
+Route::post('promotionalTag/update/{uuid}', [SpecialPromotionalTagController::class, 'update'])->name('promotionalTag.update')/*->middleware('isDemo')*/;
+Route::get('promotionalTag/delete/{uuid}', [SpecialPromotionalTagController::class, 'delete'])->name('promotionalTag.delete')/*->middleware('isDemo')*/;
 
 
 //Rules & Benifits

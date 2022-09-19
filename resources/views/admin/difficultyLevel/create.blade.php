@@ -42,8 +42,8 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
-
+                            <form class="needs-validation" action="{{route('difficultyLevel.store')}}" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
@@ -51,15 +51,19 @@
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    id="name"
+                                                    name="name"
+                                                    value="{{ old('name') }}"
                                                     class="form-control"
                                                     placeholder="Difficulty Level Name"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter Difficulty Level name.</div>
+                                            @if ($errors->has('name'))
+                                                <span class="text-danger"><i
+                                                        class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

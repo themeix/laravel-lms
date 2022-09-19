@@ -8,6 +8,7 @@ use App\Models\DifficultyLevel;
 use App\Tools\Repositories\Crud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DifficultyLevelController extends Controller
 {
@@ -21,14 +22,10 @@ class DifficultyLevelController extends Controller
 
     public function index(){
 
-        /*if (!Auth::user()->can('manage_course_difficulty_level')) {
-            abort('403');
-        } */
-        // end permission checking
-
         $data['difficulty_levels'] = $this->model->getOrderById('DESC', 25);
 
-        return view('admin.difficultyLevel.index');
+
+        return view('admin.difficultyLevel.index',$data);
     }
 
     public function create(){
@@ -60,6 +57,8 @@ class DifficultyLevelController extends Controller
 
         $this->model->create($data); // create new Language
 
+        Alert::toast('Difficulty Level Created Successfully.', 'success');
+
         return redirect()->route('difficultyLevel.index')->with('create-message', 'Difficulty Level created successfully.');
     }
 
@@ -74,7 +73,7 @@ class DifficultyLevelController extends Controller
         $data['difficulty_level'] = $this->model->getRecordByUuid($uuid);
 
 
-        return view('admin.difficultyLevel.edit');
+        return view('admin.difficultyLevel.edit', $data);
     }
 
     public function update(Request $request, $uuid)
@@ -94,6 +93,8 @@ class DifficultyLevelController extends Controller
 
         $this->model->updateByUuid($data, $uuid); // update difficulty level
 
+        Alert::toast('Difficulty Level Updated Successfully.', 'success');
+
 
         return redirect()->route('difficultyLevel.index')->with('update-message', 'Difficulty Level updated successfully.');
     }
@@ -108,6 +109,8 @@ class DifficultyLevelController extends Controller
 
 
         $this->model->deleteByUuid($uuid); // delete record
+
+        Alert::toast('Difficulty Level Deleted Successfully.', 'warning');
 
         return redirect()->route('difficultyLevel.index')->with('delete-message', 'Difficulty Level deleted successfully.');
     }

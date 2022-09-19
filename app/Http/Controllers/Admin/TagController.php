@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Tools\Repositories\Crud;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TagController extends Controller
 {
@@ -63,6 +64,8 @@ class TagController extends Controller
 
         $this->model->create($data); // create new tag
 
+        Alert::toast('Tag Created Successfully.', 'success');
+
         return redirect()->route('tag.index')->with('create-message', 'Tag created successfully.');
     }
 
@@ -102,6 +105,7 @@ class TagController extends Controller
         ];
         $this->model->updateByUuid($data, $uuid); // update tag
 
+        Alert::toast('Tag Updated Successfully.', 'success');
 
         return redirect()->route('tag.index')->with('update-message', 'Tag updated successfully.');
     }
@@ -118,6 +122,8 @@ class TagController extends Controller
 
 
         $this->model->deleteByUuid($uuid); // delete record
+
+        Alert::toast('Tag Deleted Successfully.', 'warning');
 
         return redirect()->route('tag.index')->with('delete-message', 'Tag deleted successfully.');
     }

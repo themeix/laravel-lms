@@ -41,24 +41,27 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
-
+                            <form class="needs-validation" action="{{route('language.store')}}" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Language Name</label>
+                                            <label class="form-label" for="name">Language Name</label>
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    name="name"
+                                                    id="name"
+                                                    value="{{old('name')}}"
                                                     class="form-control"
                                                     placeholder="Language Name"
-                                                    aria-label="Name"
+                                                    aria-label="name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter Language name.</div>
+                                            @if ($errors->has('name'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

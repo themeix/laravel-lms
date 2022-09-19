@@ -8,6 +8,33 @@
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
+
+
+            @if(Session::has('create-message'))
+                <div class="alert alert-success" role="alert">
+                    <div class="alert-body">
+                        {{ Session::get('create-message') }}
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('update-message'))
+                <div class="alert alert-success" role="alert">
+                    <div class="alert-body">
+                        {{ Session::get('update-message') }}
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('delete-message'))
+                <div class="alert alert-danger" role="alert">
+                    <div class="alert-body">
+                        {{ Session::get('delete-message') }}
+                    </div>
+                </div>
+            @endif
+
+
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
@@ -32,27 +59,45 @@
             </div>
         </div>
         <div class="content-body">
-            <section id="ajax-datatable">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            {{--<div class="card-header border-bottom">
-                                <h4 class="card-title">Ajax Sourced Server-side</h4>
-                            </div>--}}
-                            <div class="card-datatable">
-                                <table class="datatables-ajax table table-responsive">
-                                    <thead>
-                                    <tr>
-                                        <th>Full name</th>
-                                        <th>Email</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+            <section id="column-search-datatable">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-12">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($tags as $tag)
+                                    <tr class="removable-item">
+                                        <td>
+                                            {{$tag->id}}
+                                        </td>
+                                        <td>
+                                            {{$tag->name}}
+                                        </td>
+
+                                        <td>
+                                            <div class="action__buttons">
+                                                <a href="{{route('tag.edit', [$tag->uuid])}}" class="btn-action" title="Edit">
+                                                    <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
+                                                </a>
+                                                <a href="{{route('tag.delete', [$tag->uuid])}}"  class="btn-action delete" title="Delete">
+                                                    <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
+                                                </a>
+                                            </div>
+                                        </td>
                                     </tr>
-                                    </thead>
-                                </table>
-                            </div>
+
+
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -63,3 +108,11 @@
     <!-- END: Content-->
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+@endpush

@@ -42,22 +42,21 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
-
+                            <form class="needs-validation" action="{{route('subCategory.update', [$subcategory->uuid])}}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="select-country1">Select Category</label>
-                                            <select class="form-select" id="select-country1" required>
-                                                <option value="">Select Category</option>
-                                                <option value="usa">USA</option>
-                                                <option value="uk">UK</option>
-                                                <option value="france">France</option>
-                                                <option value="australia">Australia</option>
-                                                <option value="spain">Spain</option>
+                                            <label class="form-label" for="category_id">Select Category</label>
+                                            <select class="form-select" name="category_id" id="category_id" required>
+                                                <option value="">---Select Category---</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}" {{$subcategory->category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                                                @endforeach
                                             </select>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please select Category</div>
+                                            @if ($errors->has('category_id'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('category_id') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -69,21 +68,22 @@
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    name="name" id="name" value="{{$subcategory->name}}"
                                                     class="form-control"
                                                     placeholder="Sub Category Name"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter Sub Category name.</div>
+                                            @if ($errors->has('name'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
 
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </div>

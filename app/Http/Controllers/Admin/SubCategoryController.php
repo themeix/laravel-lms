@@ -9,6 +9,7 @@ use App\Tools\Repositories\Crud;
 use App\Traits\General;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SubCategoryController extends Controller
 {
@@ -71,6 +72,8 @@ class SubCategoryController extends Controller
 
         $this->model->create($data); // create new category
 
+        Alert::toast('Sub Category Created Successfully.', 'success');
+
         return redirect()->route('subCategory.index')->with('create-message', 'Sub Category created successfully.');
 
     }
@@ -113,6 +116,8 @@ class SubCategoryController extends Controller
 
         $this->model->updateByUuid($data, $uuid); // update category
 
+        Alert::toast('Sub Category Updated Successfully.', 'success');
+
         return redirect()->route('subCategory.index')->with('update-message', 'Sub Category updated successfully.');
     }
 
@@ -125,6 +130,8 @@ class SubCategoryController extends Controller
         // end permission checking
 
         $this->model->deleteByUuid($uuid); // delete record
+
+        Alert::toast('Sub Category Deleted Successfully.', 'warning');
 
         return redirect()->route('subCategory.index')->with('delete-message', 'Sub Category deleted successfully.');
     }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('languages', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('name');
+            $table->string('name')->unique();
 
             $table->tinyInteger('status')->default(1)->comment('0=inactive, 1=active')->nullable();
             $table->tinyInteger('existence')->default(1)->comment('0=deleted, 1=active')->nullable();

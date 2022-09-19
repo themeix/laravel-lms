@@ -41,30 +41,31 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
-
+                            <form class="needs-validation" action="{{route('tag.update', [$tag->uuid])}}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Tag Name</label>
+                                            <label class="form-label" for="name">Tag Name</label>
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    name="name" id="name" value="{{$tag->name}}"
                                                     class="form-control"
                                                     placeholder="Tag Name"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter Tag name.</div>
+                                            @if ($errors->has('name'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
 
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </div>

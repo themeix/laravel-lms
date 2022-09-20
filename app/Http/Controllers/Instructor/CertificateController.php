@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return view('instructor.certificate.index');
     }
 
     /**

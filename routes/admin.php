@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\RulesBenifitsController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SupportTicketController;
 use App\Http\Controllers\Admin\TagController;
-/*use App\Http\Controllers\InstructorController;*/
+use App\Http\Controllers\Admin\InstructorController;
 use App\Http\Controllers\Admin\StudentController;
 
 
@@ -113,6 +113,10 @@ Route::get('instructor/show', [InstructorController::class, 'show'])->name('inst
 Route::get('instructor/blocked', [InstructorController::class, 'blockedInstructor'])->name('instructor.blocked');
 Route::get('instructor/pending', [InstructorController::class, 'pendingInstructor'])->name('instructor.pending');
 Route::get('instructor/approved', [InstructorController::class, 'approvedInstructor'])->name('instructor.approved');
+
+
+Route::get('get-state-by-country/{country_id}', [InstructorController::class, 'getStateByCountry']);
+Route::get('get-city-by-state/{state_id}', [InstructorController::class, 'getCityByState']);
 
 
 //Student

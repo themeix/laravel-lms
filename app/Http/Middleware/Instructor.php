@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class Instructor
 {
@@ -25,7 +26,9 @@ class Instructor
         if (auth()->user()->type == 2) {
             return $next($request);
         } else {
-            abort('403');
+
+
+            return new Response(view('layouts.notAuthorised'));
         }
 
 

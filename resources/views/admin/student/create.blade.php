@@ -204,7 +204,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                
+
 
                                 <div class="row">
                                     <div class="col-md-6 col-12">
@@ -322,4 +322,7 @@
 
 @push('scripts')
     <script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>
+
+    <script src="{{asset('custom/js/getByParentId.js')}}"></script>
+
 @endpush

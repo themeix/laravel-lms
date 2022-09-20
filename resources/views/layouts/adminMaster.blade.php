@@ -81,9 +81,6 @@
 
 
         <ul class="nav navbar-nav align-items-center ms-auto">
-            <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item" href="#" data-language="fr"><i class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="#" data-language="de"><i class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="#" data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
-            </li>
 
             <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon" data-feather="moon"></i></a></li>
             <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon" data-feather="search"></i></a>
@@ -409,50 +406,7 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-
-            {{-- Foreach menu item starts --}}
-            {{--@if (isset($menuData[0]))
-                @foreach ($menuData[0]->menu as $menu)
-                    @if (isset($menu->navheader))
-                        <li class="navigation-header">
-                            <span>{{  $menu->navheader }}</span>
-                            <i data-feather="more-horizontal"></i>
-                        </li>
-                    @else
-                         Add Custom Class with nav-item
-                        @php
-                            $custom_classes = '';
-                            if (isset($menu->classlist)) {
-                                $custom_classes = $menu->classlist;
-                            }
-                        @endphp
-                        <li
-                            class="nav-item {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }}">
-                            <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0)' }}" class="d-flex align-items-center"
-                               target="{{ isset($menu->newTab) ? '_blank' : '_self' }}">
-                                <i data-feather="{{ $menu->icon }}"></i>
-                                <span class="menu-title text-truncate">{{$menu->name}}</span>
-                                @if (isset($menu->badge))
-                                        <?php $badgeClasses = 'badge rounded-pill badge-light-primary ms-auto me-1'; ?>
-                                    <span
-                                        class="{{ isset($menu->badgeClass) ? $menu->badgeClass : $badgeClasses }}">{{ $menu->badge }}</span>
-                                @endif
-                            </a>
-                            @if (isset($menu->submenu))
-                                @include('panels/submenu', ['menu' => $menu->submenu])
-                            @endif
-                        </li>
-                    @endif
-                @endforeach
-            @endif--}}
-            {{-- Foreach menu item ends --}}
-
-
-
-
-
-
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span><span class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span><span class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
 
             </li>
             {{--<li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Course Management</span><i data-feather="more-horizontal"></i>

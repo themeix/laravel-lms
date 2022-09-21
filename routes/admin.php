@@ -51,7 +51,7 @@ Route::get('subCategory/delete/{uuid}', [SubcategoryController::class, 'delete']
 Route::get('tag/index', [TagController::class, 'index'])->name('tag.index');
 Route::get('tag/create', [TagController::class, 'create'])->name('tag.create');
 Route::post('tag/store', [TagController::class, 'store'])->name('tag.store')/*->middleware('isDemo')*/;
-Route::get('edit/{uuid}', [TagController::class, 'edit'])->name('tag.edit');
+Route::get('tag/edit/{uuid}', [TagController::class, 'edit'])->name('tag.edit');
 Route::post('update/{uuid}', [TagController::class, 'update'])->name('tag.update')/*->middleware('isDemo')*/;
 Route::get('delete/{uuid}', [TagController::class, 'delete'])->name('tag.delete')/*->middleware('isDemo')*/;
 
@@ -98,10 +98,10 @@ Route::get('rulesBenifits/edit', [RulesBenifitsController::class, 'edit'])->name
 Route::get('course/index', [CourseController::class, 'index'])->name('course.index');
 Route::get('course/create', [CourseController::class, 'create'])->name('course.create');
 Route::get('course/edit', [CourseController::class, 'edit'])->name('course.edit');
-Route::get('course/enroll', [CourseController::class, 'courseEnroll'])->name('course.enroll');
-Route::get('course/approved', [CourseController::class, 'courseApproved'])->name('course.approved');
-Route::get('course/hold', [CourseController::class, 'courseHold'])->name('course.hold');
-Route::get('course/reviewPending', [CourseController::class, 'courseReviewPending'])->name('course.reviewPending');
+Route::get('enrollStudent', [CourseController::class, 'courseEnroll'])->name('course.enroll');
+Route::get('approvedCourse', [CourseController::class, 'courseApproved'])->name('course.approved');
+Route::get('holdCourse', [CourseController::class, 'courseHold'])->name('course.hold');
+Route::get('reviewPendingCourse', [CourseController::class, 'courseReviewPending'])->name('course.reviewPending');
 
 
 
@@ -124,7 +124,7 @@ Route::get('student/index', [StudentController::class, 'index'])->name('student.
 Route::get('student/create', [StudentController::class, 'create'])->name('student.create');
 Route::get('student/show', [StudentController::class, 'show'])->name('student.show');
 
-Route::post('student/store', [StudentController::class, 'store'])->name('student.store')->middleware('isDemo');
+Route::post('student/store', [StudentController::class, 'store'])->name('student.store')/*->middleware('isDemo')*/;
 Route::get('student/show/{uuid}', [StudentController::class, 'show'])->name('student.show');
 Route::get('student/edit/{uuid}', [StudentController::class, 'edit'])->name('student.edit');
 
@@ -134,6 +134,8 @@ Route::delete('student/delete/{uuid}', [StudentController::class, 'delete'])->na
 
 Route::post('student/change-student-status', [StudentController::class, 'changeStudentStatus'])->name('admin.student.changeStudentStatus')/*->middleware('isDemo')*/;
 
+Route::get('student/getStates', [StudentController::class,'getStates'])->name('student.getStates');
+Route::get('student/getCities', [StudentController::class,'getCities'])->name('student.getCities');
 
 //Coupon
 Route::get('coupon/index', [CouponController::class, 'index'])->name('coupon.index');

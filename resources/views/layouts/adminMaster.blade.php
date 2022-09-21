@@ -45,6 +45,7 @@
     <!-- END: Custom CSS-->
 
     @stack('styles')
+    @stack('scripts')
 </head>
 <!-- END: Head-->
 
@@ -406,28 +407,29 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span><span class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
+            <li class="nav-item {{ (request()->is('admin/dashboard')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span><span class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
 
             </li>
             {{--<li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Course Management</span><i data-feather="more-horizontal"></i>
             </li>--}}
 
 
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='settings'></i><span class="menu-title text-truncate" data-i18n="Invoice">Course Setup</span></a>
+            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='settings'></i><span class="menu-title text-truncate" data-i18n="Invoice">Course Setup</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="{{ route('category.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Category</span></a>
+                    <li class="{{ (request()->is('admin/category*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('category.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Category</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('subCategory.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Sub Category</span></a>
+
+                    <li class="{{ (request()->is('admin/subCategory*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('subCategory.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Sub Category</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('tag.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Edit">Tag</span></a>
+                    <li class="{{ (request()->is('admin/tag*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('tag.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Edit">Tag</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('language.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Language</span></a>
+                    <li class="{{ (request()->is('admin/language*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('language.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Language</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('difficultyLevel.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Difficulty Level</span></a>
+                    <li class="{{ (request()->is('admin/difficultyLevel*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('difficultyLevel.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Difficulty Level</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('promotionalTag.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Promotional Tag</span></a>
+                    <li class="{{ (request()->is('admin/promotionalTag*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('promotionalTag.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Promotional Tag</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('rulesBenifits.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Rules & Benifits</span></a>
+                    <li class="{{ (request()->is('admin/rulesBenifits*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('rulesBenifits.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Rules & Benifits</span></a>
                     </li>
 
                 </ul>
@@ -435,21 +437,21 @@
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='book'></i><span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Manage Course</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="{{ route('course.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Roles">All Courses</span></a>
+                    <li class="{{ (request()->is('admin/course*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Roles">All Courses</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('course.enroll')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Enroll In Courses</span></a>
+                    <li class="{{ (request()->is('admin/enrollStudent*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.enroll')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Enroll In Courses</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('course.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Approved</span></a>
+                    <li class="{{ (request()->is('admin/approvedCourse*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Approved</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('course.hold')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Hold</span></a>
+                    <li class="{{ (request()->is('admin/holdCourse*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.hold')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Hold</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('course.reviewPending')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Review Pending</span></a>
+                    <li class="{{ (request()->is('admin/reviewPendingCourse*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.reviewPending')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Review Pending</span></a>
                     </li>
                 </ul>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='anchor'></i><span class="menu-title text-truncate" data-i18n="eCommerce">Manage Instructor</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="{{ route('instructor.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">All Instructors</span></a>
+                    <li class="{{ (request()->is('admin/instructor*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">All Instructors</span></a>
                     </li>
                     <li><a class="d-flex align-items-center" href="{{ route('instructor.create')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Add Instructor</span></a>
                     </li>

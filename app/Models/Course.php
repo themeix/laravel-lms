@@ -25,12 +25,12 @@ class Course extends Model
         'feature_details',
         'price',
         'learner_accessibility',
-        'image',
+        /*'image',
         'video',
         'slug',
         'status',
         'intro_video_check',
-        'youtube_video_id'
+        'youtube_video_id'*/
     ];
 
 
@@ -57,7 +57,7 @@ class Course extends Model
 
     public function language()
     {
-        return $this->belongsTo(Language::class, 'course_language_id');
+        return $this->belongsTo(Language::class, 'language_id');
     }
 
     public function difficultyLevel()

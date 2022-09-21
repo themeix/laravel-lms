@@ -45,7 +45,6 @@
     <!-- END: Custom CSS-->
 
     @stack('styles')
-    @stack('scripts')
 </head>
 <!-- END: Head-->
 
@@ -417,8 +416,8 @@
 
 
             <li class=" nav-item  {{ (request()->is('instructor/course/create')) ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="{{route('instructor.course.create')}}"><i
-                        data-feather='upload'></i><span class="menu-title text-truncate" data-i18n="Invoice">Course Upload</span></a>
+                    class="d-flex align-items-center" href="{{route('instructor.course.create')}}">
+                    <i data-feather='plus-square'></i><span class="menu-title text-truncate" data-i18n="Invoice">Add Course</span></a>
             </li>
 
 

@@ -21,13 +21,16 @@ Route::post('course/store', [CourseController::class, 'store'])->name('instructo
 
 Route::get('course/edit/{uuid}', [CourseController::class, 'edit'])->name('instructor.course.edit');
 
-Route::post('course/update-overview/{uuid}', [CourseController::class, 'updateOverview'])->name('course.update.overview')->middleware('isDemo');
+Route::post('course/update-overview/{uuid}', [CourseController::class, 'updateOverview'])->name('instructor.course.update.overview')/*->middleware('isDemo')*/;
 
-Route::post('course/update-category/{uuid}', [CourseController::class, 'updateCategory'])->name('course.update.category')->middleware('isDemo');
+Route::post('course/update-category/{uuid}', [CourseController::class, 'updateCategory'])->name('instructor.course.course.update.category')/*->middleware('isDemo')*/;
 
-Route::get('course/upload-finished/{uuid}', [CourseController::class, 'uploadFinished'])->name('course.upload-finished');
+Route::get('course/upload-finished/{uuid}', [CourseController::class, 'uploadFinished'])->name('instructor.course.course.upload-finished');
 
-Route::get('course/get-subcategory-by-category/{category_id}', [CourseController::class, 'getSubcategoryByCategory']);
+Route::get('course/getSubCategory', [CourseController::class, 'getSubcategories'])->name('instructor.course.course.getSubCategory');
+
+
+
 
 Route::delete('course/course-delete/{uuid}', [CourseController::class, 'delete'])->name('instructor.course.delete')->middleware('isDemo');
 

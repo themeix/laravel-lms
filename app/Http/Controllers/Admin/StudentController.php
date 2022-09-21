@@ -210,4 +210,24 @@ class StudentController extends Controller
         Alert::toast('Student Deleted Successfully.', 'warning');
         return redirect()->route('student.index')->with('delete-message', 'Student Deleted successfully.');
     }
+
+
+    public function getStates(Request $request) {
+        $states = State::where('country_id', $request->country_id)
+            ->orderBy('name')
+            ->get()->toArray();
+
+        return response()->json($states);
+    }
+
+
+    public function getCities(Request $request) {
+        $cities = City::where('state_id', $request->state_id)
+            ->orderBy('name')
+            ->get()->toArray();
+
+        return response()->json($cities);
+    }
+
+
 }

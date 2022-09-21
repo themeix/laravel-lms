@@ -86,10 +86,10 @@
 
                                         <td>
                                             <div class="action__buttons">
-                                                <a href="{{route('tag.edit', [$special->uuid])}}" class="btn-action" title="Edit">
+                                                <a href="{{route('promotionalTag.edit', [$special->uuid])}}" class="btn-action" title="Edit">
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
-                                                <a href="{{route('tag.delete', [$special->uuid])}}"  class="btn-action delete" title="Delete">
+                                                <a href="{{route('promotionalTag.delete', [$special->uuid])}}"  class="btn-action delete" title="Delete">
                                                     <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
                                                 </a>
                                             </div>

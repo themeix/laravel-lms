@@ -50,8 +50,8 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" action="{{route('student.store')}}" method="post" enctype="multipart/form-data">
-
+                            <form class="from" action="{{route('student.store')}}" method="post" enctype="multipart/form-data">
+                            @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
@@ -223,7 +223,7 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="city_id">State</label>
+                                            <label class="form-label" for="city_id">City</label>
 
                                             <select name="city_id" id="city_id" class="form-select">
                                                 <option value="">---Select City---</option>
@@ -239,54 +239,39 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Gender</label>
 
-                                            <select name="gender" id="gender" class="form-select" required>
-                                                <option value="">{{__('app.select_option')}}</option>
-                                                <option value="Male" {{old('gender') == 'Male' ? 'selected' : '' }} >Male</option>
-                                                <option value="Female" {{old('gender') == 'Female' ? 'selected' : '' }} >Female</option>
-                                                <option value="Others" {{old('gender') == 'Others' ? 'selected' : '' }} >Others</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="select-country1">Gender</label>
-                                            <select class="form-select" id="select-country1" required>
-                                                <option value="">Select Gender</option>
-                                                <option value="usa">Male</option>
-                                                <option value="uk">Female</option>
-                                                <option value="france">Others</option>
-                                            </select>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please select your Gender</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-                                <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label for="customFile1" class="form-label">Profile pic</label>
                                             <img src="">
                                             <input type="file" class="form-control" name="image" id="image" accept="image/*" onchange="previewFile(this)">
                                         </div>
+                                        @if ($errors->has('image'))
+                                            <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
+                                        @endif
+                                        <p>Accepted Image Files: JPEG, JPG, PNG <br> Accepted Size: 300 x 300 (1MB)</p>
                                     </div>
 
-                                    @if ($errors->has('image'))
-                                        <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
-                                    @endif
-                                    <p>Accepted Image Files: JPEG, JPG, PNG <br> Accepted Size: 300 x 300 (1MB)</p>
+
+
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="basic-addon-name">Gender</label>
+
+                                            <select name="gender" id="gender" class="form-select" required>
+                                                <option value="">---Select Gender---</option>
+                                                <option value="Male" {{old('gender') == 'Male' ? 'selected' : '' }} >Male</option>
+                                                <option value="Female" {{old('gender') == 'Female' ? 'selected' : '' }} >Female</option>
+                                                <option value="Others" {{old('gender') == 'Others' ? 'selected' : '' }} >Others</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
 
 
-                                <div class="row">
+                                {{--<div class="row">
                                     <div class="col-md-6 col-12">
 
                                         <div class="mb-1">
@@ -300,7 +285,7 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                </div>--}}
 
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -321,8 +306,58 @@
 @endsection
 
 @push('scripts')
-    <script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>
+    {{--<script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>--}}
 
-    <script src="{{asset('custom/js/getByParentId.js')}}"></script>
+
+        <script>
+            $(function () {
+                var stateSelectedId = '{{ old('state_id') }}';
+                $('#country_id').change(function () {
+                    var country_id = $(this).val();
+                    $('#state_id').html('<option value="">---Select State---</option>');
+                    if (country_id != '') {
+                        $.ajax({
+                            method: "GET",
+                            url: "{{ route('student.getStates') }}",
+                            data: { country_id: country_id }
+                        }).done(function( data ) {
+                            $.each(data, function( index, item ) {
+                                if (stateSelectedId == item.id)
+                                    $('#state_id').append('<option value="'+item.id+'" selected>'+item.name+'</option>');
+                                else
+                                    $('#state_id').append('<option value="'+item.id+'">'+item.name+'</option>');
+                            });
+                        });
+                    }
+                });
+                $('#country_id').trigger('change');
+            });
+
+
+            $(function () {
+                var citySelectedId = '{{ old('city_id') }}';
+                $('#state_id').change(function () {
+                    var state_id = $(this).val();
+                    $('#city_id').html('<option value="">---Select City---</option>');
+                    if (state_id != '') {
+                        $.ajax({
+                            method: "GET",
+                            url: "{{ route('student.getCities') }}",
+                            data: { state_id: state_id }
+                        }).done(function( data ) {
+                            $.each(data, function( index, item ) {
+                                if (citySelectedId == item.id)
+                                    $('#city_id').append('<option value="'+item.id+'" selected>'+item.name+'</option>');
+                                else
+                                    $('#city_id').append('<option value="'+item.id+'">'+item.name+'</option>');
+                            });
+                        });
+                    }
+                });
+                $('#state_id').trigger('change');
+            });
+
+
+        </script>
 
 @endpush

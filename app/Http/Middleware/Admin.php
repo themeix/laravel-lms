@@ -27,7 +27,7 @@ class Admin
             return $next($request);
         } else {
 
-            return new Response(view('layouts.notAuthorised'));
+            abort('403');
 
         }
     }

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->mediumText('description');
             $table->mediumText('feature_details')->nullable();
             $table->decimal('price')->default(0.00);
-            $table->string('learner_accessibility', 50)->comment('paid,free')->nullable();
+            $table->string('learner_accessibility')->default(1)->comment('1=paid, 2=free');
             $table->string('image')->nullable();
             $table->string('slug');
             $table->tinyInteger('status')->default(0)->comment('0=pending, 1=published, 2=waiting_for_review, 3=hold, 4=draft');

@@ -28,7 +28,7 @@ class Student
         }
         else {
 
-            return new Response(view('layouts.notAuthorised'));
+            abort('403');
         }
 
 

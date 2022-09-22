@@ -22,7 +22,7 @@ class StudentController extends Controller
 
     use ImageSaveTrait;
 
-    protected $studentModel;
+    private $model;
     public function __construct( Student $student)
     {
         $this->studentModel = new Crud($student);
@@ -39,13 +39,6 @@ class StudentController extends Controller
     {
         $data['countries'] = Country::orderBy('country_name', 'asc')->get();
 
-        if (old('country_id')) {
-            $data['states'] = State::where('country_id', old('country_id'))->orderBy('name', 'asc')->get();
-        }
-
-        if (old('state_id')) {
-            $data['cities'] = City::where('state_id', old('state_id'))->orderBy('name', 'asc')->get();
-        }
         return view('admin.student.create', $data);
     }
 
@@ -56,10 +49,14 @@ class StudentController extends Controller
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:2'],
+            'password' => ['required', 'string', 'min:6'],
             'phone_number' => 'required',
-            'address' => 'required',
+            'address'=>'required',
             'gender' => 'required',
+            'country_id' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
+            'postal_code' => 'required',
             'about_me' => 'required',
             'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
@@ -70,7 +67,7 @@ class StudentController extends Controller
         $user->email = $request->email;
         $user->email_verified_at = now();
         $user->password = Hash::make($request->password);
-        $user->role = 3;
+        $user->type = 3;
         $user->image =  $request->image ? $this->saveImage('user', $request->image, null, null) :   null;
         $user->save();
 
@@ -78,14 +75,15 @@ class StudentController extends Controller
             'user_id' => $user->id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'address' => $request->address,
             'phone_number' => $request->phone_number,
             'country_id' => $request->country_id,
             'state_id' => $request->state_id,
             'city_id' => $request->city_id,
             'gender' => $request->gender,
-            'about_me' => $request->about_me,
+            'status' =>1,
             'postal_code' => $request->postal_code,
+            'about_me' => $request->about_me,
+            'address' => $request->address,
         ];
 
 
@@ -101,7 +99,7 @@ class StudentController extends Controller
 
     public function show($uuid)
     {
-        $data['title'] = 'Student Profile';
+        /*$data['title'] = 'Student Profile';
         $data['student'] = $this->studentModel->getRecordByUuid($uuid);
 
         $allUserOrder = Order::where('user_id', $data['student']->user_id);
@@ -112,7 +110,7 @@ class StudentController extends Controller
 
         $orderIds = array_merge($paidOrderIds, $freeOrderIds);
 
-        $data['orderItems'] = Order_item::whereIn('order_id', $orderIds)->latest()->paginate(15);
+        $data['orderItems'] = Order_item::whereIn('order_id', $orderIds)->latest()->paginate(15);*/
 
         return view('admin.student.show', $data);
     }

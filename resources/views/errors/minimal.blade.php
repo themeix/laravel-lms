@@ -9,7 +9,7 @@
     <meta name="description" content="Learn LMS - Learning Management System">
     <meta name="keywords" content="Learn LMS - Learning Management System">
     <meta name="author" content="PIXINVENT">
-    <title>Not-authorized - Learn - LMS</title>
+    <title>@yield('title') | Learning Management System </title>
     <link rel="apple-touch-icon" href="{{asset('app-assets/images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('logo.svg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"

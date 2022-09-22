@@ -24,6 +24,7 @@ class Student extends Model
         'address',
         'about_me',
         'gender',
+        'status'
     ];
 
     public function user()

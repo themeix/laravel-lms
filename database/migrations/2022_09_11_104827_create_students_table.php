@@ -29,6 +29,7 @@ return new class extends Migration
             $table->mediumText('about_me')->nullable();
             $table->string('gender', 50)->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=pending, 1=approved, 2=blocked');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

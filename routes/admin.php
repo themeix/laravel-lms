@@ -108,11 +108,15 @@ Route::get('reviewPendingCourse', [CourseController::class, 'courseReviewPending
 //Instructor
 Route::get('instructor/index', [InstructorController::class, 'index'])->name('instructor.index');
 Route::get('instructor/create', [InstructorController::class, 'create'])->name('instructor.create');
-Route::get('instructor/edit', [InstructorController::class, 'edit'])->name('instructor.edit');
-Route::get('instructor/show', [InstructorController::class, 'show'])->name('instructor.show');
-Route::get('instructor/blocked', [InstructorController::class, 'blockedInstructor'])->name('instructor.blocked');
-Route::get('instructor/pending', [InstructorController::class, 'pendingInstructor'])->name('instructor.pending');
-Route::get('instructor/approved', [InstructorController::class, 'approvedInstructor'])->name('instructor.approved');
+Route::post('instructor/store', [InstructorController::class, 'store'])->name('instructor.store')/*->middleware('isDemo')*/;
+Route::get('instructor/edit/{uuid}', [InstructorController::class, 'edit'])->name('instructor.edit');
+Route::post('instructor/update/{uuid}', [InstructorController::class, 'update'])->name('instructor.update')/*->middleware('isDemo')*/;
+Route::get('instructor/show/{uuid}', [InstructorController::class, 'show'])->name('instructor.show');
+Route::delete('instructor/delete/{uuid}', [InstructorController::class, 'delete'])->name('instructor.delete')/*->middleware('isDemo')*/;
+
+Route::get('blockedInstructor', [InstructorController::class, 'blockedInstructor'])->name('instructor.blocked');
+Route::get('pendingInstructor', [InstructorController::class, 'pendingInstructor'])->name('instructor.pending');
+Route::get('approvedInstructor', [InstructorController::class, 'approvedInstructor'])->name('instructor.approved');
 
 
 Route::get('get-state-by-country/{country_id}', [InstructorController::class, 'getStateByCountry']);
@@ -123,15 +127,11 @@ Route::get('get-city-by-state/{state_id}', [InstructorController::class, 'getCit
 Route::get('student/index', [StudentController::class, 'index'])->name('student.index');
 Route::get('student/create', [StudentController::class, 'create'])->name('student.create');
 Route::get('student/show', [StudentController::class, 'show'])->name('student.show');
-
 Route::post('student/store', [StudentController::class, 'store'])->name('student.store')/*->middleware('isDemo')*/;
 Route::get('student/show/{uuid}', [StudentController::class, 'show'])->name('student.show');
 Route::get('student/edit/{uuid}', [StudentController::class, 'edit'])->name('student.edit');
-
 Route::post('student/update/{uuid}', [StudentController::class, 'update'])->name('student.update')/*->middleware('isDemo')*/;
-
 Route::delete('student/delete/{uuid}', [StudentController::class, 'delete'])->name('student.delete')/*->middleware('isDemo')*/;
-
 Route::post('student/change-student-status', [StudentController::class, 'changeStudentStatus'])->name('admin.student.changeStudentStatus')/*->middleware('isDemo')*/;
 
 Route::get('student/getStates', [StudentController::class,'getStates'])->name('student.getStates');

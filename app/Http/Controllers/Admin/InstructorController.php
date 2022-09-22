@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Course;
+use App\Models\Course_lecture;
+use App\Models\Course_lecture_views;
+use App\Models\Course_lesson;
 use App\Models\Instructor;
 use App\Models\Order_item;
 use App\Models\State;
@@ -35,7 +38,7 @@ class InstructorController extends Controller
 
         // end permission checking
 
-        $data['instructors'] = $this->instructorModel->getOrderById('DESC', 25);;
+        $data['instructors'] = $this->instructorModel->getOrderById('DESC');;
         return view('admin.instructor.index', $data);
     }
 
@@ -43,15 +46,6 @@ class InstructorController extends Controller
     public function create()
     {
         $data['countries'] = Country::orderBy('country_name', 'asc')->get();
-
-        if (old('country_id')) {
-            $data['states'] = State::where('country_id', old('country_id'))->orderBy('name', 'asc')->get();
-        }
-
-        if (old('state_id')) {
-            $data['cities'] = City::where('state_id', old('state_id'))->orderBy('name', 'asc')->get();
-        }
-
         return view('admin.instructor.create', $data);
     }
 
@@ -65,9 +59,14 @@ class InstructorController extends Controller
             'password' => ['required', 'string', 'min:6'],
             'professional_title' => 'required',
             'phone_number' => 'required',
+            'postal_code' => 'required',
+            'country_id' => 'required',
+            'state_id' =>'required',
+            'city_id' => 'required',
             'address' => 'required',
             'gender' => 'required',
             'about_me' => 'required',
+            'social_link' => '',
             'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
 
@@ -76,32 +75,10 @@ class InstructorController extends Controller
         $user->email = $request->email;
         $user->email_verified_at = now();
         $user->password = Hash::make($request->password);
-        $user->role = 2;
+        $user->type = 2;
         $user->image =  $request->image ? $this->saveImage('user', $request->image, null, null) :   null;
         $user->save();
 
-        /*$student_data = [
-            'user_id' => $user->id,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'address' => $request->address,
-            'phone_number' => $request->phone_number,
-            'country_id' => $request->country_id,
-            'state_id' => $request->state_id,
-            'city_id' => $request->city_id,
-            'gender' => $request->gender,
-            'about_me' => $request->about_me,
-            'postal_code' => $request->postal_code,
-        ];
-
-        $this->studentModel->create($student_data);*/
-
-        if (Instructor::where('slug', Str::slug($user->name))->count() > 0)
-        {
-            $slug = Str::slug($user->name) . '-'. rand(100000, 999999);
-        } else {
-            $slug = Str::slug($user->name);
-        }
 
         $instructor_data = [
             'user_id' => $user->id,
@@ -110,7 +87,6 @@ class InstructorController extends Controller
             'address' => $request->address,
             'professional_title' => $request->professional_title,
             'phone_number' => $request->phone_number,
-            'slug' => $slug,
             'status' => 1,
             'country_id' => $request->country_id,
             'state_id' => $request->state_id,
@@ -119,13 +95,14 @@ class InstructorController extends Controller
             'about_me' => $request->about_me,
             'postal_code' => $request->postal_code,
             'social_link' => json_encode($request->social_link),
+
         ];
 
         $this->instructorModel->create($instructor_data);
 
         Alert::toast('Instructor Created Successfully.', 'success');
 
-        return redirect()->route('category.index')->with('success-message', 'Instructor Created successfully.');
+        return redirect()->route('instructor.index')->with('success-message', 'Instructor Created successfully.');
 
     }
 
@@ -279,7 +256,7 @@ class InstructorController extends Controller
     }
 
 
-    public function pending()
+    public function pendingInstructor()
     {
         /*if (!Auth::user()->can('pending_instructor')) {
             abort('403');
@@ -287,11 +264,11 @@ class InstructorController extends Controller
 
         // end permission checking
 
-        $data['instructors'] = Instructor::pending()->orderBy('id', 'desc')->paginate(25);
-        return view('admin.instructor.pending', $data);
+        /*$data['instructors'] = Instructor::pending()->orderBy('id', 'desc');*/
+        return view('admin.instructor.pending');
     }
 
-    public function approved()
+    public function approvedInstructor()
     {
         /*if (!Auth::user()->can('approved_instructor')) {
             abort('403');
@@ -299,11 +276,11 @@ class InstructorController extends Controller
 
         // end permission checking
 
-        $data['instructors'] = Instructor::approved()->orderBy('id', 'desc')->paginate(25);
-        return view('admin.instructor.approved', $data);
+       /* $data['instructors'] = Instructor::approved()->orderBy('id', 'desc');*/
+        return view('admin.instructor.approved');
     }
 
-    public function blocked()
+    public function blockedInstructor()
     {
         /*if (!Auth::user()->can('approved_instructor')) {
             abort('403');
@@ -311,8 +288,79 @@ class InstructorController extends Controller
 
         // end permission checking
 
-        $data['instructors'] = Instructor::blocked()->orderBy('id', 'desc')->paginate(25);
-        return view('admin.instructor.blocked', $data);
+        /*$data['instructors'] = Instructor::blocked()->orderBy('id', 'desc');*/
+        return view('admin.instructor.blocked');
     }
+
+
+
+    public function delete($uuid)
+    {
+        if (!Auth::user()->can('manage_instructor')) {
+            abort('403');
+        } // end permission checking
+
+        $instructor = $this->instructorModel->getRecordByUuid($uuid);
+        $user = User::findOrfail($instructor->user_id);
+
+        if ($instructor && $user){
+            //Start:: Course Delete
+            $courses = Course::whereUserId($user->id)->get();
+            foreach ($courses as $course)
+            {
+                //start:: Course lesson delete
+                $lessons = Course_lesson::where('course_id', $course->id)->get();
+                if (count($lessons) > 0)
+                {
+                    foreach ($lessons as $lesson)
+                    {
+                        //start:: lecture delete
+                        $lectures = Course_lecture::where('lesson_id', $lesson->id)->get();
+                        if (count($lectures) > 0)
+                        {
+                            foreach ($lectures as $lecture)
+                            {
+                                $lecture = Course_lecture::find($lecture->id);
+                                if ($lecture)
+                                {
+                                    $this->deleteFile($lecture->file_path); // delete file from server
+
+                                    if ($lecture->type == 'vimeo')
+                                    {
+                                        if ($lecture->url_path)
+                                        {
+                                            $this->deleteVimeoVideoFile($lecture->url_path);
+                                        }
+                                    }
+
+                                    Course_lecture_views::where('course_lecture_id', $lecture->id)->get()->map(function ($q) {
+                                        $q->delete();
+                                    });
+
+                                    Course_lecture::find($lecture->id)->delete(); // delete lecture record
+                                }
+                            }
+                        }
+                        //end:: delete lesson record
+                        Course_lesson::find($lesson->id)->delete();
+                    }
+                }
+                //end
+
+                $this->deleteFile($course->image);
+                $this->deleteVideoFile($course->video);
+                $course->delete();
+            }
+            //End:: Course Delete
+        }
+        $this->instructorModel->deleteByUuid($uuid);
+
+        $user->role = 3;
+        $user->save();
+
+        $this->showToastrMessage('success', 'Instructor Deleted Successfully');
+        return redirect()->back();
+    }
+
 
 }

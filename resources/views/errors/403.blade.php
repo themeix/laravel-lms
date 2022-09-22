@@ -1,6 +1,6 @@
 @extends('errors::minimal')
 
-@section('title', __('Forbidden'))
+@section('title','403 Forbidden')
 @section('content')
 
     <div class="content-overlay"></div>
@@ -37,9 +37,9 @@
 
 
 
-                        <h1 class="mb-1" style="color: red;">Sorry, You are not authorized! 🔐</h1>
+                        <h1 class="mb-1">403, you have been forbidden. 🔐</h1>
                         <p class="mb-2">
-                            You have no permission to go there. Please go back & enjoy your own zone.
+                            You have no permission.
                         </p><a class="btn btn-primary mb-1 btn-sm-block" href="{{route('home')}}">Back to Home</a><img
                             class="img-fluid" src="{{asset('app-assets/images/pages/not-authorized.svg')}}"
                             alt="Not authorized page"/>

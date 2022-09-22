@@ -4,7 +4,7 @@ use App\Models\Course;
 use App\Models\Currency;
 use App\Models\Language;
 use App\Models\Order;
-use App\Models\Order_item;
+use App\Models\OrderItem;
 use App\Models\RankingLevel;
 use App\Models\Withdraw;
 use Illuminate\Support\Facades\Auth;
@@ -367,7 +367,7 @@ function checkStudentCourseView($course_id, $lecture_id)
 
 function studentCoursesCount($user_id)
 {
-    $allUserOrder = Order::where('user_id', $user_id);
+    /*$allUserOrder = Order::where('user_id', $user_id);
     $paidOrderIds = $allUserOrder->where('payment_status', 'paid')->pluck('id')->toArray();
 
     $allUserOrder = Order::where('user_id', $user_id);
@@ -377,7 +377,7 @@ function studentCoursesCount($user_id)
 
     $orderItems = Order_item::whereIn('order_id', $orderIds)->count();
 
-    return $orderItems;
+    return $orderItems;*/
 }
 
 

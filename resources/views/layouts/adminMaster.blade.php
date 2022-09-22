@@ -453,25 +453,19 @@
                 <ul class="menu-content">
                     <li class="{{ (request()->is('admin/instructor*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">All Instructors</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('instructor.create')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Add Instructor</span></a>
+                    <li class="{{ (request()->is('admin/pendingInstructor')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.pending')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Pending Instructors</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('instructor.pending')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Pending Instructors</span></a>
+                    <li class="{{ (request()->is('admin/approvedInstructor')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Approved Instructors</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('instructor.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Approved Instructors</span></a>
-                    </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('instructor.blocked')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Blocked Instructors</span></a>
+                    <li class="{{ (request()->is('admin/blockedInstructor')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.blocked')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Blocked Instructors</span></a>
                     </li>
 
                 </ul>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='heart'></i><span class="menu-title text-truncate" data-i18n="User">Manage Student</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="{{route('student.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Students</span></a>
+                    <li class="{{ (request()->is('admin/student*')) ? 'active' : '' }} "><a class="d-flex align-items-center" href="{{route('student.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Students</span></a>
                     </li>
-
-                    <li><a class="d-flex align-items-center" href="{{route('student.create')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Student</span></a>
-                    </li>
-
                 </ul>
             </li>
 

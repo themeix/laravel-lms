@@ -157,6 +157,7 @@
 
                                             <input
                                                     type="text"
+                                                    id="address"
                                                     name="address" value="{{old('address')}}" placeholder="Address"
                                                     class="form-control"
                                                     aria-label="Name"
@@ -174,7 +175,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Postal Code</label>
+                                            <label class="form-label" for="basic-addon-name">Postal/Zip Code</label>
 
                                             <input
                                                     type="text"
@@ -212,11 +213,6 @@
                                             <label class="form-label" for="state_id">State</label>
                                             <select name="state_id" id="state_id" class="form-select">
                                                 <option value="">---Select State---</option>
-                                                @if(old('country_id'))
-                                                    @foreach($states as $state)
-                                                        <option value="{{$state->id}}" {{old('state_id') == $state->id ? 'selected' : ''}} >{{$state->name}}</option>
-                                                    @endforeach
-                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -227,11 +223,7 @@
 
                                             <select name="city_id" id="city_id" class="form-select">
                                                 <option value="">---Select City---</option>
-                                                @if(old('state_id'))
-                                                    @foreach($cities as $city)
-                                                        <option value="{{$city->id}}" {{old('city_id') == $city->id ? 'selected' : '' }} >{{$city->name}}</option>
-                                                    @endforeach
-                                                @endif
+
                                             </select>
 
                                         </div>
@@ -239,22 +231,6 @@
                                 </div>
 
                                 <div class="row">
-
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
-                                            <label for="customFile1" class="form-label">Profile pic</label>
-                                            <img src="">
-                                            <input type="file" class="form-control" name="image" id="image" accept="image/*" onchange="previewFile(this)">
-                                        </div>
-                                        @if ($errors->has('image'))
-                                            <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
-                                        @endif
-                                        <p>Accepted Image Files: JPEG, JPG, PNG <br> Accepted Size: 300 x 300 (1MB)</p>
-                                    </div>
-
-
-
-
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="basic-addon-name">Gender</label>
@@ -271,21 +247,35 @@
                                 </div>
 
 
-                                {{--<div class="row">
-                                    <div class="col-md-6 col-12">
-
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input"
-                                                       id="validationCheckBootstrap" required/>
-                                                <label class="form-check-label" for="validationCheckBootstrap">Agree to
-                                                    our terms and conditions</label>
-                                                <div class="invalid-feedback">You must agree before submitting.</div>
-                                            </div>
+                                            <label class="d-block form-label" for="validationBioBootstrap">About Student</label>
+                                            <textarea
+                                                class="form-control"
+                                                id="about_me"
+                                                name="about_me"
+                                                rows="3"
+                                                required
+                                            ></textarea>
                                         </div>
-
                                     </div>
-                                </div>--}}
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-1">
+                                            <label for="customFile1" class="form-label">Profile pic</label>
+                                            <img src="">
+                                            <input type="file" class="form-control" name="image" id="image" accept="image/*" onchange="previewFile(this)">
+                                        </div>
+                                        @if ($errors->has('image'))
+                                            <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
+                                        @endif
+                                        <p>Accepted Image Files: JPEG, JPG, PNG <br> Accepted Size: 300 x 300 (1MB)</p>
+                                    </div>
+                                </div>
 
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -336,7 +326,7 @@
 
             $(function () {
                 var citySelectedId = '{{ old('city_id') }}';
-                $('#state_id').change(function () {
+                $('#state_id, #country_id').change(function () {
                     var state_id = $(this).val();
                     $('#city_id').html('<option value="">---Select City---</option>');
                     if (state_id != '') {
@@ -356,7 +346,6 @@
                 });
                 $('#state_id').trigger('change');
             });
-
 
         </script>
 

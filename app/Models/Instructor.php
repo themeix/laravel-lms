@@ -13,7 +13,6 @@ class Instructor extends Model
     protected $fillable = [
         'user_id',
         'country_id',
-        'province_id',
         'state_id',
         'city_id',
         'first_name',
@@ -26,8 +25,9 @@ class Instructor extends Model
         'social_link',
         'slug',
         'gender',
-        'cv_file',
-        'cv_filename'
+        'status',
+        /*'cv_file',
+        'cv_filename'*/
     ];
 
 
@@ -35,6 +35,22 @@ class Instructor extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
 
     public function getFullNameAttribute($value)
     {

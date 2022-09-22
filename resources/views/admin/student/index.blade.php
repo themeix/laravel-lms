@@ -93,12 +93,12 @@
                                 @foreach($students as $student)
                                     <tr class="removable-item">
                                         <td>
-                                            <img src="{{getImageFile($student->user ? @$student->user->image_path : '')}}" width="80">
+                                            <img src="{{getImageFile($student->user ? @$student->user->image : '')}}" width="80">
                                         </td>
                                         <td>
-                                            Name: {{$student->name}}<br>
-                                            Email: {{$student->user->email}}<br>
-                                            Mobile: {{$student->phone_number ?? @$student->user->phone_number}}<br>
+                                            <strong>Name:</strong> {{$student->name}}<br>
+                                            <strong>Email:</strong> {{$student->user->email}}<br>
+                                            <strong>Mobile:</strong> {{$student->phone_number ?? @$student->user->phone_number}}<br>
 
                                         </td>
 
@@ -108,14 +108,17 @@
 
                                         <td>
                                             <span id="hidden_id" style="display: none">{{$student->id}}</span>
-                                            <select name="status" class="status label-inline font-weight-bolder mb-1 badge badge-info">
-                                                <option value="1" @if($student->status == 1) selected @endif>Active</option>
-                                                <option value="2" @if($student->status == 2) selected @endif>Blocked</option>
-                                            </select>
+                                            <div class="mb-1" style="width: 120px">
+                                                <select name="status" class="status form-select">
+                                                    <option value="1" @if($student->status == 1) selected @endif>Active</option>
+                                                    <option value="2" @if($student->status == 2) selected @endif>Blocked</option>
+                                                </select>
+                                            </div>
+
                                         </td>
 
                                         <td>
-                                            <div class="action__buttons">
+                                            <div class="action__buttons text-center" style="width: 80px">
 
                                                 <a href="{{route('student.show', [$student->uuid])}}" class="btn-action mr-30" title="View Details">
                                                     <img src="{{asset('custom/image/eye-2.svg')}}" alt="eye">

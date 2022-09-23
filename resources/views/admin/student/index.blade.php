@@ -110,7 +110,7 @@
                                             <span id="hidden_id" style="display: none">{{$student->id}}</span>
                                             <div class="mb-1" style="width: 120px">
                                                 <select name="status" class="status form-select">
-                                                    <option value="1" @if($student->status == 1) selected @endif>Active</option>
+                                                    <option value="1" @if($student->status == 1) selected @endif>Approved</option>
                                                     <option value="2" @if($student->status == 2) selected @endif>Blocked</option>
                                                 </select>
                                             </div>

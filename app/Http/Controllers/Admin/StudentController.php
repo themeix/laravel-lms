@@ -35,6 +35,33 @@ class StudentController extends Controller
     }
 
 
+    public function approvedStudent()
+    {
+        /*if (!Auth::user()->can('approved_instructor')) {
+            abort('403');
+        } */
+
+        // end permission checking
+
+        $students = Student::where('status', 1)->orderBy('id', 'desc')->get();
+        return view('admin.student.approved', compact('students'));
+    }
+
+    public function blockedInstructor()
+    {
+        /*if (!Auth::user()->can('approved_instructor')) {
+            abort('403');
+        }*/
+
+        // end permission checking
+
+        $students = Student::where('status', 2)->orderBy('id', 'desc')->get();
+        return view('admin.student.blocked', compact('students'));
+    }
+
+
+
+
     public function create()
     {
         $data['countries'] = Country::orderBy('country_name', 'asc')->get();
@@ -99,16 +126,16 @@ class StudentController extends Controller
 
     public function show($uuid)
     {
-        /*$data['title'] = 'Student Profile';
+
         $data['student'] = $this->studentModel->getRecordByUuid($uuid);
 
-        $allUserOrder = Order::where('user_id', $data['student']->user_id);
-        $paidOrderIds = $allUserOrder->where('payment_status', 'paid')->pluck('id')->toArray();
+        /*$allUserOrder = Order::where('user_id', $data['student']->user_id);
+        $paidOrderIds = $allUserOrder->where('payment_status', 'paid')->pluck('id')->toArray();*/
 
-        $allUserOrder = Order::where('user_id', $data['student']->user_id);
-        $freeOrderIds = $allUserOrder->where('payment_status', 'free')->pluck('id')->toArray();
+        /*$allUserOrder = Order::where('user_id', $data['student']->user_id);
+        $freeOrderIds = $allUserOrder->where('payment_status', 'free')->pluck('id')->toArray();*/
 
-        $orderIds = array_merge($paidOrderIds, $freeOrderIds);
+        /*$orderIds = array_merge($paidOrderIds, $freeOrderIds);
 
         $data['orderItems'] = Order_item::whereIn('order_id', $orderIds)->latest()->paginate(15);*/
 

@@ -17,7 +17,7 @@ class Course extends Model
         'category_id',
         'subcategory_id',
         'language_id',
-        'difficulty_level_id',
+        'difficultyLevel_id',
         'title',
         'subtitle',
         'description',
@@ -25,12 +25,12 @@ class Course extends Model
         'feature_details',
         'price',
         'learner_accessibility',
-        /*'image',
+        'image',
         'video',
         'slug',
         'status',
         'intro_video_check',
-        'youtube_video_id'*/
+        'youtube_video_id'
     ];
 
 
@@ -47,12 +47,12 @@ class Course extends Model
 
     public function category()
     {
-        return $this->belongsTo(CourseCategory::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function subcategory()
     {
-        return $this->belongsTo(Subcategory::class, 'subcategory_id');
+        return $this->belongsTo(SubCategory::class, 'subcategory_id');
     }
 
     public function language()
@@ -62,7 +62,7 @@ class Course extends Model
 
     public function difficultyLevel()
     {
-        return $this->belongsTo(DifficultyLevel::class, 'difficulty_level_id');
+        return $this->belongsTo(DifficultyLevel::class, 'difficultyLevel_id');
     }
 
     public function tags()

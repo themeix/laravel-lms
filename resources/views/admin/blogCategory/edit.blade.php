@@ -42,8 +42,8 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
-
+                            <form class="needs-validation" action="{{route('blogCategory.update', [$blogCategory->uuid])}}" method="post" enctype="multipart/form-data" novalidate>
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
@@ -51,15 +51,34 @@
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    name="name"
+                                                    value="{{ $blogCategory->name }}"
                                                     class="form-control"
                                                     placeholder="Blog Category Name"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter Blog Category name.</div>
+                                            @if ($errors->has('name'))
+                                                <span class="text-danger"><i
+                                                        class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="select-country1">Select Category</label>
+                                            <select class="form-select" name="status" id="status" required>
+                                                <option value="">---Select Status----</option>
+
+                                                <option value="1" @if($blogCategory->status == 1) selected @endif>Active</option>
+                                                <option value="0" @if($blogCategory->status == 0) selected @endif>Deactivate</option>
+
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

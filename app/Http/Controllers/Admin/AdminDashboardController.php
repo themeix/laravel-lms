@@ -9,7 +9,7 @@ class AdminDashboardController extends Controller
 {
     public function index(){
 
-        Alert::toast('Congratulation! Login Successful.', 'success');
+        Alert::toast('Congratulation ! Login Successful.', 'success');
 
         return view('admin.adminDashboard');
     }

@@ -70,11 +70,12 @@ class CourseController extends Controller
             'title' => ['required', 'string'],
             'subtitle' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'category_id' => ['required'],
-            'subcategory_id' => '',
-            'price' => '',
+            'category_id' => 'required',
+            'subcategory_id' => 'required',
+            'language_id'=>'required',
+            'price' => 'required',
             'course_language_id' => 'required',
-            'difficulty_level_id' => 'required',
+            'difficultyLevel_id' => 'required',
             'learner_accessibility' => 'required'
         ]);
 
@@ -94,9 +95,9 @@ class CourseController extends Controller
             'description' => $request->description,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
+            'language_id' => $request->language_id,
             'price' => $request->price,
-            'course_language_id' => $request->language_id,
-            'difficulty_level_id' => $request->difficulty_level_id,
+            'difficultyLevel_id' => $request->difficultyLevel_id,
             'learner_accessibility' => $request->learner_accessibility,
 
             /*'image' => $image ?? null,

@@ -48,7 +48,7 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Student List</h2>
+                        <h2 class="content-header-title float-start mb-0">Instructor List</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
@@ -118,7 +118,6 @@
                                                     <select name="status" class="status form-select">
                                                         <option value="1" @if($instructor->status == 1) selected @endif>Approved</option>
                                                         <option value="2" @if($instructor->status == 2) selected @endif>Blocked</option>
-                                                        <option value="0" @if($instructor->status == 0) selected @endif>Pending</option>
                                                     </select>
                                                 </div>
                                         </td>
@@ -156,6 +155,42 @@
 @endsection
 
 @push('scripts')
+
+    <script>
+        'use strict'
+        $(".status").change(function () {
+            var id = $(this).closest('tr').find('#hidden_id').html();
+            var status_value = $(this).closest('tr').find('.status option:selected').val();
+            Swal.fire({
+                title: "Are you sure to change status?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Change it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('instructor.changeInstructorStatus')}}",
+                        data: {"status": status_value, "id": id, "_token": "{{ csrf_token() }}",},
+                        datatype: "json",
+                        success: function (data) {
+                            toastr.options.positionClass = 'toast-bottom-right';
+                            toastr.success('', 'Instructor status has been updated');
+                        },
+                        error: function () {
+                            alert("Error!");
+                        },
+                    });
+                } else if (result.dismiss === "cancel") {
+                }
+            });
+        });
+    </script>
+
+
     <script>
         $(document).ready(function () {
             $('#example').DataTable();

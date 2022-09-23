@@ -20,13 +20,13 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Upload Course</h2>
+                        <h2 class="content-header-title float-start mb-0">Add Course</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('instructor')}}">Home</a>
                                 </li>
 
-                                <li class="breadcrumb-item active">Upload
+                                <li class="breadcrumb-item active">Add Course
                                 </li>
                             </ol>
                         </div>
@@ -155,8 +155,8 @@
                                                 rows="3"
                                                 required
                                             >{{old('description')}}</textarea>
-                                            @if ($errors->has('subtitle'))
-                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('subtitle') }}</span>
+                                            @if ($errors->has('description'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('description') }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -292,11 +292,11 @@
                                         <div class="mb-1">
                                             <label class="form-label" for="name">Difficulty Level</label>
 
-                                            <select class="form-select"  name="difficulty_level_id" id="difficulty_level_id" required>
+                                            <select class="form-select"  name="difficultyLevel_id" id="difficultyLevel_id" required>
                                                 <option value="">---Select Difficulty Level---</option>
                                                 @foreach($difficulty_levels as $difficulty_level)
 
-                                                    <option value="{{$difficulty_level->id}}" {{old('difficulty_level_id') == $difficulty_level->id ? 'selected' : '' }}>{{$difficulty_level->name}}</option>
+                                                    <option value="{{$difficulty_level->id}}" {{old('difficultyLevel_id') == $difficulty_level->id ? 'selected' : '' }}>{{$difficulty_level->name}}</option>
 
                                                 @endforeach
 
@@ -392,7 +392,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>
+    {{--<script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>--}}
    {{-- <script src="{{ asset('custom/js/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('custom/js/add-repeater.js') }}"></script>--}}
     <script>

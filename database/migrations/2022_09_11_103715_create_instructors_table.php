@@ -36,7 +36,7 @@ return new class extends Migration
             $table->tinyInteger('is_private')->default(0)->comment('0=no, 1=yes');
             $table->tinyInteger('remove_from_web_search')->default(0)->comment('0=no, 1=yes');
 
-            $table->tinyInteger('status')->default(0)->comment('0=pending, 1=approved, 2=blocked');
+            $table->tinyInteger('status')->default(1)->comment('0=pending, 1=approved, 2=blocked');
             $table->tinyInteger('existence')->default(1)->comment('0=deleted, 1=active')->nullable();
 
 

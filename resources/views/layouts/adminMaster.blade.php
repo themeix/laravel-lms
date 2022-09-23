@@ -449,11 +449,9 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='anchor'></i><span class="menu-title text-truncate" data-i18n="eCommerce">Manage Instructor</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='briefcase'></i><span class="menu-title text-truncate" data-i18n="eCommerce">Manage Instructor</span></a>
                 <ul class="menu-content">
                     <li class="{{ (request()->is('admin/instructor*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">All Instructors</span></a>
-                    </li>
-                    <li class="{{ (request()->is('admin/pendingInstructor')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.pending')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Pending Instructors</span></a>
                     </li>
                     <li class="{{ (request()->is('admin/approvedInstructor')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Approved Instructors</span></a>
                     </li>
@@ -466,6 +464,13 @@
                 <ul class="menu-content">
                     <li class="{{ (request()->is('admin/student*')) ? 'active' : '' }} "><a class="d-flex align-items-center" href="{{route('student.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Students</span></a>
                     </li>
+
+                    <li class="{{ (request()->is('admin/approvedStudent')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('student.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Approved Students</span></a>
+                    </li>
+                    <li class="{{ (request()->is('admin/blockedStudent')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('student.blocked')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Blocked Students</span></a>
+                    </li>
+
+
                 </ul>
             </li>
 
@@ -548,17 +553,14 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='book-open'></i><span class="menu-title text-truncate" data-i18n="User">Manage Blog</span></a>
                 <ul class="menu-content">
 
-                    <li><a class="d-flex align-items-center" href="{{route('blogCategory.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Blog Category</span></a>
+                    <li class="{{ (request()->is('admin/blogCategory*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('blogCategory.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Blog Category</span></a>
                     </li>
 
-                    <li><a class="d-flex align-items-center" href="{{route('emailTemplate.sendEmail')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Blog</span></a>
-                    </li>
-
-                    <li><a class="d-flex align-items-center" href="{{route('emailTemplate.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Blog</span></a>
+                    <li class="{{ (request()->is('admin/blogPost*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('blog.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Blog Posts</span></a>
                     </li>
 
 
-                    <li><a class="d-flex align-items-center" href="{{route('emailTemplate.sendEmail')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Blog Comment List</span></a>
+                    <li class="{{ (request()->is('admin/blogComment*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('blogComment.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Blog Comment List</span></a>
                     </li>
 
                 </ul>
@@ -571,29 +573,15 @@
 
 
                         <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="{{route('country.index')}}"><span class="menu-item text-truncate" data-i18n="Basic">Country</span></a>
+                            <li class="{{ (request()->is('admin/country*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('country.index')}}"><span class="menu-item text-truncate" data-i18n="Basic">Country</span></a>
                             </li>
-                            <li><a class="d-flex align-items-center" href="{{route('state.index')}}"><span class="menu-item text-truncate" data-i18n="Cover">State</span></a>
+                            <li class="{{ (request()->is('admin/state*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('state.index')}}"><span class="menu-item text-truncate" data-i18n="Cover">State</span></a>
                             </li>
-                            <li><a class="d-flex align-items-center" href="{{route('city.index')}}"><span class="menu-item text-truncate" data-i18n="Cover">City</span></a>
+                            <li class="{{ (request()->is('admin/city*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('city.index')}}"><span class="menu-item text-truncate" data-i18n="Cover">City</span></a>
                             </li>
                         </ul>
-
-
-
-
-
                     </li>
 
-                    <li><a class="d-flex align-items-center" href="{{route('emailTemplate.sendEmail')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Blog</span></a>
-                    </li>
-
-                    <li><a class="d-flex align-items-center" href="{{route('emailTemplate.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Blog</span></a>
-                    </li>
-
-
-                    <li><a class="d-flex align-items-center" href="{{route('emailTemplate.sendEmail')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Blog Comment List</span></a>
-                    </li>
 
                 </ul>
             </li>

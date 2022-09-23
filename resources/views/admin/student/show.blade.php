@@ -28,15 +28,15 @@
                                 <div class="user-avatar-section">
                                     <div class="d-flex align-items-center flex-column">
                                         <img
-                                                class="img-fluid rounded mt-3 mb-2"
-                                                src="{{ asset('custom/image/download.jfif') }}"
-                                                height="110"
-                                                width="110"
-                                                alt="User avatar"
+                                            class="img-fluid rounded mt-3 mb-2"
+                                            src="{{getImageFile($student->user ? @$student->user->image : '')}}"
+                                            height="110"
+                                            width="110"
+                                            alt="User avatar"
                                         />
                                         <div class="user-info text-center">
-                                            <h4>Gertrude Barton</h4>
-                                            <span class="badge bg-light-secondary">Author</span>
+                                            <h4>{{ $student->first_name }} {{ $student->last_name }}</h4>
+                                            <span class="badge bg-light-secondary">Student</span>
                                         </div>
                                     </div>
                                 </div>
@@ -63,41 +63,41 @@
                                 <h4 class="fw-bolder border-bottom pb-50 mb-1">Details</h4>
                                 <div class="info-container">
                                     <ul class="list-unstyled">
-                                        <li class="mb-75">
+                                        {{--<li class="mb-75">
                                             <span class="fw-bolder me-25">Username:</span>
                                             <span>violet.dev</span>
+                                        </li>--}}
+                                        <li class="mb-75">
+                                            <span class="fw-bolder me-25">Email:</span>
+                                            <span> {{ $student->user->email }}</span>
                                         </li>
                                         <li class="mb-75">
-                                            <span class="fw-bolder me-25">Billing Email:</span>
-                                            <span>vafgot@vultukir.org</span>
+                                            <span class="fw-bolder me-25">Phone:</span>
+                                            <span> {{ $student->phone_number }}</span>
                                         </li>
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Status:</span>
                                             <span class="badge bg-light-success">Active</span>
                                         </li>
-                                        <li class="mb-75">
-                                            <span class="fw-bolder me-25">Role:</span>
-                                            <span>Author</span>
-                                        </li>
-                                        <li class="mb-75">
-                                            <span class="fw-bolder me-25">Tax ID:</span>
-                                            <span>Tax-8965</span>
-                                        </li>
-                                        <li class="mb-75">
-                                            <span class="fw-bolder me-25">Contact:</span>
-                                            <span>+1 (609) 933-44-22</span>
-                                        </li>
-                                        <li class="mb-75">
-                                            <span class="fw-bolder me-25">Language:</span>
-                                            <span>English</span>
-                                        </li>
+
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Country:</span>
-                                            <span>Wake Island</span>
+                                            <span>{{$student->country ? $student->country->country_name : ''}}</span>
                                         </li>
+                                        <li class="mb-75">
+                                            <span class="fw-bolder me-25">State:</span>
+                                            <span>{{@$student->state->name}}</span>
+                                        </li>
+
+                                        <li class="mb-75">
+                                            <span class="fw-bolder me-25">Address:</span>
+                                            <span>{{@$student->address}}</span>
+                                        </li>
+
                                     </ul>
                                     <div class="d-flex justify-content-center pt-2">
-                                        <a href="{{route('student.edit')}}" class="btn btn-primary me-1">
+                                        <a href="{{route('student.edit' , [$student->uuid])}}"
+                                           class="btn btn-primary me-1">
                                             Edit
                                         </a>
                                         <a href="javascript:;" class="btn btn-outline-danger suspend-user">Suspended</a>

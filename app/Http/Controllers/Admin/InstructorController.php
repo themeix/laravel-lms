@@ -38,9 +38,47 @@ class InstructorController extends Controller
 
         // end permission checking
 
-        $data['instructors'] = $this->instructorModel->getOrderById('DESC');;
+        $data['instructors'] = $this->instructorModel->getOrderById('DESC');
         return view('admin.instructor.index', $data);
     }
+
+
+    public function approvedInstructor()
+    {
+        /*if (!Auth::user()->can('approved_instructor')) {
+            abort('403');
+        } */
+
+        // end permission checking
+
+        $instructors = Instructor::where('status', 1)->orderBy('id', 'desc')->get();
+        return view('admin.instructor.approved', compact('instructors'));
+    }
+
+    public function blockedInstructor()
+    {
+        /*if (!Auth::user()->can('approved_instructor')) {
+            abort('403');
+        }*/
+
+        // end permission checking
+
+        $instructors = Instructor::where('status', 2)->orderBy('id', 'desc')->get();
+        return view('admin.instructor.blocked', compact('instructors'));
+    }
+
+
+    public function changeInstructorStatus(Request $request)
+    {
+        $instructor = Instructor::findOrFail($request->id);
+        $instructor->status = $request->status;
+        $instructor->save();
+
+        return response()->json([
+            'data' => 'success',
+        ]);
+    }
+
 
 
     public function create()
@@ -194,6 +232,7 @@ class InstructorController extends Controller
             'phone_number' => $request->phone_number,
             'slug' => $slug,
             'country_id' => $request->country_id,
+            'status'=> 1,
             'state_id' => $request->state_id,
             'city_id' => $request->city_id,
             'gender' => $request->gender,
@@ -226,16 +265,6 @@ class InstructorController extends Controller
         return City::where('state_id', $state_id)->orderBy('name', 'asc')->get()->toJson();
     }
 
-    public function changeInstructorStatus(Request $request)
-    {
-        $instructor = Instructor::findOrFail($request->id);
-        $instructor->status = $request->status;
-        $instructor->save();
-
-        return response()->json([
-            'data' => 'success',
-        ]);
-    }
 
 
     public function changeStatus($uuid, $status)
@@ -256,41 +285,7 @@ class InstructorController extends Controller
     }
 
 
-    public function pendingInstructor()
-    {
-        /*if (!Auth::user()->can('pending_instructor')) {
-            abort('403');
-        }*/
 
-        // end permission checking
-
-        /*$data['instructors'] = Instructor::pending()->orderBy('id', 'desc');*/
-        return view('admin.instructor.pending');
-    }
-
-    public function approvedInstructor()
-    {
-        /*if (!Auth::user()->can('approved_instructor')) {
-            abort('403');
-        } */
-
-        // end permission checking
-
-       /* $data['instructors'] = Instructor::approved()->orderBy('id', 'desc');*/
-        return view('admin.instructor.approved');
-    }
-
-    public function blockedInstructor()
-    {
-        /*if (!Auth::user()->can('approved_instructor')) {
-            abort('403');
-        }*/
-
-        // end permission checking
-
-        /*$data['instructors'] = Instructor::blocked()->orderBy('id', 'desc');*/
-        return view('admin.instructor.blocked');
-    }
 
 
 

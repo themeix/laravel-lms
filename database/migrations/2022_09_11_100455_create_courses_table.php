@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('subcategory_id')->nullable();
             $table->unsignedInteger('language_id')->nullable();
-            $table->unsignedInteger('difficulty_level_id')->nullable();
+            $table->unsignedInteger('difficultyLevel_id')->nullable();
             $table->string('title');
             $table->mediumText('description');
             $table->mediumText('feature_details')->nullable();

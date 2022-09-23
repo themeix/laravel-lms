@@ -50,7 +50,7 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
+                            <form class="needs-validation" method="post" action="{{route('student.update', $student->uuid)}}" enctype="multipart/form-data" novalidate>
 
                                 <div class="row">
                                     <div class="col-md-6 col-12">
@@ -59,15 +59,18 @@
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    id="first_name"
+                                                    name="first_name"
+                                                    value="{{ $student->first_name }}"
                                                     class="form-control"
                                                     placeholder="First Name"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your First name.</div>
+                                            @if ($errors->has('first_name'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('first_name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -79,15 +82,16 @@
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    id="last_name"
                                                     class="form-control"
-                                                    placeholder="Last Name"
+                                                    value="{{ $student->last_name }}" placeholder="Last name"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Last name.</div>
+                                            @if ($errors->has('last_name'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('last_name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -98,14 +102,15 @@
                                             <label class="form-label" for="basic-default-email1">Email</label>
                                             <input
                                                     type="email"
-                                                    id="basic-default-email1"
+                                                    value="{{ @$student->user->email }}" placeholder="Email"
                                                     class="form-control"
-                                                    placeholder="john.doe@email.com"
+
                                                     aria-label="john.doe@email.com"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter a valid email</div>
+                                            @if ($errors->has('email'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('email') }}</span>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -114,13 +119,14 @@
                                             <label class="form-label" for="basic-default-password1">Password</label>
                                             <input
                                                     type="password"
-                                                    id="basic-default-password1"
+                                                    id="password"
                                                     class="form-control"
-                                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                                    name="password" value="" placeholder="Password"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your password.</div>
+                                            @if ($errors->has('password'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('password') }}</span>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -128,61 +134,47 @@
 
 
                                 <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Professional Title</label>
-
-                                            <input
-                                                    type="text"
-                                                    id="basic-addon-name"
-                                                    class="form-control"
-                                                    placeholder="Professional Title"
-                                                    aria-label="Name"
-                                                    aria-describedby="basic-addon-name"
-                                                    required
-                                            />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Professional Title.</div>
-                                        </div>
-                                    </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="basic-addon-name">Phone Number</label>
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    name="phone_number" value="{{ $student->phone_number }}"
                                                     class="form-control"
                                                     placeholder="Phone Number"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Phone Number.</div>
+                                            @if ($errors->has('phone_number'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('phone_number') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="basic-addon-name">Address</label>
+
+                                            <input
+                                                type="text"
+                                                name="address" value="{{ $student->address }}" placeholder="Address"
+                                                class="form-control"
+                                                aria-label="Name"
+                                                aria-describedby="basic-addon-name"
+                                                required
+                                            />
+                                            @if ($errors->has('address'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('address') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
 
 
                                 <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Address</label>
 
-                                            <input
-                                                    type="text"
-                                                    id="basic-addon-name"
-                                                    class="form-control"
-                                                    placeholder="Address"
-                                                    aria-label="Name"
-                                                    aria-describedby="basic-addon-name"
-                                                    required
-                                            />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Address.</div>
-                                        </div>
-                                    </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="basic-addon-name">Zip Code / Postal
@@ -190,16 +182,16 @@
 
                                             <input
                                                     type="number"
-                                                    id="basic-addon-name"
+                                                    name="postal_code" value="{{ $student->postal_code }}"
                                                     class="form-control"
                                                     placeholder="Zip Code / Postal Code"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Zip Code / Postal Code.
-                                            </div>
+                                            @if ($errors->has('postal_code'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('postal_code') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -209,13 +201,15 @@
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1">Country</label>
-                                            <select class="form-select" id="select-country1" required>
-                                                <option value="">Select Country</option>
-                                                <option value="usa">USA</option>
-                                                <option value="uk">UK</option>
-                                                <option value="france">France</option>
-                                                <option value="australia">Australia</option>
-                                                <option value="spain">Spain</option>
+                                            <select class="form-select" name="country_id" id="country_id" required>
+                                                <option value="">{{__('app.select_country')}}</option>
+                                                @foreach($countries as $country)
+                                                    <option value="{{$country->id}}" @if(old('country_id'))
+                                                        {{old('country_id') == $country->id ? 'selected' : '' }}
+                                                        @else
+                                                        {{$student->country_id == $country->id ? 'selected' : '' }}
+                                                        @endif >{{$country->country_name}}</option>
+                                                @endforeach
                                             </select>
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please select your country</div>

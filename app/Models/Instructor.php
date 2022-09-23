@@ -57,6 +57,16 @@ class Instructor extends Model
         return $this->first_name.' '.$this->last_name;
     }
 
+    public function scopeApproved($query)
+    {
+        return $query->where('status', 1);
+    }
+
+    public function scopeBlocked($query)
+    {
+        return $query->where('status', 2);
+    }
+
 
 
 

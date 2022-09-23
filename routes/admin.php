@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogCommentController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\StateController;
+use App\Models\BlogCategory;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -114,8 +117,9 @@ Route::post('instructor/update/{uuid}', [InstructorController::class, 'update'])
 Route::get('instructor/show/{uuid}', [InstructorController::class, 'show'])->name('instructor.show');
 Route::delete('instructor/delete/{uuid}', [InstructorController::class, 'delete'])->name('instructor.delete')/*->middleware('isDemo')*/;
 
+Route::post('change-instructor-status', [InstructorController::class, 'changeInstructorStatus'])->name('instructor.changeInstructorStatus')/*->middleware('isDemo')*/;
+
 Route::get('blockedInstructor', [InstructorController::class, 'blockedInstructor'])->name('instructor.blocked');
-Route::get('pendingInstructor', [InstructorController::class, 'pendingInstructor'])->name('instructor.pending');
 Route::get('approvedInstructor', [InstructorController::class, 'approvedInstructor'])->name('instructor.approved');
 
 
@@ -126,13 +130,16 @@ Route::get('get-city-by-state/{state_id}', [InstructorController::class, 'getCit
 //Student
 Route::get('student/index', [StudentController::class, 'index'])->name('student.index');
 Route::get('student/create', [StudentController::class, 'create'])->name('student.create');
-Route::get('student/show', [StudentController::class, 'show'])->name('student.show');
 Route::post('student/store', [StudentController::class, 'store'])->name('student.store')/*->middleware('isDemo')*/;
 Route::get('student/show/{uuid}', [StudentController::class, 'show'])->name('student.show');
 Route::get('student/edit/{uuid}', [StudentController::class, 'edit'])->name('student.edit');
 Route::post('student/update/{uuid}', [StudentController::class, 'update'])->name('student.update')/*->middleware('isDemo')*/;
 Route::delete('student/delete/{uuid}', [StudentController::class, 'delete'])->name('student.delete')/*->middleware('isDemo')*/;
 Route::post('student/change-student-status', [StudentController::class, 'changeStudentStatus'])->name('admin.student.changeStudentStatus')/*->middleware('isDemo')*/;
+
+
+Route::get('blockedStudent', [StudentController::class, 'blockedInstructor'])->name('student.blocked');
+Route::get('approvedStudent', [StudentController::class, 'approvedStudent'])->name('student.approved');
 
 Route::get('student/getStates', [StudentController::class,'getStates'])->name('student.getStates');
 Route::get('student/getCities', [StudentController::class,'getCities'])->name('student.getCities');
@@ -166,7 +173,23 @@ Route::get('emailTemplate/sendEmail', [EmailManagementController::class, 'sendEm
 //Blog Category
 Route::get('blogCategory/index', [BlogCategoryController::class, 'index'])->name('blogCategory.index');
 Route::get('blogCategory/create', [BlogCategoryController::class, 'create'])->name('blogCategory.create');
-Route::get('blogCategory/edit', [BlogCategoryController::class, 'edit'])->name('blogCategory.edit');
+Route::post('blogCategory/store', [BlogCategoryController::class, 'store'])->name('blogCategory.store')/*->middleware('isDemo')*/;
+Route::get('blogCategory/edit/{uuid}', [BlogCategoryController::class, 'edit'])->name('blogCategory.edit');
+Route::post('blogCategory/update/{uuid}', [BlogCategoryController::class, 'update'])->name('blogCategory.update')/*->middleware('isDemo')*/;
+Route::get('blogCategory/delete/{uuid}', [BlogCategoryController::class, 'delete'])->name('blogCategory.delete')/*->middleware('isDemo')*/;
+
+
+//Blog
+Route::get('blogPost/index', [BlogController::class, 'index'])->name('blog.index');
+Route::get('blogPost/create', [BlogController::class, 'create'])->name('blog.create');
+Route::post('blogPost/store', [BlogController::class, 'store'])->name('blog.store')/*->middleware('isDemo')*/;
+Route::get('blogPost/edit/{uuid}', [BlogController::class, 'edit'])->name('blog.edit');
+Route::post('blogPost/update/{uuid}', [BlogController::class, 'update'])->name('blog.update')/*->middleware('isDemo')*/;
+Route::delete('blogPost/delete/{uuid}', [BlogController::class, 'delete'])->name('blog.delete')/*->middleware('isDemo')*/;
+
+
+//Blog Comment
+Route::get('blogComment/index', [BlogCommentController::class, 'index'])->name('blogComment.index');
 
 
 //Location - Country

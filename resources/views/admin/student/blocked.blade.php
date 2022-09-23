@@ -1,5 +1,5 @@
 @extends('layouts.adminMaster')
-@section('title','Approved Instructor List')
+@section('title','Blocked Student List')
 
 
 
@@ -48,12 +48,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Approved Instructor List</h2>
+                        <h2 class="content-header-title float-start mb-0">Blocked Student List</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Approved Instructor List
+                                <li class="breadcrumb-item active">Blocked Student List
                                 </li>
                             </ol>
                         </div>
@@ -90,34 +90,34 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($instructors as $instructor)
+                                @foreach($students as $student)
                                     <tr class="removable-item">
                                         <td>
-                                            <img src="{{getImageFile($instructor->user ? @$instructor->user->image : '')}}" width="80">
+                                            <img src="{{getImageFile($student->user ? @$student->user->image : '')}}" width="80">
                                         </td>
                                         <td>
-                                            <strong>Name:</strong> {{$instructor->first_name}} {{$instructor->last_name}}<br>
-                                            <strong>Email:</strong> {{$instructor->user->email}}<br>
-                                            <strong>Mobile:</strong> {{$instructor->phone_number ?? @$instructor->user->phone_number}}<br>
+                                            <strong>Name:</strong> {{$student->first_name}} {{$student->last_name}}<br>
+                                            <strong>Email:</strong> {{$student->user->email}}<br>
+                                            <strong>Mobile:</strong> {{$student->phone_number ?? @$student->user->phone_number}}<br>
 
                                         </td>
 
-                                        <td>{{@$instructor->country->country_name}}</td>
-                                        <td>{{@$instructor->state->name}}</td>
-                                        <td>{{$instructor->address}}</td>
+                                        <td>{{@$student->country->country_name}}</td>
+                                        <td>{{@$student->state->name}}</td>
+                                        <td>{{$student->address}}</td>
 
                                         {{--<td>{{$instructor->country ? $instructor->country->country_name : '' }}</td>
                                         <td>{{$instructor->state ? $instructor->state->name : '' }}</td>--}}
 
 
                                         <td>
-                                            <span id="hidden_id" style="display: none">{{$instructor->id}}</span>
+                                            <span id="hidden_id" style="display: none">{{$student->id}}</span>
 
 
                                             <div class="mb-1 text-center" style="width: 120px">
                                                 <select name="status" class="status form-select">
-                                                    <option value="1" @if($instructor->status == 1) selected @endif>Approved</option>
-                                                    <option value="2" @if($instructor->status == 2) selected @endif>Blocked</option>
+                                                    <option value="1" @if($student->status == 1) selected @endif>Approved</option>
+                                                    <option value="2" @if($student->status == 2) selected @endif>Blocked</option>
                                                 </select>
                                             </div>
                                         </td>
@@ -125,15 +125,15 @@
                                         <td>
                                             <div class="action__buttons text-center" style="width: 80px">
 
-                                                <a href="{{route('instructor.show', [$instructor->uuid])}}" class="btn-action mr-30" title="View Details">
+                                                <a href="{{route('student.show', [$student->uuid])}}" class="btn-action mr-30" title="View Details">
                                                     <img src="{{asset('custom/image/eye-2.svg')}}" alt="eye">
                                                 </a>
 
-                                                <a href="{{route('instructor.edit', [$instructor->uuid])}}" class="btn-action" title="Edit">
+                                                <a href="{{route('student.edit', [$student->uuid])}}" class="btn-action" title="Edit">
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
 
-                                                <a href="{{route('instructor.delete', [$instructor->uuid])}}"  class="btn-action delete" title="Delete">
+                                                <a href="{{route('student.delete', [$student->uuid])}}"  class="btn-action delete" title="Delete">
                                                     <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
                                                 </a>
                                             </div>

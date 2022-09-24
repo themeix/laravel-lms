@@ -22,9 +22,6 @@ class Blog extends Model
         'blog_category_id'
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
 
     public function user()
     {

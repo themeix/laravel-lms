@@ -72,7 +72,7 @@
                             <table id="example" class="table table-bordered dataTables_info" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+
                                     <th>Name</th>
                                     <th>Category</th>
                                     <th>Total Course</th>
@@ -83,9 +83,7 @@
 
                                 @foreach($subcategories as $subcategory)
                                     <tr class="removable-item">
-                                        <td>
-                                            {{$subcategory->id}}
-                                        </td>
+
                                         <td>
                                             {{$subcategory->name}}
                                         </td>

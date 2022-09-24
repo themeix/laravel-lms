@@ -135,7 +135,7 @@ class CategoryController extends Controller
     }
 
 
-    public function destroy($uuid)
+    public function delete($uuid)
     {
         /*if (!Auth::user()->can('manage_course_category')) {
             abort('403');

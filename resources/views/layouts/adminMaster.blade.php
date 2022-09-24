@@ -42,16 +42,18 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+
     <!-- END: Custom CSS-->
 
     @stack('styles')
-    @stack('scripts')
+    {{--@stack('scripts')--}}
 </head>
 <!-- END: Head-->
 
 
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+
 
 @include('sweetalert::alert')
 
@@ -429,7 +431,7 @@
                     </li>
                     <li class="{{ (request()->is('admin/promotionalTag*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('promotionalTag.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Promotional Tag</span></a>
                     </li>
-                    <li class="{{ (request()->is('admin/rulesBenifits*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('rulesBenifits.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Rules & Benifits</span></a>
+                    <li class="{{ (request()->is('admin/rulesBenefits*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('rulesBenefits.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Rules & Benifits</span></a>
                     </li>
 
                 </ul>
@@ -565,6 +567,28 @@
 
                 </ul>
             </li>
+
+
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="User">User Management</span></a>
+                <ul class="menu-content">
+
+                    <li class="{{ (request()->is('admin/role*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('adminRole.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Roles</span></a>
+                    </li>
+
+                    <li class="{{ (request()->is('admin/user*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('adminUser.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Users</span></a>
+                    </li>
+
+
+
+
+                </ul>
+            </li>
+
+
+
+
+
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='slack'></i><span class="menu-title text-truncate" data-i18n="User">Application Settings</span></a>
                 <ul class="menu-content">

@@ -68,7 +68,6 @@
                             <table id="example" class="table table-bordered dataTables_info" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Action</th>
                                 </tr>
@@ -77,9 +76,6 @@
 
                                 @foreach($specials as $special)
                                     <tr class="removable-item">
-                                        <td>
-                                            {{$special->id}}
-                                        </td>
                                         <td>
                                             {{$special->name}}
                                         </td>

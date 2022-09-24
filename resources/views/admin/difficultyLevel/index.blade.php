@@ -66,7 +66,6 @@
                             <table id="example" class="table table-bordered dataTables_info" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Action</th>
                                 </tr>
@@ -75,9 +74,6 @@
 
                                 @foreach($difficulty_levels as $difficulty_level)
                                     <tr class="removable-item">
-                                        <td>
-                                            {{$difficulty_level->id}}
-                                        </td>
                                         <td>
                                             {{$difficulty_level->name}}
                                         </td>

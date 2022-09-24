@@ -71,7 +71,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="select-country1">Select Category</label>
+                                            <label class="form-label" for="select-country1">Select Status</label>
                                             <select class="form-select" name="status" id="status" required>
                                                 <option value="">---Select Status----</option>
                                                 <option value="1">Active</option>

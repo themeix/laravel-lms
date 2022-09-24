@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StateController;
+use App\Http\Controllers\Admin\UserController;
 use App\Models\BlogCategory;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +20,7 @@ use App\Http\Controllers\Admin\EmailManagementController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\SpecialPromotionalTagController;
 use App\Http\Controllers\Admin\PromotionController;
-use App\Http\Controllers\Admin\RulesBenifitsController;
+use App\Http\Controllers\Admin\RulesBenefitsController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SupportTicketController;
 use App\Http\Controllers\Admin\TagController;
@@ -36,7 +38,7 @@ Route::post('category/store', [CategoryController::class, 'store'])->name('categ
 
 Route::get('category/edit/{uuid}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('category/update/{uuid}', [CategoryController::class, 'update'])->name('category.update');
-Route::get('category/delete/{uuid}', [CategoryController::class, 'destroy'])->name('category.delete')/*->middleware('isDemo')*/;
+Route::get('category/delete/{uuid}', [CategoryController::class, 'delete'])->name('category.delete')/*->middleware('isDemo')*/;
 
 
 
@@ -91,10 +93,10 @@ Route::post('promotionalTag/update/{uuid}', [SpecialPromotionalTagController::cl
 Route::get('promotionalTag/delete/{uuid}', [SpecialPromotionalTagController::class, 'delete'])->name('promotionalTag.delete')/*->middleware('isDemo')*/;
 
 
-//Rules & Benifits
-Route::get('rulesBenifits/index', [RulesBenifitsController::class, 'index'])->name('rulesBenifits.index');
-Route::get('rulesBenifits/create', [RulesBenifitsController::class, 'create'])->name('rulesBenifits.create');
-Route::get('rulesBenifits/edit', [RulesBenifitsController::class, 'edit'])->name('rulesBenifits.edit');
+//Rules & Benefits
+Route::get('rulesBenefits/index', [RulesBenefitsController::class, 'index'])->name('rulesBenefits.index');
+Route::get('rulesBenefits/create', [RulesBenefitsController::class, 'create'])->name('rulesBenefits.create');
+Route::get('rulesBenefits/edit', [RulesBenefitsController::class, 'edit'])->name('rulesBenefits.edit');
 
 
 //Course
@@ -185,11 +187,32 @@ Route::get('blogPost/create', [BlogController::class, 'create'])->name('blog.cre
 Route::post('blogPost/store', [BlogController::class, 'store'])->name('blog.store')/*->middleware('isDemo')*/;
 Route::get('blogPost/edit/{uuid}', [BlogController::class, 'edit'])->name('blog.edit');
 Route::post('blogPost/update/{uuid}', [BlogController::class, 'update'])->name('blog.update')/*->middleware('isDemo')*/;
+Route::get('blogPost/show', [BlogController::class, 'show'])->name('blog.show');
 Route::delete('blogPost/delete/{uuid}', [BlogController::class, 'delete'])->name('blog.delete')/*->middleware('isDemo')*/;
 
 
 //Blog Comment
 Route::get('blogComment/index', [BlogCommentController::class, 'index'])->name('blogComment.index');
+
+
+
+//Role
+Route::get('role/index', [RoleController::class, 'index'])->name('adminRole.index');
+Route::get('role/create', [RoleController::class, 'create'])->name('adminRole.create');
+Route::post('role/store', [RoleController::class, 'store'])->name('adminRole.store');
+Route::get('role/edit/{uuid}', [RoleController::class, 'edit'])->name('adminRole.edit');
+Route::get('role/update/{uuid}', [RoleController::class, 'update'])->name('adminRole.update');
+Route::get('role/delete/{uuid}', [RoleController::class, 'delete'])->name('adminRole.delete');
+
+
+//User
+Route::get('user/index', [UserController::class, 'index'])->name('adminUser.index');
+Route::get('user/create', [UserController::class, 'create'])->name('adminUser.create');
+Route::post('user/store', [UserController::class, 'store'])->name('adminUser.store');
+Route::get('user/edit/{uuid}', [UserController::class, 'edit'])->name('adminUser.edit');
+Route::get('user/update/{uuid}', [UserController::class, 'update'])->name('adminUser.update');
+Route::get('user/delete/{uuid}', [UserController::class, 'delete'])->name('adminUser.delete');
+
 
 
 //Location - Country

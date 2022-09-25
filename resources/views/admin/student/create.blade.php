@@ -264,16 +264,25 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
-                                            <label for="customFile1" class="form-label">Profile pic</label>
-                                            <img src="">
-                                            <input type="file" class="form-control" name="image" id="image" accept="image/*" onchange="previewFile(this)">
+                                    <div class="col-12 mb-2">
+                                        <div class="border rounded p-2">
+                                            <h4 class="mb-1">Image</h4>
+                                            <div class="d-flex flex-column flex-md-row">
+                                                <img src="{{asset('custom/image/imagePreview.svg')}}" id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                <div class="featured-info">
+                                                    <p class="my-50">
+                                                        <a href="#" id="blog-image-text">C:\fakepath\banner.jpg</a>
+                                                    </p>
+                                                    <div class="d-inline-block">
+                                                        <input class="form-control" type="file" name="image" id="blogCustomFile" accept="image/*" onchange="previewFile(this)"/>
+                                                    </div>
+                                                    @if ($errors->has('image'))
+                                                        <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
+                                                    @endif
+                                                    <p>Accepted Image Files: JPEG, JPG, PNG <br> Accepted Size: 300 x 300 (1MB)</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        @if ($errors->has('image'))
-                                            <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
-                                        @endif
-                                        <p>Accepted Image Files: JPEG, JPG, PNG <br> Accepted Size: 300 x 300 (1MB)</p>
                                     </div>
                                 </div>
 
@@ -296,9 +305,9 @@
 @endsection
 
 @push('scripts')
-    {{--<script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>--}}
-
-
+    <script src="{{asset('app-assets/vendors/js/editors/quill/quill.min.js')}}"></script>
+    <script src="{{asset('app-assets/js/scripts/pages/page-blog-edit.js')}}"></script>
+    
         <script>
             $(function () {
                 var stateSelectedId = '{{ old('state_id') }}';

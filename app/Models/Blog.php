@@ -64,7 +64,7 @@ class Blog extends Model
         self::creating(function($model){
             $model->uuid =  Str::uuid()->toString();
             $model->user_id =  auth()->id();
-            $model->status =  auth()->user()->is_admin() ? 1 : 0;
+            /*$model->status =  auth()->user()->is_admin() ? 1 : 0;*/
         });
     }
 }

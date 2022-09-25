@@ -66,6 +66,7 @@ class BlogController extends Controller
             'title' => ['required', 'min:2', 'max:255'],
             'slug' => ['required', 'min:2', 'max:255'],
             'details' => ['required'],
+            'status' => ['required'],
             'blog_category_id' => 'required',
             'image' => 'mimes:jpeg,png,jpg|file|max:1024'
         ]);
@@ -76,6 +77,7 @@ class BlogController extends Controller
             'slug' => $request->slug,
             'details' => $request->details,
             'blog_category_id' => $request->blog_category_id,
+            'status' =>$request->status,
             'image' => $request->image ? $this->saveImage('blog', $request->image, null, null) :   null,
         ];
 

@@ -110,16 +110,14 @@
                                 </div>
 
 
-                                <div class="row">
-                                    <div class="col-md-12 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="select-country1">Tag</label>
-                                            <select class="js-example-basic-multiple form-select"  name="tag_ids[]" multiple="multiple" id="tag_ids" required>
-                                                @foreach($tags as $tag)
-                                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="mb-2">
+                                        <label class="form-label" for="blog-edit-category">Tag</label>
+                                        <select id="blog-edit-category" name="tag_ids[]" class="select2 form-select" multiple>
+                                            @foreach($tags as $tag)
+                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
@@ -138,16 +136,43 @@
 
 
                                 <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
-                                            <label for="customFile1" class="form-label">Profile pic</label>
-                                            <img src="">
-                                            <input type="file" class="form-control" name="image" id="image" accept="image/*" onchange="previewFile(this)">
+                                    <div class="col-12 mb-2">
+                                        <div class="border rounded p-2">
+                                            <h4 class="mb-1">Featured Image</h4>
+                                            <div class="d-flex flex-column flex-md-row">
+                                                <img src="{{asset('custom/image/imagePreview.svg')}}" id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                <div class="featured-info">
+                                                    <p class="my-50">
+                                                        <a href="#" id="blog-image-text">C:\fakepath\banner.jpg</a>
+                                                    </p>
+                                                    <div class="d-inline-block">
+                                                        <input class="form-control" type="file" name="image" id="blogCustomFile" accept="image/*" onchange="previewFile(this)"/>
+                                                    </div>
+                                                    @if ($errors->has('image'))
+                                                        <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
+                                                    @endif
+                                                    <p>Accepted Image Files: JPEG, JPG, PNG <br> Recommend Size: 870 x 500 (1MB)</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        @if ($errors->has('image'))
-                                            <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
-                                        @endif
-                                        <p>Accepted Image Files: JPEG, JPG, PNG <br> Recommend Size: 870 x 500 (1MB)</p>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <div class="mb-2">
+                                            <label class="form-label" for="blog-edit-status">Status</label>
+                                            <select class="form-select" name="status" id="blog-edit-status">
+                                                <option value="">---Select Status---</option>
+                                                <option value="1">Published</option>
+                                                <option value="0">Unpublished</option>
+
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -171,7 +196,8 @@
 
 
 @push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/select/select2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/page-blog.css')}}">
     <style>
         .ck-editor__editable_inline {
             min-height: 200px; !important;
@@ -182,10 +208,15 @@
 
 
 @push('scripts')
+    <script src="{{asset('app-assets/vendors/js/editors/quill/quill.min.js')}}"></script>
+
+    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+
+    <script src="{{asset('app-assets/js/scripts/pages/page-blog-edit.js')}}"></script>
+
     <script src="{{asset('custom/js/slug.js')}}"></script>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
 
@@ -193,7 +224,7 @@
 
         $(document).ready(function () {
 
-            $('.js-example-basic-multiple').select2({
+            $('#blog-edit-category').select2({
                 placeholder: '---Select  Tag---'
             });
 

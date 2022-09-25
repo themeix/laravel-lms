@@ -82,4 +82,30 @@ class User extends Authenticatable
     }
 
 
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'user_id');
+    }
+
+    public function students()
+    {
+        return $this->hasMany(OrderItem::class, 'owner_user_id', 'id');
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'owner_user_id', 'id');
+    }
+
+    public function instructor()
+    {
+        return $this->hasOne(Instructor::class);
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+
 }

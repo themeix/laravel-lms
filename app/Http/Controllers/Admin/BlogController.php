@@ -36,10 +36,6 @@ class BlogController extends Controller
         return view('admin.blog.index',$data);
     }
 
-    public function show(){
-
-    }
-
     public function create(){
 
         /*if (!Auth::user()->can('manage_blog')) {
@@ -97,7 +93,15 @@ class BlogController extends Controller
         return redirect()->route('blog.index')->with('create-message', 'Blog Post Created successfully.');
     }
 
-    public function edit(){
+
+    public function show($uuid){
+        $data['blog'] = $this->model->getRecordByUuid($uuid);
+        return view('admin.blog.show',$data);
+    }
+
+
+
+    public function edit($uuid){
 
     }
 

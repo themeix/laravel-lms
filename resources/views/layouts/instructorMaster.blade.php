@@ -411,8 +411,6 @@
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
 
             </li>
-            {{--<li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Course Management</span><i data-feather="more-horizontal"></i>
-            </li>--}}
 
 
             <li class=" nav-item  {{ (request()->is('instructor/course/create')) ? 'active' : '' }}"><a

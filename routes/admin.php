@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\KeyPointsController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\UserController;
@@ -71,6 +72,14 @@ Route::post('language/update/{uuid}', [LanguageController::class, 'update'])->na
 Route::get('language/delete/{uuid}', [LanguageController::class, 'delete'])->name('language.delete')/*->middleware('isDemo')*/;
 
 
+//Key Points
+Route::get('keyPoints/index', [KeyPointsController::class, 'index'])->name('keyPoints.index');
+Route::get('keyPoints/create', [KeyPointsController::class, 'create'])->name('keyPoints.create');
+Route::post('keyPoints/store', [KeyPointsController::class, 'store'])->name('keyPoints.store')/*->middleware('isDemo')*/;
+Route::get('keyPoints/edit/{uuid}', [KeyPointsController::class, 'edit'])->name('keyPoints.edit');
+Route::post('keyPoints/update/{uuid}', [KeyPointsController::class, 'update'])->name('keyPoints.update')/*->middleware('isDemo')*/;
+Route::get('keyPoints/delete/{uuid}', [KeyPointsController::class, 'delete'])->name('keyPoints.delete')/*->middleware('isDemo')*/;
+
 
 //Difficulty Level
 Route::get('difficultyLevel/index', [DifficultyLevelController::class, 'index'])->name('difficultyLevel.index');
@@ -101,7 +110,6 @@ Route::get('rulesBenefits/edit', [RulesBenefitsController::class, 'edit'])->name
 
 //Course
 Route::get('course/index', [CourseController::class, 'index'])->name('course.index');
-Route::get('course/create', [CourseController::class, 'create'])->name('course.create');
 Route::get('course/edit', [CourseController::class, 'edit'])->name('course.edit');
 Route::get('enrollStudent', [CourseController::class, 'courseEnroll'])->name('course.enroll');
 Route::get('approvedCourse', [CourseController::class, 'courseApproved'])->name('course.approved');
@@ -113,6 +121,7 @@ Route::get('reviewPendingCourse', [CourseController::class, 'courseReviewPending
 //Instructor
 Route::get('instructor/index', [InstructorController::class, 'index'])->name('instructor.index');
 Route::get('instructor/create', [InstructorController::class, 'create'])->name('instructor.create');
+Route::get('createInstructor', [InstructorController::class, 'create'])->name('createInstructor');
 Route::post('instructor/store', [InstructorController::class, 'store'])->name('instructor.store')/*->middleware('isDemo')*/;
 Route::get('instructor/edit/{uuid}', [InstructorController::class, 'edit'])->name('instructor.edit');
 Route::post('instructor/update/{uuid}', [InstructorController::class, 'update'])->name('instructor.update')/*->middleware('isDemo')*/;
@@ -132,6 +141,7 @@ Route::get('get-city-by-state/{state_id}', [InstructorController::class, 'getCit
 //Student
 Route::get('student/index', [StudentController::class, 'index'])->name('student.index');
 Route::get('student/create', [StudentController::class, 'create'])->name('student.create');
+Route::get('createStudent', [StudentController::class, 'create'])->name('createStudent');
 Route::post('student/store', [StudentController::class, 'store'])->name('student.store')/*->middleware('isDemo')*/;
 Route::get('student/show/{uuid}', [StudentController::class, 'show'])->name('student.show');
 Route::get('student/edit/{uuid}', [StudentController::class, 'edit'])->name('student.edit');
@@ -149,8 +159,11 @@ Route::get('student/getCities', [StudentController::class,'getCities'])->name('s
 //Coupon
 Route::get('coupon/index', [CouponController::class, 'index'])->name('coupon.index');
 Route::get('coupon/create', [CouponController::class, 'create'])->name('coupon.create');
-Route::get('coupon/edit', [CouponController::class, 'edit'])->name('coupon.edit');
-Route::get('coupon/show', [CouponController::class, 'show'])->name('coupon.show');
+Route::get('createCoupon', [CouponController::class, 'create'])->name('createCoupon');
+Route::post('coupon/store', [CouponController::class, 'store'])->name('coupon.store');
+Route::get('coupon/edit/{uuid}', [CouponController::class, 'edit'])->name('coupon.edit');
+Route::post('coupon/update/{uuid}', [CouponController::class, 'edit'])->name('coupon.update');
+Route::get('coupon/delete/{uuid}', [CouponController::class, 'show'])->name('coupon.delete');
 
 
 //Promotion
@@ -184,10 +197,11 @@ Route::get('blogCategory/delete/{uuid}', [BlogCategoryController::class, 'delete
 //Blog
 Route::get('blogPost/index', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blogPost/create', [BlogController::class, 'create'])->name('blog.create');
+Route::get('createBlogPost', [BlogController::class, 'create'])->name('createBlogPost');
 Route::post('blogPost/store', [BlogController::class, 'store'])->name('blog.store')/*->middleware('isDemo')*/;
 Route::get('blogPost/edit/{uuid}', [BlogController::class, 'edit'])->name('blog.edit');
 Route::post('blogPost/update/{uuid}', [BlogController::class, 'update'])->name('blog.update')/*->middleware('isDemo')*/;
-Route::get('blogPost/show', [BlogController::class, 'show'])->name('blog.show');
+Route::get('blogPost/show/{uuid}', [BlogController::class, 'show'])->name('blog.show');
 Route::delete('blogPost/delete/{uuid}', [BlogController::class, 'delete'])->name('blog.delete')/*->middleware('isDemo')*/;
 
 

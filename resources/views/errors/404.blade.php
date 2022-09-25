@@ -39,7 +39,7 @@
 
 
                         <h2 class="mb-1">Page Not Found 🕵🏻‍♀️</h2>
-                        <p class="mb-2">Oops! 😖 The requested URL was not found on this server.</p><a class="btn btn-primary mb-2 btn-sm-block" href="{{route('home')}}">Back to home</a><img class="img-fluid" src="{{asset('app-assets/images/pages/error.svg')}}" />
+                        <p class="mb-2">Oops! 😖 The requested URL was not found in this server.</p><a class="btn btn-primary mb-2 btn-sm-block" href="{{route('home')}}">Back to home</a><img class="img-fluid" src="{{asset('app-assets/images/pages/error.svg')}}" />
                     </div>
                 </div>
             </div>

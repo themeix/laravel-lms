@@ -1,5 +1,5 @@
 @extends('layouts.instructorMaster')
-@section('title','Dashboard')
+@section('title','Add Course')
 
 @push('styles')
     <link rel="stylesheet" type="text/css"
@@ -76,7 +76,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="title">Course Subtitle</label>
+                                            <label class="form-label" for="subtitle">Course Subtitle</label>
 
                                             <textarea
                                                 class="form-control"
@@ -98,7 +98,7 @@
                                 {{--<div class="row mb-30">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="title">Course Description Key Points</label>
+                                            <label class="form-label" for="key_points">Course Description Key Points</label>
 
                                         </div>
                                         <div id="add_repeater">
@@ -106,7 +106,7 @@
                                                 <label for="name" class="text-lg-right text-black"> Name </label>
                                                 <div data-repeater-item="" class="form-group row align-items-center">
                                                     <div class="custom-form-group mb-2 col-md-10">
-                                                        <input type="text" name="name" id="name" value="" class="form-control" placeholder="Type key point name" required>
+                                                        <input type="text" name="name key_points[]" id="key_points" value="{{old('key_points[]')}}" class="form-control" placeholder="Type key point name" required>
                                                     </div>
 
                                                     <div class="col mb-2">
@@ -116,24 +116,24 @@
                                                         </button>
 
 
-                                                        --}}{{--<a href="javascript:;" data-repeater-delete=""
+                                                        <a href="javascript:;" data-repeater-delete=""
                                                            class="theme-btn theme-button1 default-delete-btn-red default-hover-btn frontend-remove-btn btn-danger">
                                                             <span class="iconify" data-icon="akar-icons:cross"></span>
-                                                        </a>--}}{{--
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-2 mb-2">
-                                                <button class="btn btn-icon btn-info waves-effect waves-float waves-light" type="button" data-repeater-create="">
+                                                <button class="btn btn-icon btn-outline-primary waves-effect waves-float waves-light" type="button" data-repeater-create="">
                                                     <span>Add New</span>
                                                 </button>
 
 
-                                                --}}{{--<a id="add" href="javascript:;" data-repeater-create=""
+                                                <a id="add" href="javascript:;" data-repeater-create=""
                                                    class="theme-btn default-hover-btn theme-button1">
-                                                    <span class="iconify" data-icon="akar-icons:plus"></span> Add
-                                                </a>--}}{{--
+                                                    <span class="iconify" data-icon="akar-icons:plus"></span>
+                                                </a>
                                             </div>
 
 
@@ -145,7 +145,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="title">Course Description</label>
+                                            <label class="form-label" for="description">Course Description</label>
 
                                             <textarea
                                                 class="form-control"
@@ -165,7 +165,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="name">Select Course Category</label>
+                                            <label class="form-label" for="category_id">Select Course Category</label>
 
                                             <select class="form-select" name="category_id" id="category_id" required>
                                                 <option value="">---Select Course Category----</option>
@@ -183,17 +183,11 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="name">Select Course Sub Category</label>
+                                            <label class="form-label" for="subcategory_id">Select Course Sub Category</label>
 
-                                            <select class="form-select" name="subcategory_id" id="subcategory_id" required>
+                                            <select class="form-select" name="subcategory_id" id="subcategory_id">
                                                 <option value="">---Select Course Sub Category----</option>
 
-
-                                                {{--@if(old('category_id'))
-                                                    @foreach($subCategories as $subcategory)
-                                                        <option value="{{$subcategory->id}}" {{old('subcategory_id') == $subcategory->id ? 'selected' : ''}} >{{$subcategory->name}}</option>
-                                                    @endforeach
-                                                @endif--}}
 
                                             </select>
 
@@ -205,37 +199,15 @@
                                 </div>
 
 
-                                {{--<div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="tag">Select Tag</label>
-
-                                            <select class="form-select"  name="tag[]" id="tag" required>
-                                                <option value="">---Select Tag----</option>
-                                                @foreach($tags as $tag)
-                                                    <option value="{{$tag->id}}" {{old('$tag_id') == $tag->id ? 'selected' : '' }}>{{$tag->name}}</option>
-
-                                                    --}}{{--<option value="{{$tag->id}}" @if(in_array($tag->id, $selected_tags)) selected @endif>{{$tag->name}}</option>--}}{{--
-                                                @endforeach
-                                            </select>
-
-                                            @if ($errors->has('tag'))
-                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('tag') }}</span>
-                                            @endif
-                                        </div>
-                                </div>--}}
-
-
-
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="name">Learner's Accessibility</label>
+                                            <label class="form-label" for="learner_accessibility">Learner's Accessibility</label>
 
                                             <select class="form-select learner_accessibility" name="learner_accessibility" id="learner_accessibility" required>
                                                 <option value="">Select Option</option>
-                                                <option value="paid">Paid</option>
-                                                <option value="free">Free</option>
+                                                <option value="1">Paid</option>
+                                                <option value="2">Free</option>
 
                                             </select>
 
@@ -254,7 +226,7 @@
                                                 id="price"
                                                 value="{{old('price')}}"
                                                 class="form-control price"
-                                                placeholder="Cours Price"
+                                                placeholder="Course Price"
                                                 aria-label="Name"
                                                 aria-describedby="basic-addon-name"
                                                 required
@@ -270,7 +242,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="name">Select Course Language</label>
+                                            <label class="form-label" for="language_id">Select Course Language</label>
 
                                             <select class="form-select" name="language_id" id="language_id" required>
                                                 <option value="">---Select Language---</option>
@@ -290,13 +262,13 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="name">Difficulty Level</label>
+                                            <label class="form-label" for="difficulty_level_id">Difficulty Level</label>
 
-                                            <select class="form-select"  name="difficultyLevel_id" id="difficultyLevel_id" required>
+                                            <select class="form-select"  name="difficulty_level_id" id="difficulty_level_id" required>
                                                 <option value="">---Select Difficulty Level---</option>
                                                 @foreach($difficulty_levels as $difficulty_level)
 
-                                                    <option value="{{$difficulty_level->id}}" {{old('difficultyLevel_id') == $difficulty_level->id ? 'selected' : '' }}>{{$difficulty_level->name}}</option>
+                                                    <option value="{{$difficulty_level->id}}" {{old('difficulty_level_id') == $difficulty_level->id ? 'selected' : '' }}>{{$difficulty_level->name}}</option>
 
                                                 @endforeach
 
@@ -311,68 +283,64 @@
 
 
 
+                                <div class="col-md-12 col-12">
+                                    <div class="mb-2">
+                                        <label class="form-label" for="tag_ids">Tag</label>
+                                        <select id="blog-edit-category" name="tag_ids[]" class="select2 form-select" multiple>
+                                            @foreach($tags as $tag)
+                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
-                                {{--<div class="row">
-                                    <div class="row align-items-center">
-                                        <div class="col-12">
-                                            <label class="label-text-title color-heading font-medium font-16 mb-3">Course thumbnail
-                                                <span class="cursor tooltip-show-btn share-referral-big-btn primary-btn get-referral-btn border-0 text-capitalize" data-toggle="popover"  data-bs-placement="bottom" data-bs-content="Meridian sun strikes upper urface of the impenetrable foliage of my trees">
-                                                        !
-                                                    </span>
-                                            </label>
-                                        </div>
-                                        <div class="col-md-6 mb-30">
-                                            <div class="upload-img-box mt-3 height-200">
-                                                @if($course->image)
-                                                    <img src="{{getImageFile($course->image)}}">
-                                                @else
-                                                    <img src="">
-                                                @endif
-                                                <input type="file" name="image" id="image" accept="image/*" onchange="previewFile(this)" @if(!$course->image) required @endif>
-                                                <div class="upload-img-box-icon">
-                                                    <i class="fa fa-camera"></i>
-                                                    <p class="m-0">{{__('app.image')}}</p>
+
+
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <div class="border rounded p-2">
+                                            <h4 class="mb-1">Course thumbnail</h4>
+                                            <div class="d-flex flex-column flex-md-row">
+                                                <img src="{{asset('custom/image/imagePreview.svg')}}" id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                <div class="featured-info">
+                                                    <p class="my-50">
+                                                        <a href="#" id="blog-image-text">C:\fakepath\banner.jpg</a>
+                                                    </p>
+                                                    <div class="d-inline-block pb-2">
+                                                        <input class="form-control" type="file" name="image" id="blogCustomFile" accept="image/*" onchange="previewFile(this)"/>
+                                                    </div>
+                                                    @if ($errors->has('image'))
+                                                        <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
+                                                    @endif
+                                                    <p>Image Format: 575px X 450px (1MB)<br>File Type: jpg, jpeg, png</p>
                                                 </div>
                                             </div>
-                                            @if ($errors->has('image'))
-                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-6 mb-30">
-                                            <p class="font-14 color-gray">Preferable image format & size: 575px X 450px (1MB)</p>
-                                            <p class="font-14 color-gray">Preferable filetype: jpg, jpeg, png</p>
                                         </div>
                                     </div>
                                 </div>
 
 
-                                <div class="row align-items-center">
-                                    <div class="col-12">
-                                        <label class="label-text-title color-heading font-medium font-16 mb-3">Course Introduction Video (Optional)</label>
-                                    </div>
-                                    <div class="col-md-12 mb-30">
-                                        <input type="radio" {{ $course->intro_video_check == 1 ? 'checked' : ''}} id="video_check" class="intro_video_check" name="intro_video_check" value="1">
-                                        <label for="video_check">Video Upload</label><br>
-                                        <input type="radio" {{ $course->intro_video_check == 2 ? 'checked' : ''}} id="youtube_check" class="intro_video_check" name="intro_video_check" value="2">
-                                        <label for="youtube_check">Youtube Video (write only video Id)</label><br>
-                                    </div>
-                                    <div class="col-md-12 mb-30">
-                                        <input type="file" name="video" id="video" accept="video/mp4" class="form-control d-none">
-                                        <input type="text" name="youtube_video_id" id="youtube_video_id" placeholder="Type your youtube video ID" value="{{ $course->youtube_video_id }}" class="form-control d-none">
-                                    </div>
-                                    @if($course->video)
-                                        <div class="col-md-12 mb-30 d-none videoSource">
-                                            <video class="uploaded-course-edit-video" controls>
-                                                <source src="{{ getVideoFile($course->video) }}" type="video/mp4">
-                                            </video>
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-2">
+                                            <label class="form-label" for="blog-edit-status">Course Introduction Video (Optional)</label>
+                                            <select class="form-select intro_video_check" name="intro_video_check" id="blog-edit-status intro_video_check">
+                                                <option value=""></option>
+                                                <option value="1">Normal Video</option>
+                                                <option value="2">Youtube Video</option>
+                                            </select>
                                         </div>
-                                    @endif
+                                    </div>
 
-                                    @if ($errors->has('video'))
-                                        <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('video') }}</span>
-                                    @endif
-                                </div>--}}
-
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-2">
+                                        </div>
+                                        <div class="mb-2">
+                                            <input type="file" name="video" id="video" accept="video/mp4"  class="form-control d-none">
+                                            <input type="text" name="youtube_video_id" id="youtube_video_id" placeholder="Type your youtube video ID, (only video id)" value="" class="form-control d-none">
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
@@ -391,10 +359,19 @@
 
 @endsection
 
+@push('styles')
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/select/select2.min.css')}}">
+@endpush
+
 @push('scripts')
+    <script src="{{asset('app-assets/vendors/js/editors/quill/quill.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <script src="{{asset('app-assets/js/scripts/pages/page-blog-edit.js')}}"></script>
+
+
     {{--<script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>--}}
-   {{-- <script src="{{ asset('custom/js/jquery.repeater.min.js') }}"></script>
-    <script src="{{ asset('custom/js/add-repeater.js') }}"></script>--}}
+    <script src="{{ asset('custom/js/jquery.repeater.min.js') }}"></script>
+    <script src="{{ asset('custom/js/add-repeater.js') }}"></script>
     <script>
         $(function () {
             var subCategorySelectedId = '{{ old('subcategory_id') }}';
@@ -419,11 +396,43 @@
             $('#category_id').trigger('change');
         });
 
+        $(document).ready(function () {
 
-        $(function(){
+            $('#blog-edit-category').select2({
+                placeholder: '---Select  Tag---'
+            });
+
+
+
+            $(".intro_video_check").click(function () {
+
+                var intro_video_check = $(".intro_video_check").val();
+
+                if (intro_video_check == '1') {
+                    $('#video').removeClass('d-none');
+                    $('.videoSource').removeClass('d-none');
+                    $('#youtube_video_id').addClass('d-none');
+                }
+
+                if (intro_video_check == '2') {
+                    $('#video').addClass('d-none');
+                    $('.videoSource').addClass('d-none');
+                    $('#youtube_video_id').removeClass('d-none');
+                }
+
+                if (intro_video_check == '') {
+                    $('#video').addClass('d-none');
+                    $('.videoSource').addClass('d-none');
+                    $('#youtube_video_id').addClass('d-none');
+                }
+            });
+        });
+
+
+        /*$(function(){
             $('#learner_accessibility').change(function () {
                 var access = $(this).val();
-                if (access == 'free'){
+                if (access == '2'){
                     document.getElementById("price").disabled = true;
                     document.getElementById("price").value = 0;
                 }
@@ -432,7 +441,7 @@
                 }
             });
             $('#learner_accessibility').trigger('change');
-        });
+        });*/
     </script>
 
 @endpush

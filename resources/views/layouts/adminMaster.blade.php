@@ -280,6 +280,9 @@
                         <i class="me-50" data-feather="user">
 
                         </i> Profile</a>
+                    <a class="dropdown-item" href="page-profile.html">
+                        <i class="me-50" data-feather="settings">
+                        </i>Settings</a>
                     {{--<a class="dropdown-item" href="app-email.html">
                         <i class="me-50" data-feather="mail"></i> Inbox</a>
 
@@ -429,6 +432,10 @@
                     </li>
                     <li class="{{ (request()->is('admin/difficultyLevel*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('difficultyLevel.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Difficulty Level</span></a>
                     </li>
+
+                    <li class="{{ (request()->is('admin/keyPoints*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('keyPoints.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Key Points</span></a>
+                    </li>
+
                     <li class="{{ (request()->is('admin/promotionalTag*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('promotionalTag.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Promotional Tag</span></a>
                     </li>
                     <li class="{{ (request()->is('admin/rulesBenefits*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('rulesBenefits.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Rules & Benifits</span></a>
@@ -455,6 +462,10 @@
                 <ul class="menu-content">
                     <li class="{{ (request()->is('admin/instructor*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">All Instructors</span></a>
                     </li>
+
+                    <li class="{{ (request()->is('admin/createInstructor')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('createInstructor')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Add Instructor</span></a>
+                    </li>
+
                     <li class="{{ (request()->is('admin/approvedInstructor')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Approved Instructors</span></a>
                     </li>
                     <li class="{{ (request()->is('admin/blockedInstructor')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('instructor.blocked')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Blocked Instructors</span></a>
@@ -465,6 +476,9 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='heart'></i><span class="menu-title text-truncate" data-i18n="User">Manage Student</span></a>
                 <ul class="menu-content">
                     <li class="{{ (request()->is('admin/student*')) ? 'active' : '' }} "><a class="d-flex align-items-center" href="{{route('student.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Students</span></a>
+                    </li>
+
+                    <li class="{{ (request()->is('admin/createStudent')) ? 'active' : '' }} "><a class="d-flex align-items-center" href="{{route('createStudent')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Student</span></a>
                     </li>
 
                     <li class="{{ (request()->is('admin/approvedStudent')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('student.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Approved Students</span></a>
@@ -493,10 +507,10 @@
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='tag'></i><span class="menu-title text-truncate" data-i18n="User">Manage Coupon</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="{{route('coupon.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Coupon List</span></a>
+                    <li  class="{{ (request()->is('admin/coupon*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('coupon.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Coupon List</span></a>
                     </li>
 
-                    <li><a class="d-flex align-items-center" href="{{route('coupon.create')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Coupon</span></a>
+                    <li class="{{ (request()->is('admin/createCoupon')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('createCoupon')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Coupon</span></a>
                     </li>
 
 
@@ -556,6 +570,9 @@
                 <ul class="menu-content">
 
                     <li class="{{ (request()->is('admin/blogCategory*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('blogCategory.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Blog Category</span></a>
+                    </li>
+
+                    <li class="{{ (request()->is('admin/createBlogPost')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('createBlogPost')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Blog Post</span></a>
                     </li>
 
                     <li class="{{ (request()->is('admin/blogPost*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('blog.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Blog Posts</span></a>

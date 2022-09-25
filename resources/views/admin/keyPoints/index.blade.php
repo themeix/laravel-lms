@@ -1,5 +1,5 @@
 @extends('layouts.adminMaster')
-@section('title','City')
+@section('title','Key Points')
 @section('content')
 
     <!-- BEGIN: Content-->
@@ -9,15 +9,16 @@
     <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
 
+
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">City List</h2>
+                        <h2 class="content-header-title float-start mb-0">Key Points List</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">City List
+                                <li class="breadcrumb-item active">Key Points List
                                 </li>
                             </ol>
                         </div>
@@ -26,13 +27,14 @@
             </div>
             <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
                 <div class="mb-1 breadcrumb-right">
-                    <a href="{{route('city.create')}}">
+                    <a href="{{route('keyPoints.create')}}">
                         <button type="button" class="btn btn-primary">Add New</button>
                     </a>
                 </div>
             </div>
         </div>
         <div class="content-body">
+
 
             @if(Session::has('create-message'))
                 <div class="row">
@@ -83,7 +85,6 @@
             @endif
 
 
-
             <section id="column-search-datatable">
                 <div class="card">
                     <div class="card-body">
@@ -91,33 +92,29 @@
                             <table id="example" class="table table-bordered dataTables_info" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>City</th>
-                                    <th>State</th>
-                                    <th>Country</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($cities as $city)
+                                @foreach($keyPoints as $keypoint)
                                     <tr class="removable-item">
                                         <td>
-                                            {{$city->name}}
-                                        </td>
-                                        <td>
-                                            {{@$city->state->name}}
+                                            {{$keypoint->name}}
                                         </td>
 
                                         <td>
-                                            {{@$city->state->country->country_name}}
+                                            {{$keypoint->description}}
                                         </td>
 
                                         <td>
                                             <div class="action__buttons">
-                                                <a href="{{route('city.edit', [$city->uuid])}}" class="btn-action" title="Edit">
+                                                <a href="{{route('keyPoints.edit', [$keypoint->uuid])}}" class="btn-action" title="Edit">
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
-                                                <a href="{{route('city.delete', [$city->uuid])}}"  class="btn-action delete" title="Delete">
+                                                <a href="{{route('keyPoints.delete', [$keypoint->uuid])}}"  class="btn-action delete" title="Delete">
                                                     <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
                                                 </a>
                                             </div>

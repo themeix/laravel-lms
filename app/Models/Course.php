@@ -17,14 +17,17 @@ class Course extends Model
         'category_id',
         'subcategory_id',
         'language_id',
-        'difficultyLevel_id',
+        'difficulty_level_id',
         'title',
         'subtitle',
         'description',
+
         'description_footer',
         'feature_details',
+
         'price',
         'learner_accessibility',
+
         'image',
         'video',
         'slug',
@@ -60,9 +63,9 @@ class Course extends Model
         return $this->belongsTo(Language::class, 'language_id');
     }
 
-    public function difficultyLevel()
+    public function difficultylevel()
     {
-        return $this->belongsTo(DifficultyLevel::class, 'difficultyLevel_id');
+        return $this->belongsTo(DifficultyLevel::class, 'difficulty_level_id');
     }
 
     public function tags()

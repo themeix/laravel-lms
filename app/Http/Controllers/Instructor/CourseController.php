@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\CourseLecture;
 use App\Models\CourseLesson;
+use App\Models\CourseTag;
 use App\Models\CourseUploadRule;
 use App\Models\DifficultyLevel;
 use App\Models\Language;
@@ -40,7 +41,8 @@ class CourseController extends Controller
 
     public function index()
     {
-        return view('instructor.course.index');
+        $data['courses'] = $this->model->getOrderById('DESC');
+        return view('instructor.course.index', $data);
     }
 
 
@@ -67,16 +69,18 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'category_id' => 'required',
+            'subcategory_id' => 'nullable',
+            'language_id'=>'required',
+            'difficulty_level_id' => 'required',
             'title' => ['required', 'string'],
             'subtitle' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'category_id' => 'required',
-            'subcategory_id' => 'required',
-            'language_id'=>'required',
             'price' => 'required',
-            'course_language_id' => 'required',
-            'difficultyLevel_id' => 'required',
-            'learner_accessibility' => 'required'
+            'learner_accessibility' => 'required',
+            'image' => 'nullable',
+            'video' => 'nullable',
+
         ]);
 
 
@@ -86,6 +90,16 @@ class CourseController extends Controller
         } else {
             $slug = Str::slug($request->title);
         }
+
+
+        if ($request->image) {
+            $image = $this->saveImage('course', $request->image, null, null); // new file upload into server
+        }
+
+        if ($request->video) {
+            $video = $this->uploadFile('course', $request->video); // new file upload into server
+        }
+
 
         $data = [
             'title' => $request->title,
@@ -97,16 +111,26 @@ class CourseController extends Controller
             'subcategory_id' => $request->subcategory_id,
             'language_id' => $request->language_id,
             'price' => $request->price,
-            'difficultyLevel_id' => $request->difficultyLevel_id,
+            'difficulty_level_id' => $request->difficulty_level_id,
             'learner_accessibility' => $request->learner_accessibility,
-
-            /*'image' => $image ?? null,
+            'image' => $image ?? null,
             'video' => $video ?? null,
             'intro_video_check' => $request->intro_video_check,
-            'youtube_video_id' => $request->youtube_video_id ?? null,*/
+            'youtube_video_id' => $request->youtube_video_id ?? null,
         ];
 
         $course = $this->model->create($data);
+
+
+        if ($request->tag_ids){
+            foreach ($request->tag_ids as $tag_id){
+                $courseTag= new CourseTag();
+                $courseTag->course_id = $course->id;
+                $courseTag->tag_id = $tag_id;
+                $courseTag->save();
+            }
+        }
+
 
         /*if ($request['key_points']) {
             if (count(@$request['key_points']) > 0) {

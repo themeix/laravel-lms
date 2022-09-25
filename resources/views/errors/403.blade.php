@@ -37,9 +37,9 @@
 
 
 
-                        <h1 class="mb-1">403, you have been forbidden. 🔐</h1>
+                        <h1 class="mb-1">403 - Forbidden 🔐</h1>
                         <p class="mb-2">
-                            You have no permission.
+                            We are sorry but you don't have permission to access this resource.
                         </p><a class="btn btn-primary mb-1 btn-sm-block" href="{{route('home')}}">Back to Home</a><img
                             class="img-fluid" src="{{asset('app-assets/images/pages/not-authorized.svg')}}"
                             alt="Not authorized page"/>

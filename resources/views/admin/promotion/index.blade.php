@@ -32,6 +32,56 @@
             </div>
         </div>
         <div class="content-body">
+
+            @if(Session::has('create-message'))
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-primary" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('create-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('update-message'))
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-success" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('update-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('delete-message'))
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('delete-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('warning-message'))
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('warning-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+
             <section id="ajax-datatable">
                 <div class="row">
                     <div class="col-12">

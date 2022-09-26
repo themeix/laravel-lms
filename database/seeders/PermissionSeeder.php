@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionSeeder extends Seeder
 {
@@ -15,60 +16,45 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        Permission::create(['name' => 'category.index']);
-        Permission::create(['name' => 'category.create']);
-        Permission::create(['name' => 'category.store']);
-        Permission::create(['name' => 'category.edit']);
-        Permission::create(['name' => 'category.update']);
-        Permission::create(['name' => 'category.delete']);
+        Permission::create(['name' => 'manage_course']);
+        Permission::create(['name' => 'pending_course']);
+        Permission::create(['name' => 'hold_course']);
+        Permission::create(['name' => 'approved_course']);
+        Permission::create(['name' => 'all_course']);
+        Permission::create(['name' => 'manage_course_reference']);
+        Permission::create(['name' => 'manage_course_category']);
+        Permission::create(['name' => 'manage_course_subcategory']);
+        Permission::create(['name' => 'manage_course_tag']);
+        Permission::create(['name' => 'manage_course_language']);
+        Permission::create(['name' => 'manage_course_difficulty_level']);
+        Permission::create(['name' => 'manage_instructor']);
+        Permission::create(['name' => 'pending_instructor']);
+        Permission::create(['name' => 'approved_instructor']);
+        Permission::create(['name' => 'all_instructor']);
+        Permission::create(['name' => 'add_instructor']);
+        Permission::create(['name' => 'manage_student']);
+        Permission::create(['name' => 'manage_coupon']);
+        Permission::create(['name' => 'manage_promotion']);
+        Permission::create(['name' => 'manage_blog']);
+        Permission::create(['name' => 'payout']);
+        Permission::create(['name' => 'finance']);
+        Permission::create(['name' => 'manage_certificate']);
+        Permission::create(['name' => 'ranking_level']);
+        Permission::create(['name' => 'manage_language']);
+        Permission::create(['name' => 'account_setting']);
+        Permission::create(['name' => 'support_ticket']);
+        Permission::create(['name' => 'manage_contact']);
+        Permission::create(['name' => 'application_setting']);
+        Permission::create(['name' => 'global_setting']);
+        Permission::create(['name' => 'home_setting']);
+        Permission::create(['name' => 'mail_configuration']);
+        Permission::create(['name' => 'payment_option']);
+        Permission::create(['name' => 'content_setting']);
+        Permission::create(['name' => 'user_management']);
 
-        Permission::create(['name' => 'subCategory.index']);
-        Permission::create(['name' => 'subCategory.create']);
-        Permission::create(['name' => 'subCategory.store']);
-        Permission::create(['name' => 'subCategory.edit']);
-        Permission::create(['name' => 'subCategory.update']);
-        Permission::create(['name' => 'subCategory.delete']);
-
-        Permission::create(['name' => 'tag.index']);
-        Permission::create(['name' => 'tag.create']);
-        Permission::create(['name' => 'tag.store']);
-        Permission::create(['name' => 'tag.edit']);
-        Permission::create(['name' => 'tag.update']);
-        Permission::create(['name' => 'tag.delete']);
-
-        Permission::create(['name' => 'tag.index']);
-        Permission::create(['name' => 'tag.create']);
-        Permission::create(['name' => 'tag.store']);
-        Permission::create(['name' => 'tag.edit']);
-        Permission::create(['name' => 'tag.update']);
-        Permission::create(['name' => 'tag.delete']);
-
-        Permission::create(['name' => 'language.index']);
-        Permission::create(['name' => 'language.create']);
-        Permission::create(['name' => 'language.store']);
-        Permission::create(['name' => 'language.edit']);
-        Permission::create(['name' => 'language.update']);
-        Permission::create(['name' => 'language.delete']);
-
-        Permission::create(['name' => 'difficultyLevel.index']);
-        Permission::create(['name' => 'difficultyLevel.create']);
-        Permission::create(['name' => 'difficultyLevel.store']);
-        Permission::create(['name' => 'difficultyLevel.edit']);
-        Permission::create(['name' => 'difficultyLevel.update']);
-        Permission::create(['name' => 'difficultyLevel.delete']);
-
-        Permission::create(['name' => 'promotionalTag.index']);
-        Permission::create(['name' => 'promotionalTag.create']);
-        Permission::create(['name' => 'promotionalTag.store']);
-        Permission::create(['name' => 'promotionalTag.edit']);
-        Permission::create(['name' => 'promotionalTag.update']);
-        Permission::create(['name' => 'promotionalTag.delete']);
-
-        Permission::create(['name' => 'rulesBenefits.index']);
-        Permission::create(['name' => 'rulesBenefits.create']);
-        Permission::create(['name' => 'rulesBenefits.store']);
-        Permission::create(['name' => 'rulesBenefits.edit']);
-        Permission::create(['name' => 'rulesBenefits.update']);
-        Permission::create(['name' => 'rulesBenefits.delete']);
+        $role = Role::where('name', 'Super Admin')->first();
+        if ($role){
+            $role->givePermissionTo(Permission::all());
+        }
     }
 }

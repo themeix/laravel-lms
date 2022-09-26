@@ -1,6 +1,206 @@
 @extends('layouts.adminMaster')
-@section('title','User List')
+@section('title','Role')
 @section('content')
 
+    <!-- BEGIN: Content-->
+
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+
+
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">Role List</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">Role List
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
+                <div class="mb-1 breadcrumb-right">
+                    <a href="{{route('role.create')}}">
+                        <button type="button" class="btn btn-primary">Add New</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+
+
+            @if(Session::has('create-message'))
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-primary" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('create-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('update-message'))
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-success" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('update-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('delete-message'))
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('delete-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('warning-message'))
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('warning-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+
+            <section id="column-search-datatable">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-12">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($roles as $role)
+                                    <tr class="removable-item">
+                                        <td>
+                                            {{$role->name}}
+                                        </td>
+
+                                        <td>
+                                            <div class="action__buttons">
+
+                                                <a href="{{ route('role.edit', $role->id) }}" class="btn-action " title="Edit">
+                                                    <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
+                                                </a>
+
+                                                <form method="POST" class="mb-0" action="{{ route('role.delete', $role->id) }}">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="DELETE">
+
+                                                </form>
+
+
+                                                <form action="{{ route('role.delete', $role->id) }}" method="post" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    {{--<a href="{{ route('role.delete', $role->id) }}"  class="btn-action confirm-delete"  title="Delete">
+                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
+                                                    </a>--}}
+
+                                                    <button type="button" class="btn btn-sm btn-danger confirm-delete"><img src="{{asset('custom/image/trash-2.svg')}}" alt="trash"></button>
+                                                </form>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- END: Content-->
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+
+
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>--}}
+
+    {{--<script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
+    <script src="{{asset('app-assets/js/scripts/extensions/ext-component-sweet-alerts.js') }}"></script>--}}
+
+    <script type="text/javascript">
+
+
+        $(document).on('click', 'button.confirm-delete', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).parent('form').trigger('submit')
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
+        });
+
+
+        /*$('.dlt-button').click(function(event) {
+            var form =  $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                title: `Are you sure ? you want to delete this record ?`,
+                text: "If you delete this, it will be gone forever.",
+                icon: "warning",
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                buttons: true,
+                dangerMode: true,
+
+            }).then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });*/
+    </script>
+@endpush
+
+

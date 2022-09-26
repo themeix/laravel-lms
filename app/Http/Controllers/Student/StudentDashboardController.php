@@ -14,4 +14,8 @@ class StudentDashboardController extends Controller
 
         return view('student.studentDashboard');
     }
+
+    public function create(){
+
+    }
 }

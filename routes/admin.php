@@ -211,22 +211,22 @@ Route::get('blogComment/index', [BlogCommentController::class, 'index'])->name('
 
 
 //Role
-Route::get('role/index', [RoleController::class, 'index'])->name('adminRole.index');
-Route::get('role/create', [RoleController::class, 'create'])->name('adminRole.create');
-Route::post('role/store', [RoleController::class, 'store'])->name('adminRole.store');
-Route::get('role/edit/{uuid}', [RoleController::class, 'edit'])->name('adminRole.edit');
-Route::get('role/update/{uuid}', [RoleController::class, 'update'])->name('adminRole.update');
-Route::get('role/delete/{uuid}', [RoleController::class, 'delete'])->name('adminRole.delete');
+Route::get('role/index', [RoleController::class, 'index'])->name('role.index');
+Route::get('role/create', [RoleController::class, 'create'])->name('role.create');
+Route::post('role/store', [RoleController::class, 'store'])->name('role.store');
+Route::get('role/edit/{uuid}', [RoleController::class, 'edit'])->name('role.edit');
+Route::post('role/update/{uuid}', [RoleController::class, 'update'])->name('role.update');
+Route::post('role/delete/{uuid}', [RoleController::class, 'delete'])->name('role.delete');
 
 
 //User
-Route::get('user/index', [UserController::class, 'index'])->name('adminUser.index');
-Route::get('user/create', [UserController::class, 'create'])->name('adminUser.create');
-Route::post('user/store', [UserController::class, 'store'])->name('adminUser.store');
-Route::get('user/edit/{uuid}', [UserController::class, 'edit'])->name('adminUser.edit');
-Route::get('user/update/{uuid}', [UserController::class, 'update'])->name('adminUser.update');
-Route::get('user/delete/{uuid}', [UserController::class, 'delete'])->name('adminUser.delete');
-
+Route::get('user/index', [UserController::class, 'index'])->name('user.index');
+Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+Route::get('createUser', [UserController::class, 'create'])->name('createUser');
+Route::post('user/store', [UserController::class, 'store'])->name('user.store');
+Route::get('user/edit/{uuid}', [UserController::class, 'edit'])->name('user.edit');
+Route::get('user/update/{uuid}', [UserController::class, 'update'])->name('user.update');
+Route::get('user/delete/{uuid}', [UserController::class, 'delete'])->name('user.delete');
 
 
 //Location - Country

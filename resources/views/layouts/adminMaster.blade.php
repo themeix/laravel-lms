@@ -22,6 +22,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/extensions/ext-component-sweet-alerts.css')}}">
     <!-- END: Vendor CSS-->
 
 
@@ -590,14 +592,14 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="User">User Management</span></a>
                 <ul class="menu-content">
 
-                    <li class="{{ (request()->is('admin/role*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('adminRole.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Roles</span></a>
+                    <li class="{{ (request()->is('admin/role*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('role.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Roles</span></a>
                     </li>
 
-                    <li class="{{ (request()->is('admin/user*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('adminUser.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Users</span></a>
+                    <li class="{{ (request()->is('admin/createUser')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('createUser')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add User</span></a>
                     </li>
 
-
-
+                    <li class="{{ (request()->is('admin/user*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('user.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Users</span></a>
+                    </li>
 
                 </ul>
             </li>
@@ -814,6 +816,12 @@
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->
+
+
+<script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
+<script src="{{asset('app-assets/js/scripts/extensions/ext-component-sweet-alerts.js') }}"></script>
+
+
 <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js') }}"></script>
 {{--<script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>--}}
 <script src="{{asset('app-assets/vendors/js/extensions/moment.min.js') }}"></script>

@@ -53,7 +53,7 @@ class CategoryController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'mimes:png|file|dimensions:min_width=60,min_height=60,max_width=60,max_height=60'
+            'image' => 'file|dimensions:min_width=60,min_height=60,max_width=60,max_height=60'
         ]);
 
         $data = [

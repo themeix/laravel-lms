@@ -39,7 +39,7 @@ Route::post('category/store', [CategoryController::class, 'store'])->name('categ
 
 Route::get('category/edit/{uuid}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('category/update/{uuid}', [CategoryController::class, 'update'])->name('category.update');
-Route::get('category/delete/{uuid}', [CategoryController::class, 'delete'])->name('category.delete')/*->middleware('isDemo')*/;
+Route::post('category/delete/{uuid}', [CategoryController::class, 'delete'])->name('category.delete')/*->middleware('isDemo')*/;
 
 
 
@@ -51,7 +51,7 @@ Route::get('subCategory/create', [SubCategoryController::class, 'create'])->name
 Route::post('subcategory/store', [SubcategoryController::class, 'store'])->name('subCategory.store')/*->middleware('isDemo')*/;
 Route::get('subCategory/edit/{uuid}', [SubCategoryController::class, 'edit'])->name('subCategory.edit');
 Route::post('subCategory/update/{uuid}', [SubcategoryController::class, 'update'])->name('subCategory.update')/*->middleware('isDemo')*/;
-Route::get('subCategory/delete/{uuid}', [SubcategoryController::class, 'delete'])->name('subCategory.delete')/*->middleware('isDemo')*/;
+Route::post('subCategory/delete/{uuid}', [SubcategoryController::class, 'delete'])->name('subCategory.delete')/*->middleware('isDemo')*/;
 
 //Tag
 Route::get('tag/index', [TagController::class, 'index'])->name('tag.index');
@@ -59,7 +59,7 @@ Route::get('tag/create', [TagController::class, 'create'])->name('tag.create');
 Route::post('tag/store', [TagController::class, 'store'])->name('tag.store')/*->middleware('isDemo')*/;
 Route::get('tag/edit/{uuid}', [TagController::class, 'edit'])->name('tag.edit');
 Route::post('update/{uuid}', [TagController::class, 'update'])->name('tag.update')/*->middleware('isDemo')*/;
-Route::get('delete/{uuid}', [TagController::class, 'delete'])->name('tag.delete')/*->middleware('isDemo')*/;
+Route::post('delete/{uuid}', [TagController::class, 'delete'])->name('tag.delete')/*->middleware('isDemo')*/;
 
 
 
@@ -69,7 +69,7 @@ Route::get('language/create', [LanguageController::class, 'create'])->name('lang
 Route::post('language/store', [LanguageController::class, 'store'])->name('language.store')/*->middleware('isDemo')*/;
 Route::get('language/edit/{uuid}', [LanguageController::class, 'edit'])->name('language.edit');
 Route::post('language/update/{uuid}', [LanguageController::class, 'update'])->name('language.update')/*->middleware('isDemo')*/;
-Route::get('language/delete/{uuid}', [LanguageController::class, 'delete'])->name('language.delete')/*->middleware('isDemo')*/;
+Route::post('language/delete/{uuid}', [LanguageController::class, 'delete'])->name('language.delete')/*->middleware('isDemo')*/;
 
 
 //Key Points
@@ -78,7 +78,7 @@ Route::get('keyPoints/create', [KeyPointsController::class, 'create'])->name('ke
 Route::post('keyPoints/store', [KeyPointsController::class, 'store'])->name('keyPoints.store')/*->middleware('isDemo')*/;
 Route::get('keyPoints/edit/{uuid}', [KeyPointsController::class, 'edit'])->name('keyPoints.edit');
 Route::post('keyPoints/update/{uuid}', [KeyPointsController::class, 'update'])->name('keyPoints.update')/*->middleware('isDemo')*/;
-Route::get('keyPoints/delete/{uuid}', [KeyPointsController::class, 'delete'])->name('keyPoints.delete')/*->middleware('isDemo')*/;
+Route::post('keyPoints/delete/{uuid}', [KeyPointsController::class, 'delete'])->name('keyPoints.delete')/*->middleware('isDemo')*/;
 
 
 //Difficulty Level
@@ -87,7 +87,7 @@ Route::get('difficultyLevel/create', [DifficultyLevelController::class, 'create'
 Route::post('difficultyLevel/store', [difficultyLevelController::class, 'store'])->name('difficultyLevel.store')/*->middleware('isDemo')*/;
 Route::get('difficultyLevel/edit/{uuid}', [difficultyLevelController::class, 'edit'])->name('difficultyLevel.edit');
 Route::post('difficultyLevel/update/{uuid}', [difficultyLevelController::class, 'update'])->name('difficultyLevel.update')/*->middleware('isDemo')*/;
-Route::get('difficultyLevel/delete/{uuid}', [difficultyLevelController::class, 'delete'])->name('difficultyLevel.delete')/*->middleware('isDemo')*/;
+Route::post('difficultyLevel/delete/{uuid}', [difficultyLevelController::class, 'delete'])->name('difficultyLevel.delete')/*->middleware('isDemo')*/;
 
 
 //Promotional Tag
@@ -99,7 +99,7 @@ Route::get('promotionalTag/edit', [SpecialPromotionalTagController::class, 'edit
 Route::post('promotionalTag/store', [SpecialPromotionalTagController::class, 'store'])->name('promotionalTag.store')/*->middleware('isDemo')*/;
 Route::get('promotionalTag/edit/{uuid}', [SpecialPromotionalTagController::class, 'edit'])->name('promotionalTag.edit');
 Route::post('promotionalTag/update/{uuid}', [SpecialPromotionalTagController::class, 'update'])->name('promotionalTag.update')/*->middleware('isDemo')*/;
-Route::get('promotionalTag/delete/{uuid}', [SpecialPromotionalTagController::class, 'delete'])->name('promotionalTag.delete')/*->middleware('isDemo')*/;
+Route::post('promotionalTag/delete/{uuid}', [SpecialPromotionalTagController::class, 'delete'])->name('promotionalTag.delete')/*->middleware('isDemo')*/;
 
 
 //Rules & Benefits
@@ -162,8 +162,8 @@ Route::get('coupon/create', [CouponController::class, 'create'])->name('coupon.c
 Route::get('createCoupon', [CouponController::class, 'create'])->name('createCoupon');
 Route::post('coupon/store', [CouponController::class, 'store'])->name('coupon.store');
 Route::get('coupon/edit/{uuid}', [CouponController::class, 'edit'])->name('coupon.edit');
-Route::post('coupon/update/{uuid}', [CouponController::class, 'edit'])->name('coupon.update');
-Route::get('coupon/delete/{uuid}', [CouponController::class, 'show'])->name('coupon.delete');
+Route::post('coupon/update/{uuid}', [CouponController::class, 'update'])->name('coupon.update');
+Route::post('coupon/delete/{uuid}', [CouponController::class, 'delete'])->name('coupon.delete');
 
 
 //Promotion
@@ -202,7 +202,7 @@ Route::post('blogPost/store', [BlogController::class, 'store'])->name('blog.stor
 Route::get('blogPost/edit/{uuid}', [BlogController::class, 'edit'])->name('blog.edit');
 Route::post('blogPost/update/{uuid}', [BlogController::class, 'update'])->name('blog.update')/*->middleware('isDemo')*/;
 Route::get('blogPost/show/{uuid}', [BlogController::class, 'show'])->name('blog.show');
-Route::delete('blogPost/delete/{uuid}', [BlogController::class, 'delete'])->name('blog.delete')/*->middleware('isDemo')*/;
+Route::post('blogPost/delete/{uuid}', [BlogController::class, 'delete'])->name('blog.delete')/*->middleware('isDemo')*/;
 
 
 //Blog Comment
@@ -224,9 +224,9 @@ Route::get('user/index', [UserController::class, 'index'])->name('user.index');
 Route::get('user/create', [UserController::class, 'create'])->name('user.create');
 Route::get('createUser', [UserController::class, 'create'])->name('createUser');
 Route::post('user/store', [UserController::class, 'store'])->name('user.store');
-Route::get('user/edit/{uuid}', [UserController::class, 'edit'])->name('user.edit');
-Route::get('user/update/{uuid}', [UserController::class, 'update'])->name('user.update');
-Route::get('user/delete/{uuid}', [UserController::class, 'delete'])->name('user.delete');
+Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+Route::post('user/update/{id}', [UserController::class, 'update'])->name('user.update');
+Route::post('user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 
 
 //Location - Country
@@ -235,7 +235,7 @@ Route::get('country/create', [CountryController::class, 'create'])->name('countr
 Route::post('country/store', [CountryController::class, 'store'])->name('country.store')/*->middleware('isDemo')*/;
 Route::get('country/edit/{uuid}', [CountryController::class, 'edit'])->name('country.edit');
 Route::post('country/update/{uuid}', [CountryController::class, 'update'])->name('country.update')/*->middleware('isDemo')*/;
-Route::get('country/delete/{uuid}', [CountryController::class, 'delete'])->name('country.delete')/*->middleware('isDemo')*/;
+Route::post('country/delete/{uuid}', [CountryController::class, 'delete'])->name('country.delete')/*->middleware('isDemo')*/;
 
 
 
@@ -249,7 +249,8 @@ Route::get('state/create', [StateController::class, 'create'])->name('state.crea
 Route::post('state/store', [StateController::class, 'store'])->name('state.store')/*->middleware('isDemo')*/;
 Route::get('state/edit/{uuid}', [StateController::class, 'edit'])->name('state.edit');
 Route::post('state/update/{uuid}', [StateController::class, 'update'])->name('state.update')/*->middleware('isDemo')*/;
-Route::get('state/delete/{uuid}', [StateController::class, 'delete'])->name('state.delete')/*->middleware('isDemo')*/;
+Route::post('state/delete/{uuid}', [StateController::class, 'delete'])->name('state.delete')/*->middleware('isDemo')*/;
+
 
 //Location - Country
 Route::get('city/index', [CityController::class, 'index'])->name('city.index');
@@ -257,4 +258,4 @@ Route::get('city/create', [CityController::class, 'create'])->name('city.create'
 Route::post('city/store', [CityController::class, 'store'])->name('city.store')/*->middleware('isDemo')*/;
 Route::get('city/edit/{uuid}', [CityController::class, 'edit'])->name('city.edit');
 Route::post('city/update/{uuid}', [CityController::class, 'update'])->name('city.update')/*->middleware('isDemo')*/;
-Route::get('city/delete/{uuid}', [CityController::class, 'delete'])->name('city.delete')/*->middleware('isDemo')*/;
+Route::post('city/delete/{uuid}', [CityController::class, 'delete'])->name('city.delete')/*->middleware('isDemo')*/;

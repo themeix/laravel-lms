@@ -111,22 +111,13 @@
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
 
-                                                <form method="POST" class="mb-0" action="{{ route('role.delete', $role->id) }}">
+                                                <form action="{{ route('role.delete', $role->id) }}" class="mb-0" method="post" class="d-inline">
                                                     @csrf
-                                                    <input name="_method" type="hidden" value="DELETE">
 
-                                                </form>
-
-
-                                                <form action="{{ route('role.delete', $role->id) }}" method="post" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-
-                                                    {{--<a href="{{ route('role.delete', $role->id) }}"  class="btn-action confirm-delete"  title="Delete">
+                                                    <a href="{{ route('role.delete', $role->id) }}"  class="btn-action confirm-delete"  title="Delete">
                                                         <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
-                                                    </a>--}}
+                                                    </a>
 
-                                                    <button type="button" class="btn btn-sm btn-danger confirm-delete"><img src="{{asset('custom/image/trash-2.svg')}}" alt="trash"></button>
                                                 </form>
 
                                             </div>
@@ -151,18 +142,9 @@
         $(document).ready(function () {
             $('#example').DataTable();
         });
-    </script>
 
 
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>--}}
-
-    {{--<script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
-    <script src="{{asset('app-assets/js/scripts/extensions/ext-component-sweet-alerts.js') }}"></script>--}}
-
-    <script type="text/javascript">
-
-
-        $(document).on('click', 'button.confirm-delete', function (e) {
+        $(document).on('click', '.confirm-delete', function (e) {
             e.preventDefault();
             Swal.fire({
                 title: 'Are you sure?',
@@ -170,7 +152,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, Delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $(this).parent('form').trigger('submit')
@@ -179,28 +161,8 @@
                 }
             });
         });
-
-
-        /*$('.dlt-button').click(function(event) {
-            var form =  $(this).closest("form");
-            var name = $(this).data("name");
-            event.preventDefault();
-            swal({
-                title: `Are you sure ? you want to delete this record ?`,
-                text: "If you delete this, it will be gone forever.",
-                icon: "warning",
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                buttons: true,
-                dangerMode: true,
-
-            }).then((willDelete) => {
-                    if (willDelete) {
-                        form.submit();
-                    }
-                });
-        });*/
     </script>
+
 @endpush
 
 

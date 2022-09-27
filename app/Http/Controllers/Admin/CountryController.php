@@ -40,7 +40,7 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'country_name' => 'required|string|max:255',
+            'country_name' => 'required|unique:countries,country_name',
             'short_name' => 'required|string|max:10',
             'phonecode' => 'required|string|max:20',
             'continent' => 'required|string|max:255',
@@ -88,10 +88,10 @@ class CountryController extends Controller
 
         // end permission checking
 
-
+        $country = $this->model->getRecordByUuid($uuid);
 
         $request->validate([
-            'country_name' => 'required|string|max:255',
+            'country_name' => 'required|unique:countries,country_name,'.$country->id,
             'short_name' => 'required|string|max:10',
             'phonecode' => 'required|string|max:20',
             'continent' => 'required|string|max:255',

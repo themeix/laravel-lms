@@ -9,7 +9,17 @@ use Illuminate\Support\Str;
 class Coupon extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'coupon_code_name',
+        'coupon_type',
+        'status',
+        'percentage',
+        'coupon_code_name',
+        'minimum_amount',
+        'maximum_use_limit',
+        'start_date',
+        'end_date',
+    ];
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id', 'id');

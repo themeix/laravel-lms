@@ -2,14 +2,6 @@
 @section('title','Edit Coupon')
 
 
-@push('styles')
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/forms/form-validation.css')}}">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('app-assets/css/plugins/forms/pickers/form-flat-pickr.min.css')}}">
-@endpush
-
 @section('content')
     <!-- BEGIN: Content-->
     <div class="content-overlay"></div>
@@ -50,24 +42,26 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
-
+                            <form class="needs-validation" action="{{route('coupon.update', $coupon->uuid)}}" method="post" novalidate>
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Coupon Code Name</label>
 
+                                            <input type="hidden" name="coupon_code_name" value="{{ $coupon->coupon_code_name }}" >
                                             <input
-                                                    type="text"
-                                                    id="basic-addon-name"
-                                                    class="form-control"
-                                                    placeholder="Coupon Code Name"
-                                                    aria-label="Name"
-                                                    aria-describedby="basic-addon-name"
-                                                    required
+                                                type="text"
+                                                name="coupon_code_name"
+                                                value="{{ $coupon->coupon_code_name }}"
+                                                class="form-control"
+                                                placeholder="Coupon Code Name"
+                                                aria-label="Name"
+                                                aria-describedby="basic-addon-name"
+                                                required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Coupon Code Name.</div>
+                                            @if ($errors->has('coupon_code_name'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('coupon_code_name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -76,10 +70,11 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="bsDob">Start Date</label>
-                                            <input type="text" class="form-control picker" name="dob" id="bsDob"
+                                            <input type="text" class="form-control picker" name="start_date" value="{{ $coupon->start_date }}"
                                                    required/>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Start Date.</div>
+                                            @if ($errors->has('start_date'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('start_date') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -89,29 +84,64 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="bsDob">End Date</label>
-                                            <input type="text" class="form-control picker" name="dob" id="bsDob"
+                                            <input type="text" class="form-control picker" name="end_date" value="{{ $coupon->end_date }}"
                                                    required/>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your End Date.</div>
+                                            @if ($errors->has('end_date'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('end_date') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-
 
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1">Coupon Type</label>
-                                            <select class="form-select" id="select-country1" required>
-                                                <option value="">--Coupon Type--</option>
-                                                <option value="usa">USA</option>
-                                                <option value="uk">UK</option>
-                                                <option value="france">France</option>
-                                                <option value="australia">Australia</option>
-                                                <option value="spain">Spain</option>
+
+                                            <input type="hidden" name="coupon_type" value="{{ $coupon->coupon_type }}" >
+
+                                            <select name="" id="coupon_type" class="form-control" disabled>
+                                                <option value="">--Select Option--</option>
+                                                <option value="1" @if($coupon->coupon_type == 1) selected @endif>Global</option>
+                                                <option value="2" @if($coupon->coupon_type == 2) selected @endif>Instructor</option>
+                                                <option value="3" @if($coupon->coupon_type == 3) selected @endif>Course</option>
                                             </select>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please select your Coupon Type</div>
+                                            @if ($errors->has('coupon_type'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('coupon_type') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row d-none" id="course_id_div">
+                                    <div class="col-md-12 col-12">
+                                        <div class="mb-2">
+                                            <label class="form-label" for="Courses">Courses</label>
+                                            <select id="course_ids" name="course_ids[]" id="course_ids" class="select2 form-select" multiple>
+                                                @foreach($courses as $course)
+                                                    <option value="{{ $course->id }}"  @if(in_array($course->id, $selectedCourseIDs ?? [])) selected @endif>
+                                                        {{ $course->title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row d-none" id="instructor_id_div">
+                                    <div class="col-md-12 col-12">
+                                        <div class="mb-2">
+                                            <label class="form-label" for="Instructors">Instructors</label>
+                                            <select name="instructor_ids[]"  id="instructor_ids" class="select2 form-select" multiple>
+                                                @foreach($instructors as $instructor)
+                                                    <option value="{{ $instructor->id }}" @if(in_array($instructor->id, $selectedInstructorIDs ?? [])) selected @endif>
+                                                        {{ $instructor->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -124,17 +154,17 @@
                                                 5, 10, 15...)</label>
 
                                             <input
-                                                    type="number"
-                                                    id="basic-addon-name"
-                                                    class="form-control"
-                                                    placeholder="%"
-                                                    aria-label="Name"
-                                                    aria-describedby="basic-addon-name"
-                                                    required
+                                                type="number"
+                                                name="percentage" value="{{ $coupon->percentage }}"
+                                                class="form-control"
+                                                placeholder="%"
+                                                aria-label="Name"
+                                                aria-describedby="basic-addon-name"
+                                                required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Discount (Percentage %).
-                                            </div>
+                                            @if ($errors->has('percentage'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('percentage') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -147,18 +177,38 @@
                                                 Coupon</label>
 
                                             <input
-                                                    type="number"
-                                                    id="basic-addon-name"
-                                                    class="form-control"
-                                                    placeholder="Minimum Amount To Apply Coupon"
-                                                    aria-label="Name"
-                                                    aria-describedby="basic-addon-name"
-                                                    required
+                                                type="number"
+                                                name="minimum_amount" value="{{ $coupon->minimum_amount }}"
+                                                class="form-control"
+                                                placeholder="Minimum Amount To Apply Coupon"
+                                                aria-label="Name"
+                                                aria-describedby="basic-addon-name"
+                                                required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Minimum Amount To Apply
-                                                Coupon.
-                                            </div>
+                                            @if ($errors->has('minimum_amount'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('minimum_amount') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="basic-addon-name">Maximum Use Limit</label>
+
+                                            <input
+                                                type="number"
+                                                name="maximum_use_limit" value="{{ $coupon->maximum_use_limit }}"
+                                                class="form-control"
+                                                placeholder="Maximum Use Limit"
+                                                aria-label="Name"
+                                                aria-describedby="basic-addon-name"
+                                                required
+                                            />
+                                            @if ($errors->has('maximum_use_limit'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('maximum_use_limit') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -168,18 +218,15 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1">Status</label>
-                                            <select class="form-select" id="select-country1" required>
-                                                <option value="">--Select--</option>
-                                                <option value="">Active</option>
-                                                <option value="usa">Inactive</option>
-
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="">--Select Option--</option>
+                                                <option value="1" @if($coupon->status == 1) selected @endif>Active</option>
+                                                <option value="0" @if($coupon->status != 1) selected @endif>Deactivated</option>
                                             </select>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please select your Status</div>
+
                                         </div>
                                     </div>
                                 </div>
-
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
@@ -199,5 +246,6 @@
 @endsection
 
 @push('scripts')
-    <script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>
+    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <script src="{{asset('custom/js/coupon-create.js')}}"></script>
 @endpush

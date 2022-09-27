@@ -113,47 +113,63 @@
                                             </div>
 
                                             <div class="finance-table-inner-item my-2">
-                                                <span class="fw-bold mr-1">End Date:</span>{{ $coupon->end_date }}
+                                                <span class="fw-bold mr-1">End Date:</span> {{ $coupon->end_date }}
                                             </div>
                                         </td>
 
                                         <td>
-                                            <span class="fw-bold mr-1">Coupon Type:</span>
-                                            @if($coupon->coupon_type == 1)
-                                                Global
-                                            @elseif($coupon->coupon_type == 2)
-                                                Instructor
-                                            @elseif($coupon->coupon_type == 3)
-                                                Course
-                                            @endif
-                                            <br>
-                                            <span class="fw-bold mr-1">Minimum Amount to Use: </span>
-                                            @if(get_currency_placement() == 'after')
-                                                {{ $coupon->minimum_amount }} {{ get_currency_symbol() }}
-                                            @else
-                                                {{ get_currency_symbol() }} {{ $coupon->minimum_amount }}
-                                            @endif
+                                            <div class="finance-table-inner-item my-2">
+                                                <span class="fw-bold mr-1">Coupon Type:</span>
+                                                @if($coupon->coupon_type == 1)
+                                                    Global
+                                                @elseif($coupon->coupon_type == 2)
+                                                    Instructor
+                                                @elseif($coupon->coupon_type == 3)
+                                                    Course
+                                                @endif
+                                            </div>
 
-                                            <br>
-                                            <span class="fw-bold mr-1">Percentage: </span>{{ $coupon->percentage }}%
+                                            <div class="finance-table-inner-item my-2">
+                                                <span class="fw-bold mr-1">Minimum Amount to Use: </span>
+                                                @if(get_currency_placement() == 'after')
+                                                    {{ $coupon->minimum_amount }} {{ get_currency_symbol() }}
+                                                @else
+                                                    {{ get_currency_symbol() }} {{ $coupon->minimum_amount }}
+                                                @endif
+                                            </div>
+
+                                            <div class="finance-table-inner-item my-2">
+                                                <span class="fw-bold mr-1">Percentage: </span>{{ $coupon->percentage }}%
+                                            </div>
+
+                                            <div class="finance-table-inner-item my-2">
+                                                <span class="fw-bold mr-1">Maximum Use Limit: </span>{{ $coupon->maximum_use_limit }} times
+                                            </div>
+
                                         </td>
                                         <td>{{ @$coupon->creator->name }}</td>
 
                                         <td>
                                             @if($coupon->status == 1)
-                                                <span class="status bg-green">Active</span>
+                                                <span class="status badge bg-success">Active</span>
                                             @else
-                                                <span class="status bg-red">Deactivated</span>
+                                                <span class="status badge bg-danger">Inactive</span>
                                             @endif
                                         </td>
                                         <td>
                                             <div class="action__buttons">
                                                 <a href="{{route('coupon.edit', [$coupon->uuid])}}" class="btn-action" title="Edit">
-                                                    <img src="{{asset('admin/images/icons/edit-2.svg')}}" alt="edit">
+                                                    <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
-                                                <a href="javascript:void(0);" data-url="{{route('coupon.delete', [$coupon->uuid])}}" class="btn-action delete" title="Delete">
-                                                    <img src="{{asset('admin/images/icons/trash-2.svg')}}" alt="trash">
-                                                </a>
+
+
+                                                <form action="{{route('coupon.delete', [$coupon->uuid])}}" class="mb-0" method="post" class="d-inline">
+                                                    @csrf
+                                                    <a href="{{route('coupon.delete', [$coupon->uuid])}}"  class="btn-action confirm-delete"  title="Delete">
+                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
+                                                    </a>
+
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -176,6 +192,25 @@
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
+        });
+
+
+        $(document).on('click', '.confirm-delete', function (e) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).parent('form').trigger('submit')
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
+            e.preventDefault();
         });
     </script>
 @endpush

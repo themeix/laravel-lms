@@ -138,11 +138,21 @@
                                                    class="btn-action">
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
-                                                <a href="javascript:void(0);"
+
+                                                <form action="{{route('blog.delete', [$blog->uuid])}}" class="mb-0" method="post" class="d-inline">
+                                                    @csrf
+
+                                                    <a href="{{route('blog.delete', [$blog->uuid])}}"  class="btn-action confirm-delete"  title="Delete">
+                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
+                                                    </a>
+
+                                                </form>
+
+                                               {{-- <a href="javascript:void(0);"
                                                    data-url="{{route('blog.delete', [$blog->uuid])}}" title="Delete"
                                                    class="btn-action delete">
                                                     <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
-                                                </a>
+                                                </a>--}}
                                             </div>
                                         </td>
                                     </tr>
@@ -163,6 +173,25 @@
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
+        });
+
+
+        $(document).on('click', '.confirm-delete', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).parent('form').trigger('submit')
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
         });
     </script>
 @endpush

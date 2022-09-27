@@ -86,8 +86,8 @@
                                                                 class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
                                                 @endif
 
-                                                <div class="pt-2 pb-2">
-                                                    <p>Accepted Image Files: PNG <br> Recommend Size: 60 x 60 (1MB)</p>
+                                                <div class="pt-2 ">
+                                                    <p> Recommend Size: 60 x 60 (1MB)</p>
                                                 </div>
 
                                             </div>
@@ -100,15 +100,13 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="is_feature">Is Feature</label>
 
-
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox"
+                                                    <input class="form-check-input p-2" type="checkbox"
                                                            id="is_feature"
                                                            value="yes" {{$category->is_feature == 'yes' ? 'checked' : '' }}
                                                            name="is_feature"
                                                     />
-                                                    <label class="form-check-label"
-                                                           for="inlineCheckbox1">Checked</label>
+
                                                 </div>
                                             </div>
                                         </div>

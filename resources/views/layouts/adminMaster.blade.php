@@ -524,10 +524,10 @@
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='sun'></i><span class="menu-title text-truncate" data-i18n="User">Manage Promotion</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="{{route('promotion.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Promotion List</span></a>
+                    <li class="{{ (request()->is('admin/promotion*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('promotion.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Promotion List</span></a>
                     </li>
 
-                    <li><a class="d-flex align-items-center" href="{{route('promotion.create')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Promotion</span></a>
+                    <li class="{{ (request()->is('admin/createPromotion')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{route('createPromotion')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Promotion</span></a>
                     </li>
 
 

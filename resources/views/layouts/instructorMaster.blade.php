@@ -413,13 +413,13 @@
             </li>
 
 
-            <li class=" nav-item  {{ (request()->is('instructor/course/create')) ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="{{route('instructor.course.create')}}">
+            <li class=" nav-item  {{ (request()->is('instructor/createCourse')) ? 'active' : '' }}"><a
+                    class="d-flex align-items-center" href="{{route('instructor.createCourse')}}">
                     <i data-feather='plus-square'></i><span class="menu-title text-truncate" data-i18n="Invoice">Add Course</span></a>
             </li>
 
 
-            <li class=" nav-item  {{ (request()->is('instructor/course/index')) ? 'active' : '' }}"><a
+            <li class=" nav-item  {{ (request()->is('instructor/course*')) ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{route('instructor.course.index')}}"><i data-feather='log-in'></i><span class="menu-title text-truncate" data-i18n="Invoice">My Courses</span></a>
             </li>
 

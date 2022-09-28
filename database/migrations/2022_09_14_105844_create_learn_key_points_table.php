@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('learn_key_points', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id')->nullable();
-            $table->text('name');
+            $table->unsignedInteger('key_points_id');
             $table->timestamps();
         });
     }

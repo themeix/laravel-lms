@@ -109,34 +109,50 @@
                                         <td>{{ @$loop->iteration }}</td>
                                         <td>{{$promotion->name}}</td>
                                         <td>
-                                            {{ date('d M Y, H:i:s', strtotime(@$promotion->start_date)) }} <span class="text-black">to</span> {{ date('d M Y, H:i:s', strtotime(@$promotion->end_date)) }}
+                                            <div class="finance-table-inner-item my-2">
+                                                <span class="fw-bold mr-1">Start:</span> {{ date('d M Y, H:i', strtotime(@$promotion->start_date)) }}
+                                            </div>
+
+                                            <div class="finance-table-inner-item my-2">
+                                                <span class="fw-bold mr-1">End:</span> {{ date('d M Y, H:i', strtotime(@$promotion->end_date)) }}
+                                            </div>
                                         </td>
                                         <td>{{ $promotion->percentage }}</td>
                                         <td>{{ @$promotion->promotionCourses->count() }}</td>
+
+                                        <td>{{ $promotion->user->name }}</td>
+
+
                                         <td>
                                             <span id="hidden_id" style="display: none">{{$promotion->id}}</span>
-                                            <select name="status" class="status label-inline font-weight-bolder mb-1 badge badge-info">
-                                                <option value="1" @if($promotion->status == 1) selected @endif>Active</option>
-                                                <option value="0" @if($promotion->status != 1) selected @endif>Deactivated</option>
-                                            </select>
+                                            <div class="mb-1" style="width: 120px">
+                                                <select name="status" class="status form-select">
+                                                    <option value="1" @if($promotion->status == 1) selected @endif>Active</option>
+                                                    <option value="0" @if($promotion->status == 0) selected @endif>Inactive</option>
+                                                </select>
+                                            </div>
                                         </td>
-                                        <td>{{ $promotion->user->name }}</td>
+
+
                                         <td>
                                             <div class="action__buttons">
-                                                <a href="{{ route('promotion.editPromotionCourse', $promotion->uuid) }}" class="btn-action mr-1" title="View promotion details">
-                                                    <button class="btn btn-primary btn-sm">+/- Course</button>
+                                                <a href="{{ route('promotion.editCourse', $promotion->uuid) }}" class="btn-action mr-1" title="View promotion details">
+                                                    <button class="btn btn-primary">+/- Course</button>
                                                 </a>
                                                 <a href="{{ route('promotion.edit', $promotion->uuid) }}" class="btn-action mr-1 edit" data-toggle="tooltip" title="Edit">
-                                                    <img src="{{asset('admin/images/icons/edit-2.svg')}}" alt="edit">
+                                                    <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
-                                                <button class="btn-action ms-2 deleteItem" data-formid="delete_row_form_{{$promotion->uuid}}">
-                                                    <img src="{{asset('admin/images/icons/trash-2.svg')}}" alt="trash">
-                                                </button>
 
-                                                <form action="{{route('promotion.delete', [$promotion->uuid])}}" method="post" id="delete_row_form_{{ $promotion->uuid }}">
-                                                    {{ method_field('DELETE') }}
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                                <form action="{{route('promotion.delete', [$promotion->uuid])}}" class="mb-0" method="post" class="d-inline">
+                                                    @csrf
+
+                                                    <a href="{{route('promotion.delete', [$promotion->uuid])}}"  class="btn-action confirm-delete"  title="Delete">
+                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
+                                                    </a>
+
                                                 </form>
+
                                             </div>
                                         </td>
                                     </tr>
@@ -167,8 +183,6 @@
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, Delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -178,6 +192,47 @@
                 }
             });
             e.preventDefault();
+        });
+
+
+
+        $(".status").change(function () {
+            var id = $(this).closest('tr').find('#hidden_id').html();
+            var status_value = $(this).closest('tr').find('.status option:selected').val();
+            console.log(id, status_value)
+            Swal.fire({
+                title: "Are you sure to change status?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Change it",
+                cancelButtonText: "No, cancel it",
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('promotion.changeStatus')}}",
+                        data: {"status": status_value, "id": id, "_token": "{{ csrf_token() }}",},
+                        datatype: "json",
+                        success: function (data) {
+
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Status Changed',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            /*location.reload();*/
+                        },
+                        error: function () {
+                            alert("Error!");
+                        },
+                    });
+                } else if (result.dismiss === "cancel", location.reload()) {
+
+                }
+            });
         });
     </script>
 @endpush

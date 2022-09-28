@@ -36,12 +36,25 @@ class Instructor extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function getFullNameAttribute($value)
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
+
     public function courses()
     {
         return $this->hasMany(Course::class, 'instructor_id');
     }
 
+    public function publishedCourses()
+    {
+        return $this->hasMany(Course::class, 'instructor_id')->where('status', 1);
+    }
 
+    public function pendingCourses()
+    {
+        return $this->hasMany(Course::class, 'instructor_id')->where('status', 2);
+    }
 
     public function country()
     {
@@ -53,15 +66,25 @@ class Instructor extends Model
         return $this->belongsTo(State::class, 'state_id');
     }
 
-    public function city()
+    public function certificates()
     {
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->hasMany(InstructorCertificate::class, 'instructor_id');
+    }
+
+    public function awards()
+    {
+        return $this->hasMany(InstructorAwards::class, 'instructor_id');
     }
 
 
-    public function getFullNameAttribute($value)
+    public function getNameAttribute()
     {
-        return $this->first_name.' '.$this->last_name;
+        return $this->first_name .' '. $this->last_name;
+    }
+
+    public function scopePending($query)
+    {
+        return $query->where('status', 0);
     }
 
     public function scopeApproved($query)
@@ -75,8 +98,6 @@ class Instructor extends Model
     }
 
 
-
-
     protected static function boot()
     {
         parent::boot();
@@ -84,4 +105,5 @@ class Instructor extends Model
             $model->uuid =  Str::uuid()->toString();
         });
     }
+
 }

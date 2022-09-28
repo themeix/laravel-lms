@@ -1,115 +1,224 @@
 @extends('layouts.instructorMaster')
 @section('title','My Courses')
-
 @section('content')
-    <div class="instructor-profile-right-part">
-        <div class="instructor-my-courses-box bg-white">
-            <div class="instructor-my-courses-title d-flex justify-content-between align-items-center">
-                <h6>My courses</h6>
-                {{--<h6 class="font-16"><span class="font-medium">Total:</span> {{$number_of_course}}</h6>--}}
+
+    <!-- BEGIN: Content-->
+
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+
+
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">My Courses</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{route('instructor')}}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">My Courses
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
+                <div class="mb-1 breadcrumb-right">
+                    <a href="{{route('instructor.createCourse')}}">
+                        <button type="button" class="btn btn-primary">Add New</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
 
-                @forelse($courses as $course)
-                    <!-- Course item start -->
-                    <div class="col-12 col-sm-6 col-lg-12">
-                        <div class="card course-item instructor-my-course-item bg-white">
-                            <div class="course-img-wrap flex-shrink-0 overflow-hidden">
-                                @if($course->status == 1)
-                                    <span class="course-tag badge publish-badge radius-3 font-14 font-medium position-absolute">Published</span>
-                                @elseif($course->status == 2)
-                                    <span class="course-tag badge publish-badge radius-3 font-14 font-medium position-absolute">Waiting for Review</span>
-                                @elseif($course->status == 3)
-                                    <span class="course-tag badge unpublish-badge radius-3 font-14 font-medium position-absolute">Hold</span>
-                                @elseif($course->status == 4)
-                                    <span class="course-tag badge unpublish-badge radius-3 font-14 font-medium position-absolute">Draft</span>
-                                @else
-                                    <span class="course-tag badge unpublish-badge radius-3 font-14 font-medium position-absolute">Pending</span>
-                                @endif
-                                @if($course->learner_accessibility == 'paid')
-                                    <span class="course-tag badge radius-3 font-14 font-medium position-absolute bg-white color-hover">
-                                        @if(get_currency_placement() == 'after')
-                                            {{$course->price}} {{ get_currency_symbol() }}
-                                        @else
-                                            {{ get_currency_symbol() }} {{$course->price}}
-                                        @endif
-                                    </span>
-                                @elseif($course->learner_accessibility == 'free')
-                                    <span class="course-tag badge radius-3 font-14 font-medium position-absolute bg-white color-hover">
-                                        Free
-                                    </span>
-                                @endif
 
-                                <a href="#"><img src="{{getImageFile($course->image_path)}}" alt="course" class="img-fluid"></a>
-                            </div>
-                            <div class="card-body">
-
-                                <div class="instructor-courses-info-duration-wrap">
-                                    <ul class="d-flex align-items-center justify-content-between">
-                                        <li class="font-medium font-12"><span class="iconify" data-icon="octicon:device-desktop-24"></span>Video<span class="instructor-courses-info-duration-wrap-text font-medium color-heading">{{--({{ @$course->lectures->count() }})--}}</span></li>
-                                        <li class="font-medium font-12"><span class="iconify" data-icon="ant-design:clock-circle-outlined"></span>Duration<span class="instructor-courses-info-duration-wrap-text font-medium color-heading">{{--({{ @$course->VideoDuration }})--}}</span></li>
-                                        <li class="font-medium font-12"><span class="iconify" data-icon="carbon:user-multiple"></span>Enrolled<span class="instructor-courses-info-duration-wrap-text font-medium color-heading">{{--({{ @$course->orderItems->count() }})--}}</span></li>
-                                    </ul>
-                                </div>
-
-                                <div class="instructor-my-course-item-left">
-                                    <h5 class="card-title course-title"><a href="{{ route('course-details', $course->slug) }}">{{ Str::limit($course->title, 40) }}</a></h5>
-                                    <div class="course-item-bottom">
-                                        <div class="course-rating d-flex align-items-center">
-                                            <span class="font-medium font-14">{{ number_format($course->average_rating, 1) }}</span>
-                                            <ul class="rating-list d-flex align-items-center">
-                                                @include('frontend.course.render-course-rating')
-                                            </ul>
-                                           {{-- <span class="rating-count font-14">({{ @$course->orderItems->count() }})</span>--}}
-                                        </div>
-                                        <div class="instructor-my-courses-btns d-inline-flex">
-                                            <a href="{{route('instructor.course.edit', [$course->uuid])}}" class="para-color font-14 font-medium d-flex align-items-center"><span class="iconify" data-icon="bx:bx-edit"></span>Edit</a>
-
-                                            <button class="para-color font-14 font-medium d-flex align-items-center deleteItem" data-formid="delete_row_form_{{$course->uuid}}">
-                                                <span class="iconify" data-icon="ant-design:delete-outlined"></span>Delete
-                                            </button>
-
-                                            <form action="{{ route('instructor.course.delete', [$course->uuid]) }}" method="post" id="delete_row_form_{{ $course->uuid }}">
-                                                {{ method_field('DELETE') }}
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="instructor-my-course-btns">
-                                <a href="{{ route('resource.index', [$course->uuid]) }}" class="theme-button theme-button1 instructor-course-btn">Resources</a>
-                                <a href="{{route('exam.index', [$course->uuid])}}" class="theme-button theme-button1 instructor-course-btn">Quiz</a>
-                                <a href="{{ route('assignment.index', [$course->uuid]) }}" class="theme-button theme-button1 instructor-course-btn">Assignment</a>
+            @if(Session::has('create-message'))
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-primary" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('create-message') }}
                             </div>
                         </div>
                     </div>
-                    <!-- Course item end -->
-                @empty
-                    <!-- If there is no data Show Empty Design Start -->
-                    <div class="empty-data">
-                        <img src="{{ asset('frontend/assets/img/empty-data-img.png') }}" alt="img" class="img-fluid">
-                        <h5 class="my-3">Empty Course</h5>
+                </div>
+            @endif
+
+            @if(Session::has('update-message'))
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-success" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('update-message') }}
+                            </div>
+                        </div>
                     </div>
-                    <!-- If there is no data Show Empty Design End -->
-                @endforelse
+                </div>
+            @endif
 
-                <!-- Pagination Start -->
-                @if(@$courses->hasPages())
-                    {{ @$courses->links('frontend.paginate.paginate') }}
-                @endif
-                <!-- Pagination End -->
+            @if(Session::has('delete-message'))
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('delete-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
 
-            </div>
+            @if(Session::has('warning-message'))
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="alert-body">
+                                {{ Session::get('warning-message') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+
+            <section id="column-search-datatable">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-12">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                                <thead>
+                                <tr>
+                                    <th>Sl.</th>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Details</th>
+                                    <th>Ratings</th>
+                                    <th>Status</th>
+                                    <th>Resources</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($courses as $course)
+                                    <tr class="removable-item">
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>
+                                            <img src="{{getImageFile($course->image_path)}}" alt="course" width="80" class="img-fluid">
+                                        </td>
+                                        <td>
+                                            {{$course->title}}
+                                        </td>
+
+                                        <td>
+                                            <div class="finance-table-inner-item my-2" style="display: flex; align-items: center; gap:4px;">
+                                                <i data-feather='video'></i> Video:
+                                            </div>
+
+                                            <div class="finance-table-inner-item my-2" style="display: flex;align-items: center; gap:4px;">
+                                                <i data-feather='clock'></i> Duration:
+                                            </div>
+
+                                            <div class="finance-table-inner-item my-2" style="display: flex;align-items: center; gap:4px;">
+                                                <i data-feather='users'></i> Enrolled:
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td>
+                                            @if($course->status == 1)
+                                                <span class="badge badge-glow bg-success">Published</span>
+                                            @elseif($course->status == 2)
+                                                <span class="badge badge-glow bg-primary">Waiting for Review</span>
+                                            @elseif($course->status == 3)
+                                                <span class="badge badge-glow bg-warning">Hold</span>
+                                            @elseif($course->status == 4)
+                                                <span class="badge badge-glow bg-info">Draft</span>
+                                            @else
+                                                <span class="badge badge-glow bg-danger">Pending</span>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            <div class="mb-1">
+                                                <a href="{{route('instructor.course.resource.index', [$course->uuid])}}"><button type="button"  class="btn btn-primary waves-effect" style="width: 100%">Resources</button></a>
+                                            </div>
+                                            <div class="mb-1">
+                                                <button type="button" class="btn btn-success waves-effect" style="width: 100%">Quiz</button>
+                                            </div>
+                                            <div class="mb-1">
+                                                <button type="button" class="btn btn-info waves-effect" style="width: 100%">Assignment</button>
+                                            </div>
+
+                                        </td>
+
+                                        <td style="width: 80px;">
+                                            <div class="action__buttons text-center" style="width: 80px;">
+                                                <a href="{{route('instructor.course.show', [$course->uuid])}}" title="Show"
+                                                   class="btn-action">
+                                                    <img src="{{asset('custom/image/eye-2.svg')}}" alt="Show">
+                                                </a>
+
+                                                <a href="{{route('instructor.course.edit', [$course->uuid])}}" title="Edit"
+                                                   class="btn-action">
+                                                    <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
+                                                </a>
+
+                                                <form action="{{route('instructor.course.delete', [$course->uuid])}}" class="mb-0" method="post" class="d-inline">
+                                                    @csrf
+
+                                                    <a href="{{route('instructor.course.delete', [$course->uuid])}}"  class="btn-action confirm-delete"  title="Delete">
+                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
+                                                    </a>
+
+                                                </form>
+
+                                            </div>
+                                        </td>
+                                        </td>
+                                    </tr>
+
+
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
+
+    <!-- END: Content-->
+
 @endsection
 
 @push('scripts')
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
+        });
+
+
+        $(document).on('click', '.confirm-delete', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).parent('form').trigger('submit')
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
         });
     </script>
 @endpush

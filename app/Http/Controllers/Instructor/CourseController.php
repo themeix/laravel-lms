@@ -11,6 +11,7 @@ use App\Models\CourseLesson;
 use App\Models\CourseTag;
 use App\Models\CourseUploadRule;
 use App\Models\DifficultyLevel;
+use App\Models\KeyPoints;
 use App\Models\Language;
 use App\Models\LearnKeyPoint;
 use App\Models\SubCategory;
@@ -51,6 +52,7 @@ class CourseController extends Controller
 
         $data['rules'] = CourseUploadRule::all();
         $data['tags'] = Tag::orderBy('name', 'asc')->select('id', 'name')->get();
+        $data['key_points'] = KeyPoints::orderBy('name', 'asc')->select('id', 'name')->get();
         $data['languages'] = Language::orderBy('name', 'asc')->select('id', 'name')->get();
         $data['difficulty_levels'] = DifficultyLevel::orderBy('name', 'asc')->select('id', 'name')->get();
 
@@ -128,6 +130,16 @@ class CourseController extends Controller
                 $courseTag->course_id = $course->id;
                 $courseTag->tag_id = $tag_id;
                 $courseTag->save();
+            }
+        }
+
+
+        if ($request->key_points){
+            foreach ($request->key_points as $key_point){
+                $learn_Key_point = new LearnKeyPoint();
+                $learn_Key_point->course_id = $course->id;
+                $learn_Key_point->key_points_id = $key_point;
+                $learn_Key_point->save();
             }
         }
 
@@ -243,9 +255,14 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         //
+    }
+
+
+    public function show($uuid){
+
     }
 
 

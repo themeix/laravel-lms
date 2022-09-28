@@ -94,6 +94,17 @@
 
                                 </div>
 
+                                <div class="col-md-12 col-12">
+                                    <div class="mb-2">
+                                        <label class="form-label" for="tag_ids">Key Points</label>
+                                        <select id="blog-edit-category" name="key_points[]" class="select2 form-select" multiple>
+                                            @foreach($key_points as $key_point)
+                                                <option value="{{ $key_point->id }}">{{ $key_point->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
 
                                 {{--<div class="row mb-30">
                                     <div class="col-md-12 col-12">
@@ -286,7 +297,7 @@
                                 <div class="col-md-12 col-12">
                                     <div class="mb-2">
                                         <label class="form-label" for="tag_ids">Tag</label>
-                                        <select id="blog-edit-category" name="tag_ids[]" class="select2 form-select" multiple>
+                                        <select id="blog-edit-category1" name="tag_ids[]" class="select2 form-select" multiple>
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                             @endforeach
@@ -399,6 +410,10 @@
         $(document).ready(function () {
 
             $('#blog-edit-category').select2({
+                placeholder: '---Select  Key Points---'
+            });
+
+            $('#blog-edit-category1').select2({
                 placeholder: '---Select  Tag---'
             });
 

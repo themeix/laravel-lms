@@ -3,11 +3,7 @@
 
 
 @push('styles')
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/forms/form-validation.css')}}">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('app-assets/css/plugins/forms/pickers/form-flat-pickr.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/forms/pickers/form-flat-pickr.min.css')}}">
 @endpush
 
 @section('content')
@@ -24,7 +20,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('promotion.index')}}">Coupon List</a>
+                                <li class="breadcrumb-item"><a href="{{route('promotion.index')}}">Promotion List</a>
                                 </li>
 
                                 <li class="breadcrumb-item active">Create Promotion
@@ -50,8 +46,8 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" novalidate>
-
+                            <form class="needs-validation" action="{{route('promotion.store')}}" method="post" novalidate>
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
@@ -59,41 +55,42 @@
 
                                             <input
                                                     type="text"
-                                                    id="basic-addon-name"
+                                                    value="{{ old('name') }}"
+                                                    name="name"
                                                     class="form-control"
                                                     placeholder="Name"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Name.</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="bsDob">Start Date</label>
-                                            <input type="text" class="form-control picker" name="dob" id="bsDob"
-                                                   required/>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Start Date.</div>
+                                            @if ($errors->has('name'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
 
 
                                 <div class="row">
-                                    <div class="col-md-12 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="bsDob">End Date</label>
-                                            <input type="text" class="form-control picker" name="dob" id="bsDob"
-                                                   required/>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your End Date.</div>
-                                        </div>
+                                    <div class="col-md-12 col-12 mb-1">
+                                        <label class="form-label" for="fp-date-time">Start Date</label>
+                                        <input type="text" id="fp-date-time" name="start_date" value="{{ old('start_date') }}" class="form-control flatpickr-date-time flatpickr-input active" placeholder="YYYY-MM-DD HH:MM" >
+
+                                        @if ($errors->has('start_date'))
+                                            <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('start_date') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12 col-12 mb-1">
+                                        <label class="form-label" for="fp-date-time">End Date</label>
+                                        <input type="text" id="fp-date-time" name="end_date" value="{{ old('end_date') }}" class="form-control flatpickr-date-time flatpickr-input active" placeholder="YYYY-MM-DD HH:MM" >
+
+                                        @if ($errors->has('end_date'))
+                                            <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('end_date') }}</span>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -105,16 +102,17 @@
 
                                             <input
                                                     type="number"
-                                                    id="basic-addon-name"
+                                                    step="any" min="1"
+                                                    name="percentage" value="{{ old('percentage') }}"
                                                     class="form-control"
                                                     placeholder="%"
                                                     aria-label="Name"
                                                     aria-describedby="basic-addon-name"
                                                     required
                                             />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Discount (Percentage %).
-                                            </div>
+                                            @if ($errors->has('percentage'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('percentage') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -124,14 +122,15 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1">Status</label>
-                                            <select class="form-select" id="select-country1" required>
+                                            <select class="form-select" name="status" required>
                                                 <option value="">--Select--</option>
                                                 <option value="">Active</option>
                                                 <option value="usa">Inactive</option>
 
                                             </select>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please select your Status</div>
+                                            @if ($errors->has('status'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('status') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -155,5 +154,11 @@
 @endsection
 
 @push('scripts')
-    <script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>
+    <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.date.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.time.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/pickers/pickadate/legacy.js')}}"></script>
+
+    <script src="{{asset('app-assets/js/scripts/forms/pickers/form-pickers.js')}}"></script>
+
 @endpush

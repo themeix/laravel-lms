@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 class Course extends Model
 {
     use HasFactory;
+
+    protected $table = 'courses';
     protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
@@ -37,7 +39,6 @@ class Course extends Model
     ];
 
 
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -55,15 +56,15 @@ class Course extends Model
 
     public function subcategory()
     {
-        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+        return $this->belongsTo(Subcategory::class, 'subcategory_id');
     }
 
     public function language()
     {
-        return $this->belongsTo(Language::class, 'language_id');
+        return $this->belongsTo(Language::class, 'course_language_id');
     }
 
-    public function difficultylevel()
+    public function difficultyLevel()
     {
         return $this->belongsTo(DifficultyLevel::class, 'difficulty_level_id');
     }
@@ -73,16 +74,174 @@ class Course extends Model
         return $this->belongsToMany(Tag::class, 'course_tags', 'course_id', 'tag_id');
     }
 
+    public function keyPoints()
+    {
+        return $this->hasMany(LearnKeyPoint::class, 'course_id');
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(CourseLesson::class, 'course_id');
+    }
+
+    public function lectures()
+    {
+        return $this->hasMany(CourseLecture::class, 'course_id');
+    }
+
+    public function notices()
+    {
+        return $this->hasMany(NoticeBoard::class, 'course_id');
+    }
+
+    public function liveClasses()
+    {
+        return $this->hasMany(LiveClass::class, 'course_id');
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function studentCertificate()
+    {
+        return $this->hasOne(StudentCertificate::class, 'course_id');
+    }
+
+    public function resources()
+    {
+        return $this->hasMany(CourseResource::class);
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
+
+    public function assignmentFiles()
+    {
+        return $this->hasManyThrough(AssignmentFile::class, Assignment::class);
+    }
+
+    /*
+     * Video duration For All without filter in frontend
+     */
+    public function getVideoDurationAttribute()
+    {
+        $video_duration = 0;
+        $total_video_duration_in_seconds = 0;
+
+        if ($this->lectures->count() > 0) {
+            foreach ($this->lectures as $lecture) {
+                if ($lecture->file_duration_second) {
+                    $total_video_duration_in_seconds += $lecture->file_duration_second;
+                }
+            }
+
+            $h = floor($total_video_duration_in_seconds / 3600);
+            $m = floor($total_video_duration_in_seconds % 3600 / 60);
+            $s = floor($total_video_duration_in_seconds % 3600 % 60);
+
+            if ($h > 0) {
+                return "$h h $m m $s s";
+            } elseif ($m > 0) {
+                return "$m min $s sec";
+            } elseif ($s > 0) {
+                return "$s sec";
+            }
+        }
+
+        return $video_duration;
+    }
+
+    /*
+     * for filter in front
+     */
+
+    public function getFilterVideoDurationAttribute()
+    {
+        $video_duration = 0;
+        $total_video_duration_seconds = 0;
+
+        if ($this->lectures->count() > 0) {
+            foreach ($this->lectures as $lecture) {
+                if ($lecture->file_duration_second) {
+                    $total_video_duration_seconds += $lecture->file_duration_second;
+                }
+            }
+
+            $h = floor($total_video_duration_seconds / 3600);
+
+            return $h;
+        }
+
+        return $video_duration;
+    }
+
+    public function exam()
+    {
+        return $this->hasOne(Exam::class, 'course_id');
+    }
+
+    public function publishedExams()
+    {
+        return $this->hasMany(Exam::class, 'course_id')->where('status', 1);
+    }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Exam::class, 'course_id');
+    }
 
 
+    public function lectureViews()
+    {
+        return $this->hasMany(CourseLectureView::class, 'course_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'course_id');
+    }
+
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
+    public function getImagePathAttribute()
+    {
+        if ($this->image) {
+            return $this->image;
+        } else {
+            return 'uploads/default/course.jpg';
+        }
+    }
+
+    public function certificate()
+    {
+        return $this->hasOne(CertificateByInstructor::class, 'course_id');
+    }
+
+    public function promotionCourse()
+    {
+        return $this->hasOne(PromotionCourse::class);
+    }
+
+    public function specialPromotionTagCourse()
+    {
+        return $this->hasOne(SpecialPromotionTagCourse::class);
+    }
 
     protected static function boot()
     {
         parent::boot();
-        self::creating(function($model){
-            $model->uuid =  Str::uuid()->toString();
-            $model->user_id =  auth()->id();
-            $model->instructor_id =  Auth::user()->instructor ? Auth::user()->instructor->id : null;
+        self::creating(function ($model) {
+            $model->uuid = Str::uuid()->toString();
+            $model->user_id = auth()->id();
+            $model->instructor_id = Auth::user()->instructor ? Auth::user()->instructor->id : null;
         });
     }
 }

@@ -118,8 +118,8 @@
                                         </td>
 
                                         <td>
-                                            <div class="finance-table-inner-item my-2">
-                                                <span class="fw-bold mr-1">Coupon Type:</span>
+                                            <div class="finance-table-inner-item my-1">
+                                                <span><strong>Coupon Type:</strong></span>
                                                 @if($coupon->coupon_type == 1)
                                                     Global
                                                 @elseif($coupon->coupon_type == 2)
@@ -129,8 +129,8 @@
                                                 @endif
                                             </div>
 
-                                            <div class="finance-table-inner-item my-2">
-                                                <span class="fw-bold mr-1">Minimum Amount to Use: </span>
+                                            <div class="finance-table-inner-item my-1">
+                                                <span><strong>Minimum Amount to Use: </strong></span>
                                                 @if(get_currency_placement() == 'after')
                                                     {{ $coupon->minimum_amount }} {{ get_currency_symbol() }}
                                                 @else
@@ -138,12 +138,12 @@
                                                 @endif
                                             </div>
 
-                                            <div class="finance-table-inner-item my-2">
-                                                <span class="fw-bold mr-1">Percentage: </span>{{ $coupon->percentage }}%
+                                            <div class="finance-table-inner-item my-1">
+                                                <span><strong>Percentage:</strong> </span>{{ $coupon->percentage }}%
                                             </div>
 
-                                            <div class="finance-table-inner-item my-2">
-                                                <span class="fw-bold mr-1">Maximum Use Limit: </span>{{ $coupon->maximum_use_limit }} times
+                                            <div class="finance-table-inner-item my-1">
+                                                <span><strong>Maximum Use Limit:</strong> </span>{{ $coupon->maximum_use_limit }} times
                                             </div>
 
                                         </td>
@@ -200,8 +200,7 @@
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+
                 confirmButtonText: 'Yes, Delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {

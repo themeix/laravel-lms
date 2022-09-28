@@ -3,83 +3,76 @@
 namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\CourseResource;
+use App\Tools\Repositories\Crud;
+use App\Traits\ImageSaveTrait;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ResourceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    use ImageSaveTrait;
+
+    protected $resourceModel, $courseModel;
+
+    public function __construct(CourseResource $resources, Course $course)
     {
-        //
+        $this->resourceModel = new CRUD($resources);
+        $this->courseModel = new CRUD($course);
+    }
+    public function index($course_uuid)
+    {
+        $data['course'] = $this->courseModel->getRecordByUuid($course_uuid);
+        $data['resources'] = CourseResource::where('course_id', $data['course']->id)->paginate();
+
+        return view('instructor.course.resources.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function create($course_uuid)
     {
-        //
+        $data['course'] = $this->courseModel->getRecordByUuid($course_uuid);
+        return view('instructor.course.resources.create', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(Request $request, $course_uuid)
     {
-        //
+        $request->validate([
+            "file" => "required|mimes:zip|max:5000"
+        ]);
+
+        $course = $this->courseModel->getRecordByUuid($course_uuid);
+
+        $resource = new CourseResource();
+        $resource->course_id = $course->id;
+
+        if ($request->hasFile('file')) {
+            $image_details = $this->uploadFileWithDetails('course_resource', $request->file);
+            $resource->file = $image_details['path'];
+            $resource->original_filename = $image_details['original_filename'];
+            $resource->size = $image_details['size'] . 'MB';
+        }
+
+        $resource->save();
+
+
+        Alert::toast('Resource Created Successfully.', 'success');
+
+        return redirect()->route('instructor.course.resource.index',  $course_uuid)->with('create-message', 'Category created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function delete($uuid)
     {
-        //
-    }
+        $resource = $this->resourceModel->getRecordByUuid($uuid);
+        $this->deleteVideoFile($resource->file);
+        $this->resourceModel->deleteByUuid($uuid);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        Alert::toast('Resource Deleted Successfully.', 'success');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('instructor.course.resource.index')->with('delete-message', 'Category Deleted successfully.');
     }
 }

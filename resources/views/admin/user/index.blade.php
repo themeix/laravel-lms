@@ -122,8 +122,8 @@
                                         </td>
 
                                         <td>
-                                            @if($user->status == 1) <span class="status badge bg-success">Active</span> @endif
-                                                @if($user->status == 0) <span class="status badge bg-danger">Inactive</span> @endif
+                                            @if($user->status == 1) <span class="status badge badge-glow bg-success">Active</span> @endif
+                                                @if($user->status == 0) <span class="status badge badge-glow bg-danger">Inactive</span> @endif
                                         </td>
 
                                         <td>
@@ -171,8 +171,7 @@
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+
                 confirmButtonText: 'Yes, Delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {

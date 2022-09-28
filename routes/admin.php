@@ -108,9 +108,13 @@ Route::get('rulesBenefits/create', [RulesBenefitsController::class, 'create'])->
 Route::get('rulesBenefits/edit', [RulesBenefitsController::class, 'edit'])->name('rulesBenefits.edit');
 
 
+
 //Course
 Route::get('course/index', [CourseController::class, 'index'])->name('course.index');
-Route::get('course/edit', [CourseController::class, 'edit'])->name('course.edit');
+Route::get('course/show/{uuid}', [CourseController::class, 'show'])->name('course.show');
+Route::get('course/edit/{uuid}', [CourseController::class, 'edit'])->name('course.edit');
+Route::post('course/update/{uuid}', [CourseController::class, 'update'])->name('course.update')/*->middleware('isDemo')*/;
+Route::post('course/delete/{uuid}', [CourseController::class, 'delete'])->name('course.delete')/*->middleware('isDemo')*/;
 Route::get('enrollStudent', [CourseController::class, 'courseEnroll'])->name('course.enroll');
 Route::get('approvedCourse', [CourseController::class, 'courseApproved'])->name('course.approved');
 Route::get('holdCourse', [CourseController::class, 'courseHold'])->name('course.hold');
@@ -169,8 +173,17 @@ Route::post('coupon/delete/{uuid}', [CouponController::class, 'delete'])->name('
 //Promotion
 Route::get('promotion/index', [PromotionController::class, 'index'])->name('promotion.index');
 Route::get('promotion/create', [PromotionController::class, 'create'])->name('promotion.create');
-Route::get('promotion/edit', [PromotionController::class, 'edit'])->name('promotion.edit');
-Route::get('promotion/show', [PromotionController::class, 'show'])->name('promotion.show');
+Route::get('createPromotion', [PromotionController::class, 'create'])->name('createPromotion');
+Route::post('promotion/store', [PromotionController::class, 'store'])->name('promotion.store');
+Route::get('promotion/edit/{uuid}', [PromotionController::class, 'edit'])->name('promotion.edit');
+Route::get('promotion/show/{uuid}', [PromotionController::class, 'show'])->name('promotion.show');
+Route::post('promotion/update/{uuid}', [PromotionController::class, 'update'])->name('promotion.update');
+Route::post('promotion/delete/{uuid}', [PromotionController::class, 'delete'])->name('promotion.delete');
+Route::get('promotion/editCourse/{uuid}', [PromotionController::class, 'editPromotionCourse'])->name('promotion.editCourse');
+Route::post('promotion/changeStatus', [PromotionController::class, 'changePromotionStatus'])->name('promotion.changeStatus')/*->middleware('isDemo')*/;
+
+Route::get('promotion/addPromotionalCourse', [PromotionController::class, 'addPromotionCourseList'])->name('promotion.addPromotionalCourse');
+Route::get('promotion/removePromotionalCourse', [PromotionController::class, 'removePromotionCourseList'])->name('promotion.removePromotionalCourse')/*->middleware('isDemo')*/;
 
 
 //Support Ticket

@@ -73,6 +73,6 @@ class ResourceController extends Controller
 
         Alert::toast('Resource Deleted Successfully.', 'success');
 
-        return redirect()->route('instructor.course.resource.index')->with('delete-message', 'Category Deleted successfully.');
+        return redirect()->back()->with('delete-message', 'Resource Deleted successfully.');;
     }
 }

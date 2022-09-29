@@ -89,12 +89,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info text-center align-items-center" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>Sl.</th>
                                     <th>Image</th>
-                                    <th>Title</th>
+                                    <th>Course Title</th>
                                     <th>Details</th>
                                     <th>Ratings</th>
                                     <th>Status</th>
@@ -106,27 +105,32 @@
 
                                 @foreach($courses as $course)
                                     <tr class="removable-item">
-                                        <td>{{$loop->iteration}}</td>
                                         <td>
-                                            <img src="{{getImageFile($course->image_path)}}" alt="course" width="80" class="img-fluid">
+                                            <img src="{{getImageFile($course->image_path)}}" alt="course" width="80" height="20px"
+                                                 class="img-fluid">
                                         </td>
                                         <td>
                                             {{$course->title}}
                                         </td>
 
+
                                         <td>
-                                            <div class="finance-table-inner-item my-2" style="display: flex; align-items: center; gap:4px;">
-                                                <i data-feather='video'></i> Video:
+                                            <div class="finance-table-inner-item my-1 justify-content-center"
+                                                 style="display: flex;  gap:4px;">
+                                                <span class="badge rounded-pill badge-glow bg-light-primary"> Video:(0)</span>
                                             </div>
 
-                                            <div class="finance-table-inner-item my-2" style="display: flex;align-items: center; gap:4px;">
-                                                <i data-feather='clock'></i> Duration:
+                                            <div class="finance-table-inner-item my-1 justify-content-center"
+                                                 style="display: flex; gap:4px;">
+                                                <span class="badge rounded-pill badge-glow bg-light-primary"> Duration:(0)</span>
                                             </div>
 
-                                            <div class="finance-table-inner-item my-2" style="display: flex;align-items: center; gap:4px;">
-                                                <i data-feather='users'></i> Enrolled:
+                                            <div class="finance-table-inner-item my-1 justify-content-center"
+                                                 style="display: flex; gap:4px;">
+                                                <span class="badge rounded-pill badge-glow bg-light-primary"> Enrolled:(0)</span>
                                             </div>
                                         </td>
+
                                         <td>
 
                                         </td>
@@ -146,33 +150,49 @@
 
                                         <td>
                                             <div class="mb-1">
-                                                <a href="{{route('instructor.course.resource.index', [$course->uuid])}}"><button type="button"  class="btn btn-primary waves-effect" style="width: 100%">Resources</button></a>
+                                                <a href="{{route('instructor.course.resource.index', [$course->uuid])}}">
+                                                    <button type="button" class="btn btn-sm btn-primary waves-effect"
+                                                            style="width: 100%">Resources
+                                                    </button>
+                                                </a>
                                             </div>
                                             <div class="mb-1">
-                                                <button type="button" class="btn btn-success waves-effect" style="width: 100%">Quiz</button>
+
+                                                <button type="button" class="btn btn-sm btn-success waves-effect"
+                                                        style="width: 100%">Quiz
+                                                </button>
+
                                             </div>
                                             <div class="mb-1">
-                                                <button type="button" class="btn btn-info waves-effect" style="width: 100%">Assignment</button>
+                                                <a href="{{route('instructor.course.assignment.index', [$course->uuid])}}">
+                                                    <button type="button" class="btn btn-sm btn-info waves-effect"
+                                                            style="width: 100%">Assignment
+                                                    </button>
+                                                </a>
                                             </div>
 
                                         </td>
 
                                         <td style="width: 80px;">
                                             <div class="action__buttons text-center" style="width: 80px;">
-                                                <a href="{{route('instructor.course.show', [$course->uuid])}}" title="Show"
+                                                <a href="{{route('instructor.course.show', [$course->uuid])}}"
+                                                   title="Show"
                                                    class="btn-action">
                                                     <img src="{{asset('custom/image/eye-2.svg')}}" alt="Show">
                                                 </a>
 
-                                                <a href="{{route('instructor.course.edit', [$course->uuid])}}" title="Edit"
+                                                <a href="{{route('instructor.course.edit', [$course->uuid])}}"
+                                                   title="Edit"
                                                    class="btn-action">
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
 
-                                                <form action="{{route('instructor.course.delete', [$course->uuid])}}" class="mb-0" method="post" class="d-inline">
+                                                <form action="{{route('instructor.course.delete', [$course->uuid])}}"
+                                                      class="mb-0" method="post" class="d-inline">
                                                     @csrf
 
-                                                    <a href="{{route('instructor.course.delete', [$course->uuid])}}"  class="btn-action confirm-delete"  title="Delete">
+                                                    <a href="{{route('instructor.course.delete', [$course->uuid])}}"
+                                                       class="btn-action confirm-delete" title="Delete">
                                                         <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
                                                     </a>
 
@@ -182,7 +202,6 @@
                                         </td>
                                         </td>
                                     </tr>
-
 
                                 @endforeach
                                 </tbody>

@@ -1,5 +1,5 @@
 @extends('layouts.instructorMaster')
-@section('title','Course Resources')
+@section('title','Notice List')
 @section('content')
 
     <!-- BEGIN: Content-->
@@ -18,26 +18,24 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('instructor')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('instructor.course.index')}}">My Courses</a>
-                                </li>
-                                <li class="breadcrumb-item active">Course Resource List
+                                <li class="breadcrumb-item active">Notice List
                                 </li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
-                <div class="mb-1 breadcrumb-right">
-                    <a href="{{route('instructor.course.resource.create', [$course->uuid])}}">
-                        <button type="button" class="btn btn-primary">Add New</button>
-                    </a>
-                </div>
-            </div>
+            {{-- <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
+                 <div class="mb-1 breadcrumb-right">
+                     <a href="{{route('instructor.notice.create', [$course->uuid])}}">
+                         <button type="button" class="btn btn-primary">Add New</button>
+                     </a>
+                 </div>
+             </div>--}}
         </div>
+
+
         <div class="content-body">
-
-
             @if(Session::has('create-message'))
                 <div class="row">
                     <div class="col-12">
@@ -86,57 +84,70 @@
                 </div>
             @endif
 
-
-                <section id="default-breadcrumb">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Course - {{$course->title}}</h4>
-                                </div>
+            {{--<section id="default-breadcrumb">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Course - {{$course->title}}</h4>
                             </div>
                         </div>
                     </div>
-                </section>
-
+                </div>
+            </section>--}}
 
 
             <section id="column-search-datatable">
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info text-center align-items-center justify-content-center" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Image</th>
+                                    <th>Course Title</th>
+                                    <th>Total Notice</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($resources as $resource)
-                                    <tr class="removable-item">
+                                @foreach($courses as $course)
+
+                                    <tr>
+
                                         <td>
-                                            <div class="resource-list-text">
-                                                <span class="iconify" data-icon="akar-icons:link-chain"></span>
-                                                <a href="{{ getImageFile($resource->file) }}"
-                                                   class="text-decoration-underline">{{ @$resource->original_filename }}</a> {{ $resource->size }}
-                                            </div>
+                                            <img src="{{getImageFile($course->image_path)}}" alt="course" width="80"
+                                                 height="20px"
+                                                 class="img-fluid">
+                                        </td>
+                                        <td>
+                                            {{$course->title}}
                                         </td>
 
+
+                                        <td>{{ @$course->notices->count() }}</td>
+
                                         <td>
+                                            <div style="display: flex; gap: 10px" class="justify-content-center">
 
-                                            <form id="form1" method="post"
-                                                  action="{{route('instructor.course.resource.delete', [$resource->uuid])}}">
-                                                @csrf
+                                                    <a href="{{ route('courseWiseNotice.create', $course->uuid) }}">
+                                                        <button type="button" class="btn  btn-primary waves-effect" style="width: 130px">Add Notice
+                                                        </button>
+                                                    </a>
 
-                                                <button type="submit" form="form1"
-                                                        class="btn btn-danger waves-effect waves-float waves-light confirm-delete">Delete
-                                                </button>
+                                                    <a href="{{ route('courseWiseNotice.index', $course->uuid) }}">
+                                                        <button type="button" class="btn  btn-info waves-effect" style="width: 130px">View List
+                                                        </button>
+                                                    </a>
 
-                                            </form>
+                                            </div>
+
+
                                         </td>
                                     </tr>
+
+
 
                                 @endforeach
                                 </tbody>
@@ -156,23 +167,6 @@
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
-        });
-
-
-        $(document).on('click', '.confirm-delete', function (e) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                showCancelButton: true,
-                confirmButtonText: 'Yes, Delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $(this).parent('form').trigger('submit')
-                } else if (result.isDenied) {
-                    Swal.fire('Changes are not saved', '', 'info')
-                }
-            });
-            e.preventDefault();
         });
     </script>
 @endpush

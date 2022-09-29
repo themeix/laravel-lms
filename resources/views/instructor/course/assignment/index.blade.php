@@ -1,8 +1,5 @@
-@extends('layouts.adminMaster')
-@section('title','Blog Post List')
-
-
-
+@extends('layouts.instructorMaster')
+@section('title','Assignment List')
 @section('content')
 
     <!-- BEGIN: Content-->
@@ -12,15 +9,19 @@
     <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
 
+
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Blog Post List</h2>
+                        <h2 class="content-header-title float-start mb-0">Course Resource List</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
+                                <li class="breadcrumb-item"><a href="{{route('instructor')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Blog Post List
+                                <li class="breadcrumb-item"><a href="{{route('instructor.course.index')}}">My
+                                        Courses</a>
+                                </li>
+                                <li class="breadcrumb-item active">Assignment List
                                 </li>
                             </ol>
                         </div>
@@ -29,14 +30,15 @@
             </div>
             <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
                 <div class="mb-1 breadcrumb-right">
-                    <a href="{{route('blog.create')}}">
+                    <a href="{{route('instructor.course.assignment.create', [$course->uuid])}}">
                         <button type="button" class="btn btn-primary">Add New</button>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="content-body">
 
+
+        <div class="content-body">
             @if(Session::has('create-message'))
                 <div class="row">
                     <div class="col-12">
@@ -85,6 +87,18 @@
                 </div>
             @endif
 
+                <section id="default-breadcrumb">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Course - {{$course->title}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
 
             <section id="column-search-datatable">
                 <div class="card">
@@ -93,69 +107,48 @@
                             <table id="example" class="table table-bordered dataTables_info" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Title</th>
-                                    <th>Category</th>
-                                    <th>Status</th>
-                                    <th>Name</th>
+                                    <th>Assignment Topic</th>
+                                    <th>Marks</th>
+                                    <th>Assesment</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($blogs as $blog)
+                                @foreach($assignments as $assignment)
                                     <tr class="removable-item">
+                                        <td>{{ $assignment->name }}</td>
+                                        <td>{{ $assignment->marks }}</td>
                                         <td>
-                                            <div class="admin-dashboard-blog-list-img">
-                                                <img src="{{getImageFile($blog->image_path)}}" width="100" alt="img">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            {{$blog->title}}
-                                        </td>
-                                        <td>
-                                            {{$blog->category ? $blog->category->name : '' }}
-                                        </td>
-                                        <td>
-                                            @if($blog->status == 1)
-                                                <span class="status badge badge-glow bg-success">Published</span>
-                                            @else
-                                                <span class="status badge badge-glow bg-danger">Unpublished</span>
-                                            @endif
-                                        </td>
+                                            <a href="{{ route('instructor.course.assessment.index', [$course->uuid, $assignment->uuid]) }}"
+                                               class="theme-btn theme-button1 default-hover-btn">
+                                                <button type="button" class="btn btn-sm btn-primary">
+                                                    Click Me
+                                                </button>
 
-                                        <td>
-                                            {{ $blog->user ? $blog->user->name : '' }}
-                                        </td>
-                                        <td style="width: 80px;">
-                                            <div class="action__buttons text-center" style="width: 80px;">
-                                                <a href="{{route('blog.show', [$blog->uuid])}}" title="Show"
-                                                   class="btn-action">
-                                                    <img src="{{asset('custom/image/eye-2.svg')}}" alt="Show">
-                                                </a>
 
-                                                <a href="{{route('blog.edit', [$blog->uuid])}}" title="Edit"
-                                                   class="btn-action">
-                                                    <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
-                                                </a>
+                                            </a></td>
 
-                                                <form action="{{route('blog.delete', [$blog->uuid])}}" class="mb-0" method="post" class="d-inline">
-                                                    @csrf
+                                        <td style="display: flex; align-items: center; margin: 2px; gap: 4px;">
 
-                                                    <a href="{{route('blog.delete', [$blog->uuid])}}"  class="btn-action confirm-delete"  title="Delete">
-                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
-                                                    </a>
+                                            <a href="{{route('instructor.course.assignment.edit', [$course->uuid, $assignment->uuid])}}"
+                                               title="Edit"
+                                               class="btn-action">
+                                                <button type="button" class="btn btn-sm btn-info waves-effect waves-float waves-light" >Edit</button>
+                                            </a>
 
-                                                </form>
+                                            <form id="form1" method="post" class="mb-0" action="{{route('instructor.course.assignment.delete', [$assignment->uuid])}}">
+                                                @csrf
 
-                                               {{-- <a href="javascript:void(0);"
-                                                   data-url="{{route('blog.delete', [$blog->uuid])}}" title="Delete"
-                                                   class="btn-action delete">
-                                                    <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
-                                                </a>--}}
-                                            </div>
+                                                <button type="submit" form="form1"
+                                                        class="btn btn-danger btn-sm waves-effect waves-float waves-light confirm-delete">
+                                                    Delete
+                                                </button>
+
+                                            </form>
                                         </td>
                                     </tr>
+
                                 @endforeach
                                 </tbody>
                             </table>
@@ -167,6 +160,7 @@
     </div>
 
     <!-- END: Content-->
+
 @endsection
 
 @push('scripts')
@@ -177,7 +171,6 @@
 
 
         $(document).on('click', '.confirm-delete', function (e) {
-            e.preventDefault();
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -190,8 +183,7 @@
                     Swal.fire('Changes are not saved', '', 'info')
                 }
             });
+            e.preventDefault();
         });
     </script>
 @endpush
-
-

@@ -428,8 +428,8 @@
                     <i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="Invoice">All Students</span></a>
             </li>
 
-            <li class=" nav-item  {{ (request()->is('instructor/noticeboard/index')) ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="{{route('instructor.noticeboard.index')}}">
+            <li class=" nav-item  {{ (request()->is('instructor/notice/index')) ? 'active' : '' }}"><a
+                    class="d-flex align-items-center" href="{{route('instructor.notice.index')}}">
                     <i data-feather='clipboard'></i><span class="menu-title text-truncate" data-i18n="Invoice">Notice Board</span></a>
             </li>
 

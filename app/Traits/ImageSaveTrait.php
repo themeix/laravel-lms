@@ -6,7 +6,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use File;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Vimeo\Vimeo;
 
@@ -104,6 +104,7 @@ trait ImageSaveTrait
 
         return $data;
     }
+
 
 
     private function deleteFile($path)

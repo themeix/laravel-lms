@@ -1,5 +1,5 @@
 @extends('layouts.instructorMaster')
-@section('title','Create Notice')
+@section('title','Show Notice')
 
 
 @section('content')
@@ -12,7 +12,7 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Create Notice</h2>
+                        <h2 class="content-header-title float-start mb-0">Show Notice</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('instructor')}}">Home</a>
@@ -58,46 +58,16 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation"
-                                  action="{{route('instructor.notice.store',[$course->uuid])}}" method="post"
-                                  enctype="multipart/form-data" novalidate>
-                                @csrf
+                            <div class="mb-2">
+                                <h2> Course Topic:  {{$notice->topic}} </h2>
+                            </div>
+
+                            <div class="mb-2">
+                                <h2>Details: </h2> {{$notice->details}}
+
+                            </div>
 
 
-                                <div class="row">
-                                    <div class="col-md-12 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="topic">Notice Topic</label>
-
-                                            <input type="text" name="topic" placeholder="Enter your Notice topic"
-                                                   required value="{{ old('topic') }}" class="form-control">
-
-                                            @if ($errors->has('topic'))
-                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('topic') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-12 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="details">Notice Details</label>
-
-                                            <textarea class="form-control" name="details" rows="5"
-                                                      placeholder="Enter your Notice details">{{ old('details') }}</textarea>
-                                            @if ($errors->has('details'))
-                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('details') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
                         </div>
                     </div>
                 </div>

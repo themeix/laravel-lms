@@ -1,5 +1,5 @@
 @extends('layouts.instructorMaster')
-@section('title','Create Notice')
+@section('title','Edit Notice')
 
 
 @section('content')
@@ -22,7 +22,7 @@
                                         List</a>
                                 </li>
 
-                                <li class="breadcrumb-item active">Create Notice
+                                <li class="breadcrumb-item active">Edit Notice
                                 </li>
                             </ol>
                         </div>
@@ -59,7 +59,7 @@
                         </div>--}}
                         <div class="card-body">
                             <form class="needs-validation"
-                                  action="{{route('instructor.notice.store',[$course->uuid])}}" method="post"
+                                  action="{{route('instructor.notice.update',[$course->uuid, $notice->uuid])}}" method="post"
                                   enctype="multipart/form-data" novalidate>
                                 @csrf
 
@@ -70,7 +70,7 @@
                                             <label class="form-label" for="topic">Notice Topic</label>
 
                                             <input type="text" name="topic" placeholder="Enter your Notice topic"
-                                                   required value="{{ old('topic') }}" class="form-control">
+                                                   required value="{{ $notice->topic }}" class="form-control">
 
                                             @if ($errors->has('topic'))
                                                 <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('topic') }}</span>
@@ -87,7 +87,7 @@
                                             <label class="form-label" for="details">Notice Details</label>
 
                                             <textarea class="form-control" name="details" rows="5"
-                                                      placeholder="Enter your Notice details">{{ old('details') }}</textarea>
+                                                      placeholder="Enter your Notice details">{{ $notice->details }}</textarea>
                                             @if ($errors->has('details'))
                                                 <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('details') }}</span>
                                             @endif

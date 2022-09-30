@@ -10,6 +10,7 @@ use App\Tools\Repositories\Crud;
 use App\Traits\SendNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class NoticeBoardController extends Controller
 {
@@ -21,26 +22,28 @@ class NoticeBoardController extends Controller
         $this->model = new CRUD($noticeBoard);
         $this->courseModel = new CRUD($course);
     }
-    public function courseWiseNoticeIndex($course_uuid)
-    {
-        $data['course'] = $this->courseModel->getRecordByUuid($course_uuid);
-        $data['notices'] = NoticeBoard::whereCourseId($data['course']->id)->whereUserId(Auth::user()->id)->paginate();
-        return view('instructor.notice.notice-course-list', $data);
-    }
-
-    public function index()
+    public function courseWiseNoticeIndex()
     {
         $data['navNoticeBoardActiveClass'] = 'active';
         $data['courses'] = Course::whereUserId(Auth::user()->id)->paginate();
+        return view('instructor.notice.courseWiseNotice', $data);
+
+    }
+
+    public function index($course_uuid)
+    {
+        $data['course'] = $this->courseModel->getRecordByUuid($course_uuid);
+        $data['notices'] = NoticeBoard::whereCourseId($data['course']->id)->whereUserId(Auth::user()->id)->paginate();
         return view('instructor.notice.index', $data);
     }
 
 
-    public function courseWiseNoticeCreate($course_uuid)
+    public function create($course_uuid)
     {
         $data['pageTitle'] = 'Add Notice';
         $data['navNoticeBoardActiveClass'] = 'active';
         $data['course'] = $this->courseModel->getRecordByUuid($course_uuid);
+
         return view('instructor.notice.create', $data);
     }
 
@@ -68,8 +71,8 @@ class NoticeBoardController extends Controller
         }
         /** ====== send notification to student ===== */
 
-        $this->showToastrMessage('success', 'Created Successfully');
-        return redirect()->route('notice-board.index', $course_uuid);
+        Alert::toast('Notice Created Successfully.', 'success');
+        return redirect()->route('instructor.notice.index', $course_uuid)->with('create-message', 'Notice created successfully.');
     }
 
     public function view($course_uuid, $uuid)
@@ -83,8 +86,6 @@ class NoticeBoardController extends Controller
 
     public function edit($course_uuid, $uuid)
     {
-        $data['pageTitle'] = 'Edit Notice';
-        $data['navNoticeBoardActiveClass'] = 'active';
         $data['course'] = $this->courseModel->getRecordByUuid($course_uuid);
         $data['notice'] = $this->model->getRecordByUuid($uuid);
         return view('instructor.notice.edit', $data);
@@ -103,15 +104,22 @@ class NoticeBoardController extends Controller
         $notice->details = $request->details;
         $notice->save();
 
-        $this->showToastrMessage('success', 'Updated Successfully');
-        return redirect()->route('notice-board.index', $course_uuid);
+        Alert::toast('Notice Updated Successfully.', 'success');
+        return redirect()->route('instructor.notice.index', $course_uuid)->with('update-message', 'Notice Updated successfully.');
+    }
+
+
+    public function show($course_uuid, $uuid){
+        $data['course'] = $this->courseModel->getRecordByUuid($course_uuid);
+        $data['notice'] = $this->model->getRecordByUuid($uuid);
+        return view ('instructor.notice.show' , $data);
     }
 
     public function delete($uuid)
     {
         $this->model->deleteByUuid($uuid);
-        $this->showToastrMessage('error', 'Deleted Successfully');
-        return redirect()->back();
+        Alert::toast('Notice Deleted Successfully.', 'success');
+        return redirect()->back()->with('update-message', 'Notice Deleted successfully.');
     }
 
 }

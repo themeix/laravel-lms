@@ -4,6 +4,7 @@ use App\Http\Controllers\Instructor\AccountController;
 use App\Http\Controllers\Instructor\AssignmentController;
 use App\Http\Controllers\Instructor\CertificateController;
 use App\Http\Controllers\Instructor\DiscussionController;
+use App\Http\Controllers\Instructor\ExamController;
 use App\Http\Controllers\Instructor\LiveClassController;
 use App\Http\Controllers\Instructor\NoticeBoardController;
 use App\Http\Controllers\Instructor\ResourceController;
@@ -35,14 +36,35 @@ Route::post('course/update-category/{uuid}', [CourseController::class, 'updateCa
 Route::get('course/upload-finished/{uuid}', [CourseController::class, 'uploadFinished'])->name('instructor.course.course.upload-finished');
 
 Route::get('course/getSubCategory', [CourseController::class, 'getSubcategories'])->name('instructor.course.course.getSubCategory');
-
-
 Route::get('course/resource/index/{course_uuid}', [ResourceController::class, 'index'])->name('instructor.course.resource.index');
 Route::get('course/resource/create/{course_uuid}', [ResourceController::class, 'create'])->name('instructor.course.resource.create');
 Route::post('course/resource/store/{course_uuid}', [ResourceController::class, 'store'])->name('instructor.course.resource.store')/*->middleware('isDemo')*/
 ;
 Route::post('course/resource/delete/{uuid}', [ResourceController::class, 'delete'])->name('instructor.course.resource.delete')/*->middleware('isDemo')*/
 ;
+
+
+
+Route::get('course/exam/{course_uuid}', [ExamController::class, 'index'])->name('instructor.course.exam.index');
+Route::get('course/exam/create/{course_uuid}', [ExamController::class, 'create'])->name('instructor.course.exam.create');
+Route::post('course/exam/store/{course_uuid}', [ExamController::class, 'store'])->name('instructor.course.exam.store')/*->middleware('isDemo')*/;
+Route::get('course/exam/edit/{uuid}', [ExamController::class, 'edit'])->name('instructor.course.exam.edit');
+Route::post('course/exam/update/{uuid}', [ExamController::class, 'update'])->name('instructor.course.exam.update')/*->middleware('isDemo')*/;
+Route::get('course/exam/view/{uuid}', [ExamController::class, 'view'])->name('instructor.course.exam.view');
+Route::get('course/exam/delete/{uuid}', [ExamController::class, 'delete'])->name('instructor.course.exam.delete')/*->middleware('isDemo')*/;
+
+Route::get('course/exam/question/{uuid}', [ExamController::class, 'question'])->name('instructor.exam.question');
+Route::post('course/exam/save-mcq-question/{uuid}', [ExamController::class, 'saveMcqQuestion'])->name('instructor.exam.save-mcq-question')/*->middleware('isDemo')*/;
+Route::post('course/exam/bulk-upload-mcq/{uuid}', [ExamController::class, 'bulkUploadMcq'])->name('instructor.exam.bulk-upload-mcq')/*->middleware('isDemo')*/;
+Route::get('course/exam/edit-mcq/{question_uuid}', [ExamController::class, 'editMcq'])->name('instructor.exam.edit-mcq');
+Route::post('course/exam/update-mcq-question/{question_uuid}', [ExamController::class, 'updateMcqQuestion'])->name('instructor.exam.update-mcq-question')/*->middleware('isDemo')*/;
+
+Route::get('course/exam/delete-question/{question_uuid}', [ExamController::class, 'deleteQuestion'])->name('exam.delete-question')/*->middleware('isDemo')*/;
+
+
+
+
+
 
 
 Route::get('course/assignment/index/{course_uuid}', [AssignmentController::class, 'index'])->name('instructor.course.assignment.index');
@@ -61,16 +83,20 @@ Route::post('course/assessments/update/{assignment_submit_uuid}', [AssignmentCon
 Route::get('course/assessments/download', [AssignmentController::class, 'studentAssignmentDownload'])->name('instructor.course.assessment.download')/*->middleware('isDemo')*/;
 
 
-
-
 Route::delete('course/course-delete/{uuid}', [CourseController::class, 'delete'])->name('instructor.course.delete')->middleware('isDemo');
 
 Route::get('allEnrollStudent/index', [StudentController::class, 'allEnrollStudentIndex'])->name('instructor.allEnrollStudent.index');
 
 
-Route::get('notice/index', [NoticeBoardController::class, 'index'])->name('instructor.notice.index');
-Route::get('notice/courseWiseNotice/index/{course_uuid}', [NoticeBoardController::class, 'courseWiseNoticeIndex'])->name('courseWiseNotice.index');
-Route::get('notice/courseWiseNotice/create/{course_uuid}', [NoticeBoardController::class, 'courseWiseNoticeCreate'])->name('courseWiseNotice.create');
+Route::get('notice/index/{course_uuid}', [NoticeBoardController::class, 'index'])->name('instructor.notice.index');
+Route::get('notice/edit/{course_uuid}/{uuid}', [NoticeBoardController::class, 'edit'])->name('instructor.notice.edit');
+Route::post('notice/update/{course_uuid}/{uuid}', [NoticeBoardController::class, 'update'])->name('instructor.notice.update');
+Route::get('notice/show/{course_uuid}/{uuid}', [NoticeBoardController::class, 'show'])->name('instructor.notice.show');
+Route::post('notice/delete/{uuid}', [NoticeBoardController::class, 'delete'])->name('instructor.notice.delete');
+Route::get('notice/create/{course_uuid}', [NoticeBoardController::class, 'create'])->name('instructor.notice.create');
+Route::post('notice/store/{course_uuid}', [NoticeBoardController::class, 'store'])->name('instructor.notice.store');
+Route::get('notice/courseWiseNotice/index', [NoticeBoardController::class, 'courseWiseNoticeIndex'])->name('instructor.courseWiseNotice.index');
+
 
 
 
@@ -81,8 +107,8 @@ Route::get('notice/courseWiseNotice/create/{course_uuid}', [NoticeBoardControlle
 
 
 Route::get('liveClass/index', [LiveClassController::class, 'index'])->name('instructor.liveClass.index');
-Route::get('liveClass/courseWiseLiveClass/index/{course_uuid}', [LiveClassController::class, 'courseWiseLiveClassIndex'])->name('courseWiseLiveClass.index');
-Route::get('liveClass/courseWiseLiveClass/create/{course_uuid}', [LiveClassController::class, 'courseWiseLiveClassCreate'])->name('courseWiseLiveClass.create');
+Route::get('liveClass/courseWiseLiveClass/index/{course_uuid}', [LiveClassController::class, 'courseWiseLiveClassIndex'])->name('instructor.courseWiseLiveClass.index');
+Route::get('liveClass/courseWiseLiveClass/create/{course_uuid}', [LiveClassController::class, 'courseWiseLiveClassCreate'])->name('instructor.courseWiseLiveClass.create');
 
 
 

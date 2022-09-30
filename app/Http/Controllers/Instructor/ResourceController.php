@@ -61,7 +61,7 @@ class ResourceController extends Controller
 
         Alert::toast('Resource Created Successfully.', 'success');
 
-        return redirect()->route('instructor.course.resource.index',  $course_uuid)->with('create-message', 'Category created successfully.');
+        return redirect()->route('instructor.course.resource.index',  $course_uuid)->with('create-message', 'Resource created successfully.');
     }
 
 

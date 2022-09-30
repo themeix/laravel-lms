@@ -123,7 +123,7 @@
                                                  class="img-fluid">
                                         </td>
                                         <td>
-                                            {{$course->title}}
+                                            <strong>{{$course->title}} </strong>
                                         </td>
 
 

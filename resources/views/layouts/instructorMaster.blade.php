@@ -45,6 +45,7 @@
     <!-- END: Custom CSS-->
 
     @stack('styles')
+    @stack('scripts')
 </head>
 <!-- END: Head-->
 
@@ -428,8 +429,8 @@
                     <i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="Invoice">All Students</span></a>
             </li>
 
-            <li class=" nav-item  {{ (request()->is('instructor/notice/index')) ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="{{route('instructor.notice.index')}}">
+            <li class=" nav-item  {{ (request()->is('instructor/notice*')) ? 'active' : '' }}"><a
+                    class="d-flex align-items-center" href="{{route('instructor.courseWiseNotice.index')}}">
                     <i data-feather='clipboard'></i><span class="menu-title text-truncate" data-i18n="Invoice">Notice Board</span></a>
             </li>
 
@@ -679,6 +680,25 @@
             feather.replace({ width: 14, height: 14 });
         }
     })
+
+        $(document).on('click', '.confirm-delete', function (e) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).parent('form').trigger('submit')
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
+            e.preventDefault();
+        });
+
+
+
 </script>
 
 @stack('scripts')

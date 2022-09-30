@@ -89,7 +89,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info text-center align-items-center" style="color: black;">
+                            <table id="example"
+                                   class="table table-bordered dataTables_info text-center align-items-center"
+                                   style="color: black;">
                                 <thead>
                                 <tr>
                                     <th>Image</th>
@@ -106,18 +108,20 @@
                                 @foreach($courses as $course)
                                     <tr class="removable-item">
                                         <td>
-                                            <img src="{{getImageFile($course->image_path)}}" alt="course" width="80" height="20px"
+                                            <img src="{{getImageFile($course->image_path)}}" alt="course" width="80"
+                                                 height="20px"
                                                  class="img-fluid">
                                         </td>
                                         <td>
-                                            {{$course->title}}
+                                            <strong>{{$course->title}} </strong>
                                         </td>
 
 
                                         <td>
                                             <div class="finance-table-inner-item my-1 justify-content-center"
                                                  style="display: flex;  gap:4px;">
-                                                <span class="badge rounded-pill badge-glow bg-light-primary"> Video:(0)</span>
+                                                <span
+                                                    class="badge rounded-pill badge-glow bg-light-primary"> Video:(0)</span>
                                             </div>
 
                                             <div class="finance-table-inner-item my-1 justify-content-center"
@@ -151,35 +155,39 @@
                                         <td>
                                             <div class="mb-1">
                                                 <a href="{{route('instructor.course.resource.index', [$course->uuid])}}">
-                                                    <button type="button" class="btn btn-sm btn-primary waves-effect"
+                                                    <button type="button" class="btn  btn-primary waves-effect"
                                                             style="width: 100%">Resources
                                                     </button>
                                                 </a>
                                             </div>
-                                            <div class="mb-1">
 
-                                                <button type="button" class="btn btn-sm btn-success waves-effect"
-                                                        style="width: 100%">Quiz
-                                                </button>
-
-                                            </div>
                                             <div class="mb-1">
                                                 <a href="{{route('instructor.course.assignment.index', [$course->uuid])}}">
-                                                    <button type="button" class="btn btn-sm btn-info waves-effect"
+                                                    <button type="button" class="btn  btn-info waves-effect"
                                                             style="width: 100%">Assignment
                                                     </button>
                                                 </a>
                                             </div>
 
+                                            <div>
+                                                <a href="{{route('instructor.course.exam.index', [$course->uuid])}}">
+                                                    <button type="button" class="btn  btn-success waves-effect"
+                                                            style="width: 100%">Exam
+                                                    </button>
+                                                </a>
+
+                                            </div>
+
+
                                         </td>
 
                                         <td style="width: 80px;">
                                             <div class="action__buttons text-center" style="width: 80px;">
-                                                <a href="{{route('instructor.course.show', [$course->uuid])}}"
+                                                {{--<a href="{{route('instructor.course.show', [$course->uuid])}}"
                                                    title="Show"
                                                    class="btn-action">
                                                     <img src="{{asset('custom/image/eye-2.svg')}}" alt="Show">
-                                                </a>
+                                                </a>--}}
 
                                                 <a href="{{route('instructor.course.edit', [$course->uuid])}}"
                                                    title="Edit"

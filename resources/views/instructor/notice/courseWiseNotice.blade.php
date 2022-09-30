@@ -18,20 +18,20 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('instructor')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('instructor.courseWiseNotice.index')}}">Course Wise Notice List</a>
+                                <li class="breadcrumb-item active">Notice List
                                 </li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
-             <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
+            {{-- <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
                  <div class="mb-1 breadcrumb-right">
                      <a href="{{route('instructor.notice.create', [$course->uuid])}}">
                          <button type="button" class="btn btn-primary">Add New</button>
                      </a>
                  </div>
-             </div>
+             </div>--}}
         </div>
 
 
@@ -84,7 +84,7 @@
                 </div>
             @endif
 
-            <section id="default-breadcrumb">
+            {{--<section id="default-breadcrumb">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>--}}
 
 
             <section id="column-search-datatable">
@@ -104,47 +104,42 @@
                             <table id="example" class="table table-bordered dataTables_info text-center align-items-center justify-content-center" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>Notice Date</th>
-                                    <th>Notice Topic</th>
+                                    <th>Image</th>
+                                    <th>Course Title</th>
+                                    <th>Total Notice</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($notices as $notice)
+                                @foreach($courses as $course)
 
                                     <tr>
 
-                                        <td>{{ $notice->created_at->format('d/m/Y') }}</td>
-                                        <td>{{ Str::limit($notice->topic, 45) }}</td>
+                                        <td>
+                                            <img src="{{getImageFile($course->image_path)}}" alt="course" width="80"
+                                                 height="20px"
+                                                 class="img-fluid">
+                                        </td>
+                                        <td>
+                                            <strong>{{$course->title}} </strong>
+                                        </td>
+
+
+                                        <td>{{ @$course->notices->count() }}</td>
 
                                         <td>
                                             <div style="display: flex; gap: 10px" class="justify-content-center">
 
-                                                <a href="{{ route('instructor.notice.show', [$course->uuid, $notice->uuid]) }}">
-                                                    <button type="button" class="btn  btn-primary waves-effect" style="width: 130px">Show
-                                                    </button>
-                                                </a>
+                                                    <a href="{{ route('instructor.notice.create', $course->uuid) }}">
+                                                        <button type="button" class="btn  btn-primary waves-effect" style="width: 130px">Add Notice
+                                                        </button>
+                                                    </a>
 
-                                                <a href="{{ route('instructor.notice.edit', [$course->uuid, $notice->uuid]) }}">
-                                                    <button type="button" class="btn  btn-info waves-effect" style="width: 130px">Edit
-                                                    </button>
-                                                </a>
-
-
-
-                                                <form id="form1" method="post" class="mb-0" action="{{ route('instructor.notice.delete', [$notice->uuid]) }}">
-                                                    @csrf
-
-                                                    <button type="submit" form="form1" style="width: 130px"
-                                                            class="btn btn-danger waves-effect waves-float waves-light confirm-delete">
-                                                        Delete
-                                                    </button>
-
-                                                </form>
-
-
-
+                                                    <a href="{{ route('instructor.notice.index', $course->uuid) }}">
+                                                        <button type="button" class="btn  btn-info waves-effect" style="width: 130px">View List
+                                                        </button>
+                                                    </a>
 
                                             </div>
 
@@ -173,7 +168,6 @@
         $(document).ready(function () {
             $('#example').DataTable();
         });
-
 
         $(document).on('click', '.confirm-delete', function (e) {
             Swal.fire({

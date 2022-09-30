@@ -22,7 +22,7 @@ return new class extends Migration
             $table->mediumText('short_description')->nullable();
             $table->integer('marks_per_question')->default(0);
             $table->integer('duration')->default(0);
-            $table->string('type', 50)->comment('multiple_choice, true_false');
+            $table->string('type', 50)->nullable()->comment('multiple_choice, true_false');
             $table->tinyInteger('status')->default(0)->comment('0=unpublish, 1=published');
             $table->timestamps();
         });

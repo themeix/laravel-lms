@@ -17,7 +17,7 @@
                 <div class="misc-inner p-2 p-sm-3">
                     <div class="w-100 text-center">
                         <div class="pb-2">
-                            <a href="{{route('home')}}">
+                            <a href="{{route('main.index')}}">
                                 <svg width="138" height="35" viewBox="0 0 138 35" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -40,7 +40,7 @@
                         <h1 class="mb-1">403 - Forbidden 🔐</h1>
                         <p class="mb-2">
                             We are sorry but you don't have permission to access this resource.
-                        </p><a class="btn btn-primary mb-1 btn-sm-block" href="{{route('home')}}">Back to Home</a><img
+                        </p><a class="btn btn-primary mb-1 btn-sm-block" href="{{route('main.index')}}">Back to Home</a><img
                             class="img-fluid" src="{{asset('app-assets/images/pages/not-authorized.svg')}}"
                             alt="Not authorized page"/>
                     </div>

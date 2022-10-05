@@ -16,7 +16,7 @@
                     <div class="w-100 text-center">
 
                         <div class="pb-2">
-                            <a href="{{route('home')}}">
+                            <a href="{{route('main.index')}}">
                                 <svg width="138" height="35" viewBox="0 0 138 35" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -39,7 +39,7 @@
 
 
                         <h2 class="mb-1">Page Not Found 🕵🏻‍♀️</h2>
-                        <p class="mb-2">Oops! 😖 The requested URL was not found in this server.</p><a class="btn btn-primary mb-2 btn-sm-block" href="{{route('home')}}">Back to home</a><img class="img-fluid" src="{{asset('app-assets/images/pages/error.svg')}}" />
+                        <p class="mb-2">Oops! 😖 The requested URL was not found in this server.</p><a class="btn btn-primary mb-2 btn-sm-block" href="{{route('main.index')}}">Back to home</a><img class="img-fluid" src="{{asset('app-assets/images/pages/error.svg')}}" />
                     </div>
                 </div>
             </div>

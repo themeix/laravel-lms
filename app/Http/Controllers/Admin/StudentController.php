@@ -254,5 +254,16 @@ class StudentController extends Controller
         return response()->json($cities);
     }
 
+    public function changeStudentStatus(Request $request)
+    {
+        $student = Student::findOrFail($request->id);
+        $student->status = $request->status;
+        $student->save();
+
+        return response()->json([
+            'data' => 'success',
+        ]);
+    }
+
 
 }

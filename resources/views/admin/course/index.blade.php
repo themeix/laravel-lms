@@ -86,7 +86,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black; justify-content: center; align-items: center;">
                                 <thead>
                                 <tr>
                                     <th>Image</th>
@@ -106,12 +106,12 @@
                                             <a href="#"> <img src="{{getImageFile($course->image_path)}}" width="80"> </a>
                                         </td>
                                         <td>
-                                            {{$course->title}}
+                                           <strong>{{$course->title}}</strong>
                                         </td>
 
 
                                         <td>
-                                            {{$course->instructor ? $course->instructor->name : '' }}
+                                           <strong>{{$course->instructor ? $course->instructor->name : '' }}</strong>
                                         </td>
                                         <td>
                                             {{$course->category ? $course->category->name : '' }}
@@ -127,17 +127,17 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if($course->status == 1)
-                                                <span class="status active">Published</span>
-                                            @elseif($course->status == 2)
-                                                <span class="status active">Waiting for Review</span>
-                                            @elseif($course->status == 3)
-                                                <span class="status blocked">Hold</span>
-                                            @elseif($course->status == 4)
-                                                <span class="status ">Draft</span>
-                                            @else
-                                                <span class="status ">Pending</span>
-                                            @endif
+                                            <span id="hidden_id" style="display: none">{{$course->id}}</span>
+
+                                            <div class="mb-1 text-center" style="width: 120px">
+                                                <select name="status" class="status form-select">
+                                                    <option value="2" @if($course->status == 2) selected @endif>Pending</option>
+
+                                                    <option value="1" @if($course->status == 1) selected @endif>Approve</option>
+
+                                                    <option value="3" @if($course->status == 3) selected @endif>Hold</option>
+                                                </select>
+                                            </div>
                                         </td>
                                         <td>
 
@@ -173,6 +173,48 @@
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
+        });
+
+        'use strict'
+        $(".status").change(function () {
+            var id = $(this).closest('tr').find('#hidden_id').html();
+            var status_value = $(this).closest('tr').find('.status option:selected').val();
+            Swal.fire({
+                title: "Are you sure to change status?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Change it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('admin.course.statusChange')}}",
+                        data: {"status": status_value, "id": id, "_token": "{{ csrf_token() }}",},
+                        datatype: "json",
+                        success: function (data) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Course status has been updated',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+
+                            setTimeout(function(){
+                                window.location.reload();
+                            }, 1000);
+                        },
+                        error: function () {
+                            alert("Error!");
+                        },
+                    });
+                } else if (result.dismiss === "cancel") {
+                    location.reload();
+                }
+            });
         });
     </script>
 @endpush

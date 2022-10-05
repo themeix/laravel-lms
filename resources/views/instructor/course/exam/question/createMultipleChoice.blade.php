@@ -1,4 +1,4 @@
-@extends('layouts.adminMaster')
+@extends('layouts.instructorMaster')
 @section('title','Create Question')
 
 
@@ -76,9 +76,28 @@
                                             <div class="col-md-4">
                                                 <div class="form-check  d-flex align-items-center">
                                                     <input class="form-check-input p-1" type="checkbox"
-                                                           name=""
-                                                           id="check-all"
-                                                           value="" readonly>
+                                                           name="is_correct_answer[]"
+                                                           value="1" required id="correct_ans2">
+                                                    <label class="form-check-label  ps-1 color-heading"
+                                                           for="check-all">Correct Answer </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-1 d-flex align-items-center gap-50">
+                                            <input type="text" name="options[]" required class="form-control" placeholder="Enter your option">
+
+                                            <div class="col-md-4">
+                                                <div class="form-check  d-flex align-items-center">
+                                                    <input class="form-check-input p-1" type="checkbox"
+                                                           name="is_correct_answer[]" value="2" required id="correct_ans34">
                                                     <label class="form-check-label  ps-1 color-heading"
                                                            for="check-all">Correct Answer </label>
                                                 </div>
@@ -130,33 +149,7 @@
 
                                         </div>
                                     </div>
-
                                 </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1 d-flex align-items-center gap-50">
-                                            <input type="text" name="options[]" required class="form-control" placeholder="Enter your option">
-
-                                            <div class="col-md-4">
-                                                <div class="form-check  d-flex align-items-center">
-                                                    <input class="form-check-input p-1" type="checkbox"
-                                                           name=""
-                                                           id="check-all"
-                                                           value="" readonly>
-                                                    <label class="form-check-label  ps-1 color-heading"
-                                                           for="check-all">Correct Answer </label>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>

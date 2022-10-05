@@ -29,7 +29,8 @@ class LiveClassController extends Controller
     }
 
 
-    public function index()
+
+    public function courseWiseLiveClassIndex()
     {
         $data['pageTitle'] = 'Live Class';
         $data['navLiveClassActiveClass'] = 'active';
@@ -50,17 +51,17 @@ class LiveClassController extends Controller
 
         ])->paginate();
 
-        return view('instructor.liveclass.index', $data);
+        return view('instructor.liveclass.courseWiseLiveClass', $data);
     }
 
 
-    public function courseWiseLiveClassIndex()
+    public function index($course_uuid)
     {
-        //
+
     }
 
 
-    public function courseWiseLiveClassCreate()
+    public function create($course_uuid)
     {
         //
     }

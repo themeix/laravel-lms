@@ -76,11 +76,13 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black; justify-content: center; align-items: center;">
                                 <thead>
                                 <tr>
                                     <th>Image</th>
-                                    <th>Details</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
                                     <th>Country</th>
                                     <th>State</th>
                                     <th>Address</th>
@@ -96,10 +98,13 @@
                                             <img src="{{getImageFile($student->user ? @$student->user->image : '')}}" width="80">
                                         </td>
                                         <td>
-                                            <strong>Name:</strong> {{$student->first_name}} {{$student->last_name}}<br>
-                                            <strong>Email:</strong> {{$student->user->email}}<br>
-                                            <strong>Mobile:</strong> {{$student->phone_number ?? @$student->user->phone_number}}<br>
-
+                                            <strong>{{$student->first_name}} {{$student->last_name}}</strong>
+                                        </td>
+                                        <td>
+                                            {{$student->user->email}}
+                                        </td>
+                                        <td>
+                                            {{$student->phone_number ?? @$student->user->phone_number}}
                                         </td>
 
                                         <td>{{@$student->country->country_name}}</td>
@@ -159,6 +164,50 @@
         $(document).ready(function () {
             $('#example').DataTable();
         });
+
+
+        'use strict'
+        $(".status").change(function () {
+            var id = $(this).closest('tr').find('#hidden_id').html();
+            var status_value = $(this).closest('tr').find('.status option:selected').val();
+            Swal.fire({
+                title: "Are you sure to change status?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Change it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('admin.student.changeStudentStatus')}}",
+                        data: {"status": status_value, "id": id, "_token": "{{ csrf_token() }}",},
+                        datatype: "json",
+                        success: function (data) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Student status has been changed',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+
+                            setTimeout(function(){
+                                window.location.reload();
+                            }, 1000);
+                        },
+                        error: function () {
+                            alert("Error!");
+                        },
+                    });
+                } else if (result.dismiss === "cancel") {
+                    location.reload();
+                }
+            });
+        });
+
     </script>
 @endpush
 

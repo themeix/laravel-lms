@@ -106,9 +106,10 @@ Route::get('notice/courseWiseNotice/index', [NoticeBoardController::class, 'cour
 
 
 
-Route::get('liveClass/index', [LiveClassController::class, 'index'])->name('instructor.liveClass.index');
-Route::get('liveClass/courseWiseLiveClass/index/{course_uuid}', [LiveClassController::class, 'courseWiseLiveClassIndex'])->name('instructor.courseWiseLiveClass.index');
-Route::get('liveClass/courseWiseLiveClass/create/{course_uuid}', [LiveClassController::class, 'courseWiseLiveClassCreate'])->name('instructor.courseWiseLiveClass.create');
+Route::get('liveClass/courseWiseLiveClass', [LiveClassController::class, 'courseWiseLiveClassIndex'])->name('instructor.courseWiseLiveClass.index');
+Route::get('liveClass/index/{course_uuid}', [LiveClassController::class, 'index'])->name('instructor.liveClass.index');
+Route::get('liveClass/create/{course_uuid}', [LiveClassController::class, 'create'])->name('instructor.liveClass.create');
+
 
 
 

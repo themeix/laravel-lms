@@ -435,17 +435,17 @@
             </li>
 
 
-            <li class=" nav-item  {{ (request()->is('instructor/liveClass/index')) ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="{{route('instructor.liveClass.index')}}">
+            <li class=" nav-item  {{ (request()->is('instructor/liveClass*')) ? 'active' : '' }}"><a
+                    class="d-flex align-items-center" href="{{route('instructor.courseWiseLiveClass.index')}}">
                     <i data-feather='monitor'></i><span class="menu-title text-truncate" data-i18n="Invoice">
                         Live Class</span></a>
             </li>
 
-            <li class=" nav-item  {{ (request()->is('instructor/certificate/index')) ? 'active' : '' }}"><a
+            {{--<li class=" nav-item  {{ (request()->is('instructor/certificate/index')) ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{route('instructor.certificate.index')}}">
                     <i data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="Invoice">
                         Certificate</span></a>
-            </li>
+            </li>--}}
 
             <li class=" nav-item  {{ (request()->is('instructor/discussion/index')) ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{route('instructor.discussion.index')}}">

@@ -448,16 +448,19 @@
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='book'></i><span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Manage Course</span></a>
                 <ul class="menu-content">
-                    <li class="{{ (request()->is('admin/course*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Roles">All Courses</span></a>
-                    </li>
-                    <li class="{{ (request()->is('admin/enrollStudent*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.enroll')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Enroll In Courses</span></a>
-                    </li>
-                    <li class="{{ (request()->is('admin/approvedCourse*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Approved</span></a>
-                    </li>
-                    <li class="{{ (request()->is('admin/holdCourse*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.hold')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Hold</span></a>
-                    </li>
                     <li class="{{ (request()->is('admin/reviewPendingCourse*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.reviewPending')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Review Pending</span></a>
                     </li>
+                    <li class="{{ (request()->is('admin/course*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Roles">All Courses</span></a>
+                    </li>
+
+                    <li class="{{ (request()->is('admin/approvedCourse*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.approved')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Approved Courses</span></a>
+                    </li>
+                    <li class="{{ (request()->is('admin/holdCourse*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.hold')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Hold Courses</span></a>
+                    </li>
+
+                    <li class="{{ (request()->is('admin/enrollStudent*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('course.enroll')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Permission">Enroll In Courses</span></a>
+                    </li>
+
                 </ul>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='briefcase'></i><span class="menu-title text-truncate" data-i18n="eCommerce">Manage Instructor</span></a>

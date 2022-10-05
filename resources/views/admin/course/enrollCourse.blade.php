@@ -48,16 +48,15 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1">Select Student</label>
-                                            <select class="form-select" id="select-country1" required>
-                                                <option value="">Select Student</option>
-                                                <option value="usa">USA</option>
-                                                <option value="uk">UK</option>
-                                                <option value="france">France</option>
-                                                <option value="australia">Australia</option>
-                                                <option value="spain">Spain</option>
+                                            <select class="form-select" name="user_id" id="user_id" required>
+                                                <option value="">--Select Student--</option>
+                                                @foreach($users as $user)
+                                                    <option value="{{ $user->id }}" @if(old('user_id') == $user->id) selected @endif>{{ @$user->student->name }}</option>
+                                                @endforeach
                                             </select>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please select your country</div>
+                                            @if ($errors->has('student_id'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('student_id') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -67,16 +66,15 @@
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1"> Select Course</label>
-                                            <select class="form-select" id="select-country1" required>
-                                                <option value="">Select Course</option>
-                                                <option value="usa">USA</option>
-                                                <option value="uk">UK</option>
-                                                <option value="france">France</option>
-                                                <option value="australia">Australia</option>
-                                                <option value="spain">Spain</option>
+                                            <select class="form-select" name="course_id" id="course_id" required>
+                                                <option value="">--Select Course--</option>
+                                                @foreach($courses as $course)
+                                                    <option value="{{ $course->id }}" @if(old('course_id') == $course->id) selected @endif>{{ $course->title }}</option>
+                                                @endforeach
                                             </select>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please select your country</div>
+                                            @if ($errors->has('course_id'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('course_id') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

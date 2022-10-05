@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseLecture;
 use App\Models\CourseLesson;
+use App\Models\Instructor;
+use App\Models\Student;
+use App\Models\User;
 use App\Tools\Repositories\Crud;
 use App\Traits\ImageSaveTrait;
 use App\Traits\SendNotification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -23,6 +27,16 @@ class CourseController extends Controller
         $this->lessonModel = new Crud($course_lesson);
     }
 
+    public function courseReviewPending(){
+        if (!Auth::user()->can('all_course')) {
+            abort('403');
+        } // end permission checking
+
+        $data['courses'] = Course::where('status', 2)->get();
+        return view('admin.course.waitingForReview', $data);
+    }
+
+
     public function index(){
 
         if (!Auth::user()->can('all_course')) {
@@ -31,6 +45,44 @@ class CourseController extends Controller
 
         $data['courses'] = $this->model->getOrderById('DESC');
         return view('admin.course.index', $data);
+
+    }
+
+
+    public function courseApproved(){
+
+        if (!Auth::user()->can('approved_course')) {
+            abort('403');
+        } // end permission checking
+
+        $data['title'] = 'Approved Courses';
+        $data['courses'] = Course::where('status', 1)->get();
+        return view('admin.course.approved', $data);
+    }
+
+    public function courseHold(){
+
+        if (!Auth::user()->can('hold_course')) {
+            abort('403');
+        } // end permission checking
+
+        $data['title'] = 'Hold Courses';
+        $data['courses'] = Course::where('status', 3)->get();
+        return view('admin.course.hold', $data);
+    }
+
+
+    public function courseStatusChange(Request $request)
+    {
+        $course = Course::findOrFail($request->id);
+        $course->status = $request->status;
+        $course->save();
+
+
+
+        return response()->json([
+            'data' => 'success',
+        ]);
 
     }
 
@@ -49,6 +101,8 @@ class CourseController extends Controller
 
     public function update($uuid){
 
+
+
         return view('admin.course.edit');
     }
 
@@ -58,18 +112,14 @@ class CourseController extends Controller
     }
 
     public function courseEnroll(){
-        return view('admin.course.enrollCourse');
+
+        $data['users'] = User::where('type', 3)->get();
+        $data['courses'] = Course::where('status', 1)->get();
+
+        return view('admin.course.enrollCourse', $data);
     }
 
-    public function courseApproved(){
-        return view('admin.course.approved');
-    }
 
-    public function courseHold(){
-        return view('admin.course.hold');
-    }
 
-    public function courseReviewPending(){
-        return view('admin.course.reviewPendig');
-    }
+
 }

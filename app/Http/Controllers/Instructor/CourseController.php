@@ -42,7 +42,8 @@ class CourseController extends Controller
 
     public function index()
     {
-        $data['courses'] = $this->model->getOrderById('DESC');
+        $data['courses'] = Course::where('user_id', auth()->id())->orderBy('id', 'DESC')->paginate();
+        $data['number_of_course'] = Course::where('user_id', auth()->id())->count();
         return view('instructor.course.index', $data);
     }
 
@@ -107,7 +108,7 @@ class CourseController extends Controller
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'slug' => $slug,
-            'status' => 4,
+            'status' => 2,
             'description' => $request->description,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,

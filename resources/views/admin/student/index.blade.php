@@ -89,11 +89,14 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info"
+                                   style="color: black; justify-content: center; align-items: center;">
                                 <thead>
                                 <tr>
                                     <th>Image</th>
-                                    <th>Details</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
                                     <th>Country</th>
                                     <th>Address</th>
                                     <th>Total Enroll Course</th>
@@ -106,13 +109,17 @@
                                 @foreach($students as $student)
                                     <tr class="removable-item">
                                         <td>
-                                            <img src="{{getImageFile($student->user ? @$student->user->image : '')}}" width="80">
+                                            <img src="{{getImageFile($student->user ? @$student->user->image : '')}}"
+                                                 width="80">
                                         </td>
                                         <td>
-                                            <strong>Name:</strong> {{$student->name}}<br>
-                                            <strong>Email:</strong> {{$student->user->email}}<br>
-                                            <strong>Mobile:</strong> {{$student->phone_number ?? @$student->user->phone_number}}<br>
-
+                                            <strong>{{$student->name}}</strong>
+                                        </td>
+                                        <td>
+                                            {{$student->user->email}}
+                                        </td>
+                                        <td>
+                                            {{$student->phone_number ?? @$student->user->phone_number}}
                                         </td>
 
                                         <td>{{$student->country ? $student->country->country_name : '' }}</td>
@@ -121,10 +128,14 @@
 
                                         <td>
                                             <span id="hidden_id" style="display: none">{{$student->id}}</span>
-                                            <div class="mb-1" style="width: 120px">
+                                            <div class="mb-1" style="width: 120px;">
                                                 <select name="status" class="status form-select">
-                                                    <option value="1" @if($student->status == 1) selected @endif>Approved</option>
-                                                    <option value="2" @if($student->status == 2) selected @endif>Blocked</option>
+                                                    <option value="1" @if($student->status == 1) selected @endif>
+                                                        Approved
+                                                    </option>
+                                                    <option value="2" @if($student->status == 2) selected @endif>
+                                                        Blocked
+                                                    </option>
                                                 </select>
                                             </div>
 
@@ -133,20 +144,22 @@
                                         <td>
                                             <div class="action__buttons text-center" style="width: 80px">
 
-                                                <a href="{{route('student.show', [$student->uuid])}}" class="btn-action mr-30" title="View Details">
+                                                <a href="{{route('student.show', [$student->uuid])}}"
+                                                   class="btn-action mr-30" title="View Details">
                                                     <img src="{{asset('custom/image/eye-2.svg')}}" alt="eye">
                                                 </a>
 
-                                                <a href="{{route('student.edit', [$student->uuid])}}" class="btn-action" title="Edit">
+                                                <a href="{{route('student.edit', [$student->uuid])}}" class="btn-action"
+                                                   title="Edit">
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
-                                                <a href="{{route('student.delete', [$student->uuid])}}"  class="btn-action delete" title="Delete">
+                                                <a href="{{route('student.delete', [$student->uuid])}}"
+                                                   class="btn-action delete" title="Delete">
                                                     <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-
 
                                 @endforeach
                                 </tbody>
@@ -166,6 +179,51 @@
         $(document).ready(function () {
             $('#example').DataTable();
         });
+
+
+        'use strict'
+        $(".status").change(function () {
+            var id = $(this).closest('tr').find('#hidden_id').html();
+            var status_value = $(this).closest('tr').find('.status option:selected').val();
+            Swal.fire({
+                title: "Are you sure to change status?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Change it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('admin.student.changeStudentStatus')}}",
+                        data: {"status": status_value, "id": id, "_token": "{{ csrf_token() }}",},
+                        datatype: "json",
+                        success: function (data) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Student status has been changed',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+
+                            setTimeout(function(){
+                                window.location.reload();
+                            }, 1000);
+                        },
+                        error: function () {
+                            alert("Error!");
+                        },
+                    });
+                } else if (result.dismiss === "cancel") {
+                    location.reload();
+                }
+            });
+        });
+
+
     </script>
 @endpush
 

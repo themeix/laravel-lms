@@ -93,7 +93,9 @@
                                 <thead>
                                 <tr>
                                     <th>Image</th>
-                                    <th>Details</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
                                     <th>Country</th>
                                     <th>State</th>
                                     <th>Address</th>
@@ -109,10 +111,14 @@
                                             <img src="{{getImageFile($instructor->user ? @$instructor->user->image : '')}}" width="80">
                                         </td>
                                         <td>
-                                            <strong>Name:</strong> {{$instructor->first_name}} {{$instructor->last_name}}<br>
-                                            <strong>Email:</strong> {{$instructor->user->email}}<br>
-                                            <strong>Mobile:</strong> {{$instructor->phone_number ?? @$instructor->user->phone_number}}<br>
+                                            <strong>{{$instructor->first_name}} {{$instructor->last_name}}</strong>
 
+                                        </td>
+                                        <td>
+                                            {{$instructor->user->email}}
+                                        </td>
+                                        <td>
+                                            {{$instructor->phone_number ?? @$instructor->user->phone_number}}
                                         </td>
 
                                         <td>{{@$instructor->country->country_name}}</td>
@@ -168,8 +174,12 @@
 @endsection
 
 @push('scripts')
-
     <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+
         'use strict'
         $(".status").change(function () {
             var id = $(this).closest('tr').find('#hidden_id').html();
@@ -186,28 +196,32 @@
                 if (result.value) {
                     $.ajax({
                         type: "POST",
-                        url: "{{route('instructor.changeInstructorStatus')}}",
+                        url: "{{route('admin.instructor.changeInstructorStatus')}}",
                         data: {"status": status_value, "id": id, "_token": "{{ csrf_token() }}",},
                         datatype: "json",
                         success: function (data) {
-                            toastr.options.positionClass = 'toast-bottom-right';
-                            toastr.success('', 'Instructor status has been updated');
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Instructor status has been changed',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+
+                            setTimeout(function(){
+                                window.location.reload();
+                            }, 1000);
                         },
                         error: function () {
                             alert("Error!");
                         },
                     });
                 } else if (result.dismiss === "cancel") {
+                    location.reload();
                 }
             });
         });
-    </script>
 
-
-    <script>
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
     </script>
 @endpush
 

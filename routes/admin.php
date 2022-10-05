@@ -110,6 +110,7 @@ Route::get('rulesBenefits/edit', [RulesBenefitsController::class, 'edit'])->name
 
 
 //Course
+Route::get('reviewPendingCourse', [CourseController::class, 'courseReviewPending'])->name('course.reviewPending');
 Route::get('course/index', [CourseController::class, 'index'])->name('course.index');
 Route::get('course/show/{uuid}', [CourseController::class, 'show'])->name('course.show');
 Route::get('course/edit/{uuid}', [CourseController::class, 'edit'])->name('course.edit');
@@ -118,7 +119,8 @@ Route::post('course/delete/{uuid}', [CourseController::class, 'delete'])->name('
 Route::get('enrollStudent', [CourseController::class, 'courseEnroll'])->name('course.enroll');
 Route::get('approvedCourse', [CourseController::class, 'courseApproved'])->name('course.approved');
 Route::get('holdCourse', [CourseController::class, 'courseHold'])->name('course.hold');
-Route::get('reviewPendingCourse', [CourseController::class, 'courseReviewPending'])->name('course.reviewPending');
+Route::post('change-course-status', [CourseController::class, 'courseStatusChange'])->name('admin.course.statusChange')/*->middleware('isDemo')*/;
+
 
 
 
@@ -132,7 +134,7 @@ Route::post('instructor/update/{uuid}', [InstructorController::class, 'update'])
 Route::get('instructor/show/{uuid}', [InstructorController::class, 'show'])->name('instructor.show');
 Route::delete('instructor/delete/{uuid}', [InstructorController::class, 'delete'])->name('instructor.delete')/*->middleware('isDemo')*/;
 
-Route::post('change-instructor-status', [InstructorController::class, 'changeInstructorStatus'])->name('instructor.changeInstructorStatus')/*->middleware('isDemo')*/;
+Route::post('change-instructor-status', [InstructorController::class, 'changeInstructorStatus'])->name('admin.instructor.changeInstructorStatus')/*->middleware('isDemo')*/;
 
 Route::get('blockedInstructor', [InstructorController::class, 'blockedInstructor'])->name('instructor.blocked');
 Route::get('approvedInstructor', [InstructorController::class, 'approvedInstructor'])->name('instructor.approved');

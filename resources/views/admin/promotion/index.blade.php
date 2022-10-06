@@ -89,12 +89,13 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black; text-align: center; justify-content: center; align-items: center;">
                                 <thead>
                                 <tr>
                                     <th>sl</th>
                                     <th>Name</th>
-                                    <th>Duration</th>
+                                    <th style="width: 80px;">Start Date</th>
+                                    <th style="width: 80px;">End Date</th>
                                     <th>Percentage</th>
                                     <th>Total Course</th>
                                     <th>Creator</th>
@@ -108,15 +109,13 @@
                                     <tr class="removable-item">
                                         <td>{{ @$loop->iteration }}</td>
                                         <td>{{$promotion->name}}</td>
-                                        <td>
-                                            <div class="finance-table-inner-item my-2">
-                                                <span class="fw-bold mr-1">Start:</span> {{ date('d M Y, H:i', strtotime(@$promotion->start_date)) }}
-                                            </div>
-
-                                            <div class="finance-table-inner-item my-2">
-                                                <span class="fw-bold mr-1">End:</span> {{ date('d M Y, H:i', strtotime(@$promotion->end_date)) }}
-                                            </div>
+                                        <td style="width: 80px;">
+                                            <span class="status badge badge-glow badge-light-dark ">{{ date('d M Y, H:i', strtotime(@$promotion->start_date)) }}</span>
                                         </td>
+                                        <td style="width: 80px;">
+                                            <span class="status badge badge-glow badge-light-dark ">{{ date('d M Y, H:i', strtotime(@$promotion->end_date)) }}</span>
+                                        </td>
+
                                         <td>{{ $promotion->percentage }}</td>
                                         <td>{{ @$promotion->promotionCourses->count() }}</td>
 
@@ -221,16 +220,18 @@
                                 icon: 'success',
                                 title: 'Status Changed',
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 1000
                             })
-                            /*location.reload();*/
+                            setTimeout(function(){
+                                window.location.reload();
+                            }, 1000);
                         },
                         error: function () {
                             alert("Error!");
                         },
                     });
-                } else if (result.dismiss === "cancel", location.reload()) {
-
+                } else if (result.dismiss === "cancel") {
+                    location.reload();
                 }
             });
         });

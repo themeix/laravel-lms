@@ -114,7 +114,8 @@
                                             {{$blog->title}}
                                         </td>
                                         <td>
-                                            {{$blog->category ? $blog->category->name : '' }}
+                                            <span class="status badge badge-glow badge-light-dark ">{{$blog->category ? $blog->category->name : '' }}</span>
+
                                         </td>
                                         <td>
                                             @if($blog->status == 1)

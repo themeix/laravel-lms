@@ -89,13 +89,17 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black; justify-content: center; align-items: center;">
                                 <thead>
                                 <tr>
-                                    <th>sl</th>
+
                                     <th>Coupon Code Name</th>
-                                    <th>Duration</th>
-                                    <th>Details</th>
+                                    <th style="width: 80px;">Start Date</th>
+                                    <th style="width: 80px;">End Date</th>
+                                    <th>Coupon Type</th>
+                                    <th>Min Amount</th>
+                                    <th>Percentage</th>
+                                    <th>Max Use Limit</th>
                                     <th>Creator</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -105,55 +109,47 @@
 
                                 @foreach($coupons as $coupon)
                                     <tr class="removable-item">
-                                        <td>{{$loop->iteration}}</td>
                                         <td>{{$coupon->coupon_code_name}}</td>
+                                        <td style="width: 80px;">
+                                            <span class="status badge badge-glow badge-light-dark ">{{ date('d-M-y', strtotime($coupon->start_date)) }}</span>
+                                        </td>
+                                        <td style="width: 80px;">
+                                            <span class="status badge badge-glow badge-light-dark ">{{ date('d-M-y', strtotime($coupon->end_date)) }}</span>
+                                        </td>
                                         <td>
-                                            <div class="finance-table-inner-item my-2">
-                                                <span class="fw-bold mr-1">Start Date:</span> {{ $coupon->start_date }}
-                                            </div>
+                                            @if($coupon->coupon_type == 1)
+                                                <span class="status badge badge-glow bg-info">Global</span>
 
-                                            <div class="finance-table-inner-item my-2">
-                                                <span class="fw-bold mr-1">End Date:</span> {{ $coupon->end_date }}
-                                            </div>
+                                            @elseif($coupon->coupon_type == 2)
+                                                <span class="status badge badge-glow bg-info">Instructor</span>
+
+                                            @elseif($coupon->coupon_type == 3)
+                                                <span class="status badge badge-glow bg-info">Course</span>
+
+                                            @endif
                                         </td>
 
                                         <td>
-                                            <div class="finance-table-inner-item my-1">
-                                                <span><strong>Coupon Type:</strong></span>
-                                                @if($coupon->coupon_type == 1)
-                                                    Global
-                                                @elseif($coupon->coupon_type == 2)
-                                                    Instructor
-                                                @elseif($coupon->coupon_type == 3)
-                                                    Course
-                                                @endif
-                                            </div>
+                                            @if(get_currency_placement() == 'after')
+                                                {{ $coupon->minimum_amount }} {{ get_currency_symbol() }}
+                                            @else
+                                                {{ get_currency_symbol() }} {{ $coupon->minimum_amount }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $coupon->percentage }}%
+                                        </td>
 
-                                            <div class="finance-table-inner-item my-1">
-                                                <span><strong>Minimum Amount to Use: </strong></span>
-                                                @if(get_currency_placement() == 'after')
-                                                    {{ $coupon->minimum_amount }} {{ get_currency_symbol() }}
-                                                @else
-                                                    {{ get_currency_symbol() }} {{ $coupon->minimum_amount }}
-                                                @endif
-                                            </div>
-
-                                            <div class="finance-table-inner-item my-1">
-                                                <span><strong>Percentage:</strong> </span>{{ $coupon->percentage }}%
-                                            </div>
-
-                                            <div class="finance-table-inner-item my-1">
-                                                <span><strong>Maximum Use Limit:</strong> </span>{{ $coupon->maximum_use_limit }} times
-                                            </div>
-
+                                        <td>
+                                            {{ $coupon->maximum_use_limit }} times
                                         </td>
                                         <td>{{ @$coupon->creator->name }}</td>
 
                                         <td>
                                             @if($coupon->status == 1)
-                                                <span class="status badge bg-success">Active</span>
+                                                <span class="status badge badge-glow bg-success">Active</span>
                                             @else
-                                                <span class="status badge bg-danger">Inactive</span>
+                                                <span class="status badge badge-glow bg-danger">Inactive</span>
                                             @endif
                                         </td>
                                         <td>

@@ -10,7 +10,7 @@ class StudentDashboardController extends Controller
 {
     public function index(){
 
-        Alert::toast('Congratulation! Login Successful.', 'success');
+        Alert::toast('Welcome to your Dashboard.', 'success');
 
         return view('student.studentDashboard');
     }

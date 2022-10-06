@@ -118,7 +118,9 @@
                                             {{$user->phone_number}}
                                         </td>
                                         <td>
-                                            @if(count($user->getRoleNames()) > 0) {{$user->getRoleNames()[0] }}@endif
+                                            <span class="status badge badge-glow bg-info "> @if(count($user->getRoleNames()) > 0) {{$user->getRoleNames()[0] }}@endif</span>
+
+
                                         </td>
 
                                         <td>

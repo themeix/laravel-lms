@@ -188,6 +188,8 @@ class PromotionController extends Controller
             $promotionCourse->promotion_id = $request->promotion_id;
             $promotionCourse->save();
 
+            Alert::toast('Course Added in promotion list.', 'success');
+
             return response()->json([
                 'status' => '200',
                 'msg' => 'Course Added in promotion list.',
@@ -202,6 +204,8 @@ class PromotionController extends Controller
         $promotionCourse = PromotionCourse::where('course_id', $request->course_id)->first();
         if ($promotionCourse){
             PromotionCourse::where('course_id', $request->course_id)->delete();
+
+            Alert::toast('Course removed from promotion list.', 'warning');
 
             return response()->json([
                 'status' => '200',

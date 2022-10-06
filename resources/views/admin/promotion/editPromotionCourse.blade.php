@@ -85,6 +85,17 @@
                 </div>
             @endif
 
+            <section id="default-breadcrumb">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Promotion - {{$promotion->name}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section id="column-search-datatable">
                 <div class="card">
@@ -108,17 +119,17 @@
                                             </a></td>
                                         <td>{{$course->title}}</td>
                                         <td>
-                                            <div class="action__buttons appendAddRemove{{ $course->id }}">
+                                            <div class="action__buttons appendAddRemove{{ $course->id }}"
+                                                 id="reloadElement">
                                                 @if(in_array($course->id, @$promotionCourseIds))
                                                     <button class="btn-action ms-2 btn btn-danger removePromotion btn-remove"
-                                                            data-course_id="{{$course->id}}">
+                                                        data-course_id="{{$course->id}}">
                                                         <span>Remove</span>
                                                     </button>
                                                 @elseif(in_array($course->id, @$alreadyAddedPromotionCourseIds))
-                                                    <button class="btn-action ms-2 btn btn-outline-success" disabled
-                                                            data-course_id="{{$course->uuid}}">
-                                                        Already Added Another Promotion
-                                                    </button>
+
+                                                    <span class="status badge badge-glow bg-light-success ms-2" data-course_id="{{$course->uuid}}">Already Added Another Promotion</span>
+
                                                 @else
                                                     <button class="btn-action ms-2 btn btn-primary addPromotion"
                                                             data-course_id="{{$course->id}}">
@@ -186,31 +197,20 @@
                     data: {"course_id": course_id, "promotion_id": promotion_id},
                     datatype: "json",
                     success: function (response) {
-                        /*toastr.options.positionClass = 'toast-bottom-right';*/
-                        if (response.status === 409) {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'error',
-                                title: response.msg,
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            /*toastr.error(response.msg);*/
-                        }
-                        console.log(response.course_id)
-                        if (response.status === 200) {
-                            $('.btn-remove').hide();
+                        /*Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Course has been added.',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
 
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: response.msg,
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);*/
 
-                            /*toastr.success(response.msg);*/
-                        }
+                        window.location.reload();
+
                     },
                     error: function () {
                         alert("Error!");
@@ -230,20 +230,20 @@
                     data: {"course_id": course_id, "promotion_id": promotion_id},
                     datatype: "json",
                     success: function (response) {
-                        /*toastr.options.positionClass = 'toast-bottom-right';*/
 
-                        if (response.status === 404) {
-                            /*toastr.error(response.msg);*/
-                        }
+                        window.location.reload();
 
-                        if (response.status === 200) {
-                            $('.appendAddRemove' + response.course_id).html(`
-                    <button class="btn-action ms-2 btn btn-primary addPromotion" data-course_id="${response.course_id}">
-                        <span ><span>Add</span></i></span>
-                    </button>
-                    `)
-                            /*toastr.info(response.msg);*/
-                        }
+                        /*Swal.fire({
+                            position: 'top-end',
+                            icon: 'info',
+                            title: 'Course has been removed.',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);*/
                     },
                     error: function () {
                         alert("Error!");

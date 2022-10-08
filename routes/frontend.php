@@ -11,10 +11,11 @@ use App\Http\Controllers\Frontend\FrontendIndexController;
 Route::get('/', [FrontendIndexController::class, 'index'])->name('main.index');
 Route::get('/index2', [FrontendIndexController::class, 'index2'])->name('main.index2');
 
-Route::get('/category1', [FrontendIndexController::class, 'category1'])->name('main.category1');
-Route::get('/category2', [FrontendIndexController::class, 'category2'])->name('main.category2');
-Route::get('/category3', [FrontendIndexController::class, 'category3'])->name('main.category3');
-Route::get('/category4', [FrontendIndexController::class, 'category4'])->name('main.category4');
+Route::get('category/allCourses1', [FrontendIndexController::class, 'allCourses1'])->name('main.allCourses1');
+Route::get('category/allCourses2', [FrontendIndexController::class, 'allCourses2'])->name('main.allCourses2');
+
+Route::get('/courseCategory1', [FrontendIndexController::class, 'courseCategory1'])->name('main.courseCategory1');
+Route::get('/courseCategory2', [FrontendIndexController::class, 'courseCategory2'])->name('main.courseCategory2');
 
 Route::get('/about1', [FrontendIndexController::class, 'about1'])->name('main.about1');
 Route::get('/about2', [FrontendIndexController::class, 'about2'])->name('main.about2');

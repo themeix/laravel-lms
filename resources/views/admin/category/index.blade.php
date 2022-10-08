@@ -78,10 +78,10 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="col-12">
-                                <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                                <table id="example" class="table table-bordered dataTables_info" style="color: black;text-align: center; justify-content: center; align-items: center; ">
                                     <thead>
                                     <tr>
-
+                                        <th>Image</th>
                                         <th>Name</th>
                                         <th>Is Feature</th>
                                         <th>Total Course</th>
@@ -92,6 +92,9 @@
 
                                     @foreach($categories as $category)
                                         <tr class="removable-item">
+                                            <td>
+                                                <img src="{{getImageFile($category->image_path)}}" width="100px" alt="category">
+                                            </td>
                                             <td>
                                                 {{$category->name}}
                                             </td>

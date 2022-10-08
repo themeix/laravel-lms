@@ -86,7 +86,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black; justify-content: center; align-items: center;">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black; justify-content: center; align-items: center;text-align: center;">
                                 <thead>
                                 <tr>
                                     <th>Image</th>
@@ -114,17 +114,22 @@
                                             <strong>{{$course->instructor ? $course->instructor->name : '' }}</strong>
                                         </td>
                                         <td>
-                                            {{$course->category ? $course->category->name : '' }}
+                                            <span class="status badge badge-glow badge-light-dark ">{{$course->category ? $course->category->name : '' }}</span>
+
                                         </td>
                                         <td>
-                                            {{$course->subcategory ? $course->subcategory->name : '' }}
+                                            <span class="status badge badge-glow badge-light-dark ">{{$course->subcategory ? $course->subcategory->name : '' }}</span>
+
                                         </td>
                                         <td>
-                                            @if(get_currency_placement() == 'after')
-                                                {{$course->price}} {{ get_currency_symbol() }}
-                                            @else
-                                                {{ get_currency_symbol() }} {{$course->price}}
-                                            @endif
+                                            <span class="status badge badge-glow badge-light-dark ">
+                                                @if(get_currency_placement() == 'after')
+                                                    {{$course->price}} {{ get_currency_symbol() }}
+                                                @else
+                                                    {{ get_currency_symbol() }} {{$course->price}}
+                                                @endif
+                                            </span>
+
                                         </td>
                                         <td>
                                             <span id="hidden_id" style="display: none">{{$course->id}}</span>

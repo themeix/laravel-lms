@@ -3,33 +3,38 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FrontendIndexController extends Controller
 {
     public function index(){
-        return view('frontend.index');
+        $data['categories'] = Category::take(8)->get();
+        return view('frontend.index', $data);
     }
 
     public function index2(){
-        return view('frontend.index2');
+        $data['categories'] = Category::take(8)->get();
+        return view('frontend.index2',$data);
     }
 
-    public function category1(){
-        return view('frontend.course.category.category1');
+    public function allCourses1(){
+        return view('frontend.course.category.allCourses1');
     }
 
-    public function category2(){
-        return view('frontend.course.category.category2');
+    public function allCourses2(){
+        return view('frontend.course.category.allCourses2');
     }
 
-    public function category3(){
-        return view('frontend.course.category.category3');
+    public function courseCategory1(){
+        $data['categories'] = Category::all();
+        return view('frontend.course.category.courseCategories1', $data);
     }
 
-    public function category4(){
-        return view('frontend.course.category.category4');
+    public function courseCategory2(){
+        $data['categories'] = Category::all();
+        return view('frontend.course.category.courseCategories2',$data);
     }
 
     public function courseDetails(){

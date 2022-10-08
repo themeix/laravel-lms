@@ -291,16 +291,16 @@
                                     class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.category1')}}"> Catagory 1 </a>
+                                           href="{{route('main.allCourses1')}}"> All Courses 1 </a>
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.category2')}}"> Catagory 2 </a></li>
+                                           href="{{route('main.allCourses2')}}"> All Courses 2 </a></li>
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.category3')}}"> Catagories 1 </a></li>
+                                           href="{{route('main.courseCategory1')}}">Course Catagories 1 </a></li>
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.category4')}}"> Catagories 2 </a></li>
+                                           href="{{route('main.courseCategory2')}}">Course Catagories 2 </a></li>
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                            href="{{route('main.courseDetails')}}"> Course </a></li>
@@ -411,18 +411,18 @@
                                         class="hidden lg:block bg-white  rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2  mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.category1')}}"> Catagory 1</a>
+                                               href="{{route('main.allCourses1')}}"> All Courses 1</a>
                                         </li>
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2  mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.category2')}}"> Category 2</a>
+                                               href="{{route('main.allCourses2')}}"> All Courses 2</a>
                                         </li>
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.category3')}}"> Catagories 1 </a></li>
+                                               href="{{route('main.courseCategory1')}}">Course Catagories 1 </a></li>
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.category4')}}"> Catagories 2 </a></li>
+                                               href="{{route('main.courseCategory2')}}">Course Catagories 2 </a></li>
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.courseDetails')}}"> Course </a></li>

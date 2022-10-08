@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Course;
+use App\Models\SubCategory;
 use App\Tools\Repositories\Crud;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Traits\ImageSaveTrait;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -24,9 +27,9 @@ class CategoryController extends Controller
     public function index()
     {
 
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
@@ -44,16 +47,16 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'file|dimensions:min_width=60,min_height=60,max_width=60,max_height=60'
+            'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $data = [
@@ -81,9 +84,9 @@ class CategoryController extends Controller
     public function edit($uuid)
     {
 
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
 
         // end permission checking
@@ -97,13 +100,23 @@ class CategoryController extends Controller
 
     public function update(Request $request, $uuid)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
+
+
+
         $category = $this->model->getRecordByUuid($uuid);
+
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+
 
         if ($request->image)
         {
@@ -115,17 +128,13 @@ class CategoryController extends Controller
             $image = $category->image;
         }
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'mimes:png|file|dimensions:min_width=60,min_height=60,max_width=60,max_height=60'
-        ]);
-
         $data = [
             'name' => $request->name,
             'is_feature' => $request->is_feature ? 'yes' : 'no',
             'slug' => Str::slug($request->name),
             'image' => $image
         ];
+
 
         $this->model->updateByUuid($data, $uuid); // update category
 
@@ -137,22 +146,35 @@ class CategoryController extends Controller
 
     public function delete($uuid)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
         $category = $this->model->getRecordByUuid($uuid);
 
-        Alert::warning('Are you want to delete it ?', 'Warning Message');
+        $data['courses'] = Course::where('category_id', $category->id)->get();
+        $data['subCategorires'] = SubCategory::where('category_id', $category->id)->get();
 
-        $this->deleteFile($category->image); // delete file from server
-        $this->model->deleteByUuid($uuid); // delete record
+        $courseSize =  sizeof($data['courses']);
+        $subCategorySize = sizeof($data['subCategorires']);
 
-        Alert::toast('Category Deleted Successfully.', 'warning');
+        if($courseSize > 0 || $subCategorySize > 0){
 
-        return redirect()->route('category.index')->with('delete-message', 'Category Deleted successfully.');
+            Alert::toast('Sorry ! You can not Delete this category. Because there are dependency.', 'warning');
+            return redirect()->route('category.index')->with('delete-message', 'Sorry ! You can not Delete this category. Because there are dependency.');
+        }
+
+        else{
+
+            $this->deleteFile($category->image); // delete file from server
+            $this->model->deleteByUuid($uuid); // delete record
+
+            Alert::toast('Category Deleted Successfully.', 'warning');
+            return redirect()->route('category.index')->with('delete-message', 'Category Deleted successfully.');
+        }
+
     }
 
 }

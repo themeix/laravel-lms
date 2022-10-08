@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -11,20 +12,34 @@ class FrontendIndexController extends Controller
 {
     public function index(){
         $data['categories'] = Category::take(8)->get();
+        $data['courses'] = Course::where('status', 1)->take(6)->get();
         return view('frontend.index', $data);
     }
 
     public function index2(){
         $data['categories'] = Category::take(8)->get();
+        $data['courses'] = Course::where('status', 1)->take(6)->get();
         return view('frontend.index2',$data);
     }
 
     public function allCourses1(){
-        return view('frontend.course.category.allCourses1');
+        $data['courses'] = Course::all();
+        return view('frontend.course.allCourses1',$data);
     }
 
     public function allCourses2(){
-        return view('frontend.course.category.allCourses2');
+        $data['courses'] = Course::all();
+        return view('frontend.course.allCourses2',$data);
+    }
+
+
+    public function categoryWiseCourses1(){
+
+        return view('frontend.course.category.categoryWiseCourse1');
+    }
+
+    public function categoryWiseCourses2(){
+        return view('frontend.course.category.categoryWiseCourse2');
     }
 
     public function courseCategory1(){

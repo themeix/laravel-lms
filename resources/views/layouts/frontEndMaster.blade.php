@@ -46,7 +46,7 @@
 
 
                         @if(Auth::user())
-                            <div class="author-profile">
+                            <div class="author-profile userMenuButton">
                                 <img class="author-profile-img cursor-pointer  w-12 h-12 rounded-full object-cover"
                                      src="{{asset('custom/image/user-no-image.png')}}" alt="images">
                                 <div
@@ -79,8 +79,10 @@
                                         </div>
                                         <div class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
 
-                                        <a href="{{route('home')}}" class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200">
-                                            <div class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                        <a href="{{route('home')}}"
+                                           class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200">
+                                            <div
+                                                class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -288,13 +290,26 @@
                                    href="#"> Courses <span
                                         class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span></a>
                                 <ul
-                                    class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
+                                    class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-52   submenu">
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.allCourses1')}}"> All Courses 1 </a>
+                                           href="#"> Category Wise Courses 1 </a>
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.allCourses2')}}"> All Courses 2 </a></li>
+                                           href="#"> Category Wise Courses 2 </a></li>
+
+
+                                    <li>
+                                        <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
+                                           href="{{route('main.allCourses1')}}"> All Courses 1</a>
+                                    <li>
+
+                                    <li>
+                                        <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
+                                           href="{{route('main.allCourses2')}}"> All Courses 2</a>
+                                    <li>
+
+
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                            href="{{route('main.courseCategory1')}}">Course Catagories 1 </a></li>
@@ -385,7 +400,7 @@
                                             class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span>
                                     </a>
                                     <ul
-                                        class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
+                                        class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow   submenu">
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.index')}}"> Home 1</a></li>
@@ -407,16 +422,28 @@
                                         <span
                                             class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span>
                                     </a>
-                                    <ul
-                                        class="hidden lg:block bg-white  rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
+                                    <ul class="hidden lg:block bg-white  rounded-md lg:absolute top-full lg:shadow   submenu">
+
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2  mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
+                                               href="{{route('main.categoryWiseCourses1')}}"> Category Wise Courses 1</a>
+                                        </li>
+                                        <li>
+                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2  mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
+                                               href="{{route('main.categoryWiseCourses2')}}"> Category Wise Courses 2</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.allCourses1')}}"> All Courses 1</a>
-                                        </li>
                                         <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2  mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
+
+                                        <li>
+                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.allCourses2')}}"> All Courses 2</a>
-                                        </li>
+                                        <li>
+
+
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.courseCategory1')}}">Course Catagories 1 </a></li>
@@ -442,7 +469,7 @@
                                             class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span>
                                     </a>
                                     <ul
-                                        class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
+                                        class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow  submenu">
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2  rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.blog.index')}}"> Blog </a></li>
@@ -465,7 +492,7 @@
                                             class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span>
                                     </a>
                                     <ul
-                                        class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
+                                        class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow   submenu">
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.about1')}}"> About 1 </a></li>
@@ -538,7 +565,7 @@
 
 
                             @if (Auth::user())
-                                <div class="author-profile  relative">
+                                <div class="author-profile  relative userMenuButton">
                                     <img class="author-profile-img cursor-pointer  w-12 h-12 rounded-full object-cover"
                                          src="{{asset('custom/image/user-no-image.png')}}" alt="images">
                                     <div
@@ -571,7 +598,8 @@
                                             </div>
                                             <div
                                                 class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
-                                            <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50" href="{{route('home')}}">
+                                            <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                               href="{{route('home')}}">
                                                 <div
                                                     class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -996,7 +1024,8 @@
                     </div>
                 </div>
                 <div class="flex-col md:text-right mt-6 md:mt-0" data-aos="fade-up" data-aos-delay="100">
-                    <p class="">© 2022 All rights reserved by <a class="text-blue-600" href="https://themeix.com/" target="_blank">themeix</a></p>
+                    <p class="">© 2022 All rights reserved by <a class="text-blue-600" href="https://themeix.com/"
+                                                                 target="_blank">themeix</a></p>
                 </div>
             </div>
         </div>
@@ -1005,6 +1034,7 @@
 </div>
 <!-- gulp:js -->
 <script src="{{asset('frontend/assets/js/build.min.js')}}"></script> <!-- endgulp -->
+
 
 @stack('scripts')
 </body>

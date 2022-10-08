@@ -11,8 +11,13 @@ use App\Http\Controllers\Frontend\FrontendIndexController;
 Route::get('/', [FrontendIndexController::class, 'index'])->name('main.index');
 Route::get('/index2', [FrontendIndexController::class, 'index2'])->name('main.index2');
 
-Route::get('category/allCourses1', [FrontendIndexController::class, 'allCourses1'])->name('main.allCourses1');
-Route::get('category/allCourses2', [FrontendIndexController::class, 'allCourses2'])->name('main.allCourses2');
+Route::get('allCourses1', [FrontendIndexController::class, 'allCourses1'])->name('main.allCourses1');
+Route::get('allCourses2', [FrontendIndexController::class, 'allCourses2'])->name('main.allCourses2');
+
+Route::get('categoryWiseCourses1', [FrontendIndexController::class, 'categoryWiseCourses1'])->name('main.categoryWiseCourses1');
+Route::get('category/categoryWiseCourses2', [FrontendIndexController::class, 'categoryWiseCourses2'])->name('main.categoryWiseCourses2');
+
+
 
 Route::get('/courseCategory1', [FrontendIndexController::class, 'courseCategory1'])->name('main.courseCategory1');
 Route::get('/courseCategory2', [FrontendIndexController::class, 'courseCategory2'])->name('main.courseCategory2');

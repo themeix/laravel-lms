@@ -252,7 +252,7 @@
                 <div class="shpae absolute -bottom-40 left-0 hidden lg:block">
                     <img src="{{asset('frontend/assets/images/topics-shape-2.png')}}" alt="images">
                 </div>
-            </div>
+            </div> 
             <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2  gap-6">
                 @foreach($categories as $category)
 

@@ -52,6 +52,19 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
 
+    <style>
+        .dataTables_info{
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            color: black;
+        }
+
+        .action__buttons{
+            justify-content: center;
+        }
+    </style>
+
     <!-- END: Custom CSS-->
 
     @stack('styles')
@@ -63,6 +76,8 @@
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
       data-menu="vertical-menu-modern" data-col="">
+
+
 
 @include('sweetalert::alert')
 
@@ -1020,7 +1035,7 @@
 <!-- End: Customizer-->
 
 <!-- Buynow Button-->
-<div class="buy-now"><a href="https://1.envato.market/vuexy_admin" target="_blank" class="btn btn-danger">Buy Now</a>
+<div class="buy-now"><a href="https://themeix.com" target="_blank" class="btn btn-danger">Buy Now</a>
 
 </div>
 <div class="sidenav-overlay"></div>
@@ -1073,6 +1088,7 @@
 <script src="{{asset('app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js')}}"></script>
 <script src="{{asset('app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('app-assets/vendors/js/tables/datatable/responsive.bootstrap5.js')}}"></script>
+
 
 
 <script>

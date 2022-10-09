@@ -31,7 +31,10 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->mediumText('about_me')->nullable();
             $table->string('gender', 50)->nullable();
-            $table->mediumText('social_link')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('pinterest')->nullable();
             $table->string('slug')->nullable();
             $table->tinyInteger('is_private')->default(0)->comment('0=no, 1=yes');
             $table->tinyInteger('remove_from_web_search')->default(0)->comment('0=no, 1=yes');

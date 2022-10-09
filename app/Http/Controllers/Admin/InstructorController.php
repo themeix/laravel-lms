@@ -11,6 +11,7 @@ use App\Models\Course_lecture_views;
 use App\Models\Course_lesson;
 use App\Models\Instructor;
 use App\Models\Order_item;
+use App\Models\OrderItem;
 use App\Models\State;
 use App\Models\Student;
 use App\Models\User;
@@ -104,7 +105,10 @@ class InstructorController extends Controller
             'address' => 'required',
             'gender' => 'required',
             'about_me' => 'required',
-            'social_link' => '',
+            'facebook'=>'nullable',
+            'twitter'=>'nullable',
+            'linkedin'=>'nullable',
+            'pinterest'=>'nullable',
             'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
 
@@ -132,7 +136,11 @@ class InstructorController extends Controller
             'gender' => $request->gender,
             'about_me' => $request->about_me,
             'postal_code' => $request->postal_code,
-            'social_link' => json_encode($request->social_link),
+            'facebook' => $request->facebook,
+            'twitter' => $request->twitter,
+            'linkedin' => $request->linkedin,
+            'instagram' => $request->instagram,
+            'pinterest' => $request->pinterest,
 
         ];
 
@@ -148,15 +156,15 @@ class InstructorController extends Controller
     public function show($uuid)
     {
         $data['instructor'] = $this->instructorModel->getRecordByUuid($uuid);
-        $userCourseIds = Course::whereUserId($data['instructor']->user->id)->pluck('id')->toArray();
-        if (count($userCourseIds) > 0){
-            $orderItems = Order_item::whereIn('course_id', $userCourseIds)
+        $date['userCourseIds'] = Course::whereUserId($data['instructor']->user->id)->pluck('id')->toArray();
+        /*if (count($userCourseIds) > 0){
+            $orderItems = OrderItem::whereIn('course_id', $userCourseIds)
                 ->whereYear("created_at", now()->year)->whereMonth("created_at", now()->month)
                 ->whereHas('order', function ($q) {
                     $q->where('payment_status', 'paid');
                 });
             $data['total_earning'] = $orderItems->sum('owner_balance');
-        }
+        }*/
 
         return view('admin.instructor.show', $data);
     }
@@ -194,6 +202,10 @@ class InstructorController extends Controller
             'address' => 'required',
             'gender' => 'required',
             'about_me' => 'required',
+            'facebook'=>'nullable',
+            'twitter'=>'nullable',
+            'linkedin'=>'nullable',
+            'pinterest'=>'nullable',
             'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
 
@@ -238,7 +250,11 @@ class InstructorController extends Controller
             'gender' => $request->gender,
             'about_me' => $request->about_me,
             'postal_code' => $request->postal_code,
-            'social_link' => json_encode($request->social_link),
+            'facebook' => $request->facebook,
+            'twitter' => $request->twitter,
+            'linkedin' => $request->linkedin,
+            'instagram' => $request->instagram,
+            'pinterest' => $request->pinterest,
         ];
 
         $this->instructorModel->updateByUuid($instructor_data, $uuid);

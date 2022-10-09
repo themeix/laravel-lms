@@ -21,7 +21,7 @@
             <section class="app-user-view-account">
                 <div class="row">
                     <!-- User Sidebar -->
-                    <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
+                    <div class="col-xl-4 col-lg-5 col-md-5 order-md-1 order-md-0">
                         <!-- User Card -->
                         <div class="card">
                             <div class="card-body">

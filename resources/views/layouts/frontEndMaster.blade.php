@@ -17,6 +17,31 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/app.min.css')}}">
     <!-- endgulp -->
 
+    <style>
+        .buyButton{
+            bottom: 47px;
+            right: 79px;
+            box-shadow: 0 1px 20px 1px #EA5455!important;
+            background-color: #EA5455!important;
+            color: #FFF!important;
+            border-color: #EA5455!important;
+            box-sizing: border-box;
+            font-size: 15px ;
+            border-radius: 0.358rem;
+            font-weight: 500;
+            display: flex;
+            width: 109.297px;
+            height: 38px;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.14px;
+
+        }
+        .buyButton:hover{
+            box-shadow: unset!important;
+        }
+    </style>
+
     @stack('styles')
 </head>
 
@@ -382,6 +407,9 @@
                         </span>
                         </a>
                     </div>
+
+
+
                     <div class="menu-box flex-grow lg:flex lg:items-center lg:w-auto">
                         <div class="header-left-menu flex-grow relative">
                             <ul
@@ -565,7 +593,7 @@
 
 
                             @if (Auth::user())
-                                <div class="author-profile  relative userMenuButton">
+                                <div class="author-profile  relative">
                                     <img class="author-profile-img cursor-pointer  w-12 h-12 rounded-full object-cover"
                                          src="{{asset('custom/image/user-no-image.png')}}" alt="images">
                                     <div
@@ -734,6 +762,7 @@
                                 </div>
                             @endif
 
+                            {{--Desktop Cart Starts Here--}}
 
                             <div class="cart-box">
                                 <div class="relative">
@@ -769,7 +798,12 @@
                                                 <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
                                                     <h3 class="text-xl font-semibold text-black-200">Shopping cart</h3>
                                                     <div class="divide-y divide-slate-100 dark:divide-slate-700">
-                                                        <div class="flex py-5 last:pb-0">
+
+
+                                                        {{--Cart Product Starts Here--}}
+
+
+                                                        <div class="flex py-5 last:pb-0 dropdown-cart-products" id="dropdown-cart-products">
                                                             <div
                                                                 class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
                                                                 <img class="h-full object-cover"
@@ -809,86 +843,13 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="flex py-5 last:pb-0">
-                                                            <div
-                                                                class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                                                                <img class="h-full object-cover"
-                                                                     src="{{asset('frontend/assets/images/courses/courses-2.webp')}}"
-                                                                     alt="#">
-                                                            </div>
-                                                            <div class="ml-4 flex flex-1 flex-col">
-                                                                <div>
-                                                                    <div class="flex justify-between ">
-                                                                        <div>
-                                                                            <h3
-                                                                                class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
-                                                                                <a href="courses-lesson-1.html"> How to
-                                                                                    Use it Right </a>
-                                                                            </h3>
-                                                                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                                                                                <span>Web Design</span>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="mt-0.5">
-                                                                            <div
-                                                                                class="flex items-center border border-blue-600 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
-                                                                                <span
-                                                                                    class="text-blue-600">$174.00</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="flex flex-1 items-end justify-between text-sm">
-                                                                    <p>Qty 1</p>
-                                                                    <div class="flex">
-                                                                        <button type="button"
-                                                                                class="font-medium text-blue-600">Remove
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex py-5 last:pb-0">
-                                                            <div
-                                                                class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                                                                <img class="h-full object-cover"
-                                                                     src="{{asset('frontend/assets/images/courses/courses-3.webp')}}"
-                                                                     alt="#">
-                                                            </div>
-                                                            <div class="ml-4 flex flex-1 flex-col">
-                                                                <div>
-                                                                    <div class="flex justify-between ">
-                                                                        <div>
-                                                                            <h3
-                                                                                class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
-                                                                                <a href="courses-lesson-1.html"> UX
-                                                                                    Career in 2022 </a>
-                                                                            </h3>
-                                                                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                                                                                <span>UX Design</span>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="mt-0.5">
-                                                                            <div
-                                                                                class="flex items-center border border-blue-600 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
-                                                                                <span
-                                                                                    class="text-blue-600">$74.00</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="flex flex-1 items-end justify-between text-sm">
-                                                                    <p>Qty 1</p>
-                                                                    <div class="flex">
-                                                                        <button type="button"
-                                                                                class="font-medium text-blue-600">Remove
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
+
+
+                                                        {{--Cart Product Ends Here--}}
+
+
+
                                                     </div>
                                                 </div>
                                                 <div class="p-5  bg-white">
@@ -899,9 +860,9 @@
                                                     </p>
                                                     <div class="flex space-x-2 mt-5"><a
                                                             class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    bg-blue-600 hover:bg-black-200 transition duration-500 text-white  flex-1"
-                                                            rel="noopener noreferrer" href="cart.html">View cart</a>
+                                                            rel="noopener noreferrer" href="{{route('main.cart')}}">View cart</a>
                                                         <a class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    hover:bg-blue-600 bg-black-200 transition duration-500 text-white  flex-1"
-                                                           rel="noopener noreferrer" href="checkout.html">Check out</a>
+                                                           rel="noopener noreferrer" href="{{route('main.checkout')}}">Check out</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -909,6 +870,9 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {{--Desktop Cart Ends Here--}}
+
                         </div>
                     </div>
                 </nav>
@@ -922,6 +886,9 @@
     @yield('content')
 
     {{--Main Content End--}}
+
+
+        <a class="fixed text-white buyButton" href="https://themeix.com" target="_blank">Buy Now</a>
 
 
 

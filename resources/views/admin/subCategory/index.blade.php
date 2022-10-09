@@ -85,7 +85,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black; text-align: center; justify-content: center; align-items: center;">
                                 <thead>
                                 <tr>
 
@@ -101,7 +101,7 @@
                                     <tr class="removable-item">
 
                                         <td>
-                                            {{$subcategory->name}}
+                                            <strong>{{$subcategory->name}}</strong>
                                         </td>
                                         <td>
                                             {{$subcategory->category ? $subcategory->category->name : '' }}

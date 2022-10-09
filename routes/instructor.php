@@ -51,7 +51,7 @@ Route::post('course/exam/store/{course_uuid}', [ExamController::class, 'store'])
 Route::get('course/exam/edit/{uuid}', [ExamController::class, 'edit'])->name('instructor.course.exam.edit');
 Route::post('course/exam/update/{uuid}', [ExamController::class, 'update'])->name('instructor.course.exam.update')/*->middleware('isDemo')*/;
 Route::get('course/exam/view/{uuid}', [ExamController::class, 'view'])->name('instructor.course.exam.view');
-Route::get('course/exam/delete/{uuid}', [ExamController::class, 'delete'])->name('instructor.course.exam.delete')/*->middleware('isDemo')*/;
+Route::post('course/exam/delete/{uuid}', [ExamController::class, 'delete'])->name('instructor.course.exam.delete')/*->middleware('isDemo')*/;
 
 Route::get('course/exam/question/{uuid}', [ExamController::class, 'question'])->name('instructor.exam.question');
 Route::post('course/exam/save-mcq-question/{uuid}', [ExamController::class, 'saveMcqQuestion'])->name('instructor.exam.save-mcq-question')/*->middleware('isDemo')*/;

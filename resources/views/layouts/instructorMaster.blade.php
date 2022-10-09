@@ -42,6 +42,19 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+
+    <style>
+        .dataTables_info{
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            color: black;
+        }
+
+        .action__buttons{
+            justify-content: center;
+        }
+    </style>
     <!-- END: Custom CSS-->
 
     @stack('styles')
@@ -626,7 +639,7 @@
 <!-- End: Customizer-->
 
 <!-- Buynow Button-->
-<div class="buy-now"><a href="https://1.envato.market/vuexy_admin" target="_blank" class="btn btn-danger">Buy Now</a>
+<div class="buy-now"><a href="https://themeix.com" target="_blank" class="btn btn-danger">Buy Now</a>
 
 </div>
 <div class="sidenav-overlay"></div>

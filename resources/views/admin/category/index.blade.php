@@ -93,16 +93,16 @@
                                     @foreach($categories as $category)
                                         <tr class="removable-item">
                                             <td>
-                                                <img src="{{getImageFile($category->image_path)}}" width="100px" alt="category">
+                                                <img src="{{getImageFile($category->image_path)}}" width="40px" alt="category">
                                             </td>
                                             <td>
-                                                {{$category->name}}
+                                                <strong>{{$category->name}}</strong>
                                             </td>
                                             <td>
                                                 @if($category->is_feature == 'yes')
-                                                    <span class="status active">Yes</span>
+                                                    <span class="status badge badge-glow bg-info ">Yes</span>
                                                 @else
-                                                    <span class="status blocked">No</span>
+                                                    <span class="status badge badge-glow bg-warning">No</span>
                                                 @endif
                                             </td>
                                             <td>

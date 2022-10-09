@@ -280,7 +280,7 @@
 
                                             <input
                                                 type="text"
-                                                name="social_link[facebook]" value="" placeholder="https://facebook.com"
+                                                name="facebook" value="{{ old('facebook') }}" placeholder="https://facebook.com"
                                                 class="form-control"
                                                 aria-label="Name"
                                                 aria-describedby="basic-addon-name"
@@ -297,7 +297,7 @@
 
                                             <input
                                                 type="text"
-                                                name="social_link[twitter]" value="" class="form-control"
+                                                name="twitter" value="{{ old('twitter') }}" class="form-control"
                                                 placeholder="https://twitter.com"
                                                 aria-label="Name"
                                                 aria-describedby="basic-addon-name"
@@ -317,7 +317,7 @@
 
                                             <input
                                                 type="text"
-                                                name="social_link[linkedin]" value="" class="form-control"
+                                                name="linkedin" value="{{ old('linkedin') }}" class="form-control"
                                                 placeholder="https://linkedin.com"
                                                 aria-label="Name"
                                                 aria-describedby="basic-addon-name"
@@ -336,7 +336,7 @@
 
                                             <input
                                                 type="text"
-                                                name="social_link[pinterest]" value="" class="form-control"
+                                                name="pinterest" value="{{ old('pinterest') }}" class="form-control"
                                                 placeholder="https://pinterest.com"
                                                 aria-label="Name"
                                                 aria-describedby="basic-addon-name"
@@ -352,7 +352,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="d-block form-label" for="validationBioBootstrap">Bio</label>
+                                            <label class="d-block form-label" for="validationBioBootstrap">About Me</label>
                                             <textarea
                                                 class="form-control"
                                                 name="about_me"

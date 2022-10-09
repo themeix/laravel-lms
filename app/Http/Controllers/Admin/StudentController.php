@@ -47,7 +47,7 @@ class StudentController extends Controller
         return view('admin.student.approved', compact('students'));
     }
 
-    public function blockedInstructor()
+    public function blockedStudent()
     {
         /*if (!Auth::user()->can('approved_instructor')) {
             abort('403');

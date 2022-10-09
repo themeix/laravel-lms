@@ -89,7 +89,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info" style="color: black; align-items: center; text-align: center; justify-content: center;">
                                 <thead>
                                 <tr>
                                     <th>Name</th>
@@ -101,7 +101,7 @@
                                 @foreach($tags as $tag)
                                     <tr class="removable-item">
                                         <td>
-                                            {{$tag->name}}
+                                            <strong>{{$tag->name}}</strong>
                                         </td>
 
                                         <td>

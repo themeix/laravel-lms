@@ -98,7 +98,7 @@
 
                         <div class="check-box-area border p-5  rounded-md ">
                             <nav class="tabs  ">
-                                <button data-target="panel-1" class="tab active ml-7 chek-box  relative mb-3 text-black-200 flex items-center gap-2 ">
+                                <button data-target="panel-1" class="tab ml-7 chek-box  relative mb-3 text-black-200 flex items-center gap-2 ">
 
                                     Pay with Paypal
                                 </button><button data-target="panel-2" class="tab ml-7 chek-box relative  mb-3 text-black-200  flex items-center gap-2">
@@ -112,7 +112,7 @@
                         </div>
 
                         <div id="panels">
-                            <div class="panel-1 tab-content active py-5">
+                            <div class="panel-1 tab-content py-5">
                                 <div class="debit-card-box border p-5  rounded mt-5">
                                     <div class="grid md:grid-cols-2 gap-4 mt-5">
                                         <div class="flex-col">

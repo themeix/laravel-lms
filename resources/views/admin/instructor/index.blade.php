@@ -186,7 +186,6 @@
             var status_value = $(this).closest('tr').find('.status option:selected').val();
             Swal.fire({
                 title: "Are you sure to change status?",
-                text: "You won't be able to revert this!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: "Yes, Change it!",

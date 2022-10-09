@@ -156,7 +156,7 @@ Route::delete('student/delete/{uuid}', [StudentController::class, 'delete'])->na
 Route::post('student/change-student-status', [StudentController::class, 'changeStudentStatus'])->name('admin.student.changeStudentStatus')/*->middleware('isDemo')*/;
 
 
-Route::get('blockedStudent', [StudentController::class, 'blockedInstructor'])->name('student.blocked');
+Route::get('blockedStudent', [StudentController::class, 'blockedStudent'])->name('student.blocked');
 Route::get('approvedStudent', [StudentController::class, 'approvedStudent'])->name('student.approved');
 
 Route::get('student/getStates', [StudentController::class,'getStates'])->name('student.getStates');

@@ -120,28 +120,27 @@
                                         <td>{{ $assignment->name }}</td>
                                         <td>{{ $assignment->marks }}</td>
                                         <td>
+
                                             <a href="{{ route('instructor.course.assessment.index', [$course->uuid, $assignment->uuid]) }}"
-                                               class="theme-btn theme-button1 default-hover-btn">
-                                                <button type="button" class="btn btn-sm btn-primary">
-                                                    Click Me
-                                                </button>
+                                               class="btn btn-primary theme-btn theme-button1 default-hover-btn"
+                                               style="width: 120px">Click Me
+                                            </a>
 
+                                        </td>
 
-                                            </a></td>
-
-                                        <td style="display: flex; align-items: center; margin: 2px; gap: 4px;">
+                                        <td class="action__buttons" style="display: flex; align-items: center; margin: 2px; gap: 4px;">
 
                                             <a href="{{route('instructor.course.assignment.edit', [$course->uuid, $assignment->uuid])}}"
                                                title="Edit"
                                                class="btn-action">
-                                                <button type="button" class="btn btn-sm btn-info waves-effect waves-float waves-light" >Edit</button>
+                                                <button type="button" class="btn  btn-info waves-effect waves-float waves-light" >Edit</button>
                                             </a>
 
                                             <form id="form1" method="post" class="mb-0" action="{{route('instructor.course.assignment.delete', [$assignment->uuid])}}">
                                                 @csrf
 
                                                 <button type="submit" form="form1"
-                                                        class="btn btn-danger btn-sm waves-effect waves-float waves-light confirm-delete">
+                                                        class="btn btn-danger waves-effect waves-float waves-light confirm-delete">
                                                     Delete
                                                 </button>
 

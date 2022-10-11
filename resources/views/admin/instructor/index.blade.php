@@ -152,9 +152,16 @@
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
 
-                                                <a href="{{route('instructor.delete', [$instructor->uuid])}}"  class="btn-action delete" title="Delete">
-                                                    <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
-                                                </a>
+                                                <form action="{{route('instructor.delete', [$instructor->uuid])}}" class="mb-0" method="post" class="d-inline">
+                                                    @csrf
+
+                                                    <a href="{{route('instructor.delete', [$instructor->uuid])}}"  class="btn-action confirm-delete"  title="Delete">
+                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
+                                                    </a>
+
+                                                </form>
+
+
                                             </div>
                                         </td>
                                     </tr>
@@ -177,6 +184,24 @@
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
+        });
+
+
+        $(document).on('click', '.confirm-delete', function (e) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                showCancelButton: true,
+
+                confirmButtonText: 'Yes, Delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).parent('form').trigger('submit')
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
+            e.preventDefault();
         });
 
 

@@ -132,7 +132,7 @@ Route::post('instructor/store', [InstructorController::class, 'store'])->name('i
 Route::get('instructor/edit/{uuid}', [InstructorController::class, 'edit'])->name('instructor.edit');
 Route::post('instructor/update/{uuid}', [InstructorController::class, 'update'])->name('instructor.update')/*->middleware('isDemo')*/;
 Route::get('instructor/show/{uuid}', [InstructorController::class, 'show'])->name('instructor.show');
-Route::delete('instructor/delete/{uuid}', [InstructorController::class, 'delete'])->name('instructor.delete')/*->middleware('isDemo')*/;
+Route::post('instructor/delete/{uuid}', [InstructorController::class, 'delete'])->name('instructor.delete')/*->middleware('isDemo')*/;
 
 Route::post('change-instructor-status', [InstructorController::class, 'changeInstructorStatus'])->name('admin.instructor.changeInstructorStatus')/*->middleware('isDemo')*/;
 
@@ -152,7 +152,7 @@ Route::post('student/store', [StudentController::class, 'store'])->name('student
 Route::get('student/show/{uuid}', [StudentController::class, 'show'])->name('student.show');
 Route::get('student/edit/{uuid}', [StudentController::class, 'edit'])->name('student.edit');
 Route::post('student/update/{uuid}', [StudentController::class, 'update'])->name('student.update')/*->middleware('isDemo')*/;
-Route::delete('student/delete/{uuid}', [StudentController::class, 'delete'])->name('student.delete')/*->middleware('isDemo')*/;
+Route::post('student/delete/{uuid}', [StudentController::class, 'delete'])->name('student.delete')/*->middleware('isDemo')*/;
 Route::post('student/change-student-status', [StudentController::class, 'changeStudentStatus'])->name('admin.student.changeStudentStatus')/*->middleware('isDemo')*/;
 
 

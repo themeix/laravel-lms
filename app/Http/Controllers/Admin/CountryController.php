@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Tools\Repositories\Crud;
 use Illuminate\Http\Request;
 use App\Models\Country;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -19,9 +20,9 @@ class CountryController extends Controller
 
     public function index()
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
@@ -66,9 +67,9 @@ class CountryController extends Controller
 
     public function edit($uuid)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
 
         // end permission checking
@@ -82,9 +83,9 @@ class CountryController extends Controller
 
     public function update(Request $request, $uuid)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
@@ -116,9 +117,9 @@ class CountryController extends Controller
 
     public function delete($uuid)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 

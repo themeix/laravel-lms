@@ -9,6 +9,9 @@ use App\Models\Course;
 use App\Models\Course_lecture;
 use App\Models\Course_lecture_views;
 use App\Models\Course_lesson;
+use App\Models\CourseLecture;
+use App\Models\CourseLectureView;
+use App\Models\CourseLesson;
 use App\Models\Instructor;
 use App\Models\Order_item;
 use App\Models\OrderItem;
@@ -18,6 +21,7 @@ use App\Models\User;
 use App\Tools\Repositories\Crud;
 use App\Traits\ImageSaveTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -139,7 +143,6 @@ class InstructorController extends Controller
             'facebook' => $request->facebook,
             'twitter' => $request->twitter,
             'linkedin' => $request->linkedin,
-            'instagram' => $request->instagram,
             'pinterest' => $request->pinterest,
 
         ];
@@ -261,15 +264,10 @@ class InstructorController extends Controller
 
         Alert::toast('Instructor updated Successfully.', 'success');
 
-        return redirect()->route('instructor.index')->with('success-message', 'Instructor updated Successfully.');
+        return redirect()->route('instructor.index')->with('update-message', 'Instructor updated Successfully.');
 
     }
 
-
-    public function destroy($id)
-    {
-        //
-    }
 
     public function getStateByCountry($country_id)
     {
@@ -320,18 +318,18 @@ class InstructorController extends Controller
             foreach ($courses as $course)
             {
                 //start:: Course lesson delete
-                $lessons = Course_lesson::where('course_id', $course->id)->get();
+                $lessons = CourseLesson::where('course_id', $course->id)->get();
                 if (count($lessons) > 0)
                 {
                     foreach ($lessons as $lesson)
                     {
                         //start:: lecture delete
-                        $lectures = Course_lecture::where('lesson_id', $lesson->id)->get();
+                        $lectures = CourseLecture::where('lesson_id', $lesson->id)->get();
                         if (count($lectures) > 0)
                         {
                             foreach ($lectures as $lecture)
                             {
-                                $lecture = Course_lecture::find($lecture->id);
+                                $lecture = CourseLecture::find($lecture->id);
                                 if ($lecture)
                                 {
                                     $this->deleteFile($lecture->file_path); // delete file from server
@@ -344,16 +342,16 @@ class InstructorController extends Controller
                                         }
                                     }
 
-                                    Course_lecture_views::where('course_lecture_id', $lecture->id)->get()->map(function ($q) {
+                                    CourseLectureView::where('course_lecture_id', $lecture->id)->get()->map(function ($q) {
                                         $q->delete();
                                     });
 
-                                    Course_lecture::find($lecture->id)->delete(); // delete lecture record
+                                    CourseLecture::find($lecture->id)->delete(); // delete lecture record
                                 }
                             }
                         }
                         //end:: delete lesson record
-                        Course_lesson::find($lesson->id)->delete();
+                        CourseLesson::find($lesson->id)->delete();
                     }
                 }
                 //end
@@ -366,11 +364,9 @@ class InstructorController extends Controller
         }
         $this->instructorModel->deleteByUuid($uuid);
 
-        $user->role = 3;
-        $user->save();
+        Alert::toast('Instructor Deleted Successfully.', 'success');
 
-        $this->showToastrMessage('success', 'Instructor Deleted Successfully');
-        return redirect()->back();
+        return redirect()->route('instructor.index')->with('delete-message', 'Instructor Deleted Successfully.');
     }
 
 

@@ -52,7 +52,7 @@
             </div>
             <div class="button-xl text-center md:mt-12 mt-8">
                 <a class="py-5 px-8 rounded-full border-slate-200 border inline-block hover:bg-blue-600 hover:border-blue-200 hover:text-white  !transition   !duration-500  font-medium"
-                   href="{{route('main.courseCategory1')}}">View All Categories</a>
+                   href="{{route('main.allCategories1')}}">View All Categories</a>
             </div>
         </div>
     </section>

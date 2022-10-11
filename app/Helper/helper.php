@@ -375,7 +375,7 @@ function studentCoursesCount($user_id)
 
     $orderIds = array_merge($paidOrderIds, $freeOrderIds);
 
-    $orderItems = Order_item::whereIn('order_id', $orderIds)->count();
+    $orderItems = OrderItem::whereIn('order_id', $orderIds)->count();
 
     return $orderItems;*/
 }

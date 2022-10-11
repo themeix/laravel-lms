@@ -97,8 +97,9 @@ class LanguageController extends Controller
 
         // end permission checking
 
+        $language = $this->model->getRecordByUuid($uuid);
         $request->validate([
-            'name' => ['required', 'unique:languages', 'string', 'max:255']
+            'name' => 'required|string|max:255|unique:languages,name,'.$language->id,
         ]);
 
         $data = [

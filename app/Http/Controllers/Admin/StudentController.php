@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\Instructor;
 use App\Models\Order;
 use App\Models\Order_item;
+use App\Models\OrderItem;
 use App\Models\State;
 use App\Models\Student;
 use App\Models\User;
@@ -130,14 +131,14 @@ class StudentController extends Controller
         $data['student'] = $this->studentModel->getRecordByUuid($uuid);
 
         /*$allUserOrder = Order::where('user_id', $data['student']->user_id);
-        $paidOrderIds = $allUserOrder->where('payment_status', 'paid')->pluck('id')->toArray();*/
+        $paidOrderIds = $allUserOrder->where('payment_status', 'paid')->pluck('id')->toArray();
 
-        /*$allUserOrder = Order::where('user_id', $data['student']->user_id);
-        $freeOrderIds = $allUserOrder->where('payment_status', 'free')->pluck('id')->toArray();*/
+        $allUserOrder = Order::where('user_id', $data['student']->user_id);
+        $freeOrderIds = $allUserOrder->where('payment_status', 'free')->pluck('id')->toArray();
 
-        /*$orderIds = array_merge($paidOrderIds, $freeOrderIds);
+        $orderIds = array_merge($paidOrderIds, $freeOrderIds);
 
-        $data['orderItems'] = Order_item::whereIn('order_id', $orderIds)->latest()->paginate(15);*/
+        $data['orderItems'] = OrderItem::whereIn('order_id', $orderIds)->latest()->paginate(15);*/
 
         return view('admin.student.show', $data);
     }
@@ -221,11 +222,7 @@ class StudentController extends Controller
     public function delete($uuid)
     {
         $student = $this->studentModel->getRecordByUuid($uuid);
-        /*$instructor = Instructor::whereUserId($student->user_id)->first();
-        if ($instructor){
-            $this->showToastrMessage('error', 'You can\'t delete it. Because this user already an instructor. If you want to delete, at first you delete from instructor.');
-            return redirect()->back();
-        }*/
+
         if ($student){
             $this->deleteFile(@$student->user->image);
         }

@@ -26,6 +26,10 @@ class Instructor extends Model
         'slug',
         'gender',
         'status',
+        'facebook',
+        'twitter',
+        'linkedin',
+        'pinterest',
         /*'cv_file',
         'cv_filename'*/
     ];
@@ -55,6 +59,12 @@ class Instructor extends Model
     {
         return $this->hasMany(Course::class, 'instructor_id')->where('status', 2);
     }
+
+    public function holdCourses()
+    {
+        return $this->hasMany(Course::class, 'instructor_id')->where('status', 3);
+    }
+
 
     public function country()
     {

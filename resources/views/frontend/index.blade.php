@@ -267,22 +267,21 @@
                         data-aos="fade-up" data-aos-delay="50">
                         <div class="tioics-icon mb-6 inline-block  !transition   !duration-500 ">
                      <span class="w-16 h-16">
-                        <img src="{{getImageFile($category->image_path)}}" width="80" height="80" alt="category">
+                        <a href="{{route('main.categoryWiseCourses1', $category->uuid)}}"><img src="{{getImageFile($category->image_path)}}" width="80" height="80" alt="category"></a>
                      </span>
                         </div>
                         <h3 class="md:text-2xl text-xl font-semibold text-black-200 mb-2 hover:text-blue-600">
-                            <a
-                                href="course-catagory.html"> {{$category->name}}
+                            <a href="{{route('main.categoryWiseCourses1', $category->uuid)}}"> {{$category->name}}
                             </a>
                         </h3>
-                        <p class="text-lg">{{ @$category->courses->count() }} Courses</p>
+                        <a href="{{route('main.categoryWiseCourses1', $category->uuid)}}"><p class="text-lg">{{ @$category->courses->count() }} Courses</p></a>
                     </div>
                 @endforeach
 
             </div>
             <div class="button-xl text-center md:mt-12 mt-8">
                 <a class="py-5 px-8 rounded-full border-slate-200 border inline-block hover:bg-blue-600 hover:border-blue-200 hover:text-white  !transition   !duration-500  font-medium"
-                   href="{{route('main.courseCategory1')}}">View All Categories</a>
+                   href="{{route('main.allCategories1')}}">View All Categories</a>
             </div>
         </div>
     </section>
@@ -346,8 +345,8 @@
                                 </div>
                             </div>
                             <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                                   href="cart.html">Add to Cart</a>
+                                <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart" href="javascript:void(0)" data-course_id="{{ $course->id }}" data-route="{{ route('student.addToCart') }}">Add to Cart</a>
+
                                 <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
                                    href="checkout.html">Buy Now</a>
                             </div>
@@ -1090,281 +1089,64 @@
             </div>
             <div class="relative">
                 <div class="instructors-slider-box author-slider">
-                    <div class="instructors-slider-item p-1 border border-blue-20 rounded-lg">
-                        <div class="instructors-man relative">
-                            <div
-                                class="instructors-img relative before:absolute before:bg-blue-10 before:w-full before:h-full before:top-0 before:left-0  before:right-0">
-                                <a href="author.html"><img
-                                        class=" w-full max-h-[262px] object-cover rounded-t-lg relative  object-top"
-                                        src="{{asset('frontend/assets/images/instructors-1.png')}}" alt="images"></a>
+                    @foreach($instructors as $instructor)
+                        <div class="instructors-slider-item p-1 border border-blue-20 rounded-lg">
+                            <div class="instructors-man relative">
+                                <div
+                                    class="instructors-img relative before:absolute before:bg-blue-10 before:w-full before:h-full before:top-0 before:left-0  before:right-0">
+                                    <a href="{{route('main.instructorWiseCourses', $instructor->uuid)}}"><img
+                                            class=" w-full max-h-[262px] object-cover rounded-t-lg relative  object-top"
+                                            src="{{getImageFile($instructor->user ? @$instructor->user->image : '')}}"
+                                            alt="images"></a>
+                                </div>
+                                <div class="instructors-badge  text-center relative -mt-5 ">
+                                    <div class="inline-block">
+                                        <a class="flex items-center gap-2 text-center bg-yellow-800 rounded-full hover:bg-black-200 hover:text-white  bold py-2 px-12  !transition   !duration-500  text-black-200"
+                                           href="{{route('main.instructorWiseCourses', $instructor->uuid)}}">
+                                            <span class="text-2xl font-bold">{{$instructor->publishedCourses->count()}} </span>
+                                            <span class=" test-sm mb-0">Courses</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="instructors-badge  text-center relative -mt-5 ">
-                                <div class="inline-block">
-                                    <a class="flex items-center gap-2 text-center bg-yellow-800 rounded-full hover:bg-black-200 hover:text-white  bold py-2 px-12  !transition   !duration-500  text-black-200"
-                                       href="#">
-                                        <span class="text-2xl font-bold">40 </span>
-                                        <span class=" test-sm mb-0">Courses</span>
-                                    </a>
+                            <div class="instructors-info text-center  p-4 bg-white">
+                                <h4><a
+                                        class="font-bold text-black-200 text-xl hover:text-blue-600  !transition   !duration-500 "
+                                        href="{{route('main.instructorWiseCourses', $instructor->uuid)}}">{{$instructor->name}}</a></h4>
+                                <p class="">Instructor</p>
+                                <div class="social-link mt-4">
+                                    <ul class="flex justify-center gap-2">
+                                        <li>
+                                            <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
+                                               href="javascript:void(0)">
+                                                <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
+                                                     fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path class="group-hover:fill-white"
+                                                          d="M5.59197 16V8.71352H8.05014L8.41553 5.86063H5.59197V4.04345C5.59197 3.22021 5.82134 2.65657 7.00286 2.65657H8.49998V0.113057C7.77155 0.0349924 7.03935 -0.00270088 6.30675 0.000150394C4.13396 0.000150394 2.64217 1.32658 2.64217 3.76163V5.85529H0.200012V8.70819H2.64751V16H5.59197Z"
+                                                          fill="#757F8F"/>
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
+                                               href="javascript:void(0)">
+                                                <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path class="group-hover:fill-white"
+                                                          d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
+                                                          fill="#757F8F"/>
+                                                    <path class="group-hover:fill-white"
+                                                          d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
+                                                          fill="#757F8F"/>
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="instructors-info text-center  p-4 bg-white">
-                            <h4><a
-                                    class="font-bold text-black-200 text-xl hover:text-blue-600  !transition   !duration-500 "
-                                    href="author.html">Guy Hawkins</a></h4>
-                            <p class="">Instructor</p>
-                            <div class="social-link mt-4">
-                                <ul class="flex justify-center gap-2">
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
-                                                 fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M5.59197 16V8.71352H8.05014L8.41553 5.86063H5.59197V4.04345C5.59197 3.22021 5.82134 2.65657 7.00286 2.65657H8.49998V0.113057C7.77155 0.0349924 7.03935 -0.00270088 6.30675 0.000150394C4.13396 0.000150394 2.64217 1.32658 2.64217 3.76163V5.85529H0.200012V8.70819H2.64751V16H5.59197Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
-                                                      fill="#757F8F"/>
-                                                <path class="group-hover:fill-white"
-                                                      d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="instructors-slider-item p-1 border border-blue-20 rounded-lg">
-                        <div class="instructors-man relative">
-                            <div
-                                class="instructors-img relative before:absolute before:bg-blue-10 before:w-full before:h-full before:top-0 before:left-0  before:right-0">
-                                <a href="author.html"><img
-                                        class=" w-full max-h-[262px] object-cover rounded-t-lg relative  object-top "
-                                        src="{{asset('frontend/assets/images/instructors-2.png')}}" alt="images"></a>
-                            </div>
-                            <div class="instructors-badge  text-center relative -mt-5 ">
-                                <div class="inline-block">
-                                    <a class="flex items-center gap-2 text-center bg-yellow-800 rounded-full hover:bg-black-200 hover:text-white  bold py-2 px-12  !transition   !duration-500  text-black-200"
-                                       href="#">
-                                        <span class="text-2xl font-bold">29 </span>
-                                        <span class=" test-sm mb-0">Courses</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="instructors-info text-center  p-4 bg-white">
-                            <h4><a
-                                    class="font-bold text-black-200 text-xl hover:text-blue-600  !transition   !duration-500 "
-                                    href="author.html">Cody Fisher</a></h4>
-                            <p class="">Instructor</p>
-                            <div class="social-link mt-4">
-                                <ul class="flex justify-center gap-2">
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
-                                                 fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M5.59197 16V8.71352H8.05014L8.41553 5.86063H5.59197V4.04345C5.59197 3.22021 5.82134 2.65657 7.00286 2.65657H8.49998V0.113057C7.77155 0.0349924 7.03935 -0.00270088 6.30675 0.000150394C4.13396 0.000150394 2.64217 1.32658 2.64217 3.76163V5.85529H0.200012V8.70819H2.64751V16H5.59197Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
-                                                      fill="#757F8F"/>
-                                                <path class="group-hover:fill-white"
-                                                      d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="instructors-slider-item p-1 border border-blue-20 rounded-lg">
-                        <div class="instructors-man relative">
-                            <div
-                                class="instructors-img relative before:absolute before:bg-blue-10 before:w-full before:h-full before:top-0 before:left-0  before:right-0">
-                                <a href="author.html"><img
-                                        class=" w-full max-h-[262px] object-cover rounded-t-lg relative  object-top "
-                                        src="{{asset('frontend/assets/images/instructors-3.png')}}" alt="images"></a>
-                            </div>
-                            <div class="instructors-badge  text-center relative -mt-5 ">
-                                <div class="inline-block">
-                                    <a class="flex items-center gap-2 text-center bg-yellow-800 rounded-full hover:bg-black-200 hover:text-white  bold py-2 px-12  !transition   !duration-500  text-black-200"
-                                       href="#">
-                                        <span class="text-2xl font-bold">60</span>
-                                        <span class=" test-sm mb-0">Courses</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="instructors-info text-center  p-4 bg-white">
-                            <h4><a
-                                    class="font-bold text-black-200 text-xl hover:text-blue-600  !transition   !duration-500 "
-                                    href="author.html">Kathryn Murphy</a></h4>
-                            <p class="">Instructor</p>
-                            <div class="social-link mt-4">
-                                <ul class="flex justify-center gap-2">
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
-                                                 fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M5.59197 16V8.71352H8.05014L8.41553 5.86063H5.59197V4.04345C5.59197 3.22021 5.82134 2.65657 7.00286 2.65657H8.49998V0.113057C7.77155 0.0349924 7.03935 -0.00270088 6.30675 0.000150394C4.13396 0.000150394 2.64217 1.32658 2.64217 3.76163V5.85529H0.200012V8.70819H2.64751V16H5.59197Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
-                                                      fill="#757F8F"/>
-                                                <path class="group-hover:fill-white"
-                                                      d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="instructors-slider-item p-1 border border-blue-20 rounded-lg">
-                        <div class="instructors-man relative">
-                            <div
-                                class="instructors-img relative before:absolute before:bg-blue-10 before:w-full before:h-full before:top-0 before:left-0  before:right-0">
-                                <a href="author.html"><img
-                                        class=" w-full max-h-[262px] object-cover rounded-t-lg relative  object-top "
-                                        src="{{asset('frontend/assets/images/instructors-4.png')}}" alt="images"></a>
-                            </div>
-                            <div class="instructors-badge  text-center relative -mt-5 ">
-                                <div class="inline-block">
-                                    <a class="flex items-center gap-2 text-center bg-yellow-800 rounded-full hover:bg-black-200 hover:text-white  bold py-2 px-12  !transition   !duration-500  text-black-200"
-                                       href="#">
-                                        <span class="text-2xl font-bold">24</span>
-                                        <span class=" test-sm mb-0">Courses</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="instructors-info text-center  p-4 bg-white">
-                            <h4><a
-                                    class="font-bold text-black-200 text-xl hover:text-blue-600  !transition   !duration-500 "
-                                    href="author.html">Kathryn Murphy</a></h4>
-                            <p class="">Instructor</p>
-                            <div class="social-link mt-4">
-                                <ul class="flex justify-center gap-2">
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
-                                                 fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M5.59197 16V8.71352H8.05014L8.41553 5.86063H5.59197V4.04345C5.59197 3.22021 5.82134 2.65657 7.00286 2.65657H8.49998V0.113057C7.77155 0.0349924 7.03935 -0.00270088 6.30675 0.000150394C4.13396 0.000150394 2.64217 1.32658 2.64217 3.76163V5.85529H0.200012V8.70819H2.64751V16H5.59197Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
-                                                      fill="#757F8F"/>
-                                                <path class="group-hover:fill-white"
-                                                      d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="instructors-slider-item p-1 border border-blue-20 rounded-lg">
-                        <div class="instructors-man relative">
-                            <div
-                                class="instructors-img relative before:absolute before:bg-blue-10 before:w-full before:h-full before:top-0 before:left-0  before:right-0">
-                                <a href=""><img
-                                        class=" w-full max-h-[262px] object-cover rounded-t-lg relative  object-top "
-                                        src="{{asset('frontend/assets/images/instructors-5.png')}}" alt="images"></a>
-                            </div>
-                            <div class="instructors-badge  text-center relative -mt-5 ">
-                                <div class="inline-block">
-                                    <a class="flex items-center gap-2 text-center bg-yellow-800 rounded-full hover:bg-black-200 hover:text-white  bold py-2 px-12  !transition   !duration-500  text-black-200"
-                                       href="#">
-                                        <span class="text-2xl font-bold">24</span>
-                                        <span class=" test-sm mb-0">Courses</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="instructors-info text-center  p-4 bg-white">
-                            <h4><a
-                                    class="font-bold text-black-200 text-xl hover:text-blue-600  !transition   !duration-500 "
-                                    href="#">Kathryn Murphy</a></h4>
-                            <p class="">Instructor</p>
-                            <div class="social-link mt-4">
-                                <ul class="flex justify-center gap-2">
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
-                                                 fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M5.59197 16V8.71352H8.05014L8.41553 5.86063H5.59197V4.04345C5.59197 3.22021 5.82134 2.65657 7.00286 2.65657H8.49998V0.113057C7.77155 0.0349924 7.03935 -0.00270088 6.30675 0.000150394C4.13396 0.000150394 2.64217 1.32658 2.64217 3.76163V5.85529H0.200012V8.70819H2.64751V16H5.59197Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
-                                            <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path class="group-hover:fill-white"
-                                                      d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
-                                                      fill="#757F8F"/>
-                                                <path class="group-hover:fill-white"
-                                                      d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
-                                                      fill="#757F8F"/>
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="slider-arrows-1 hidden lg:block">
                     <button
@@ -1884,3 +1666,17 @@
     <!--  ====================== Newsleter  Area End =============================  -->
 
 @endsection
+
+@push('script')
+    <script>
+
+    </script>
+
+
+    <!--Hero text effect-->
+   {{-- <script src="{{ asset('frontend/assets/js/hero-text-effect.js') }}"></script>--}}
+
+    <script src="{{ asset('custom/js/addToCart.js') }}"></script>
+   {{-- <script src="{{ asset('frontend/assets/js/course/addToWishlist.js') }}"></script>--}}
+@endpush
+

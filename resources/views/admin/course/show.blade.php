@@ -1,5 +1,5 @@
 @extends('layouts.adminMaster')
-@section('title','Show Student')
+@section('title','Show Course Details')
 
 
 @push('styles')
@@ -19,15 +19,15 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Show Student</h2>
+                        <h2 class="content-header-title float-start mb-0">Show Course Details</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a href="{{route('student.index')}}">Student List
+                                <li class="breadcrumb-item active"><a href="{{route('course.index')}}">Course List
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item">Show Student
+                                <li class="breadcrumb-item">Show Course
                                 </li>
                             </ol>
                         </div>
@@ -36,8 +36,8 @@
             </div>
             <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
                 <div class="mb-1 breadcrumb-right">
-                    <a href="{{route('student.index')}}">
-                        <button type="button" class="btn btn-primary">Student List</button>
+                    <a href="{{route('course.index')}}">
+                        <button type="button" class="btn btn-primary">Course List</button>
                     </a>
                 </div>
             </div>
@@ -54,14 +54,13 @@
                                     <div class="d-flex align-items-center flex-column">
                                         <img
                                             class="img-fluid rounded mt-3 mb-2"
-                                            src="{{getImageFile($student->user ? @$student->user->image : '')}}"
+                                            src="{{getImageFile($course->image)}}"
                                             height="110"
-                                            width="110"
+                                            width="200"
                                             alt="User avatar"
                                         />
                                         <div class="user-info text-center">
-                                            <h4>{{ $student->first_name }} {{ $student->last_name }}</h4>
-                                            <span class="badge badge-glow bg-info">Student</span>
+                                            <h4>{{ $course->title }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -73,47 +72,52 @@
                                             <span>violet.dev</span>
                                         </li>--}}
                                         <li class="mb-75">
-                                            <span class="fw-bolder me-25">Email:</span>
-                                            <span class="status badge badge-glow badge-light-dark "> {{ $student->user->email }}</span>
+                                            <span class="fw-bolder me-25">Title:</span>
+                                            <span class="status badge badge-glow badge-light-dark "> {{$course->instructor ? $course->instructor->name : '' }}</span>
                                         </li>
                                         <li class="mb-75">
-                                            <span class="fw-bolder me-25">Phone:</span>
-                                            <span class="status badge badge-glow badge-light-dark "> {{ $student->phone_number }}</span>
+                                            <span class="fw-bolder me-25">Category:</span>
+                                            <span class="status badge badge-glow badge-light-dark "> {{$course->category ? $course->category->name : '' }}</span>
                                         </li>
 
                                         <li class="mb-75">
-                                            <span class="fw-bolder me-25">Gender:</span>
-                                            <span>{{$student->gender}}</span>
+                                            <span class="fw-bolder me-25">Sub Category:</span>
+                                            <span class="status badge badge-glow badge-light-dark ">{{$course->subcategory ? $course->subcategory->name : '' }}</span>
                                         </li>
 
                                         <li class="mb-75">
-                                            <span class="fw-bolder me-25">Country:</span>
-                                            <span>{{$student->country ? $student->country->country_name : ''}}</span>
-                                        </li>
-                                        <li class="mb-75">
-                                            <span class="fw-bolder me-25">State:</span>
-                                            <span>{{@$student->state->name}}</span>
+                                            <span class="fw-bolder me-25">Course Type:</span>
+
+                                            @if($course->learner_accessibility == 1)
+                                                <span class="badge badge-glow bg-warning">
+                                                    Paid
+                                                    </span>
+                                            @elseif($course->learner_accessibility == 2)
+                                                <span class="badge  badge-glow bg-info">
+                                                    Free
+                                                </span>
+                                            @endif
                                         </li>
 
                                         <li class="mb-75">
-                                            <span class="fw-bolder me-25">City:</span>
-                                            <span>{{@$student->city->name}}</span>
+                                            <span class="fw-bolder me-25">Price:</span>
+                                            <span>{{$course->price}}</span>
                                         </li>
 
-                                        <li class="mb-75">
-                                            <span class="fw-bolder me-25">Address:</span>
-                                            <span>{{@$student->address}}</span>
-                                        </li>
 
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Status:</span>
-                                            @if($student->status == 1)
+                                            @if($course->status == 1)
                                                 <span class="badge badge-glow bg-success">
                                                     Approved
                                                     </span>
-                                            @elseif($student->status == 2)
+                                            @elseif($course->status == 2)
+                                                <span class="badge badge-glow bg-info">
+                                                    Waiting for Approval
+                                                    </span>
+                                            @elseif($course->status == 3)
                                                 <span class="badge badge-glow bg-danger">
-                                                    Blocked
+                                                    Hold
                                                     </span>
                                             @endif
                                         </li>
@@ -128,9 +132,9 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="fw-bolder border-bottom pb-50 mb-1">About Me</h4>
+                                <h4 class="fw-bolder border-bottom pb-50 mb-1">Course Description</h4>
                                 <div class="info-container">
-                                    <p>{{ $student->about_me }}</p>
+                                    <p>{{ $course->description }}</p>
                                 </div>
                             </div>
                         </div>
@@ -141,52 +145,9 @@
 
                     <!-- User Content -->
                     <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
-                        <div class="row">
-
-                            <div class="col-lg-6 col-sm-6 col-12">
-                                <div class="card">
-                                    <div class="card-header flex-column align-items-center pb-2">
-                                        <div class="avatar bg-light-success p-50 m-0">
-                                            <div class="avatar-content">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pocket avatar-icon font-medium-3"><path d="M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z"></path><polyline points="8 10 12 14 16 10"></polyline></svg>
-                                            </div>
-                                        </div>
-                                        <h2 class="fw-bolder mt-1">0</h2>
-                                        <p class="card-text">Total Enrolled Courses</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-                            <div class="col-lg-6 col-sm-6 col-12">
-                                <div class="card">
-                                    <div class="card-header flex-column align-items-center pb-2">
-                                        <div class="avatar bg-light-primary p-50 m-0">
-                                            <div class="avatar-content">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign avatar-icon"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                            </div>
-                                        </div>
-                                        <h2 class="fw-bolder mt-1">38.4K
-
-                                            {{--@if(get_currency_placement() == 'after')
-                                                {{ @$total_earning }} {{ get_currency_symbol() }}
-                                            @else
-                                                {{ get_currency_symbol() }} {{ @$total_earning }}
-                                            @endif--}}
-
-                                        </h2>
-                                        <p class="card-text">Total Payment</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
 
                         <div class="card">
-                            <h4 class="card-header">Enrolled Courses</h4>
+                            <h4 class="card-header">Course Lessons And Lectures</h4>
                             <table id="example" class="table table-bordered dataTables_info">
                                 <thead>
                                 <tr>

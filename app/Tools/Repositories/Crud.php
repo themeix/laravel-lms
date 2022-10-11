@@ -116,4 +116,8 @@ class Crud implements CrudInterface
     {
         return $this->model->with($relations);
     }
+
+    public function getByUuid($uuid)
+    {
+    }
 }

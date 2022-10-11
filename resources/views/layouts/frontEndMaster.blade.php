@@ -316,13 +316,6 @@
                                         class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span></a>
                                 <ul
                                     class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-52   submenu">
-                                    <li>
-                                        <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="#"> Category Wise Courses 1 </a>
-                                    <li>
-                                        <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="#"> Category Wise Courses 2 </a></li>
-
 
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
@@ -337,10 +330,10 @@
 
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.courseCategory1')}}">Course Catagories 1 </a></li>
+                                           href="{{route('main.allCategories1')}}">All Catagories 1 </a></li>
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.courseCategory2')}}">Course Catagories 2 </a></li>
+                                           href="{{route('main.allCategories2')}}">All Catagories 2 </a></li>
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                            href="{{route('main.courseDetails')}}"> Course </a></li>
@@ -372,9 +365,7 @@
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                            href="{{route('main.about2')}}"> About 2 </a></li>
-                                    <li>
-                                        <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.authorWiseCourse')}}"> Author </a></li>
+
                                 </ul>
                             </li>
                             <li class="relative lg:px-2 lg:py-5 dropdown ">
@@ -452,17 +443,9 @@
                                     </a>
                                     <ul class="hidden lg:block bg-white  rounded-md lg:absolute top-full lg:shadow   submenu">
 
-                                        <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2  mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.categoryWiseCourses1')}}"> Category Wise Courses 1</a>
-                                        </li>
-                                        <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2  mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.categoryWiseCourses2')}}"> Category Wise Courses 2</a>
-                                        </li>
 
                                         <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
+                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2  rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.allCourses1')}}"> All Courses 1</a>
                                         <li>
 
@@ -473,11 +456,14 @@
 
 
                                         <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.courseCategory1')}}">Course Catagories 1 </a></li>
+                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
+                                               href="{{route('main.allCategories1')}}">All Catagories 1 </a></li>
                                         <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.courseCategory2')}}">Course Catagories 2 </a></li>
+                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
+                                               href="{{route('main.allCategories2')}}">All Catagories 2 </a></li>
+
+
+
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.courseDetails')}}"> Course </a></li>
@@ -527,9 +513,6 @@
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.about2')}}"> About 2 </a></li>
-                                        <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.authorWiseCourse')}}"> Author </a></li>
                                     </ul>
                                 </li>
                                 <li class="relative lg:px-2 lg:py-5 dropdown ">
@@ -901,7 +884,7 @@
                 <div class=" md:col-span-4">
                     <div class="footer-item" data-aos="fade-up" data-aos-delay="500">
                         <div class="footer-logo">
-                            <img src="{{asset('frontend/assets/images/header-logo.png')}}" alt="images">
+                            <a href="{{route('main.index')}}"><img src="{{asset('frontend/assets/images/header-logo.png')}}" alt="images"></a>
                         </div>
                         <p class="pt-8">Instantly are in most her. At many, a been some don't he they the his to is fail
                             with I that for titles let butter check and a picture because

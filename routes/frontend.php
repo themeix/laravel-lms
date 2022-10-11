@@ -14,13 +14,13 @@ Route::get('/index2', [FrontendIndexController::class, 'index2'])->name('main.in
 Route::get('allCourses1', [FrontendIndexController::class, 'allCourses1'])->name('main.allCourses1');
 Route::get('allCourses2', [FrontendIndexController::class, 'allCourses2'])->name('main.allCourses2');
 
-Route::get('categoryWiseCourses1', [FrontendIndexController::class, 'categoryWiseCourses1'])->name('main.categoryWiseCourses1');
-Route::get('category/categoryWiseCourses2', [FrontendIndexController::class, 'categoryWiseCourses2'])->name('main.categoryWiseCourses2');
+Route::get('categoryWiseCourses1/{uuid}', [FrontendIndexController::class, 'categoryWiseCourses1'])->name('main.categoryWiseCourses1');
+Route::get('category/categoryWiseCourses2/{uuid}', [FrontendIndexController::class, 'categoryWiseCourses2'])->name('main.categoryWiseCourses2');
 
 
 
-Route::get('/courseCategory1', [FrontendIndexController::class, 'courseCategory1'])->name('main.courseCategory1');
-Route::get('/courseCategory2', [FrontendIndexController::class, 'courseCategory2'])->name('main.courseCategory2');
+Route::get('/allCategories1', [FrontendIndexController::class, 'allCategories1'])->name('main.allCategories1');
+Route::get('/allCategories2', [FrontendIndexController::class, 'allCategories2'])->name('main.allCategories2');
 
 Route::get('/about1', [FrontendIndexController::class, 'about1'])->name('main.about1');
 Route::get('/about2', [FrontendIndexController::class, 'about2'])->name('main.about2');
@@ -31,7 +31,7 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('main.checko
 Route::get('/contact', [FrontendIndexController::class, 'contact'])->name('main.contact');
 
 
-Route::get('/authorWiseCourse', [FrontendIndexController::class, 'authorWiseCourse'])->name('main.authorWiseCourse');
+Route::get('/instructorWiseCourses/{uuid}', [FrontendIndexController::class, 'instructorWiseCourses'])->name('main.instructorWiseCourses');
 
 Route::get('/courseDetails', [FrontendIndexController::class, 'courseDetails'])->name('main.courseDetails');
 

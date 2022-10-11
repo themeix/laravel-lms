@@ -286,6 +286,9 @@
                                                 aria-describedby="basic-addon-name"
                                                 required
                                             />
+                                            @if ($errors->has('facebook'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('facebook') }}</span>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -303,6 +306,9 @@
                                                 aria-describedby="basic-addon-name"
                                                 required
                                             />
+                                            @if ($errors->has('twitter'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('twitter') }}</span>
+                                            @endif
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your Twitter Link.</div>
                                         </div>
@@ -323,6 +329,9 @@
                                                 aria-describedby="basic-addon-name"
                                                 required
                                             />
+                                            @if ($errors->has('linkedin'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('linkedin') }}</span>
+                                            @endif
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your Linkedin Link.</div>
                                         </div>
@@ -342,6 +351,9 @@
                                                 aria-describedby="basic-addon-name"
                                                 required
                                             />
+                                            @if ($errors->has('pinterest'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('pinterest') }}</span>
+                                            @endif
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter your Pinterest Link.</div>
                                         </div>

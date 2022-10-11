@@ -189,6 +189,7 @@ class PromotionController extends Controller
             $promotionCourse->save();
 
             Alert::toast('Course Added in promotion list.', 'success');
+            $request->session()->flash('update-message', 'Course Added in promotion list.');
 
             return response()->json([
                 'status' => '200',
@@ -206,6 +207,7 @@ class PromotionController extends Controller
             PromotionCourse::where('course_id', $request->course_id)->delete();
 
             Alert::toast('Course removed from promotion list.', 'warning');
+            $request->session()->flash('delete-message', 'Course removed from promotion list.');
 
             return response()->json([
                 'status' => '200',

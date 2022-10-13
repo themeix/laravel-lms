@@ -52,29 +52,33 @@
 
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-                @foreach($courses as $course)
-                    <div class="lessons-item group hover:-translate-y-2 duration-500" data-aos="fade-up"
-                         data-aos-delay="300">
-                        <div class="lessons-images relative overflow-hidden">
-                            <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                        src="{{asset('frontend/assets/images/webdesign-1.webp')}}"
-                                                        alt="images"></a>
-                            <div class="  overlay-images rounded-t-xl   absolute top-0 w-full h-full bg-blue-5 left-0">
+                @if(sizeof($courses)>0)
 
-                            </div>
-                        </div>
-                        <div
-                            class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
-                            <div class="name-box flex justify-between">
-                                <a class="hover:text-blue-600" href="{{route('main.instructorWiseCourses',$course->instructor->uuid)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
+                    @foreach($courses as $course)
+                        <div class="lessons-item group hover:-translate-y-2 duration-500" data-aos="fade-up"
+                             data-aos-delay="300">
+                            <div class="lessons-images relative overflow-hidden">
+                                <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
+                                                            src="{{asset('frontend/assets/images/webdesign-1.webp')}}"
+                                                            alt="images"></a>
+                                <div
+                                    class="  overlay-images rounded-t-xl   absolute top-0 w-full h-full bg-blue-5 left-0">
 
-                                <span class="text-blue-50">12 July, 2022</span>
+                                </div>
                             </div>
-                            <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
-                                <a
-                                    href="course.html">{{$course->title}}</a></h3>
-                            <div class="reviews-box flex justify-between pt-5">
-                                <div class="flex items-center">
+                            <div
+                                class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
+                                <div class="name-box flex justify-between">
+                                    <a class="hover:text-blue-600"
+                                       href="{{route('main.instructorWiseCourses',$course->instructor->uuid)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
+
+                                    <span class="text-blue-50">12 July, 2022</span>
+                                </div>
+                                <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
+                                    <a
+                                        href="course.html">{{$course->title}}</a></h3>
+                                <div class="reviews-box flex justify-between pt-5">
+                                    <div class="flex items-center">
                              <span class="mr-2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                                    <path
@@ -83,9 +87,9 @@
                                    <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#757F8F"></rect>
                                 </svg>
                              </span>
-                                    <p>1 hour 20 min</p>
-                                </div>
-                                <div class="flex items-center">
+                                        <p>1 hour 20 min</p>
+                                    </div>
+                                    <div class="flex items-center">
                              <span class="mr-2"><svg width="18" height="16" viewBox="0 0 18 16" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                                    <path
@@ -94,25 +98,33 @@
                                 </svg>
 
                              </span>
-                                    <p>5.0 (80 Reviews)</p>
-                                </div>
+                                        <p>5.0 (80 Reviews)</p>
+                                    </div>
 
-                            </div>
-                            <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                <a class="border-blue-20  border inline-block py-2.5 px-5 rounded   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                   href="cart.html">Add to Cart</a>
-                                <a class="border-blue-20  border inline-block py-2.5 px-5 rounded   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                   href="checkout.html">Buy Now</a>
+                                </div>
+                                <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                    <a class="border-blue-20  border inline-block py-2.5 px-5 rounded   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
+                                       href="cart.html">Add to Cart</a>
+                                    <a class="border-blue-20  border inline-block py-2.5 px-5 rounded   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
+                                       href="checkout.html">Buy Now</a>
+                                </div>
                             </div>
                         </div>
+                    @endforeach
+                @else
+                    <div class="col-12"
+                         style="padding: 10px; margin: 10px; text-align: left; font-weight: bold; font-size: 24px;">
+                        <div class="alert alert-danger">
+                            <h1>No Course Found</h1>
+                        </div>
                     </div>
-                @endforeach
+                @endif
             </div>
 
-            <div class="popular-button mt-10 text-center">
+            {{--<div class="popular-button mt-10 text-center">
                 <a class="py-4 font-medium rounded transition duration-700 hover:bg-blue-800  hover:border-blue-600 hover:text-white px-8 border inline-block border-gray-300"
                    href="course-catagory.html">View All </a>
-            </div>
+            </div>--}}
 
         </div>
     </section>
@@ -175,43 +187,7 @@
     <!--  ====================== Newsleter  Area Start =============================  -->
     <section class="newsleter-area  relative my-20 md:my-32">
         <div class="container">
-            <div class="grid lg:grid-cols-12 bg-blue-600 md:p-16 p-8 rounded-xl relative">
-                <div class="md:col-span-8">
-                    <div class="newsleter-left lg:w-10/12">
-                        <h2 class="xl:text-5xl mb-4 lg:text-4xl md:text-3xl text-2xl font-medium text-white  ">
-                            Subscribe to
-                            newsletter</h2>
-                        <p class="text-white">Produce following as be didn't sitting on appeared not he is he upper
-                            work
-                            spread observed, hung spot.</p>
-
-                        <form>
-                            <div class=" md:w-10/12 relative mt-5">
-
-                                <input type="search"
-                                       class="block py-6 pl-5  pr-37.5  appearance-none  w-full  text-base  bg-white rounded-full border  border-blue-100  focus:border-white placeholder-black-200 outline-none duration-300"
-                                       placeholder="Enter your email" required="">
-
-                                <button type="submit"
-                                        class=" absolute top-2.25 right-2 bg-blue-600 text-base text-white font-medium  hover:bg-blue-5 hover:text-black-200  transition-all duration-300 rounded-full   outline-none px-8 py-4  ">
-                                    Subscribe
-                                </button>
-
-                            </div>
-
-                        </form>
-                    </div>
-
-                </div>
-                <div class="md:col-span-4 hidden lg:block">
-                    <div class="cta-shape-images absolute">
-                        <img src="{{asset('frontend/assets/images/shape-images.png')}}" alt="images">
-                    </div>
-                    <div class="newletter-man absolute bottom-0 right-0">
-                        <img src="{{asset('frontend/assets/images/cta-man.png')}}" alt="images">
-                    </div>
-                </div>
-            </div>
+            {{ View::make('layouts.partials.newsLetter') }}
         </div>
     </section>
     <!--  ====================== Newsleter  Area End =============================  -->

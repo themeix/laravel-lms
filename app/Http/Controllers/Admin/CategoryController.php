@@ -62,6 +62,7 @@ class CategoryController extends Controller
         $data = [
             'name' => $request->name,
             'is_feature' => $request->is_feature ? 'yes' : 'no',
+            'is_showing_course' => $request->is_showing_course ? 'yes' : 'no',
             'slug' => Str::slug($request->name),
             'image' => $request->image ? $this->saveImage('category', $request->image, null, null) :   null
         ];
@@ -131,6 +132,7 @@ class CategoryController extends Controller
         $data = [
             'name' => $request->name,
             'is_feature' => $request->is_feature ? 'yes' : 'no',
+            'is_showing_course' => $request->is_showing_course ? 'yes' : 'no',
             'slug' => Str::slug($request->name),
             'image' => $image
         ];

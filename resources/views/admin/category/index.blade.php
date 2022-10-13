@@ -76,7 +76,7 @@
 
             <section id="column-search-datatable">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body indexTable">
                             <div class="col-12">
                                 <table id="example" class="table table-bordered dataTables_info" style="color: black;text-align: center; justify-content: center; align-items: center; ">
                                     <thead>
@@ -84,6 +84,7 @@
                                         <th>Image</th>
                                         <th>Name</th>
                                         <th>Is Feature</th>
+                                        <th>Showing Course in Homepage</th>
                                         <th>Total Course</th>
                                         <th>Action</th>
                                     </tr>
@@ -100,6 +101,13 @@
                                             </td>
                                             <td>
                                                 @if($category->is_feature == 'yes')
+                                                    <span class="status badge badge-glow bg-info ">Yes</span>
+                                                @else
+                                                    <span class="status badge badge-glow bg-warning">No</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($category->is_showing_course == 'yes')
                                                     <span class="status badge badge-glow bg-info ">Yes</span>
                                                 @else
                                                     <span class="status badge badge-glow bg-warning">No</span>

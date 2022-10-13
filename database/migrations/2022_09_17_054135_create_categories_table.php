@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('is_feature', 10)->default('no')->comment('yes, no');
+            $table->string('is_showing_course', 10)->default('no')->comment('yes, no')->nullable();
             $table->string('slug');
             $table->tinyInteger('status')->default(1)->comment('1=active, 0=inactive');
             $table->timestamps();

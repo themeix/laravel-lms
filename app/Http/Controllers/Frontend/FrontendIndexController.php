@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -15,26 +16,28 @@ class FrontendIndexController extends Controller
 {
 
     public function index(){
-        $data['categories'] = Category::take(8)->get();
-        $data['courses'] = Course::where('status', 1)->take(6)->get();
+        $data['categories'] = Category::where('is_feature', 'yes')->take(8)->get();
+        $data['showingCategories'] = Category::where('is_showing_course', 'yes')->take(2)->get();
+        $data['courses'] = Course::where('status', 1)->take(6)->orderBy('id', 'desc')->get();
         $data['instructors'] = Instructor::where('status', 1)->orderBy('id', 'desc')->get();
         return view('frontend.index', $data);
     }
 
     public function index2(){
-        $data['categories'] = Category::take(8)->get();
-        $data['courses'] = Course::where('status', 1)->take(6)->get();
+        $data['categories'] = Category::where('is_feature','yes')->take(8)->get();
+        $data['showingCategories'] = Category::where('is_showing_course', 'yes')->take(2)->get();
+        $data['courses'] = Course::where('status', 1)->take(6)->orderBy('id', 'desc')->get();
         $data['instructors'] = Instructor::where('status', 1)->orderBy('id', 'desc')->get();
         return view('frontend.index2',$data);
     }
 
     public function allCourses1(){
-        $data['courses'] = Course::all();
+        $data['courses'] = Course::where('status', 1)->orderBy('id', 'desc')->get();
         return view('frontend.course.allCourses1',$data);
     }
 
     public function allCourses2(){
-        $data['courses'] = Course::all();
+        $data['courses'] = Course::where('status', 1)->orderBy('id', 'desc')->get();
         return view('frontend.course.allCourses2',$data);
     }
 
@@ -71,7 +74,9 @@ class FrontendIndexController extends Controller
         return view('frontend.about.about1');
     }
     public function about2(){
-        return view('frontend.about.about2');
+
+        $data['instructors'] = Instructor::take(8)->where('status', 1)->get();
+        return view('frontend.about.about2', $data);
     }
 
 
@@ -87,6 +92,16 @@ class FrontendIndexController extends Controller
 
     public function contact(){
         return view('frontend.contact.index');
+    }
+
+
+    public function search(){
+        $search = $_GET['search'];
+        $data['courses'] = Course::where('title', 'like', '%'.$search.'%')->where('status', 1)->get();
+        $data['categories'] = Category::where('name', 'like', '%'.$search.'%')->where('status', 1)->get();
+        $data['instructors'] = Instructor::where('first_name', 'like', '%'.$search.'%')->where('status', 1)->get();
+        $data['instructorsL'] = Instructor::where('last_name', 'like', '%'.$search.'%')->where('status', 1)->get();
+        return response()->json($data);
     }
 
 }

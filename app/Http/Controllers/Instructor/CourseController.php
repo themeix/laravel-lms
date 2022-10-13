@@ -28,9 +28,10 @@ class CourseController extends Controller
 {
 
     use ImageSaveTrait, SendNotification;
+
     protected $model, $lectureModel, $lessonModel, $categoryModel, $subCategoryModel;
 
-    public function __construct(Course $course, CourseLesson $course_lesson,  CourseLecture $course_lecture, Category $category, SubCategory $subCategory)
+    public function __construct(Course $course, CourseLesson $course_lesson, CourseLecture $course_lecture, Category $category, SubCategory $subCategory)
     {
         $this->model = new Crud($course);
         $this->lectureModel = new Crud($course_lecture);
@@ -62,7 +63,7 @@ class CourseController extends Controller
         $data['selected_tags'] = $selected_tags;*/
 
 
-        $data['categories'] = Category::orderBy('name','asc')->get();
+        $data['categories'] = Category::orderBy('name', 'asc')->get();
 
 
         return view('instructor.course.create', $data);
@@ -74,7 +75,7 @@ class CourseController extends Controller
         $request->validate([
             'category_id' => 'required',
             'subcategory_id' => 'nullable',
-            'language_id'=>'required',
+            'language_id' => 'required',
             'difficulty_level_id' => 'required',
             'title' => ['required', 'string'],
             'subtitle' => ['required', 'string'],
@@ -87,9 +88,8 @@ class CourseController extends Controller
         ]);
 
 
-        if (Course::where('slug', Str::slug($request->title))->count() > 0)
-        {
-            $slug = Str::slug($request->title) . '-'. rand(100000, 999999);
+        if (Course::where('slug', Str::slug($request->title))->count() > 0) {
+            $slug = Str::slug($request->title) . '-' . rand(100000, 999999);
         } else {
             $slug = Str::slug($request->title);
         }
@@ -125,9 +125,9 @@ class CourseController extends Controller
         $course = $this->model->create($data);
 
 
-        if ($request->tag_ids){
-            foreach ($request->tag_ids as $tag_id){
-                $courseTag= new CourseTag();
+        if ($request->tag_ids) {
+            foreach ($request->tag_ids as $tag_id) {
+                $courseTag = new CourseTag();
                 $courseTag->course_id = $course->id;
                 $courseTag->tag_id = $tag_id;
                 $courseTag->save();
@@ -135,28 +135,14 @@ class CourseController extends Controller
         }
 
 
-        if ($request->key_points){
-            foreach ($request->key_points as $key_point){
+        if ($request->key_points) {
+            foreach ($request->key_points as $key_point) {
                 $learn_Key_point = new LearnKeyPoint();
                 $learn_Key_point->course_id = $course->id;
                 $learn_Key_point->key_points_id = $key_point;
                 $learn_Key_point->save();
             }
         }
-
-
-        /*if ($request['key_points']) {
-            if (count(@$request['key_points']) > 0) {
-                foreach ($request['key_points'] as $item) {
-                    if (@$item['name']){
-                        $key_point = new LearnKeyPoint();
-                        $key_point->course_id = $course->id;
-                        $key_point->name = @$item['name'];
-                        $key_point->save();
-                    }
-                }
-            }
-        }*/
 
         Alert::toast('Course Created Successfully.', 'Success');
 
@@ -165,109 +151,41 @@ class CourseController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function edit($uuid)
     {
         $data['navCourseUploadActiveClass'] = 'active';
 
         $data['rules'] = CourseUploadRule::all();
         $data['course'] = $this->model->getRecordByUuid($uuid);
-        $data['keyPoints'] = LearnKeyPoint::whereCourseId($data['course']->id)->get();
+        $data['key_points'] = KeyPoints::orderBy('name', 'asc')->select('id', 'name')->get();
 
-        if (\request('step') == 'category')
-        {
-            $data['categories'] = Category::active()->orderBy('name', 'asc')->select('id', 'name')->get();
-            $data['tags'] = Tag::orderBy('name', 'asc')->select('id', 'name')->get();
-            $data['languages'] = Language::orderBy('name', 'asc')->select('id', 'name')->get();
-            $data['difficulty_levels'] = DifficultyLevel::orderBy('name', 'asc')->select('id', 'name')->get();
-            if (old('category_id'))
-            {
-                $data['subcategories'] = Subcategory::where('category_id', old('category_id'))->select('id', 'name')->orderBy('name', 'asc')->get();
-            } elseif ($data['course']->category_id)
-            {
-                $data['subcategories'] = Subcategory::where('category_id', $data['course']->category_id)->select('id', 'name')->orderBy('name', 'asc')->get();
-            } else {
-                $data['subcategories'] = [];
-            }
 
-            $selected_tags = [];
+        return view('instructor.course.edit', $data);
 
-            if (old('tag'))
-            {
-                $selected_tags = old('tag');
-
-            } elseif ($data['course']->tags->count() > 0)
-            {
-                foreach ($data['course']->tags as $tag)
-                {
-                    $selected_tags[] = $tag->id;
-                }
-            } else {
-                $selected_tags = [];
-            }
-
-            $data['selected_tags'] = $selected_tags;
-
-            return view('instructor.course.edit-category', $data);
-
-        } elseif (\request('step') == 'lesson') {
-
-            return view('instructor.course.lesson', $data);
-
-        } elseif (\request('step') == 'submit') {
-
-            return view('instructor.course.submit-lesson', $data);
-
-        } else {
-            return view('instructor.course.edit', $data);
-        }
     }
 
 
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function delete($id)
     {
         //
     }
 
 
-    public function show($uuid){
+    public function show($uuid)
+    {
 
     }
 
 
-    public function getSubcategories(Request $request) {
+    public function getSubcategories(Request $request)
+    {
         $subCategories = SubCategory::where('category_id', $request->category_id)
             ->orderBy('name')
             ->get()->toArray();

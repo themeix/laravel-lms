@@ -118,6 +118,25 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="is_feature">Showing Courses in Homepage</label>
+
+                                                <div class="form-check form-check-inline">
+
+                                                    <label class="form-check-label" > <input class="form-check-input p-2" type="checkbox" name="is_showing_course" id="is_showing_course" value="yes" {{old('is_showing_course') == 'yes' ? 'checked' : '' }} > </label>
+
+
+                                                    {{-- <label class="form-check-label"
+                                                            for="inlineCheckbox1">Checked</label>--}}
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <div class="col-12">
 

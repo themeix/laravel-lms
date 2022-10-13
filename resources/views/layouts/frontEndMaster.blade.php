@@ -18,15 +18,15 @@
     <!-- endgulp -->
 
     <style>
-        .buyButton{
+        .buyButton {
             bottom: 47px;
             right: 79px;
-            box-shadow: 0 1px 20px 1px #EA5455!important;
-            background-color: #EA5455!important;
-            color: #FFF!important;
-            border-color: #EA5455!important;
+            box-shadow: 0 1px 20px 1px #EA5455 !important;
+            background-color: #EA5455 !important;
+            color: #FFF !important;
+            border-color: #EA5455 !important;
             box-sizing: border-box;
-            font-size: 15px ;
+            font-size: 15px;
             border-radius: 0.358rem;
             font-weight: 500;
             display: flex;
@@ -37,8 +37,9 @@
             letter-spacing: 0.14px;
 
         }
-        .buyButton:hover{
-            box-shadow: unset!important;
+
+        .buyButton:hover {
+            box-shadow: unset !important;
         }
     </style>
 
@@ -240,7 +241,7 @@
                             </div>
                         @endif
 
-
+                        {{--Mobile Cart Starts herer--}}
                         <div class="cart-box">
                             <a class="w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative"
                                href="cart.html">
@@ -400,7 +401,6 @@
                     </div>
 
 
-
                     <div class="menu-box flex-grow lg:flex lg:items-center lg:w-auto">
                         <div class="header-left-menu flex-grow relative">
                             <ul
@@ -461,7 +461,6 @@
                                         <li>
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.allCategories2')}}">All Catagories 2 </a></li>
-
 
 
                                         <li>
@@ -748,7 +747,9 @@
                             {{--Desktop Cart Starts Here--}}
 
                             <div class="cart-box">
-                                <div class="relative">
+                                <a class="w-12 h-12  hover:bg-gray-200  rounded-full inline-flex items-center justify-center   relative"
+                                   href="cart.html">
+
                                     <div
                                         class="cart-box-close cursor-pointer w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative">
                                         <div
@@ -774,84 +775,8 @@
                                                   stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
                                     </div>
-                                    <div
-                                        class="cart-wrap  opacity-0 invisible absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0  translate-y-10">
-                                        <div class="overflow-hidden rounded-xl shadow  ">
-                                            <div class="relative bg-white">
-                                                <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
-                                                    <h3 class="text-xl font-semibold text-black-200">Shopping cart</h3>
-                                                    <div class="divide-y divide-slate-100 dark:divide-slate-700">
 
-
-                                                        {{--Cart Product Starts Here--}}
-
-
-                                                        <div class="flex py-5 last:pb-0 dropdown-cart-products" id="dropdown-cart-products">
-                                                            <div
-                                                                class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                                                                <img class="h-full object-cover"
-                                                                     src="{{asset('frontend/assets/images/lessons-images-1-1.webp')}}"
-                                                                     alt="#">
-                                                            </div>
-                                                            <div class="ml-4 flex flex-1 flex-col">
-                                                                <div>
-                                                                    <div class="flex justify-between ">
-                                                                        <div>
-                                                                            <h3
-                                                                                class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
-                                                                                <a href="courses-lesson-1.html"> UX
-                                                                                    Career in 2022 </a>
-                                                                            </h3>
-                                                                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                                                                                <span>UX Design</span>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="mt-0.5">
-                                                                            <div
-                                                                                class="flex items-center border border-blue-600 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
-                                                                                <span
-                                                                                    class="text-blue-600">$74.00</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="flex flex-1 items-end justify-between text-sm">
-                                                                    <p>Qty 1</p>
-                                                                    <div class="flex">
-                                                                        <button type="button"
-                                                                                class="font-medium text-blue-600">Remove
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        {{--Cart Product Ends Here--}}
-
-
-
-                                                    </div>
-                                                </div>
-                                                <div class="p-5  bg-white">
-                                                    <p class="flex justify-between font-semibold text-black-200">
-                                             <span><span>Subtotal</span><span class="block text-sm">Shipping
-                                                   and taxes calculated at checkout.</span></span><span
-                                                            class="">$322.00</span>
-                                                    </p>
-                                                    <div class="flex space-x-2 mt-5"><a
-                                                            class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    bg-blue-600 hover:bg-black-200 transition duration-500 text-white  flex-1"
-                                                            rel="noopener noreferrer" href="{{route('main.cart')}}">View cart</a>
-                                                        <a class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    hover:bg-blue-600 bg-black-200 transition duration-500 text-white  flex-1"
-                                                           rel="noopener noreferrer" href="{{route('main.checkout')}}">Check out</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
 
                             {{--Desktop Cart Ends Here--}}
@@ -871,9 +796,7 @@
     {{--Main Content End--}}
 
 
-        <a class="fixed text-white buyButton" href="https://themeix.com" target="_blank">Buy Now</a>
-
-
+    <a class="fixed text-white buyButton" href="https://themeix.com" target="_blank">Buy Now</a>
 
 
     <!--  ====================== Footer  Area Start =============================  -->
@@ -884,7 +807,8 @@
                 <div class=" md:col-span-4">
                     <div class="footer-item" data-aos="fade-up" data-aos-delay="500">
                         <div class="footer-logo">
-                            <a href="{{route('main.index')}}"><img src="{{asset('frontend/assets/images/header-logo.png')}}" alt="images"></a>
+                            <a href="{{route('main.index')}}"><img
+                                    src="{{asset('frontend/assets/images/header-logo.png')}}" alt="images"></a>
                         </div>
                         <p class="pt-8">Instantly are in most her. At many, a been some don't he they the his to is fail
                             with I that for titles let butter check and a picture because

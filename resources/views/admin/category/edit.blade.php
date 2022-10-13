@@ -112,6 +112,25 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="is_showing_course">Showing Courses in Homepage</label>
+
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input p-2" type="checkbox"
+                                                           id="is_showing_course"
+                                                           value="yes" {{$category->is_showing_course == 'yes' ? 'checked' : '' }}
+                                                           name="is_showing_course"
+                                                    />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
 
                                     <div class="col-12">
 

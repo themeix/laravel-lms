@@ -309,8 +309,19 @@ class InstructorController extends Controller
             abort('403');
         } // end permission checking
 
+
         $instructor = $this->instructorModel->getRecordByUuid($uuid);
         $user = User::findOrfail($instructor->user_id);
+
+        $data['courses'] = Course::where('instructor_id', $instructor->id)->get();
+
+        if($data['courses']->count() > 0)
+        {
+            Alert::toast('Instructor has courses. Please delete courses first.', 'warning');
+            return redirect()->back();
+        }
+
+
 
         if ($instructor && $user){
             //Start:: Course Delete

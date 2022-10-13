@@ -59,6 +59,9 @@
             justify-content: center;
             color: black;
         }
+        .indexTable{
+            overflow-x: scroll;
+        }
 
         .action__buttons{
             justify-content: center;

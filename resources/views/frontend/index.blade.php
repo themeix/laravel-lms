@@ -40,86 +40,6 @@
                                 Intro</a>
                         </div>
                     </div>
-                    {{--<div class="author-box md:pt-10 pt-6 flex items-center">
-                        <div class="flex">
-                            <div class="author-images-box group  flex  items-center relative">
-                                <img class="w-10 h-10 object-cover border border-white rounded-full"
-                                     src="{{asset('frontend/assets/images/hero-author-1.png')}}" alt="images">
-                                <div class="absolute left-0  items-center opacity-0 ml-6 group-hover:opacity-100 flex ">
-                                    <div class="w-3 h-3 -mr-2 rotate-45 bg-blue-600 relative z-100"></div>
-                                    <span
-                                        class="relative z-10 p-2 text-xs w-24 leading-none text-white whitespace-no-wrap bg-blue-600 shadow-lg">C.
-                                 Womack</span>
-                                </div>
-                            </div>
-                            <div class="author-images-box group right-3 flex  items-center relative">
-                                <img class="w-10 h-10 object-cover border border-white rounded-full"
-                                     src="{{asset('frontend/assets/images/hero-author-2.png')}}" alt="images">
-                                <div class="absolute left-0  items-center opacity-0 ml-6 group-hover:opacity-100 flex ">
-                                    <div class="w-3 h-3 -mr-2 rotate-45 bg-blue-600 relative z-100"></div>
-                                    <span
-                                        class="relative z-10 p-2 text-xs w-24 leading-none text-white whitespace-no-wrap bg-blue-600 shadow-lg">C.
-                                 Womack</span>
-                                </div>
-                            </div>
-                            <div class="author-images-box group
-                              right-5 flex  items-center relative">
-                                <img class="w-10 h-10 object-cover border border-white rounded-full"
-                                     src="{{asset('frontend/assets/images/hero-author-3.png')}}" alt="images">
-                                <div class="absolute left-0  items-center opacity-0 ml-6 group-hover:opacity-100 flex ">
-                                    <div class="w-3 h-3 -mr-2 rotate-45 bg-blue-600 relative z-100"></div>
-                                    <span
-                                        class="relative z-10 p-2 text-xs w-24 leading-none text-white whitespace-no-wrap bg-blue-600 shadow-lg">C.
-                                 Womack</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="author-rating">
-                            <ul class="flex items-center">
-                                <li class="mr-1">
-                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M18.2891 6.33831L12.6233 5.51709L10.0905 0.396152C10.0213 0.255944 9.90751 0.142442 9.76692 0.0734507C9.41434 -0.100141 8.98589 0.0445188 8.8096 0.396152L6.27681 5.51709L0.610958 6.33831C0.454751 6.36057 0.311933 6.43401 0.202588 6.54529C0.070396 6.68079 -0.00244778 6.86309 6.28085e-05 7.05213C0.0025734 7.24117 0.080233 7.42149 0.215977 7.55345L4.3153 11.5394L3.34681 17.1677C3.3241 17.2987 3.33863 17.4333 3.38875 17.5564C3.43887 17.6795 3.52257 17.7862 3.63037 17.8643C3.73817 17.9424 3.86575 17.9887 3.99864 17.9982C4.13154 18.0076 4.26443 17.9798 4.38224 17.9177L9.45005 15.2605L14.5178 17.9177C14.6562 17.9912 14.8169 18.0157 14.9709 17.989C15.3591 17.9222 15.6202 17.555 15.5533 17.1677L14.5848 11.5394L18.6841 7.55345C18.7957 7.4444 18.8693 7.30197 18.8916 7.14618C18.9519 6.75671 18.6797 6.39618 18.2891 6.33831Z"
-                                            fill="#FFD102" />
-                                    </svg>
-                                </li>
-                                <li class="mr-1">
-                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M18.2891 6.33831L12.6233 5.51709L10.0905 0.396152C10.0213 0.255944 9.90751 0.142442 9.76692 0.0734507C9.41434 -0.100141 8.98589 0.0445188 8.8096 0.396152L6.27681 5.51709L0.610958 6.33831C0.454751 6.36057 0.311933 6.43401 0.202588 6.54529C0.070396 6.68079 -0.00244778 6.86309 6.28085e-05 7.05213C0.0025734 7.24117 0.080233 7.42149 0.215977 7.55345L4.3153 11.5394L3.34681 17.1677C3.3241 17.2987 3.33863 17.4333 3.38875 17.5564C3.43887 17.6795 3.52257 17.7862 3.63037 17.8643C3.73817 17.9424 3.86575 17.9887 3.99864 17.9982C4.13154 18.0076 4.26443 17.9798 4.38224 17.9177L9.45005 15.2605L14.5178 17.9177C14.6562 17.9912 14.8169 18.0157 14.9709 17.989C15.3591 17.9222 15.6202 17.555 15.5533 17.1677L14.5848 11.5394L18.6841 7.55345C18.7957 7.4444 18.8693 7.30197 18.8916 7.14618C18.9519 6.75671 18.6797 6.39618 18.2891 6.33831Z"
-                                            fill="#FFD102" />
-                                    </svg>
-                                </li>
-                                <li class="mr-1">
-                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M18.2891 6.33831L12.6233 5.51709L10.0905 0.396152C10.0213 0.255944 9.90751 0.142442 9.76692 0.0734507C9.41434 -0.100141 8.98589 0.0445188 8.8096 0.396152L6.27681 5.51709L0.610958 6.33831C0.454751 6.36057 0.311933 6.43401 0.202588 6.54529C0.070396 6.68079 -0.00244778 6.86309 6.28085e-05 7.05213C0.0025734 7.24117 0.080233 7.42149 0.215977 7.55345L4.3153 11.5394L3.34681 17.1677C3.3241 17.2987 3.33863 17.4333 3.38875 17.5564C3.43887 17.6795 3.52257 17.7862 3.63037 17.8643C3.73817 17.9424 3.86575 17.9887 3.99864 17.9982C4.13154 18.0076 4.26443 17.9798 4.38224 17.9177L9.45005 15.2605L14.5178 17.9177C14.6562 17.9912 14.8169 18.0157 14.9709 17.989C15.3591 17.9222 15.6202 17.555 15.5533 17.1677L14.5848 11.5394L18.6841 7.55345C18.7957 7.4444 18.8693 7.30197 18.8916 7.14618C18.9519 6.75671 18.6797 6.39618 18.2891 6.33831Z"
-                                            fill="#FFD102" />
-                                    </svg>
-                                </li>
-                                <li class="mr-1">
-                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M18.2891 6.33831L12.6233 5.51709L10.0905 0.396152C10.0213 0.255944 9.90751 0.142442 9.76692 0.0734507C9.41434 -0.100141 8.98589 0.0445188 8.8096 0.396152L6.27681 5.51709L0.610958 6.33831C0.454751 6.36057 0.311933 6.43401 0.202588 6.54529C0.070396 6.68079 -0.00244778 6.86309 6.28085e-05 7.05213C0.0025734 7.24117 0.080233 7.42149 0.215977 7.55345L4.3153 11.5394L3.34681 17.1677C3.3241 17.2987 3.33863 17.4333 3.38875 17.5564C3.43887 17.6795 3.52257 17.7862 3.63037 17.8643C3.73817 17.9424 3.86575 17.9887 3.99864 17.9982C4.13154 18.0076 4.26443 17.9798 4.38224 17.9177L9.45005 15.2605L14.5178 17.9177C14.6562 17.9912 14.8169 18.0157 14.9709 17.989C15.3591 17.9222 15.6202 17.555 15.5533 17.1677L14.5848 11.5394L18.6841 7.55345C18.7957 7.4444 18.8693 7.30197 18.8916 7.14618C18.9519 6.75671 18.6797 6.39618 18.2891 6.33831Z"
-                                            fill="#FFD102" />
-                                    </svg>
-                                </li>
-                                <li>
-                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M18.2891 6.33831L12.6233 5.51709L10.0905 0.396152C10.0213 0.255944 9.90751 0.142442 9.76692 0.0734507C9.41434 -0.100141 8.98589 0.0445188 8.8096 0.396152L6.27681 5.51709L0.610958 6.33831C0.454751 6.36057 0.311933 6.43401 0.202588 6.54529C0.070396 6.68079 -0.00244778 6.86309 6.28085e-05 7.05213C0.0025734 7.24117 0.080233 7.42149 0.215977 7.55345L4.3153 11.5394L3.34681 17.1677C3.3241 17.2987 3.33863 17.4333 3.38875 17.5564C3.43887 17.6795 3.52257 17.7862 3.63037 17.8643C3.73817 17.9424 3.86575 17.9887 3.99864 17.9982C4.13154 18.0076 4.26443 17.9798 4.38224 17.9177L9.45005 15.2605L14.5178 17.9177C14.6562 17.9912 14.8169 18.0157 14.9709 17.989C15.3591 17.9222 15.6202 17.555 15.5533 17.1677L14.5848 11.5394L18.6841 7.55345C18.7957 7.4444 18.8693 7.30197 18.8916 7.14618C18.9519 6.75671 18.6797 6.39618 18.2891 6.33831Z"
-                                            fill="#FFD102" />
-                                    </svg>
-                                </li>
-                            </ul>
-                            <p class="text-sm text-indigo-900 font-semibold mt-2">From 1k+ reviews</p>
-                        </div>
-                    </div>--}}
                 </div>
                 <div class="hero-right relative order-first md:order-2">
                     <div class="hero-right-big-images">
@@ -241,86 +161,98 @@
     </section>
     <!--  ====================== Hero Area End =============================  -->
     <!--  ====================== Popular Topics Area Start =============================  -->
-    <section class="popular-topics-area md:pt-32 pt-20 relative">
-        <div class="container">
-            <div class="section-title md:pb-16 pb-10 text-center lg:w-6/12 m-auto" data-aos="fade-up"
-                 data-aos-delay="0">
-                <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">Browse
-                    Categories
-                </h2>
-                <p class="text-lg text-gray-800">For else way a bear way but in her separated if written first step, the
-                    a true, the handles change.
-                </p>
-            </div>
-            <div class="shape-box ">
-                <div class="shpae absolute -top-10 right-0 hidden lg:block">
-                    <img src="{{asset('frontend/assets/images/topics-shape-1.png')}}" alt="images">
+    @if(sizeof($categories)>0)
+        <section class="popular-topics-area md:pt-32 pt-20 relative">
+            <div class="container">
+                <div class="section-title md:pb-16 pb-10 text-center lg:w-6/12 m-auto" data-aos="fade-up"
+                     data-aos-delay="0">
+                    <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">Browse
+                        Categories
+                    </h2>
+                    <p class="text-lg text-gray-800">For else way a bear way but in her separated if written first step,
+                        the
+                        a true, the handles change.
+                    </p>
                 </div>
-                <div class="shpae absolute -bottom-40 left-0 hidden lg:block">
-                    <img src="{{asset('frontend/assets/images/topics-shape-2.png')}}" alt="images">
-                </div>
-            </div>
-            <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2  gap-6">
-                @foreach($categories as $category)
-                    <div
-                        class="popular-topics-box text-center p-10 border group border-blue-20 hover:border-blue-600  !transition   !duration-500  hover:bg-blue-100 rounded-md"
-                        data-aos="fade-up" data-aos-delay="50">
-                        <div class="tioics-icon mb-6 inline-block  !transition   !duration-500 ">
-                     <span class="w-16 h-16">
-                        <a href="{{route('main.categoryWiseCourses1', $category->uuid)}}"><img src="{{getImageFile($category->image_path)}}" width="80" height="80" alt="category"></a>
-                     </span>
-                        </div>
-                        <h3 class="md:text-2xl text-xl font-semibold text-black-200 mb-2 hover:text-blue-600">
-                            <a href="{{route('main.categoryWiseCourses1', $category->uuid)}}"> {{$category->name}}
-                            </a>
-                        </h3>
-                        <a href="{{route('main.categoryWiseCourses1', $category->uuid)}}"><p class="text-lg">{{ @$category->courses->count() }} Courses</p></a>
+                <div class="shape-box ">
+                    <div class="shpae absolute -top-10 right-0 hidden lg:block">
+                        <img src="{{asset('frontend/assets/images/topics-shape-1.png')}}" alt="images">
                     </div>
-                @endforeach
+                    <div class="shpae absolute -bottom-40 left-0 hidden lg:block">
+                        <img src="{{asset('frontend/assets/images/topics-shape-2.png')}}" alt="images">
+                    </div>
+                </div>
 
+                <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2  gap-6">
+                    @foreach($categories as $category)
+                        <div
+                            class="popular-topics-box text-center p-10 border group border-blue-20 hover:border-blue-600  !transition   !duration-500  hover:bg-blue-100 rounded-md"
+                            data-aos="fade-up" data-aos-delay="50">
+                            <div class="tioics-icon mb-6 inline-block  !transition   !duration-500 ">
+                     <span class="w-16 h-16">
+                        <a href="{{route('main.categoryWiseCourses1', $category->uuid)}}"><img
+                                src="{{getImageFile($category->image_path)}}" width="80" height="80" alt="category"></a>
+                     </span>
+                            </div>
+                            <h3 class="md:text-2xl text-xl font-semibold text-black-200 mb-2 hover:text-blue-600">
+                                <a href="{{route('main.categoryWiseCourses1', $category->uuid)}}"> {{$category->name}}
+                                </a>
+                            </h3>
+                            <a href="{{route('main.categoryWiseCourses1', $category->uuid)}}"><p
+                                    class="text-lg">{{ @$category->courses->where('status', 1)->count() }} Courses</p>
+                            </a>
+                        </div>
+                    @endforeach
+
+                </div>
+
+                <div class="button-xl text-center md:mt-12 mt-8">
+                    <a class="py-5 px-8 rounded-full border-slate-200 border inline-block hover:bg-blue-600 hover:border-blue-200 hover:text-white  !transition   !duration-500  font-medium"
+                       href="{{route('main.allCategories1')}}">View All Categories</a>
+                </div>
             </div>
-            <div class="button-xl text-center md:mt-12 mt-8">
-                <a class="py-5 px-8 rounded-full border-slate-200 border inline-block hover:bg-blue-600 hover:border-blue-200 hover:text-white  !transition   !duration-500  font-medium"
-                   href="{{route('main.allCategories1')}}">View All Categories</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!--  ====================== Popular Topics Area End =============================  -->
     <!--  ====================== Latest Lessons Area Start =============================  -->
-    <section class="latest-lessons-area lg:pt-32 pt-20">
-        <div class="container">
-            <div class="section-title md:pb-16 pb-10 text-center lg:w-6/12 m-auto" data-aos="fade-up"
-                 data-aos-delay="1000">
-                <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">Explore
-                    Courses
-                </h2>
-                <p class="text-lg text-gray-800">For else way a bear way but in her separated if written first step, the
-                    a true, the handles change.
-                </p>
-            </div>
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+    @if(sizeof($courses)>0)
+        <section class="latest-lessons-area lg:pt-32 pt-20">
+            <div class="container">
+                <div class="section-title md:pb-16 pb-10 text-center lg:w-6/12 m-auto" data-aos="fade-up"
+                     data-aos-delay="1000">
+                    <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">Explore
+                        Courses
+                    </h2>
+                    <p class="text-lg text-gray-800">For else way a bear way but in her separated if written first step,
+                        the
+                        a true, the handles change.
+                    </p>
+                </div>
 
-                @foreach($courses as $course)
-                    <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
-                         data-aos-delay="500">
-                        <div class="lessons-images relative overflow-hidden">
-                            <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                        src="{{asset('frontend/assets/images/lessons-images-1.webp')}}"
-                                                        alt="images">
-                            </a>
 
-                        </div>
-                        <div
-                            class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
-                            <div class="name-box flex justify-between">
-                                <p class="text-blue-600 text-xl font-bold">$ {{$course->price}}</p>
-                                <span class="text-blue-50">12 July, 2022</span>
+                <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+
+                    @foreach($courses as $course)
+                        <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
+                             data-aos-delay="500">
+                            <div class="lessons-images relative overflow-hidden">
+                                <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
+                                                            src="{{asset('frontend/assets/images/lessons-images-1.webp')}}"
+                                                            alt="images">
+                                </a>
+
                             </div>
-                            <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
-                                <a
-                                    href="course.html">{{$course->title}}</a></h3>
-                            <div class="reviews-box flex justify-between pt-5">
-                                <div class="flex items-center">
+                            <div
+                                class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
+                                <div class="name-box flex justify-between">
+                                    <p class="text-blue-600 text-xl font-bold">$ {{$course->price}}</p>
+                                    <span class="text-blue-50">12 July, 2022</span>
+                                </div>
+                                <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
+                                    <a
+                                        href="course.html">{{$course->title}}</a></h3>
+                                <div class="reviews-box flex justify-between pt-5">
+                                    <div class="flex items-center">
                            <span class="mr-2">
                               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                    xmlns="http://www.w3.org/2000/svg">
@@ -330,9 +262,9 @@
                                  <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#757F8F"/>
                               </svg>
                            </span>
-                                    <p>1 hour 20 min</p>
-                                </div>
-                                <div class="flex items-center">
+                                        <p>1 hour 20 min</p>
+                                    </div>
+                                    <div class="flex items-center">
                            <span class="mr-2">
                               <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
                                    xmlns="http://www.w3.org/2000/svg">
@@ -341,25 +273,27 @@
                                      fill="#FFD102"/>
                               </svg>
                            </span>
-                                    <p>5.0 (80 Reviews)</p>
+                                        <p>5.0 (80 Reviews)</p>
+                                    </div>
+                                </div>
+                                <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                    <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart" href="{{ route('student.addToCart')}}">Add to Cart</a>
+
+                                    <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
+                                       href="checkout.html">Buy Now</a>
                                 </div>
                             </div>
-                            <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart" href="javascript:void(0)" data-course_id="{{ $course->id }}" data-route="{{ route('student.addToCart') }}">Add to Cart</a>
-
-                                <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                                   href="checkout.html">Buy Now</a>
-                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+
+                <div class="button-xl text-center md:mt-12 mt-8">
+                    <a class="py-5 px-8 rounded-full border-slate-200 border inline-block hover:bg-blue-600 hover:border-blue-200 font-medium hover:text-white  !transition   !duration-500 "
+                       href="{{route('main.allCourses1')}}">View All Courses</a>
+                </div>
             </div>
-            <div class="button-xl text-center md:mt-12 mt-8">
-                <a class="py-5 px-8 rounded-full border-slate-200 border inline-block hover:bg-blue-600 hover:border-blue-200 font-medium hover:text-white  !transition   !duration-500 "
-                   href="{{route('main.allCourses1')}}">View All Courses</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!--  ====================== Latest Lessons Area End =============================  -->
     <!--  ====================== Data Statistics Area Start =============================  -->
     <section class="data-statistics-area md:mt-32 mt-20 py-20 bg-cover bg-center bg-blue-100"
@@ -465,79 +399,54 @@
     </section>
     <!--  ====================== Data Statistics Area End =============================  -->
     <!--  ====================== Category Post Area Start =============================  -->
-    <section class="category-post-area md:mt-32 mt-20">
-        <div class="container">
-            <div class="title-box md:pb-16 pb-10" data-aos="fade-up" data-aos-delay="500">
-                <div class="sm:flex justify-between items-end">
-                    <div class="section-title  text-left md:w-6/12 ">
-                        <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">UI
-                            Design Courses
-                        </h2>
-                        <p class="text-lg text-gray-800">Chest extremely quarter handwriting the officers. Unavoidable,
-                            for
-                            how of the heard ill
-                        </p>
-                    </div>
-                    <div class="title-link">
-                        <a class="underline text-blue-600 font-semibold hover:text-black-200" href="#">View All</a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-                <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
-                     data-aos-delay="1000">
-                    <div class="lessons-images relative overflow-hidden">
-                        <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                    src="{{asset('frontend/assets/images/ul-design-1.webp')}}"
-                                                    alt="images"></a>
-                        <div
-                            class="absolute group-hover:bottom-2 -bottom-28 -right-4 inline-block text-base text-white font-medium bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-300 py-2 px-6">
-                            <ul class="inline-flex items-cente flex-wrap">
-                                <li>
-                                    <a class="group bg-facebook-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://www.facebook.com/">
-                                        <svg class=" text-gray-400 group-hover:text-white " width=" 10" height="14"
-                                             viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.27638 0.393359C9.27638 0.290253 9.23542 0.19137 9.16251 0.118463C9.08961 0.0455561 8.99072 0.00459735 8.88762 0.00459735H6.94381C5.96501 -0.0441604 5.00669 0.296473 4.27825 0.95207C3.54981 1.60767 3.11046 2.52493 3.0562 3.50345V5.60276H1.11239C1.00929 5.60276 0.910405 5.64372 0.837498 5.71662C0.764592 5.78953 0.723633 5.88841 0.723633 5.99152V8.01308C0.723633 8.11618 0.764592 8.21507 0.837498 8.28797C0.910405 8.36088 1.00929 8.40184 1.11239 8.40184H3.0562V13.6112C3.0562 13.7143 3.09716 13.8132 3.17006 13.8861C3.24297 13.959 3.34186 14 3.44496 14H5.77753C5.88063 14 5.97952 13.959 6.05242 13.8861C6.12533 13.8132 6.16629 13.7143 6.16629 13.6112V8.40184H8.2034C8.28985 8.40308 8.37425 8.37547 8.44325 8.32337C8.51225 8.27126 8.56191 8.19765 8.58438 8.11416L9.1442 6.0926C9.15967 6.03516 9.16175 5.97493 9.15028 5.91656C9.13881 5.85819 9.11409 5.80323 9.07804 5.75591C9.04199 5.70859 8.99556 5.67018 8.94233 5.64362C8.88909 5.61707 8.83048 5.60309 8.77099 5.60276H6.16629V3.50345C6.18563 3.31099 6.27601 3.13266 6.41978 3.00326C6.56355 2.87387 6.75039 2.80271 6.94381 2.80368H8.88762C8.99072 2.80368 9.08961 2.76272 9.16251 2.68981C9.23542 2.61691 9.27638 2.51802 9.27638 2.41492V0.393359Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-twitter-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="http://twitter.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="18" height="14"
-                                             viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M17.6107 1.66066C16.9774 1.94128 16.297 2.1309 15.5818 2.2166C16.3198 1.77503 16.8719 1.08003 17.1351 0.261302C16.4418 0.673137 15.683 0.963023 14.8916 1.11836C14.3595 0.550172 13.6546 0.173569 12.8865 0.0470186C12.1184 -0.0795316 11.33 0.0510517 10.6437 0.418495C9.95738 0.785938 9.4116 1.36968 9.09106 2.0791C8.77051 2.78852 8.69316 3.58391 8.87099 4.3418C7.46609 4.27126 6.09172 3.90611 4.83707 3.27003C3.58243 2.63395 2.47556 1.74117 1.58828 0.649633C1.2849 1.17297 1.11045 1.77973 1.11045 2.42594C1.11011 3.00767 1.25337 3.58049 1.52751 4.09358C1.80165 4.60667 2.1982 5.04416 2.68198 5.36724C2.12093 5.34938 1.57226 5.19778 1.08163 4.92506V4.97056C1.08157 5.78647 1.3638 6.57726 1.88043 7.20877C2.39705 7.84027 3.11625 8.27359 3.91599 8.43519C3.39552 8.57605 2.84985 8.5968 2.32019 8.49587C2.54583 9.19791 2.98536 9.81181 3.57723 10.2516C4.16911 10.6915 4.88371 10.9352 5.621 10.9487C4.36942 11.9312 2.82372 12.4642 1.23256 12.4618C0.950707 12.4619 0.669089 12.4455 0.38916 12.4125C2.00428 13.451 3.88439 14.0021 5.80454 14C12.3045 14 15.8579 8.61647 15.8579 3.9474C15.8579 3.79571 15.8541 3.6425 15.8473 3.49081C16.5385 2.99097 17.1351 2.37201 17.6092 1.66293L17.6107 1.66066Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-linkedin-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://pinterest.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="14" height="14"
-                                             viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M5.2003 4.8783H7.8001V6.1733C8.1746 5.4285 9.135 4.7593 10.5777 4.7593C13.3434 4.7593 14 6.2419 14 8.9621V14H11.2V9.5816C11.2 8.0325 10.8255 7.1589 9.8721 7.1589C8.5498 7.1589 8.0003 8.1004 8.0003 9.5809V14H5.2003V4.8783ZM0.399 13.881H3.199V4.7593H0.399V13.881ZM3.6001 1.785C3.6002 2.01969 3.55366 2.25206 3.46317 2.46861C3.37268 2.68516 3.24006 2.88156 3.073 3.0464C2.73448 3.38284 2.27627 3.57116 1.799 3.57C1.32257 3.56968 0.865418 3.38184 0.5264 3.0471C0.359948 2.8817 0.22777 2.68508 0.137441 2.4685C0.047111 2.25193 0.000405392 2.01966 0 1.785C0 1.3111 0.189 0.8575 0.5271 0.5229C0.86582 0.187711 1.32317 -0.000209448 1.7997 1.75185e-07C2.2771 1.75185e-07 2.7349 0.1883 3.073 0.5229C3.4104 0.8575 3.6001 1.3111 3.6001 1.785Z"
-                                                  fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
+    @if(sizeof($showingCategories)>0)
+
+        @php
+            $showingCourses = app\Models\Course::where('status',1)->where('category_id', $showingCategories[0]->id)->take(3)->orderBy('id', 'desc')->get();
+        @endphp
+        @if(sizeof($showingCourses)>0)
+            <section class="category-post-area md:mt-32 mt-20">
+                <div class="container">
+                    <div class="title-box md:pb-16 pb-10" data-aos="fade-up" data-aos-delay="500">
+                        <div class="sm:flex justify-between items-end">
+                            <div class="section-title  text-left md:w-6/12 ">
+                                <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">
+                                    {{$showingCategories[0]->name}} Courses
+                                </h2>
+                                <p class="text-lg text-gray-800">Chest extremely quarter handwriting the officers.
+                                    Unavoidable,
+                                    for
+                                    how of the heard ill
+                                </p>
+                            </div>
+                            <div class="title-link">
+                                <a class="underline text-blue-600 font-semibold hover:text-black-200"
+                                   href="{{ route('main.categoryWiseCourses1', $showingCategories[0]->uuid) }}">View
+                                    All</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
-                        <div class="name-box flex justify-between">
-                            <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
-                            <span class="text-blue-50">12 July, 2022</span>
-                        </div>
-                        <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600"><a
-                                href="course.html">How to Kickstart Your UX Career in 2022</a></h3>
-                        <div class="reviews-box flex justify-between pt-5">
-                            <div class="flex items-center">
+
+                    <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+                        @foreach($showingCourses as $showingCourse)
+                            <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
+                                 data-aos-delay="1000">
+                                <div class="lessons-images relative overflow-hidden">
+                                    <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
+                                                                src="{{getImageFile($course->image_path)}}"
+                                                                alt="images"></a>
+                                </div>
+                                <div
+                                    class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
+                                    <div class="name-box flex justify-between">
+                                        <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
+                                        <span class="text-blue-50">12 July, 2022</span>
+                                    </div>
+                                    <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
+                                        <a
+                                            href="course.html">{{ $showingCourse->title }}</a></h3>
+                                    <div class="reviews-box flex justify-between pt-5">
+                                        <div class="flex items-center">
                            <span class="mr-2">
                               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                    xmlns="http://www.w3.org/2000/svg">
@@ -547,9 +456,9 @@
                                  <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#757F8F"></rect>
                               </svg>
                            </span>
-                                <p>1 hour 20 min</p>
-                            </div>
-                            <div class="flex items-center">
+                                            <p>1 hour 20 min</p>
+                                        </div>
+                                        <div class="flex items-center">
                            <span class="mr-2">
                               <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
                                    xmlns="http://www.w3.org/2000/svg">
@@ -558,190 +467,22 @@
                                      fill="#FFD102"></path>
                               </svg>
                            </span>
-                                <p>5.0 (80 Reviews)</p>
+                                            <p>5.0 (80 Reviews)</p>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart" href="{{ route('student.addToCart')}}">Add to Cart</a>
+
+                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500 hover:text-white" href="checkout.html">Buy Now</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="cart.html">Add to Cart</a>
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="checkout.html">Buy Now</a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-                <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
-                     data-aos-delay="1500">
-                    <div class="lessons-images relative overflow-hidden">
-                        <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                    src="{{asset('frontend/assets/images/ul-design-2.webp')}}"
-                                                    alt="images"></a>
-                        <div
-                            class="absolute group-hover:bottom-2 -bottom-28 -right-4 inline-block text-base text-white font-medium bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-300 py-2 px-6">
-                            <ul class="inline-flex items-cente flex-wrap">
-                                <li>
-                                    <a class="group bg-facebook-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://www.facebook.com/">
-                                        <svg class=" text-gray-400 group-hover:text-white " width=" 10" height="14"
-                                             viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.27638 0.393359C9.27638 0.290253 9.23542 0.19137 9.16251 0.118463C9.08961 0.0455561 8.99072 0.00459735 8.88762 0.00459735H6.94381C5.96501 -0.0441604 5.00669 0.296473 4.27825 0.95207C3.54981 1.60767 3.11046 2.52493 3.0562 3.50345V5.60276H1.11239C1.00929 5.60276 0.910405 5.64372 0.837498 5.71662C0.764592 5.78953 0.723633 5.88841 0.723633 5.99152V8.01308C0.723633 8.11618 0.764592 8.21507 0.837498 8.28797C0.910405 8.36088 1.00929 8.40184 1.11239 8.40184H3.0562V13.6112C3.0562 13.7143 3.09716 13.8132 3.17006 13.8861C3.24297 13.959 3.34186 14 3.44496 14H5.77753C5.88063 14 5.97952 13.959 6.05242 13.8861C6.12533 13.8132 6.16629 13.7143 6.16629 13.6112V8.40184H8.2034C8.28985 8.40308 8.37425 8.37547 8.44325 8.32337C8.51225 8.27126 8.56191 8.19765 8.58438 8.11416L9.1442 6.0926C9.15967 6.03516 9.16175 5.97493 9.15028 5.91656C9.13881 5.85819 9.11409 5.80323 9.07804 5.75591C9.04199 5.70859 8.99556 5.67018 8.94233 5.64362C8.88909 5.61707 8.83048 5.60309 8.77099 5.60276H6.16629V3.50345C6.18563 3.31099 6.27601 3.13266 6.41978 3.00326C6.56355 2.87387 6.75039 2.80271 6.94381 2.80368H8.88762C8.99072 2.80368 9.08961 2.76272 9.16251 2.68981C9.23542 2.61691 9.27638 2.51802 9.27638 2.41492V0.393359Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-twitter-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="http://twitter.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="18" height="14"
-                                             viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M17.6107 1.66066C16.9774 1.94128 16.297 2.1309 15.5818 2.2166C16.3198 1.77503 16.8719 1.08003 17.1351 0.261302C16.4418 0.673137 15.683 0.963023 14.8916 1.11836C14.3595 0.550172 13.6546 0.173569 12.8865 0.0470186C12.1184 -0.0795316 11.33 0.0510517 10.6437 0.418495C9.95738 0.785938 9.4116 1.36968 9.09106 2.0791C8.77051 2.78852 8.69316 3.58391 8.87099 4.3418C7.46609 4.27126 6.09172 3.90611 4.83707 3.27003C3.58243 2.63395 2.47556 1.74117 1.58828 0.649633C1.2849 1.17297 1.11045 1.77973 1.11045 2.42594C1.11011 3.00767 1.25337 3.58049 1.52751 4.09358C1.80165 4.60667 2.1982 5.04416 2.68198 5.36724C2.12093 5.34938 1.57226 5.19778 1.08163 4.92506V4.97056C1.08157 5.78647 1.3638 6.57726 1.88043 7.20877C2.39705 7.84027 3.11625 8.27359 3.91599 8.43519C3.39552 8.57605 2.84985 8.5968 2.32019 8.49587C2.54583 9.19791 2.98536 9.81181 3.57723 10.2516C4.16911 10.6915 4.88371 10.9352 5.621 10.9487C4.36942 11.9312 2.82372 12.4642 1.23256 12.4618C0.950707 12.4619 0.669089 12.4455 0.38916 12.4125C2.00428 13.451 3.88439 14.0021 5.80454 14C12.3045 14 15.8579 8.61647 15.8579 3.9474C15.8579 3.79571 15.8541 3.6425 15.8473 3.49081C16.5385 2.99097 17.1351 2.37201 17.6092 1.66293L17.6107 1.66066Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-linkedin-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://pinterest.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="14" height="14"
-                                             viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M5.2003 4.8783H7.8001V6.1733C8.1746 5.4285 9.135 4.7593 10.5777 4.7593C13.3434 4.7593 14 6.2419 14 8.9621V14H11.2V9.5816C11.2 8.0325 10.8255 7.1589 9.8721 7.1589C8.5498 7.1589 8.0003 8.1004 8.0003 9.5809V14H5.2003V4.8783ZM0.399 13.881H3.199V4.7593H0.399V13.881ZM3.6001 1.785C3.6002 2.01969 3.55366 2.25206 3.46317 2.46861C3.37268 2.68516 3.24006 2.88156 3.073 3.0464C2.73448 3.38284 2.27627 3.57116 1.799 3.57C1.32257 3.56968 0.865418 3.38184 0.5264 3.0471C0.359948 2.8817 0.22777 2.68508 0.137441 2.4685C0.047111 2.25193 0.000405392 2.01966 0 1.785C0 1.3111 0.189 0.8575 0.5271 0.5229C0.86582 0.187711 1.32317 -0.000209448 1.7997 1.75185e-07C2.2771 1.75185e-07 2.7349 0.1883 3.073 0.5229C3.4104 0.8575 3.6001 1.3111 3.6001 1.785Z"
-                                                  fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
-                        <div class="name-box flex justify-between">
-                            <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
-                            <span class="text-blue-50">12 July, 2022</span>
-                        </div>
-                        <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600"><a
-                                href="course.html">Photoshop Master Course: From Beginner</a></h3>
-                        <div class="reviews-box flex justify-between pt-5">
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M11.9641 9.13397C12.6308 9.51887 12.6308 10.4811 11.9641 10.866L8.03589 13.134C7.36922 13.5189 6.53589 13.0377 6.53589 12.2679V7.73205C6.53589 6.96225 7.36922 6.48113 8.03589 6.86603L11.9641 9.13397Z"
-                                     fill="#757F8F"></path>
-                                 <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#757F8F"></rect>
-                              </svg>
-                           </span>
-                                <p>1 hour 20 min</p>
-                            </div>
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M16.7903 5.63406L11.754 4.90408L9.50265 0.352135C9.44116 0.227506 9.34 0.126615 9.21504 0.0652895C8.90163 -0.0890138 8.52078 0.0395723 8.36408 0.352135L6.11271 4.90408L1.0764 5.63406C0.937548 5.65384 0.810599 5.71912 0.713403 5.81803C0.595899 5.93848 0.531149 6.10053 0.533381 6.26856C0.535613 6.4366 0.604643 6.59688 0.725305 6.71418L4.36914 10.2572L3.50827 15.2602C3.48808 15.3766 3.501 15.4963 3.54555 15.6057C3.5901 15.7151 3.6645 15.8099 3.76032 15.8793C3.85614 15.9488 3.96955 15.99 4.08767 15.9984C4.2058 16.0068 4.32393 15.982 4.42865 15.9269L8.93337 13.5648L13.4381 15.9269C13.5611 15.9922 13.7039 16.0139 13.8407 15.9902C14.1859 15.9308 14.418 15.6044 14.3585 15.2602L13.4976 10.2572L17.1414 6.71418C17.2406 6.61724 17.3061 6.49064 17.3259 6.35216C17.3795 6.00597 17.1375 5.68549 16.7903 5.63406Z"
-                                     fill="#FFD102"></path>
-                              </svg>
-                           </span>
-                                <p>5.0 (80 Reviews)</p>
-                            </div>
-                        </div>
-                        <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="cart.html">Add to Cart</a>
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="checkout.html">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
-                     data-aos-delay="2000">
-                    <div class="lessons-images relative overflow-hidden">
-                        <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                    src="{{asset('frontend/assets/images/ul-design-3.webp')}}"
-                                                    alt="images"></a>
-                        <div
-                            class="absolute group-hover:bottom-2 -bottom-28 -right-4 inline-block text-base text-white font-medium bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-300 py-2 px-6">
-                            <ul class="inline-flex items-cente flex-wrap">
-                                <li>
-                                    <a class="group bg-facebook-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://www.facebook.com/">
-                                        <svg class=" text-gray-400 group-hover:text-white " width=" 10" height="14"
-                                             viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.27638 0.393359C9.27638 0.290253 9.23542 0.19137 9.16251 0.118463C9.08961 0.0455561 8.99072 0.00459735 8.88762 0.00459735H6.94381C5.96501 -0.0441604 5.00669 0.296473 4.27825 0.95207C3.54981 1.60767 3.11046 2.52493 3.0562 3.50345V5.60276H1.11239C1.00929 5.60276 0.910405 5.64372 0.837498 5.71662C0.764592 5.78953 0.723633 5.88841 0.723633 5.99152V8.01308C0.723633 8.11618 0.764592 8.21507 0.837498 8.28797C0.910405 8.36088 1.00929 8.40184 1.11239 8.40184H3.0562V13.6112C3.0562 13.7143 3.09716 13.8132 3.17006 13.8861C3.24297 13.959 3.34186 14 3.44496 14H5.77753C5.88063 14 5.97952 13.959 6.05242 13.8861C6.12533 13.8132 6.16629 13.7143 6.16629 13.6112V8.40184H8.2034C8.28985 8.40308 8.37425 8.37547 8.44325 8.32337C8.51225 8.27126 8.56191 8.19765 8.58438 8.11416L9.1442 6.0926C9.15967 6.03516 9.16175 5.97493 9.15028 5.91656C9.13881 5.85819 9.11409 5.80323 9.07804 5.75591C9.04199 5.70859 8.99556 5.67018 8.94233 5.64362C8.88909 5.61707 8.83048 5.60309 8.77099 5.60276H6.16629V3.50345C6.18563 3.31099 6.27601 3.13266 6.41978 3.00326C6.56355 2.87387 6.75039 2.80271 6.94381 2.80368H8.88762C8.99072 2.80368 9.08961 2.76272 9.16251 2.68981C9.23542 2.61691 9.27638 2.51802 9.27638 2.41492V0.393359Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-twitter-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="http://twitter.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="18" height="14"
-                                             viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M17.6107 1.66066C16.9774 1.94128 16.297 2.1309 15.5818 2.2166C16.3198 1.77503 16.8719 1.08003 17.1351 0.261302C16.4418 0.673137 15.683 0.963023 14.8916 1.11836C14.3595 0.550172 13.6546 0.173569 12.8865 0.0470186C12.1184 -0.0795316 11.33 0.0510517 10.6437 0.418495C9.95738 0.785938 9.4116 1.36968 9.09106 2.0791C8.77051 2.78852 8.69316 3.58391 8.87099 4.3418C7.46609 4.27126 6.09172 3.90611 4.83707 3.27003C3.58243 2.63395 2.47556 1.74117 1.58828 0.649633C1.2849 1.17297 1.11045 1.77973 1.11045 2.42594C1.11011 3.00767 1.25337 3.58049 1.52751 4.09358C1.80165 4.60667 2.1982 5.04416 2.68198 5.36724C2.12093 5.34938 1.57226 5.19778 1.08163 4.92506V4.97056C1.08157 5.78647 1.3638 6.57726 1.88043 7.20877C2.39705 7.84027 3.11625 8.27359 3.91599 8.43519C3.39552 8.57605 2.84985 8.5968 2.32019 8.49587C2.54583 9.19791 2.98536 9.81181 3.57723 10.2516C4.16911 10.6915 4.88371 10.9352 5.621 10.9487C4.36942 11.9312 2.82372 12.4642 1.23256 12.4618C0.950707 12.4619 0.669089 12.4455 0.38916 12.4125C2.00428 13.451 3.88439 14.0021 5.80454 14C12.3045 14 15.8579 8.61647 15.8579 3.9474C15.8579 3.79571 15.8541 3.6425 15.8473 3.49081C16.5385 2.99097 17.1351 2.37201 17.6092 1.66293L17.6107 1.66066Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-linkedin-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://pinterest.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="14" height="14"
-                                             viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M5.2003 4.8783H7.8001V6.1733C8.1746 5.4285 9.135 4.7593 10.5777 4.7593C13.3434 4.7593 14 6.2419 14 8.9621V14H11.2V9.5816C11.2 8.0325 10.8255 7.1589 9.8721 7.1589C8.5498 7.1589 8.0003 8.1004 8.0003 9.5809V14H5.2003V4.8783ZM0.399 13.881H3.199V4.7593H0.399V13.881ZM3.6001 1.785C3.6002 2.01969 3.55366 2.25206 3.46317 2.46861C3.37268 2.68516 3.24006 2.88156 3.073 3.0464C2.73448 3.38284 2.27627 3.57116 1.799 3.57C1.32257 3.56968 0.865418 3.38184 0.5264 3.0471C0.359948 2.8817 0.22777 2.68508 0.137441 2.4685C0.047111 2.25193 0.000405392 2.01966 0 1.785C0 1.3111 0.189 0.8575 0.5271 0.5229C0.86582 0.187711 1.32317 -0.000209448 1.7997 1.75185e-07C2.2771 1.75185e-07 2.7349 0.1883 3.073 0.5229C3.4104 0.8575 3.6001 1.3111 3.6001 1.785Z"
-                                                  fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
-                        <div class="name-box flex justify-between">
-                            <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
-                            <span class="text-blue-50">12 July, 2022</span>
-                        </div>
-                        <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600"><a
-                                href="course.html">User Experience (UX): The Ultimate Guide</a></h3>
-                        <div class="reviews-box flex justify-between pt-5">
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M11.9641 9.13397C12.6308 9.51887 12.6308 10.4811 11.9641 10.866L8.03589 13.134C7.36922 13.5189 6.53589 13.0377 6.53589 12.2679V7.73205C6.53589 6.96225 7.36922 6.48113 8.03589 6.86603L11.9641 9.13397Z"
-                                     fill="#757F8F"></path>
-                                 <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#757F8F"></rect>
-                              </svg>
-                           </span>
-                                <p>1 hour 20 min</p>
-                            </div>
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M16.7903 5.63406L11.754 4.90408L9.50265 0.352135C9.44116 0.227506 9.34 0.126615 9.21504 0.0652895C8.90163 -0.0890138 8.52078 0.0395723 8.36408 0.352135L6.11271 4.90408L1.0764 5.63406C0.937548 5.65384 0.810599 5.71912 0.713403 5.81803C0.595899 5.93848 0.531149 6.10053 0.533381 6.26856C0.535613 6.4366 0.604643 6.59688 0.725305 6.71418L4.36914 10.2572L3.50827 15.2602C3.48808 15.3766 3.501 15.4963 3.54555 15.6057C3.5901 15.7151 3.6645 15.8099 3.76032 15.8793C3.85614 15.9488 3.96955 15.99 4.08767 15.9984C4.2058 16.0068 4.32393 15.982 4.42865 15.9269L8.93337 13.5648L13.4381 15.9269C13.5611 15.9922 13.7039 16.0139 13.8407 15.9902C14.1859 15.9308 14.418 15.6044 14.3585 15.2602L13.4976 10.2572L17.1414 6.71418C17.2406 6.61724 17.3061 6.49064 17.3259 6.35216C17.3795 6.00597 17.1375 5.68549 16.7903 5.63406Z"
-                                     fill="#FFD102"></path>
-                              </svg>
-                           </span>
-                                <p>5.0 (80 Reviews)</p>
-                            </div>
-                        </div>
-                        <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="cart.html">Add to Cart</a>
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="checkout.html">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        @endif
+    @endif
     <!--  ====================== Category Post Area End =============================  -->
     <!--  ====================== Discount Area Start =============================  -->
     <section class="discount-area md:py-32 py-20 bg-cover bg-center md:mt-32 mt-20 bg-blue-100"
@@ -796,381 +537,195 @@
     </section>
     <!--  ====================== DiscountPost Area End =============================  -->
     <!--  ====================== Web-design Area Start =============================  -->
-    <section class="web-design-area md:mt-32 mt-20">
-        <div class="container">
-            <div class="title-box md:pb-16 pb-10">
-                <div class="sm:flex justify-between items-end">
-                    <div class="section-title  text-left md:w-6/12 ">
-                        <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">Web
-                            Design Courses
-                        </h2>
-                        <p class="text-lg text-gray-800">Have slide best viewings hair as in the if is next line however
-                            of
-                            viewer. Whenever.
-                        </p>
-                    </div>
-                    <div class="title-link">
-                        <a class="underline text-blue-600 font-semibold hover:text-black-200" href="#">View All</a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-                <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
-                     data-aos-delay="500">
-                    <div class="lessons-images relative overflow-hidden">
-                        <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                    src="{{asset('frontend/assets/images/webdesign-1.webp')}}"
-                                                    alt="images"></a>
-                        <div
-                            class="absolute group-hover:bottom-2 -bottom-28 -right-4 inline-block text-base text-white font-medium bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-300 py-2 px-6">
-                            <ul class="inline-flex items-cente flex-wrap">
-                                <li>
-                                    <a class="group bg-facebook-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://www.facebook.com/">
-                                        <svg class=" text-gray-400 group-hover:text-white " width=" 10" height="14"
-                                             viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.27638 0.393359C9.27638 0.290253 9.23542 0.19137 9.16251 0.118463C9.08961 0.0455561 8.99072 0.00459735 8.88762 0.00459735H6.94381C5.96501 -0.0441604 5.00669 0.296473 4.27825 0.95207C3.54981 1.60767 3.11046 2.52493 3.0562 3.50345V5.60276H1.11239C1.00929 5.60276 0.910405 5.64372 0.837498 5.71662C0.764592 5.78953 0.723633 5.88841 0.723633 5.99152V8.01308C0.723633 8.11618 0.764592 8.21507 0.837498 8.28797C0.910405 8.36088 1.00929 8.40184 1.11239 8.40184H3.0562V13.6112C3.0562 13.7143 3.09716 13.8132 3.17006 13.8861C3.24297 13.959 3.34186 14 3.44496 14H5.77753C5.88063 14 5.97952 13.959 6.05242 13.8861C6.12533 13.8132 6.16629 13.7143 6.16629 13.6112V8.40184H8.2034C8.28985 8.40308 8.37425 8.37547 8.44325 8.32337C8.51225 8.27126 8.56191 8.19765 8.58438 8.11416L9.1442 6.0926C9.15967 6.03516 9.16175 5.97493 9.15028 5.91656C9.13881 5.85819 9.11409 5.80323 9.07804 5.75591C9.04199 5.70859 8.99556 5.67018 8.94233 5.64362C8.88909 5.61707 8.83048 5.60309 8.77099 5.60276H6.16629V3.50345C6.18563 3.31099 6.27601 3.13266 6.41978 3.00326C6.56355 2.87387 6.75039 2.80271 6.94381 2.80368H8.88762C8.99072 2.80368 9.08961 2.76272 9.16251 2.68981C9.23542 2.61691 9.27638 2.51802 9.27638 2.41492V0.393359Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-twitter-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="http://twitter.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="18" height="14"
-                                             viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M17.6107 1.66066C16.9774 1.94128 16.297 2.1309 15.5818 2.2166C16.3198 1.77503 16.8719 1.08003 17.1351 0.261302C16.4418 0.673137 15.683 0.963023 14.8916 1.11836C14.3595 0.550172 13.6546 0.173569 12.8865 0.0470186C12.1184 -0.0795316 11.33 0.0510517 10.6437 0.418495C9.95738 0.785938 9.4116 1.36968 9.09106 2.0791C8.77051 2.78852 8.69316 3.58391 8.87099 4.3418C7.46609 4.27126 6.09172 3.90611 4.83707 3.27003C3.58243 2.63395 2.47556 1.74117 1.58828 0.649633C1.2849 1.17297 1.11045 1.77973 1.11045 2.42594C1.11011 3.00767 1.25337 3.58049 1.52751 4.09358C1.80165 4.60667 2.1982 5.04416 2.68198 5.36724C2.12093 5.34938 1.57226 5.19778 1.08163 4.92506V4.97056C1.08157 5.78647 1.3638 6.57726 1.88043 7.20877C2.39705 7.84027 3.11625 8.27359 3.91599 8.43519C3.39552 8.57605 2.84985 8.5968 2.32019 8.49587C2.54583 9.19791 2.98536 9.81181 3.57723 10.2516C4.16911 10.6915 4.88371 10.9352 5.621 10.9487C4.36942 11.9312 2.82372 12.4642 1.23256 12.4618C0.950707 12.4619 0.669089 12.4455 0.38916 12.4125C2.00428 13.451 3.88439 14.0021 5.80454 14C12.3045 14 15.8579 8.61647 15.8579 3.9474C15.8579 3.79571 15.8541 3.6425 15.8473 3.49081C16.5385 2.99097 17.1351 2.37201 17.6092 1.66293L17.6107 1.66066Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-linkedin-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://pinterest.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="14" height="14"
-                                             viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M5.2003 4.8783H7.8001V6.1733C8.1746 5.4285 9.135 4.7593 10.5777 4.7593C13.3434 4.7593 14 6.2419 14 8.9621V14H11.2V9.5816C11.2 8.0325 10.8255 7.1589 9.8721 7.1589C8.5498 7.1589 8.0003 8.1004 8.0003 9.5809V14H5.2003V4.8783ZM0.399 13.881H3.199V4.7593H0.399V13.881ZM3.6001 1.785C3.6002 2.01969 3.55366 2.25206 3.46317 2.46861C3.37268 2.68516 3.24006 2.88156 3.073 3.0464C2.73448 3.38284 2.27627 3.57116 1.799 3.57C1.32257 3.56968 0.865418 3.38184 0.5264 3.0471C0.359948 2.8817 0.22777 2.68508 0.137441 2.4685C0.047111 2.25193 0.000405392 2.01966 0 1.785C0 1.3111 0.189 0.8575 0.5271 0.5229C0.86582 0.187711 1.32317 -0.000209448 1.7997 1.75185e-07C2.2771 1.75185e-07 2.7349 0.1883 3.073 0.5229C3.4104 0.8575 3.6001 1.3111 3.6001 1.785Z"
-                                                  fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
-                        <div class="name-box flex justify-between">
-                            <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
-                            <span class="text-blue-50">12 July, 2022</span>
-                        </div>
-                        <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600"><a
-                                href="course.html">How to Kickstart Your UX Career in 2022</a></h3>
-                        <div class="reviews-box flex justify-between pt-5">
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M11.9641 9.13397C12.6308 9.51887 12.6308 10.4811 11.9641 10.866L8.03589 13.134C7.36922 13.5189 6.53589 13.0377 6.53589 12.2679V7.73205C6.53589 6.96225 7.36922 6.48113 8.03589 6.86603L11.9641 9.13397Z"
-                                     fill="#757F8F"></path>
-                                 <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#757F8F"></rect>
-                              </svg>
-                           </span>
-                                <p>1 hour 20 min</p>
+    @if(sizeof($showingCategories)>1)
+
+        @php
+            $showingCourses1 = app\Models\Course::where('status',1)->where('category_id', $showingCategories[1]->id)->take(3)->orderBy('id', 'desc')->get();
+        @endphp
+        @if(sizeof($showingCourses1)>0)
+            <section class="web-design-area md:mt-32 mt-20">
+                <div class="container">
+                    <div class="title-box md:pb-16 pb-10">
+                        <div class="sm:flex justify-between items-end">
+                            <div class="section-title  text-left md:w-6/12 ">
+                                <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">
+                                    {{ $showingCategories[1]->name }} Courses
+                                </h2>
+                                <p class="text-lg text-gray-800">Have slide best viewings hair as in the if is next line
+                                    however
+                                    of
+                                    viewer. Whenever.
+                                </p>
                             </div>
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M16.7903 5.63406L11.754 4.90408L9.50265 0.352135C9.44116 0.227506 9.34 0.126615 9.21504 0.0652895C8.90163 -0.0890138 8.52078 0.0395723 8.36408 0.352135L6.11271 4.90408L1.0764 5.63406C0.937548 5.65384 0.810599 5.71912 0.713403 5.81803C0.595899 5.93848 0.531149 6.10053 0.533381 6.26856C0.535613 6.4366 0.604643 6.59688 0.725305 6.71418L4.36914 10.2572L3.50827 15.2602C3.48808 15.3766 3.501 15.4963 3.54555 15.6057C3.5901 15.7151 3.6645 15.8099 3.76032 15.8793C3.85614 15.9488 3.96955 15.99 4.08767 15.9984C4.2058 16.0068 4.32393 15.982 4.42865 15.9269L8.93337 13.5648L13.4381 15.9269C13.5611 15.9922 13.7039 16.0139 13.8407 15.9902C14.1859 15.9308 14.418 15.6044 14.3585 15.2602L13.4976 10.2572L17.1414 6.71418C17.2406 6.61724 17.3061 6.49064 17.3259 6.35216C17.3795 6.00597 17.1375 5.68549 16.7903 5.63406Z"
-                                     fill="#FFD102"></path>
-                              </svg>
-                           </span>
-                                <p>5.0 (80 Reviews)</p>
+                            <div class="title-link">
+                                <a class="underline text-blue-600 font-semibold hover:text-black-200"
+                                   href="{{ route('main.categoryWiseCourses1', $showingCategories[1]->uuid) }}">View
+                                    All</a>
                             </div>
                         </div>
-                        <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="cart.html">Add to Cart</a>
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="checkout.html">Buy Now</a>
-                        </div>
                     </div>
-                </div>
-                <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
-                     data-aos-delay="1000">
-                    <div class="lessons-images relative overflow-hidden">
-                        <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                    src="{{asset('frontend/assets/images/webdesign-2.webp')}}"
-                                                    alt="images"></a>
-                        <div
-                            class="absolute group-hover:bottom-2 -bottom-28 -right-4 inline-block text-base text-white font-medium bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-300 py-2 px-6">
-                            <ul class="inline-flex items-cente flex-wrap">
-                                <li>
-                                    <a class="group bg-facebook-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://www.facebook.com/">
-                                        <svg class=" text-gray-400 group-hover:text-white " width=" 10" height="14"
-                                             viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.27638 0.393359C9.27638 0.290253 9.23542 0.19137 9.16251 0.118463C9.08961 0.0455561 8.99072 0.00459735 8.88762 0.00459735H6.94381C5.96501 -0.0441604 5.00669 0.296473 4.27825 0.95207C3.54981 1.60767 3.11046 2.52493 3.0562 3.50345V5.60276H1.11239C1.00929 5.60276 0.910405 5.64372 0.837498 5.71662C0.764592 5.78953 0.723633 5.88841 0.723633 5.99152V8.01308C0.723633 8.11618 0.764592 8.21507 0.837498 8.28797C0.910405 8.36088 1.00929 8.40184 1.11239 8.40184H3.0562V13.6112C3.0562 13.7143 3.09716 13.8132 3.17006 13.8861C3.24297 13.959 3.34186 14 3.44496 14H5.77753C5.88063 14 5.97952 13.959 6.05242 13.8861C6.12533 13.8132 6.16629 13.7143 6.16629 13.6112V8.40184H8.2034C8.28985 8.40308 8.37425 8.37547 8.44325 8.32337C8.51225 8.27126 8.56191 8.19765 8.58438 8.11416L9.1442 6.0926C9.15967 6.03516 9.16175 5.97493 9.15028 5.91656C9.13881 5.85819 9.11409 5.80323 9.07804 5.75591C9.04199 5.70859 8.99556 5.67018 8.94233 5.64362C8.88909 5.61707 8.83048 5.60309 8.77099 5.60276H6.16629V3.50345C6.18563 3.31099 6.27601 3.13266 6.41978 3.00326C6.56355 2.87387 6.75039 2.80271 6.94381 2.80368H8.88762C8.99072 2.80368 9.08961 2.76272 9.16251 2.68981C9.23542 2.61691 9.27638 2.51802 9.27638 2.41492V0.393359Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-twitter-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="http://twitter.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="18" height="14"
-                                             viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M17.6107 1.66066C16.9774 1.94128 16.297 2.1309 15.5818 2.2166C16.3198 1.77503 16.8719 1.08003 17.1351 0.261302C16.4418 0.673137 15.683 0.963023 14.8916 1.11836C14.3595 0.550172 13.6546 0.173569 12.8865 0.0470186C12.1184 -0.0795316 11.33 0.0510517 10.6437 0.418495C9.95738 0.785938 9.4116 1.36968 9.09106 2.0791C8.77051 2.78852 8.69316 3.58391 8.87099 4.3418C7.46609 4.27126 6.09172 3.90611 4.83707 3.27003C3.58243 2.63395 2.47556 1.74117 1.58828 0.649633C1.2849 1.17297 1.11045 1.77973 1.11045 2.42594C1.11011 3.00767 1.25337 3.58049 1.52751 4.09358C1.80165 4.60667 2.1982 5.04416 2.68198 5.36724C2.12093 5.34938 1.57226 5.19778 1.08163 4.92506V4.97056C1.08157 5.78647 1.3638 6.57726 1.88043 7.20877C2.39705 7.84027 3.11625 8.27359 3.91599 8.43519C3.39552 8.57605 2.84985 8.5968 2.32019 8.49587C2.54583 9.19791 2.98536 9.81181 3.57723 10.2516C4.16911 10.6915 4.88371 10.9352 5.621 10.9487C4.36942 11.9312 2.82372 12.4642 1.23256 12.4618C0.950707 12.4619 0.669089 12.4455 0.38916 12.4125C2.00428 13.451 3.88439 14.0021 5.80454 14C12.3045 14 15.8579 8.61647 15.8579 3.9474C15.8579 3.79571 15.8541 3.6425 15.8473 3.49081C16.5385 2.99097 17.1351 2.37201 17.6092 1.66293L17.6107 1.66066Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-linkedin-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://pinterest.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="14" height="14"
-                                             viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M5.2003 4.8783H7.8001V6.1733C8.1746 5.4285 9.135 4.7593 10.5777 4.7593C13.3434 4.7593 14 6.2419 14 8.9621V14H11.2V9.5816C11.2 8.0325 10.8255 7.1589 9.8721 7.1589C8.5498 7.1589 8.0003 8.1004 8.0003 9.5809V14H5.2003V4.8783ZM0.399 13.881H3.199V4.7593H0.399V13.881ZM3.6001 1.785C3.6002 2.01969 3.55366 2.25206 3.46317 2.46861C3.37268 2.68516 3.24006 2.88156 3.073 3.0464C2.73448 3.38284 2.27627 3.57116 1.799 3.57C1.32257 3.56968 0.865418 3.38184 0.5264 3.0471C0.359948 2.8817 0.22777 2.68508 0.137441 2.4685C0.047111 2.25193 0.000405392 2.01966 0 1.785C0 1.3111 0.189 0.8575 0.5271 0.5229C0.86582 0.187711 1.32317 -0.000209448 1.7997 1.75185e-07C2.2771 1.75185e-07 2.7349 0.1883 3.073 0.5229C3.4104 0.8575 3.6001 1.3111 3.6001 1.785Z"
-                                                  fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
-                        <div class="name-box flex justify-between">
-                            <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
-                            <span class="text-blue-50">12 July, 2022</span>
-                        </div>
-                        <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600"><a
-                                href="course.html">Photoshop Master Course: From Beginner</a></h3>
-                        <div class="reviews-box flex justify-between pt-5">
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M11.9641 9.13397C12.6308 9.51887 12.6308 10.4811 11.9641 10.866L8.03589 13.134C7.36922 13.5189 6.53589 13.0377 6.53589 12.2679V7.73205C6.53589 6.96225 7.36922 6.48113 8.03589 6.86603L11.9641 9.13397Z"
-                                     fill="#757F8F"></path>
-                                 <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#757F8F"></rect>
-                              </svg>
-                           </span>
-                                <p>1 hour 20 min</p>
-                            </div>
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M16.7903 5.63406L11.754 4.90408L9.50265 0.352135C9.44116 0.227506 9.34 0.126615 9.21504 0.0652895C8.90163 -0.0890138 8.52078 0.0395723 8.36408 0.352135L6.11271 4.90408L1.0764 5.63406C0.937548 5.65384 0.810599 5.71912 0.713403 5.81803C0.595899 5.93848 0.531149 6.10053 0.533381 6.26856C0.535613 6.4366 0.604643 6.59688 0.725305 6.71418L4.36914 10.2572L3.50827 15.2602C3.48808 15.3766 3.501 15.4963 3.54555 15.6057C3.5901 15.7151 3.6645 15.8099 3.76032 15.8793C3.85614 15.9488 3.96955 15.99 4.08767 15.9984C4.2058 16.0068 4.32393 15.982 4.42865 15.9269L8.93337 13.5648L13.4381 15.9269C13.5611 15.9922 13.7039 16.0139 13.8407 15.9902C14.1859 15.9308 14.418 15.6044 14.3585 15.2602L13.4976 10.2572L17.1414 6.71418C17.2406 6.61724 17.3061 6.49064 17.3259 6.35216C17.3795 6.00597 17.1375 5.68549 16.7903 5.63406Z"
-                                     fill="#FFD102"></path>
-                              </svg>
-                           </span>
-                                <p>5.0 (80 Reviews)</p>
-                            </div>
-                        </div>
-                        <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="cart.html">Add to Cart</a>
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="checkout.html">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
-                     data-aos-delay="1500">
-                    <div class="lessons-images relative overflow-hidden">
-                        <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                    src="{{asset('frontend/assets/images/webdesign-3.webp')}}"
-                                                    alt="images"></a>
-                        <div
-                            class="absolute group-hover:bottom-2 -bottom-28 -right-4 inline-block text-base text-white font-medium bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-300 py-2 px-6">
-                            <ul class="inline-flex items-cente flex-wrap">
-                                <li>
-                                    <a class="group bg-facebook-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://www.facebook.com/">
-                                        <svg class=" text-gray-400 group-hover:text-white " width=" 10" height="14"
-                                             viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.27638 0.393359C9.27638 0.290253 9.23542 0.19137 9.16251 0.118463C9.08961 0.0455561 8.99072 0.00459735 8.88762 0.00459735H6.94381C5.96501 -0.0441604 5.00669 0.296473 4.27825 0.95207C3.54981 1.60767 3.11046 2.52493 3.0562 3.50345V5.60276H1.11239C1.00929 5.60276 0.910405 5.64372 0.837498 5.71662C0.764592 5.78953 0.723633 5.88841 0.723633 5.99152V8.01308C0.723633 8.11618 0.764592 8.21507 0.837498 8.28797C0.910405 8.36088 1.00929 8.40184 1.11239 8.40184H3.0562V13.6112C3.0562 13.7143 3.09716 13.8132 3.17006 13.8861C3.24297 13.959 3.34186 14 3.44496 14H5.77753C5.88063 14 5.97952 13.959 6.05242 13.8861C6.12533 13.8132 6.16629 13.7143 6.16629 13.6112V8.40184H8.2034C8.28985 8.40308 8.37425 8.37547 8.44325 8.32337C8.51225 8.27126 8.56191 8.19765 8.58438 8.11416L9.1442 6.0926C9.15967 6.03516 9.16175 5.97493 9.15028 5.91656C9.13881 5.85819 9.11409 5.80323 9.07804 5.75591C9.04199 5.70859 8.99556 5.67018 8.94233 5.64362C8.88909 5.61707 8.83048 5.60309 8.77099 5.60276H6.16629V3.50345C6.18563 3.31099 6.27601 3.13266 6.41978 3.00326C6.56355 2.87387 6.75039 2.80271 6.94381 2.80368H8.88762C8.99072 2.80368 9.08961 2.76272 9.16251 2.68981C9.23542 2.61691 9.27638 2.51802 9.27638 2.41492V0.393359Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-twitter-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="http://twitter.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="18" height="14"
-                                             viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M17.6107 1.66066C16.9774 1.94128 16.297 2.1309 15.5818 2.2166C16.3198 1.77503 16.8719 1.08003 17.1351 0.261302C16.4418 0.673137 15.683 0.963023 14.8916 1.11836C14.3595 0.550172 13.6546 0.173569 12.8865 0.0470186C12.1184 -0.0795316 11.33 0.0510517 10.6437 0.418495C9.95738 0.785938 9.4116 1.36968 9.09106 2.0791C8.77051 2.78852 8.69316 3.58391 8.87099 4.3418C7.46609 4.27126 6.09172 3.90611 4.83707 3.27003C3.58243 2.63395 2.47556 1.74117 1.58828 0.649633C1.2849 1.17297 1.11045 1.77973 1.11045 2.42594C1.11011 3.00767 1.25337 3.58049 1.52751 4.09358C1.80165 4.60667 2.1982 5.04416 2.68198 5.36724C2.12093 5.34938 1.57226 5.19778 1.08163 4.92506V4.97056C1.08157 5.78647 1.3638 6.57726 1.88043 7.20877C2.39705 7.84027 3.11625 8.27359 3.91599 8.43519C3.39552 8.57605 2.84985 8.5968 2.32019 8.49587C2.54583 9.19791 2.98536 9.81181 3.57723 10.2516C4.16911 10.6915 4.88371 10.9352 5.621 10.9487C4.36942 11.9312 2.82372 12.4642 1.23256 12.4618C0.950707 12.4619 0.669089 12.4455 0.38916 12.4125C2.00428 13.451 3.88439 14.0021 5.80454 14C12.3045 14 15.8579 8.61647 15.8579 3.9474C15.8579 3.79571 15.8541 3.6425 15.8473 3.49081C16.5385 2.99097 17.1351 2.37201 17.6092 1.66293L17.6107 1.66066Z"
-                                                fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group bg-linkedin-100  w-8 h-8 rounded-full flex items-center justify-center duration-300 mr-2"
-                                       href="https://pinterest.com/">
-                                        <svg class="text-gray-400 group-hover:text-white " width="14" height="14"
-                                             viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M5.2003 4.8783H7.8001V6.1733C8.1746 5.4285 9.135 4.7593 10.5777 4.7593C13.3434 4.7593 14 6.2419 14 8.9621V14H11.2V9.5816C11.2 8.0325 10.8255 7.1589 9.8721 7.1589C8.5498 7.1589 8.0003 8.1004 8.0003 9.5809V14H5.2003V4.8783ZM0.399 13.881H3.199V4.7593H0.399V13.881ZM3.6001 1.785C3.6002 2.01969 3.55366 2.25206 3.46317 2.46861C3.37268 2.68516 3.24006 2.88156 3.073 3.0464C2.73448 3.38284 2.27627 3.57116 1.799 3.57C1.32257 3.56968 0.865418 3.38184 0.5264 3.0471C0.359948 2.8817 0.22777 2.68508 0.137441 2.4685C0.047111 2.25193 0.000405392 2.01966 0 1.785C0 1.3111 0.189 0.8575 0.5271 0.5229C0.86582 0.187711 1.32317 -0.000209448 1.7997 1.75185e-07C2.2771 1.75185e-07 2.7349 0.1883 3.073 0.5229C3.4104 0.8575 3.6001 1.3111 3.6001 1.785Z"
-                                                  fill="currentcolor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
-                        <div class="name-box flex justify-between">
-                            <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
-                            <span class="text-blue-50">12 July, 2022</span>
-                        </div>
-                        <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600"><a
-                                href="course.html">User Experience (UX): The Ultimate Guide</a></h3>
-                        <div class="reviews-box flex justify-between pt-5">
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M11.9641 9.13397C12.6308 9.51887 12.6308 10.4811 11.9641 10.866L8.03589 13.134C7.36922 13.5189 6.53589 13.0377 6.53589 12.2679V7.73205C6.53589 6.96225 7.36922 6.48113 8.03589 6.86603L11.9641 9.13397Z"
-                                     fill="#757F8F"></path>
-                                 <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#757F8F"></rect>
-                              </svg>
-                           </span>
-                                <p>1 hour 20 min</p>
-                            </div>
-                            <div class="flex items-center">
-                           <span class="mr-2">
-                              <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M16.7903 5.63406L11.754 4.90408L9.50265 0.352135C9.44116 0.227506 9.34 0.126615 9.21504 0.0652895C8.90163 -0.0890138 8.52078 0.0395723 8.36408 0.352135L6.11271 4.90408L1.0764 5.63406C0.937548 5.65384 0.810599 5.71912 0.713403 5.81803C0.595899 5.93848 0.531149 6.10053 0.533381 6.26856C0.535613 6.4366 0.604643 6.59688 0.725305 6.71418L4.36914 10.2572L3.50827 15.2602C3.48808 15.3766 3.501 15.4963 3.54555 15.6057C3.5901 15.7151 3.6645 15.8099 3.76032 15.8793C3.85614 15.9488 3.96955 15.99 4.08767 15.9984C4.2058 16.0068 4.32393 15.982 4.42865 15.9269L8.93337 13.5648L13.4381 15.9269C13.5611 15.9922 13.7039 16.0139 13.8407 15.9902C14.1859 15.9308 14.418 15.6044 14.3585 15.2602L13.4976 10.2572L17.1414 6.71418C17.2406 6.61724 17.3061 6.49064 17.3259 6.35216C17.3795 6.00597 17.1375 5.68549 16.7903 5.63406Z"
-                                     fill="#FFD102"></path>
-                              </svg>
-                           </span>
-                                <p>5.0 (80 Reviews)</p>
-                            </div>
-                        </div>
-                        <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="cart.html">Add to Cart</a>
-                            <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
-                               href="checkout.html">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--  ====================== Web-design Area End =============================  -->
-    <!--  ====================== Our Expert Instructors Area Start =============================  -->
-    <section class="our-expert-instructors-area md:mt-32 mt-20 relative">
-        <div class="container ">
-            <div class="section-title md:pb-16 pb-10 text-center lg:w-6/12 m-auto" data-aos="fade-up"
-                 data-aos-delay="500">
-                <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">Our Expert
-                    Instructors
-                </h2>
-                <p class="text-lg text-gray-800">Village handwriting beings that the cannot prior just transactions
-                    thing
-                    opinion, regurgitated assignment respect their still little nor managers
-                </p>
-            </div>
-            <div class="relative">
-                <div class="instructors-slider-box author-slider">
-                    @foreach($instructors as $instructor)
-                        <div class="instructors-slider-item p-1 border border-blue-20 rounded-lg">
-                            <div class="instructors-man relative">
-                                <div
-                                    class="instructors-img relative before:absolute before:bg-blue-10 before:w-full before:h-full before:top-0 before:left-0  before:right-0">
-                                    <a href="{{route('main.instructorWiseCourses', $instructor->uuid)}}"><img
-                                            class=" w-full max-h-[262px] object-cover rounded-t-lg relative  object-top"
-                                            src="{{getImageFile($instructor->user ? @$instructor->user->image : '')}}"
-                                            alt="images"></a>
+
+                    <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+                        @foreach($showingCourses1 as $shwoingCourse1)
+                            <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
+                                 data-aos-delay="500">
+                                <div class="lessons-images relative overflow-hidden">
+                                    <a href="course.html"> <img class="rounded-t-md max-h-64 w-full object-cover"
+                                                                src="{{asset('frontend/assets/images/webdesign-1.webp')}}"
+                                                                alt="images"></a>
                                 </div>
-                                <div class="instructors-badge  text-center relative -mt-5 ">
-                                    <div class="inline-block">
-                                        <a class="flex items-center gap-2 text-center bg-yellow-800 rounded-full hover:bg-black-200 hover:text-white  bold py-2 px-12  !transition   !duration-500  text-black-200"
-                                           href="{{route('main.instructorWiseCourses', $instructor->uuid)}}">
-                                            <span class="text-2xl font-bold">{{$instructor->publishedCourses->count()}} </span>
-                                            <span class=" test-sm mb-0">Courses</span>
-                                        </a>
+                                <div
+                                    class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
+                                    <div class="name-box flex justify-between">
+                                        <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
+                                        <span class="text-blue-50">12 July, 2022</span>
+                                    </div>
+                                    <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
+                                        <a
+                                            href="course.html">{{ $shwoingCourse1->title }}</a></h3>
+                                    <div class="reviews-box flex justify-between pt-5">
+                                        <div class="flex items-center">
+                           <span class="mr-2">
+                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                   xmlns="http://www.w3.org/2000/svg">
+                                 <path
+                                     d="M11.9641 9.13397C12.6308 9.51887 12.6308 10.4811 11.9641 10.866L8.03589 13.134C7.36922 13.5189 6.53589 13.0377 6.53589 12.2679V7.73205C6.53589 6.96225 7.36922 6.48113 8.03589 6.86603L11.9641 9.13397Z"
+                                     fill="#757F8F"></path>
+                                 <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#757F8F"></rect>
+                              </svg>
+                           </span>
+                                            <p>1 hour 20 min</p>
+                                        </div>
+                                        <div class="flex items-center">
+                           <span class="mr-2">
+                              <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                   xmlns="http://www.w3.org/2000/svg">
+                                 <path
+                                     d="M16.7903 5.63406L11.754 4.90408L9.50265 0.352135C9.44116 0.227506 9.34 0.126615 9.21504 0.0652895C8.90163 -0.0890138 8.52078 0.0395723 8.36408 0.352135L6.11271 4.90408L1.0764 5.63406C0.937548 5.65384 0.810599 5.71912 0.713403 5.81803C0.595899 5.93848 0.531149 6.10053 0.533381 6.26856C0.535613 6.4366 0.604643 6.59688 0.725305 6.71418L4.36914 10.2572L3.50827 15.2602C3.48808 15.3766 3.501 15.4963 3.54555 15.6057C3.5901 15.7151 3.6645 15.8099 3.76032 15.8793C3.85614 15.9488 3.96955 15.99 4.08767 15.9984C4.2058 16.0068 4.32393 15.982 4.42865 15.9269L8.93337 13.5648L13.4381 15.9269C13.5611 15.9922 13.7039 16.0139 13.8407 15.9902C14.1859 15.9308 14.418 15.6044 14.3585 15.2602L13.4976 10.2572L17.1414 6.71418C17.2406 6.61724 17.3061 6.49064 17.3259 6.35216C17.3795 6.00597 17.1375 5.68549 16.7903 5.63406Z"
+                                     fill="#FFD102"></path>
+                              </svg>
+                           </span>
+                                            <p>5.0 (80 Reviews)</p>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart" href="{{ route('student.addToCart')}}">Add to Cart</a>
+
+                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white" href="checkout.html">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="instructors-info text-center  p-4 bg-white">
-                                <h4><a
-                                        class="font-bold text-black-200 text-xl hover:text-blue-600  !transition   !duration-500 "
-                                        href="{{route('main.instructorWiseCourses', $instructor->uuid)}}">{{$instructor->name}}</a></h4>
-                                <p class="">Instructor</p>
-                                <div class="social-link mt-4">
-                                    <ul class="flex justify-center gap-2">
-                                        <li>
-                                            <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                               href="javascript:void(0)">
-                                                <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
-                                                     fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path class="group-hover:fill-white"
-                                                          d="M5.59197 16V8.71352H8.05014L8.41553 5.86063H5.59197V4.04345C5.59197 3.22021 5.82134 2.65657 7.00286 2.65657H8.49998V0.113057C7.77155 0.0349924 7.03935 -0.00270088 6.30675 0.000150394C4.13396 0.000150394 2.64217 1.32658 2.64217 3.76163V5.85529H0.200012V8.70819H2.64751V16H5.59197Z"
-                                                          fill="#757F8F"/>
-                                                </svg>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endif
+    @endif
+    <!--  ====================== Web-design Area End =============================  -->
+    <!--  ====================== Our Expert Instructors Area Start =============================  -->
+    @if(sizeof($instructors) > 0)
+        <section class="our-expert-instructors-area md:mt-32 mt-20 relative">
+            <div class="container ">
+                <div class="section-title md:pb-16 pb-10 text-center lg:w-6/12 m-auto" data-aos="fade-up"
+                     data-aos-delay="500">
+                    <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">Our
+                        Expert
+                        Instructors
+                    </h2>
+                    <p class="text-lg text-gray-800">Village handwriting beings that the cannot prior just transactions
+                        thing
+                        opinion, regurgitated assignment respect their still little nor managers
+                    </p>
+                </div>
+                <div class="relative">
+                    <div class="instructors-slider-box author-slider">
+                        @foreach($instructors as $instructor)
+                            <div class="instructors-slider-item p-1 border border-blue-20 rounded-lg">
+                                <div class="instructors-man relative">
+                                    <div
+                                        class="instructors-img relative before:absolute before:bg-blue-10 before:w-full before:h-full before:top-0 before:left-0  before:right-0">
+                                        <a href="{{route('main.instructorWiseCourses', $instructor->uuid)}}"><img
+                                                class=" w-full max-h-[262px] object-cover rounded-t-lg relative  object-top"
+                                                src="{{getImageFile($instructor->user ? @$instructor->user->image : '')}}"
+                                                alt="images"></a>
+                                    </div>
+                                    <div class="instructors-badge  text-center relative -mt-5 ">
+                                        <div class="inline-block">
+                                            <a class="flex items-center gap-2 text-center bg-yellow-800 rounded-full hover:bg-black-200 hover:text-white  bold py-2 px-12  !transition   !duration-500  text-black-200"
+                                               href="{{route('main.instructorWiseCourses', $instructor->uuid)}}">
+                                            <span
+                                                class="text-2xl font-bold">{{$instructor->publishedCourses->count()}} </span>
+                                                <span class=" test-sm mb-0">Courses</span>
                                             </a>
-                                        </li>
-                                        <li>
-                                            <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                               href="javascript:void(0)">
-                                                <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path class="group-hover:fill-white"
-                                                          d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
-                                                          fill="#757F8F"/>
-                                                    <path class="group-hover:fill-white"
-                                                          d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
-                                                          fill="#757F8F"/>
-                                                </svg>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="instructors-info text-center  p-4 bg-white">
+                                    <h4><a
+                                            class="font-bold text-black-200 text-xl hover:text-blue-600  !transition   !duration-500 "
+                                            href="{{route('main.instructorWiseCourses', $instructor->uuid)}}">{{$instructor->name}}</a>
+                                    </h4>
+                                    <p class="">Instructor</p>
+                                    <div class="social-link mt-4">
+                                        <ul class="flex justify-center gap-2">
+                                            <li>
+                                                <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
+                                                   href="{{ $instructor->facebook }}" target="_blank">
+                                                    <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
+                                                         fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path class="group-hover:fill-white"
+                                                              d="M5.59197 16V8.71352H8.05014L8.41553 5.86063H5.59197V4.04345C5.59197 3.22021 5.82134 2.65657 7.00286 2.65657H8.49998V0.113057C7.77155 0.0349924 7.03935 -0.00270088 6.30675 0.000150394C4.13396 0.000150394 2.64217 1.32658 2.64217 3.76163V5.85529H0.200012V8.70819H2.64751V16H5.59197Z"
+                                                              fill="#757F8F"/>
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
+                                                   href="{{ $instructor->twitter }}" target="_blank">
+                                                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path class="group-hover:fill-white"
+                                                              d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
+                                                              fill="#757F8F"/>
+                                                        <path class="group-hover:fill-white"
+                                                              d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
+                                                              fill="#757F8F"/>
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="slider-arrows-1 hidden lg:block">
-                    <button
-                        class="slider-next-1 group  h-12 w-12 rounded-full bg-blue-5 hover:bg-blue-600 transition duration-500 flex items-center justify-center">
-                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class="group-hover:fill-white"
-                                  d="M0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM21 9H1V7H21V9Z"
-                                  fill="
+                        @endforeach
+                    </div>
+                    <div class="slider-arrows-1 hidden lg:block">
+                        <button
+                            class="slider-next-1 group  h-12 w-12 rounded-full bg-blue-5 hover:bg-blue-600 transition duration-500 flex items-center justify-center">
+                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path class="group-hover:fill-white"
+                                      d="M0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM21 9H1V7H21V9Z"
+                                      fill="
                               #035AE0"/>
-                        </svg>
-                    </button>
-                    <button
-                        class="slider-prev-1 h-12 w-12 rounded-full bg-blue-5 hover:bg-blue-600 transition duration-500 group flex items-center justify-center">
-                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class=" group-hover:fill-white"
-                                  d="M20.7071 8.70711C21.0976 8.31658 21.0976 7.68342 20.7071 7.29289L14.3431 0.928932C13.9526 0.538408 13.3195 0.538408 12.9289 0.928932C12.5384 1.31946 12.5384 1.95262 12.9289 2.34315L18.5858 8L12.9289 13.6569C12.5384 14.0474 12.5384 14.6805 12.9289 15.0711C13.3195 15.4616 13.9526 15.4616 14.3431 15.0711L20.7071 8.70711ZM0 9H20V7H0V9Z"
-                                  fill="
+                            </svg>
+                        </button>
+                        <button
+                            class="slider-prev-1 h-12 w-12 rounded-full bg-blue-5 hover:bg-blue-600 transition duration-500 group flex items-center justify-center">
+                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path class=" group-hover:fill-white"
+                                      d="M20.7071 8.70711C21.0976 8.31658 21.0976 7.68342 20.7071 7.29289L14.3431 0.928932C13.9526 0.538408 13.3195 0.538408 12.9289 0.928932C12.5384 1.31946 12.5384 1.95262 12.9289 2.34315L18.5858 8L12.9289 13.6569C12.5384 14.0474 12.5384 14.6805 12.9289 15.0711C13.3195 15.4616 13.9526 15.4616 14.3431 15.0711L20.7071 8.70711ZM0 9H20V7H0V9Z"
+                                      fill="
                               #035AE0"/>
-                        </svg>
-                    </button>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!--  ====================== Our Expert Instructors Area End =============================  -->
     <!--  ====================== Testimonial Area Area Start =============================  -->
     <section class="testimonial-area md:mt-48  mt-20 ">
@@ -1628,55 +1183,19 @@
     <!--  ====================== Newsleter  Area Start =============================  -->
     <section class="newsleter-area  relative my-20 md:my-32">
         <div class="container">
-            <div class="grid lg:grid-cols-12 bg-blue-600 md:p-16 p-8 rounded-xl relative">
-                <div class="md:col-span-8">
-                    <div class="newsleter-left lg:w-10/12">
-                        <h2 class="xl:text-5xl mb-4 lg:text-4xl md:text-3xl text-2xl font-medium text-white  ">
-                            Subscribe to
-                            newsletter
-                        </h2>
-                        <p class="text-white">Produce following as be didn't sitting on appeared not he is he upper
-                            work
-                            spread observed, hung spot.
-                        </p>
-                        <form>
-                            <div class=" md:w-10/12 relative mt-5">
-                                <input type="search"
-                                       class="block py-6 pl-5  pr-37.5   w-full  text-base text-gray-500 bg-white rounded-full border  border-blue-100   placeholder-gray-500 outline-none duration-300"
-                                       placeholder="Enter your email" required="">
-                                <button type="submit"
-                                        class=" absolute top-2.25 right-2 bg-blue-600 text-base text-white font-medium  hover:bg-blue-5 hover:text-black-200   !transition -all duration-300 rounded-full   outline-none px-8 py-4  ">
-                                    Subscribe
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="md:col-span-4 hidden lg:block">
-                    <div class="cta-shape-images absolute">
-                        <img src="{{asset('frontend/assets/images/shape-images.png')}}" alt="images">
-                    </div>
-                    <div class="newletter-man absolute bottom-0 right-0">
-                        <img src="{{asset('frontend/assets/images/cta-man.png')}}" alt="images">
-                    </div>
-                </div>
-            </div>
+            {{ View::make('layouts.partials.newsLetter') }}
         </div>
     </section>
     <!--  ====================== Newsleter  Area End =============================  -->
 
+
+
 @endsection
 
 @push('script')
-    <script>
 
-    </script>
+   {{-- <script src="{{ asset('frontend/custom/js/addToCart.js') }}"></script>--}}
+    {{-- <script src="{{ asset('frontend/assets/js/course/addToWishlist.js') }}"></script>--}}
 
-
-    <!--Hero text effect-->
-   {{-- <script src="{{ asset('frontend/assets/js/hero-text-effect.js') }}"></script>--}}
-
-    <script src="{{ asset('custom/js/addToCart.js') }}"></script>
-   {{-- <script src="{{ asset('frontend/assets/js/course/addToWishlist.js') }}"></script>--}}
 @endpush
 

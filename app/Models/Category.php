@@ -16,6 +16,7 @@ class Category extends Model
         'image',
         'is_feature',
         'slug',
+        'is_showing_course',
     ];
 
     public function courses()

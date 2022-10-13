@@ -53,6 +53,7 @@ Route::get('subCategory/edit/{uuid}', [SubCategoryController::class, 'edit'])->n
 Route::post('subCategory/update/{uuid}', [SubcategoryController::class, 'update'])->name('subCategory.update')/*->middleware('isDemo')*/;
 Route::post('subCategory/delete/{uuid}', [SubcategoryController::class, 'delete'])->name('subCategory.delete')/*->middleware('isDemo')*/;
 
+
 //Tag
 Route::get('tag/index', [TagController::class, 'index'])->name('tag.index');
 Route::get('tag/create', [TagController::class, 'create'])->name('tag.create');
@@ -95,7 +96,6 @@ Route::post('difficultyLevel/delete/{uuid}', [difficultyLevelController::class, 
 Route::get('promotionalTag/index', [SpecialPromotionalTagController::class, 'index'])->name('promotionalTag.index');
 Route::get('promotionalTag/create', [SpecialPromotionalTagController::class, 'create'])->name('promotionalTag.create');
 Route::get('promotionalTag/edit', [SpecialPromotionalTagController::class, 'edit'])->name('promotionalTag.edit');
-
 Route::post('promotionalTag/store', [SpecialPromotionalTagController::class, 'store'])->name('promotionalTag.store')/*->middleware('isDemo')*/;
 Route::get('promotionalTag/edit/{uuid}', [SpecialPromotionalTagController::class, 'edit'])->name('promotionalTag.edit');
 Route::post('promotionalTag/update/{uuid}', [SpecialPromotionalTagController::class, 'update'])->name('promotionalTag.update')/*->middleware('isDemo')*/;
@@ -144,6 +144,7 @@ Route::get('get-state-by-country/{country_id}', [InstructorController::class, 'g
 Route::get('get-city-by-state/{state_id}', [InstructorController::class, 'getCityByState']);
 
 
+
 //Student
 Route::get('student/index', [StudentController::class, 'index'])->name('student.index');
 Route::get('student/create', [StudentController::class, 'create'])->name('student.create');
@@ -154,13 +155,12 @@ Route::get('student/edit/{uuid}', [StudentController::class, 'edit'])->name('stu
 Route::post('student/update/{uuid}', [StudentController::class, 'update'])->name('student.update')/*->middleware('isDemo')*/;
 Route::post('student/delete/{uuid}', [StudentController::class, 'delete'])->name('student.delete')/*->middleware('isDemo')*/;
 Route::post('student/change-student-status', [StudentController::class, 'changeStudentStatus'])->name('admin.student.changeStudentStatus')/*->middleware('isDemo')*/;
-
-
 Route::get('blockedStudent', [StudentController::class, 'blockedStudent'])->name('student.blocked');
 Route::get('approvedStudent', [StudentController::class, 'approvedStudent'])->name('student.approved');
-
 Route::get('student/getStates', [StudentController::class,'getStates'])->name('student.getStates');
 Route::get('student/getCities', [StudentController::class,'getCities'])->name('student.getCities');
+
+
 
 //Coupon
 Route::get('coupon/index', [CouponController::class, 'index'])->name('coupon.index');
@@ -183,14 +183,18 @@ Route::post('promotion/update/{uuid}', [PromotionController::class, 'update'])->
 Route::post('promotion/delete/{uuid}', [PromotionController::class, 'delete'])->name('promotion.delete');
 Route::get('promotion/editCourse/{uuid}', [PromotionController::class, 'editPromotionCourse'])->name('promotion.editCourse');
 Route::post('promotion/changeStatus', [PromotionController::class, 'changePromotionStatus'])->name('promotion.changeStatus')/*->middleware('isDemo')*/;
-
 Route::get('promotion/addPromotionalCourse', [PromotionController::class, 'addPromotionCourseList'])->name('promotion.addPromotionalCourse');
 Route::get('promotion/removePromotionalCourse', [PromotionController::class, 'removePromotionCourseList'])->name('promotion.removePromotionalCourse')/*->middleware('isDemo')*/;
+
+
 
 
 //Support Ticket
 Route::get('supportTicket/index', [SupportTicketController::class, 'index'])->name('supportTicket.index');
 Route::get('supportTicket/openTicket', [SupportTicketController::class, 'openTicket'])->name('supportTicket.openTicket');
+
+
+
 
 //Email Management
 Route::get('emailTemplate/index', [EmailManagementController::class, 'index'])->name('emailTemplate.index');
@@ -200,6 +204,7 @@ Route::get('emailTemplate/show', [EmailManagementController::class, 'show'])->na
 Route::get('emailTemplate/sendEmail', [EmailManagementController::class, 'sendEmail'])->name('emailTemplate.sendEmail');
 
 
+
 //Blog Category
 Route::get('blogCategory/index', [BlogCategoryController::class, 'index'])->name('blogCategory.index');
 Route::get('blogCategory/create', [BlogCategoryController::class, 'create'])->name('blogCategory.create');
@@ -207,6 +212,7 @@ Route::post('blogCategory/store', [BlogCategoryController::class, 'store'])->nam
 Route::get('blogCategory/edit/{uuid}', [BlogCategoryController::class, 'edit'])->name('blogCategory.edit');
 Route::post('blogCategory/update/{uuid}', [BlogCategoryController::class, 'update'])->name('blogCategory.update')/*->middleware('isDemo')*/;
 Route::get('blogCategory/delete/{uuid}', [BlogCategoryController::class, 'delete'])->name('blogCategory.delete')/*->middleware('isDemo')*/;
+
 
 
 //Blog
@@ -222,6 +228,7 @@ Route::post('blogPost/delete/{uuid}', [BlogController::class, 'delete'])->name('
 
 //Blog Comment
 Route::get('blogComment/index', [BlogCommentController::class, 'index'])->name('blogComment.index');
+
 
 
 
@@ -255,9 +262,6 @@ Route::post('country/delete/{uuid}', [CountryController::class, 'delete'])->name
 
 
 
-
-
-
 //Location - State
 Route::get('state/index', [StateController::class, 'index'])->name('state.index');
 Route::get('state/create', [StateController::class, 'create'])->name('state.create');
@@ -265,6 +269,7 @@ Route::post('state/store', [StateController::class, 'store'])->name('state.store
 Route::get('state/edit/{uuid}', [StateController::class, 'edit'])->name('state.edit');
 Route::post('state/update/{uuid}', [StateController::class, 'update'])->name('state.update')/*->middleware('isDemo')*/;
 Route::post('state/delete/{uuid}', [StateController::class, 'delete'])->name('state.delete')/*->middleware('isDemo')*/;
+
 
 
 //Location - Country

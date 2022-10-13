@@ -49,31 +49,34 @@
             <div class="tab-slider--container">
                 <div id="tab1" class="tab-slider--body">
                     <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6 w-full">
-                        @foreach($courses as $course)
-                            <div class="lessons-item group hover:-translate-y-2 duration-500" data-aos="fade-up"
-                                 data-aos-delay="300">
-                                <div class="lessons-images relative overflow-hidden">
-                                    <a href="course.html">
-                                        <img class="rounded-t-md max-h-64 w-full object-cover"
-                                             src="{{asset('frontend/assets/images/webdesign-1.webp')}}" alt="images">
-                                    </a>
-                                    <div
-                                        class="  overlay-images rounded-t-xl   absolute top-0 w-full h-full bg-blue-5 left-0">
-                                    </div>
 
-                                </div>
-                                <div
-                                    class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
-                                    <div class="name-box flex justify-between">
-                                        <span class="text-blue-50">Albert Flores</span>
-                                        <span class="text-blue-50">12 July, 2022</span>
+                        @if(sizeof($courses)>0)
+                            @foreach($courses as $course)
+                                <div class="lessons-item group hover:-translate-y-2 duration-500" data-aos="fade-up"
+                                     data-aos-delay="300">
+                                    <div class="lessons-images relative overflow-hidden">
+                                        <a href="course.html">
+                                            <img class="rounded-t-md max-h-64 w-full object-cover"
+                                                 src="{{asset('frontend/assets/images/webdesign-1.webp')}}"
+                                                 alt="images">
+                                        </a>
+                                        <div
+                                            class="  overlay-images rounded-t-xl   absolute top-0 w-full h-full bg-blue-5 left-0">
+                                        </div>
+
                                     </div>
-                                    <h3
-                                        class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
-                                        <a href="course.html">{{$course->title}}</a>
-                                    </h3>
-                                    <div class="reviews-box flex justify-between pt-5">
-                                        <div class="flex items-center">
+                                    <div
+                                        class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
+                                        <div class="name-box flex justify-between">
+                                            <span class="text-blue-50">Albert Flores</span>
+                                            <span class="text-blue-50">12 July, 2022</span>
+                                        </div>
+                                        <h3
+                                            class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
+                                            <a href="course.html">{{$course->title}}</a>
+                                        </h3>
+                                        <div class="reviews-box flex justify-between pt-5">
+                                            <div class="flex items-center">
                                         <span class="mr-2">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -84,9 +87,9 @@
                                                 </rect>
                                             </svg>
                                         </span>
-                                            <p>1 hour 20 min</p>
-                                        </div>
-                                        <div class="flex items-center">
+                                                <p>1 hour 20 min</p>
+                                            </div>
+                                            <div class="flex items-center">
                                         <span class="mr-2">
                                             <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -95,18 +98,26 @@
                                                     fill="#FFD102"></path>
                                             </svg>
                                         </span>
-                                            <p>5.0 (80 Reviews)</p>
+                                                <p>5.0 (80 Reviews)</p>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                            <a class="border-blue-20  border inline-block py-2.5 px-5 rounded   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
+                                               href="cart.html">Add to Cart</a>
+                                            <a class="border-blue-20  border inline-block py-2.5 px-5 rounded   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
+                                               href="checkout.html">Buy Now</a>
                                         </div>
                                     </div>
-                                    <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                        <a class="border-blue-20  border inline-block py-2.5 px-5 rounded   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                           href="cart.html">Add to Cart</a>
-                                        <a class="border-blue-20  border inline-block py-2.5 px-5 rounded   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                           href="checkout.html">Buy Now</a>
-                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="col-span-12"
+                                 style="padding: 10px; margin: 10px; text-align: center; font-weight: bold; font-size: 24px;">
+                                <div class="alert alert-danger">
+                                    <h1>No Course Found</h1>
                                 </div>
                             </div>
-                        @endforeach
+                        @endif
                     </div>
                     {{--<div class="popular-button mt-10 text-center" data-aos="fade-up" data-aos-delay="2100">
                         <a class="py-4 font-medium rounded transition duration-700 hover:bg-blue-800  hover:border-blue-600 hover:text-white px-8 border inline-block border-gray-300"

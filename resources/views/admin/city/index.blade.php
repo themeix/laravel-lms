@@ -87,7 +87,7 @@
             <section id="column-search-datatable">
                 <div class="card">
                     <div class="card-body">
-                        <div class="col-12">
+                        <div class="col-12 indexTable">
                             <table id="example" class="table table-bordered dataTables_info" style="color: black;">
                                 <thead>
                                 <tr>

@@ -99,8 +99,8 @@
 
             <section id="column-search-datatable">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="col-12">
+                    <div class="card-body indexTable">
+                        <div class="col-12 ">
                             <table id="example"
                                    class="table table-bordered dataTables_info text-center align-items-center justify-content-center"
                                    style="color: black;">

@@ -53,17 +53,18 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
 
     <style>
-        .dataTables_info{
+        .dataTables_info {
             align-items: center;
             text-align: center;
             justify-content: center;
             color: black;
         }
-        .indexTable{
+
+        .indexTable {
             overflow-x: scroll;
         }
 
-        .action__buttons{
+        .action__buttons {
             justify-content: center;
         }
     </style>
@@ -79,7 +80,6 @@
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
       data-menu="vertical-menu-modern" data-col="">
-
 
 
 @include('sweetalert::alert')
@@ -140,111 +140,10 @@
                     <ul class="search-list search-list-main"></ul>
                 </div>
             </li>
-            <li class="nav-item dropdown dropdown-cart me-25"><a class="nav-link" href="#" data-bs-toggle="dropdown"><i
-                        class="ficon" data-feather="shopping-cart"></i><span
-                        class="badge rounded-pill bg-primary badge-up cart-item-count">6</span></a>
-                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
-                    <li class="dropdown-menu-header">
-                        <div class="dropdown-header d-flex">
-                            <h4 class="notification-title mb-0 me-auto">My Cart</h4>
-                            <div class="badge rounded-pill badge-light-primary">4 Items</div>
-                        </div>
-                    </li>
-                    <li class="scrollable-container media-list">
-                        <div class="list-item align-items-center"><img class="d-block rounded me-1"
-                                                                       src="{{asset('app-assets/images/pages/eCommerce/1.png')}}"
-                                                                       alt="donuts" width="62">
-                            <div class="list-item-body flex-grow-1"><i class="ficon cart-item-remove"
-                                                                       data-feather="x"></i>
-                                <div class="media-heading">
-                                    <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html">
-                                            Apple watch 5</a></h6><small class="cart-item-by">By Apple</small>
-                                </div>
-                                <div class="cart-item-qty">
-                                    <div class="input-group">
-                                        <input class="touchspin-cart" type="number" value="1">
-                                    </div>
-                                </div>
-                                <h5 class="cart-item-price">$374.90</h5>
-                            </div>
-                        </div>
-                        <div class="list-item align-items-center"><img class="d-block rounded me-1"
-                                                                       src="{{asset('app-assets/images/pages/eCommerce/7.png')}}'"
-                                                                       alt="donuts" width="62">
-                            <div class="list-item-body flex-grow-1"><i class="ficon cart-item-remove"
-                                                                       data-feather="x"></i>
-                                <div class="media-heading">
-                                    <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html">
-                                            Google Home Mini</a></h6><small class="cart-item-by">By Google</small>
-                                </div>
-                                <div class="cart-item-qty">
-                                    <div class="input-group">
-                                        <input class="touchspin-cart" type="number" value="3">
-                                    </div>
-                                </div>
-                                <h5 class="cart-item-price">$129.40</h5>
-                            </div>
-                        </div>
-                        <div class="list-item align-items-center"><img class="d-block rounded me-1"
-                                                                       src="{{asset('app-assets/images/pages/eCommerce/2.png')}}"
-                                                                       alt="donuts" width="62">
-                            <div class="list-item-body flex-grow-1"><i class="ficon cart-item-remove"
-                                                                       data-feather="x"></i>
-                                <div class="media-heading">
-                                    <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html">
-                                            iPhone 11 Pro</a></h6><small class="cart-item-by">By Apple</small>
-                                </div>
-                                <div class="cart-item-qty">
-                                    <div class="input-group">
-                                        <input class="touchspin-cart" type="number" value="2">
-                                    </div>
-                                </div>
-                                <h5 class="cart-item-price">$699.00</h5>
-                            </div>
-                        </div>
-                        <div class="list-item align-items-center"><img class="d-block rounded me-1"
-                                                                       src="{{asset('app-assets/images/pages/eCommerce/3.png')}}'"
-                                                                       alt="donuts" width="62">
-                            <div class="list-item-body flex-grow-1"><i class="ficon cart-item-remove"
-                                                                       data-feather="x"></i>
-                                <div class="media-heading">
-                                    <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html">
-                                            iMac Pro</a></h6><small class="cart-item-by">By Apple</small>
-                                </div>
-                                <div class="cart-item-qty">
-                                    <div class="input-group">
-                                        <input class="touchspin-cart" type="number" value="1">
-                                    </div>
-                                </div>
-                                <h5 class="cart-item-price">$4,999.00</h5>
-                            </div>
-                        </div>
-                        <div class="list-item align-items-center"><img class="d-block rounded me-1"
-                                                                       src="{{asset('app-assets/images/pages/eCommerce/5.png')}}"
-                                                                       alt="donuts" width="62">
-                            <div class="list-item-body flex-grow-1"><i class="ficon cart-item-remove"
-                                                                       data-feather="x"></i>
-                                <div class="media-heading">
-                                    <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html">
-                                            MacBook Pro</a></h6><small class="cart-item-by">By Apple</small>
-                                </div>
-                                <div class="cart-item-qty">
-                                    <div class="input-group">
-                                        <input class="touchspin-cart" type="number" value="1">
-                                    </div>
-                                </div>
-                                <h5 class="cart-item-price">$2,999.00</h5>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dropdown-menu-footer">
-                        <div class="d-flex justify-content-between mb-1">
-                            <h6 class="fw-bolder mb-0">Total:</h6>
-                            <h6 class="text-primary fw-bolder mb-0">$10,999.00</h6>
-                        </div>
-                        <a class="btn btn-primary w-100" href="app-ecommerce-checkout.html">Checkout</a>
-                    </li>
-                </ul>
+            <li class="nav-item dropdown dropdown-cart me-25">
+                <a class="nav-link" href="{{ route('main.index') }}"><i
+                        class="ficon" data-feather="globe" title="Visit Website"></i>
+                </a>
             </li>
             <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#"
                                                                          data-bs-toggle="dropdown"><i class="ficon"
@@ -367,7 +266,12 @@
 
                             </span>
                     </div>
-                    <span class="avatar"><img class="round" src="{{asset('custom/image/user-no-image.png')}}"
+                    <span class="avatar"><img class="round"
+                                              @if(Auth::user()->image != null)
+                                                  src="{{getImageFile(Auth::user()->image)}}"
+                                              @else
+                                                  src="{{asset('custom/image/user-no-image.png')}}"
+                                              @endif
                                               alt="avatar" height="40" width="40">
                         <span class="avatar-status-online"></span></span></a>
 
@@ -749,7 +653,7 @@
             </li>
 
 
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='headphones'></i><span
+            {{--<li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='headphones'></i><span
                         class="menu-title text-truncate" data-i18n="User">Support Ticket</span></a>
                 <ul class="menu-content">
                     <li><a class="d-flex align-items-center" href="{{route('supportTicket.index')}}"><i
@@ -762,10 +666,10 @@
 
 
                 </ul>
-            </li>
+            </li>--}}
 
 
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='at-sign'></i><span
+            {{--<li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='at-sign'></i><span
                         class="menu-title text-truncate" data-i18n="User">Email Management</span></a>
                 <ul class="menu-content">
                     <li><a class="d-flex align-items-center" href="{{route('emailTemplate.index')}}"><i
@@ -778,7 +682,7 @@
 
 
                 </ul>
-            </li>
+            </li>--}}
 
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='book-open'></i><span
@@ -1091,7 +995,6 @@
 <script src="{{asset('app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js')}}"></script>
 <script src="{{asset('app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('app-assets/vendors/js/tables/datatable/responsive.bootstrap5.js')}}"></script>
-
 
 
 <script>

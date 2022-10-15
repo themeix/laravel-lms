@@ -245,7 +245,13 @@
                             <div
                                 class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
                                 <div class="name-box flex justify-between">
-                                    <p class="text-blue-600 text-xl font-bold">$ {{$course->price}}</p>
+                                    <p class="text-blue-600 text-xl font-bold">
+                                        @if($course->price != 0.00)
+                                            $ {{$course->price}}
+                                        @else
+                                            Free
+                                        @endif
+                                    </p>
                                     <span class="text-blue-50">12 July, 2022</span>
                                 </div>
                                 <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
@@ -277,10 +283,30 @@
                                     </div>
                                 </div>
                                 <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                    <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart" href="{{ route('student.addToCart')}}">Add to Cart</a>
+
+                                    <form action="{{ route('student.addToCart') }}" method="GET" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                        <input type="hidden" value="{{ $course->title }}" name="title">
+                                        <input type="hidden" value="{{ $course->price }}" name="price">
+                                        <input type="hidden" value="{{ $course->image }}"  name="image">
+                                        <input type="hidden" value="1" name="quantity">
+                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">Add To Cart</button>
+                                    </form>
+
+
+
+                                    {{--<a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart"
+                                       href="javascript:void(0)"
+                                       onclick="addToCart();" data-course_id="{{ $course->id }}"
+                                       data-route="{{ route('student.addToCart') }}">
+                                        Add to Cart
+                                    </a>--}}
 
                                     <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
                                        href="checkout.html">Buy Now</a>
+
+
                                 </div>
                             </div>
                         </div>
@@ -404,6 +430,7 @@
         @php
             $showingCourses = app\Models\Course::where('status',1)->where('category_id', $showingCategories[0]->id)->take(3)->orderBy('id', 'desc')->get();
         @endphp
+
         @if(sizeof($showingCourses)>0)
             <section class="category-post-area md:mt-32 mt-20">
                 <div class="container">
@@ -439,7 +466,13 @@
                                 <div
                                     class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
                                     <div class="name-box flex justify-between">
-                                        <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
+                                        <p class="text-blue-600 text-xl font-bold">
+                                            @if($showingCourse->price != 0.00)
+                                                $ {{$showingCourse->price}}
+                                            @else
+                                                Free
+                                            @endif
+                                        </p>
                                         <span class="text-blue-50">12 July, 2022</span>
                                     </div>
                                     <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
@@ -471,9 +504,11 @@
                                         </div>
                                     </div>
                                     <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart" href="{{ route('student.addToCart')}}">Add to Cart</a>
+                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart"
+                                           href="{{ route('student.addToCart')}}">Add to Cart</a>
 
-                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500 hover:text-white" href="checkout.html">Buy Now</a>
+                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500 hover:text-white"
+                                           href="checkout.html">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -485,56 +520,7 @@
     @endif
     <!--  ====================== Category Post Area End =============================  -->
     <!--  ====================== Discount Area Start =============================  -->
-    <section class="discount-area md:py-32 py-20 bg-cover bg-center md:mt-32 mt-20 bg-blue-100"
-             style="background-image:url({{asset('frontend/assets/images/discount-effect.svg')}})">
-        <div class="container">
-            <div class="discount-title lg:w-6/12 m-auto text-center">
-                <h2 class="lg:text-5xl md:text-4xl text-2xl font-bold text-black-200"><span class="text-blue-600">50%
-                     Discount </span> On All Of
-                    Our New & Upcoming Courses
-                </h2>
-            </div>
-            <div class="discount-time text-center pt-10 md:w-5/12 m-auto grid md:grid-cols-4 grid-cols-2  gap-6">
-                <div class="flex gap-8 justify-center">
-                    <div class="flex-col">
-                        <p class="text-4xl font-bold text-blue-600" id="days"></p>
-                        <p class="text-gray-800">Days</p>
-                    </div>
-                    <div class="flex-col">
-                        <span class="text-4xl font-bold text-blue-600">:</span>
-                    </div>
-                </div>
-                <div class="flex gap-8 justify-center">
-                    <div class="flex-col">
-                        <p class="text-4xl font-bold text-blue-600" id="hours"></p>
-                        <p class="text-gray-800">Hours</p>
-                    </div>
-                    <div class="flex-col">
-                        <span class="text-4xl font-bold text-blue-600">:</span>
-                    </div>
-                </div>
-                <div class="flex gap-8 justify-center">
-                    <div class="flex-col">
-                        <p class="text-4xl font-bold text-blue-600" id="minutes"></p>
-                        <p class="text-gray-800">Minutes</p>
-                    </div>
-                    <div class="flex-col">
-                        <span class="text-4xl font-bold text-blue-600">:</span>
-                    </div>
-                </div>
-                <div class="flex gap-8 justify-center">
-                    <div class="flex-col">
-                        <p class="text-4xl font-bold text-blue-600" id="seconds"></p>
-                        <p class="text-gray-800">Seconds</p>
-                    </div>
-                </div>
-            </div>
-            <div class="discount-button text-center mt-10">
-                <a class="py-4 px-12 rounded-full border-slate-200 font-medium border inline-block bg-blue-600 hover:border-blue-200 hover:bg-black-200 text-white  !transition   !duration-500 "
-                   href="#">Enroll Now</a>
-            </div>
-        </div>
-    </section>
+    {{ View::make('layouts.partials.webinar') }}
     <!--  ====================== DiscountPost Area End =============================  -->
     <!--  ====================== Web-design Area Start =============================  -->
     @if(sizeof($showingCategories)>1)
@@ -577,7 +563,13 @@
                                 <div
                                     class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
                                     <div class="name-box flex justify-between">
-                                        <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
+                                        <p class="text-blue-600 text-xl font-bold">
+                                            @if($shwoingCourse1->price != 0.00)
+                                                $ {{$shwoingCourse1->price}}
+                                            @else
+                                                Free
+                                            @endif
+                                        </p>
                                         <span class="text-blue-50">12 July, 2022</span>
                                     </div>
                                     <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
@@ -609,9 +601,11 @@
                                         </div>
                                     </div>
                                     <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart" href="{{ route('student.addToCart')}}">Add to Cart</a>
+                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white addToCart"
+                                           href="{{ route('student.addToCart')}}">Add to Cart</a>
 
-                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white" href="checkout.html">Buy Now</a>
+                                        <a class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white"
+                                           href="checkout.html">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -671,7 +665,8 @@
                                             <li>
                                                 <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
                                                    href="{{ $instructor->facebook }}" target="_blank">
-                                                    <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
+                                                    <svg class="inline-block " width="9" height="16"
+                                                         viewBox="0 0 9 16"
                                                          fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                         <path class="group-hover:fill-white"
@@ -680,20 +675,24 @@
                                                     </svg>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                                   href="{{ $instructor->twitter }}" target="_blank">
-                                                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path class="group-hover:fill-white"
-                                                              d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
-                                                              fill="#757F8F"/>
-                                                        <path class="group-hover:fill-white"
-                                                              d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
-                                                              fill="#757F8F"/>
-                                                    </svg>
-                                                </a>
-                                            </li>
+
+                                            @if($instructor->twitter != null)
+                                                <li>
+                                                    <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
+                                                       href="{{ $instructor->twitter }}" target="_blank">
+                                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path class="group-hover:fill-white"
+                                                                  d="M2.56262 3.85254C3.62647 3.85254 4.48889 2.99012 4.48889 1.92627C4.48889 0.862419 3.62647 0 2.56262 0C1.49877 0 0.636353 0.862419 0.636353 1.92627C0.636353 2.99012 1.49877 3.85254 2.56262 3.85254Z"
+                                                                  fill="#757F8F"/>
+                                                            <path class="group-hover:fill-white"
+                                                                  d="M6.30775 5.3122V15.9991H9.6259V10.7142C9.6259 9.31969 9.88825 7.96919 11.6173 7.96919C13.3226 7.96919 13.3437 9.56355 13.3437 10.8022V16H16.6636V10.1393C16.6636 7.26048 16.0439 5.04809 12.6791 5.04809C11.0636 5.04809 9.98069 5.93463 9.53786 6.77363H9.49296V5.3122H6.30775ZM0.900466 5.3122H4.2239V15.9991H0.900466V5.3122Z"
+                                                                  fill="#757F8F"/>
+                                                        </svg>
+                                                    </a>
+                                                </li>
+                                            @endif
+
                                         </ul>
                                     </div>
                                 </div>
@@ -1181,20 +1180,16 @@
     </section>
     <!--  ====================== Blog  Area End =============================  -->
     <!--  ====================== Newsleter  Area Start =============================  -->
-    <section class="newsleter-area  relative my-20 md:my-32">
-        <div class="container">
-            {{ View::make('layouts.partials.newsLetter') }}
-        </div>
-    </section>
+
+    {{ View::make('layouts.partials.newsLetter') }}
+
     <!--  ====================== Newsleter  Area End =============================  -->
-
-
 
 @endsection
 
 @push('script')
 
-   {{-- <script src="{{ asset('frontend/custom/js/addToCart.js') }}"></script>--}}
+    <script src="{{ asset('frontend/custom/js/addToCart.js') }}"></script>
     {{-- <script src="{{ asset('frontend/assets/js/course/addToWishlist.js') }}"></script>--}}
 
 @endpush

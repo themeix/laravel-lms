@@ -41,6 +41,15 @@
         .buyButton:hover {
             box-shadow: unset !important;
         }
+
+        .nice-select{
+            display: none; !important;
+        }
+
+        .addToCart{
+            cursor: pointer;
+        }
+
     </style>
 
     @stack('styles')
@@ -74,7 +83,14 @@
                         @if(Auth::user())
                             <div class="author-profile userMenuButton">
                                 <img class="author-profile-img cursor-pointer  w-12 h-12 rounded-full object-cover"
-                                     src="{{asset('custom/image/user-no-image.png')}}" alt="images">
+                                     @if(Auth::user()->image != null)
+                                         src="{{getImageFile(Auth::user()->image)}}"
+                                     @else
+                                         src="{{asset('custom/image/user-no-image.png')}}"
+                                     @endif alt="images">
+                                <div class="activeMan">
+
+                                </div>
                                 <div
                                     class="author-profile-info   absolute top-20 z-10 w-screen max-w-[260px] transition duration-500  sm:px-0 opacity-0 invisible">
                                     <div
@@ -83,7 +99,11 @@
                                             <div
                                                 class="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center text-neutral-100 uppercase font-semibold shadow-inner rounded-full w-12 h-12 ring-1 ring-white dark:ring-neutral-900">
                                                 <img class="absolute inset-0 w-10 h-10  object-cover rounded-full"
-                                                     src="{{asset('custom/image/user-no-image.png')}}"
+                                                     @if(Auth::user()->image != null)
+                                                         src="{{getImageFile(Auth::user()->image)}}"
+                                                     @else
+                                                         src="{{asset('custom/image/user-no-image.png')}}"
+                                                     @endif
                                                      alt="images">
                                             </div>
                                             <div class="flex-grow">
@@ -244,10 +264,10 @@
                         {{--Mobile Cart Starts herer--}}
                         <div class="cart-box">
                             <a class="w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative"
-                               href="cart.html">
+                               href="{{ route('main.cart') }}">
                                 <div
                                     class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
-                                    <span class="mt-[1px]">3</span>
+                                    <span class="mt-[1px]">{{ @$quantity ? @$quantity : 0 }}</span>
                                 </div>
                                 <span>
                               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -577,7 +597,14 @@
                             @if (Auth::user())
                                 <div class="author-profile  relative">
                                     <img class="author-profile-img cursor-pointer  w-12 h-12 rounded-full object-cover"
-                                         src="{{asset('custom/image/user-no-image.png')}}" alt="images">
+
+                                         @if(Auth::user()->image != null)
+                                             src="{{getImageFile(Auth::user()->image)}}"
+                                         @else
+                                             src="{{asset('custom/image/user-no-image.png')}}"
+                                         @endif
+
+                                         alt="images">
                                     <div
                                         class="author-profile-info   absolute top-20 z-10 w-screen max-w-[260px] px-4    transition duration-500 sm:right-0 sm:px-0 opacity-0 invisible">
                                         <div
@@ -586,7 +613,13 @@
                                                 <div
                                                     class="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center text-neutral-100 uppercase font-semibold shadow-inner rounded-full w-12 h-12 ring-1 ring-white dark:ring-neutral-900">
                                                     <img class="absolute inset-0 w-10 h-10  object-cover rounded-full"
-                                                         src="{{asset('custom/image/user-no-image.png')}}"
+
+                                                         @if(Auth::user()->image != null)
+                                                             src="{{getImageFile(Auth::user()->image)}}"
+                                                         @else
+                                                             src="{{asset('custom/image/user-no-image.png')}}"
+                                                         @endif
+
                                                          alt="images">
                                                 </div>
                                                 <div class="flex-grow">
@@ -747,35 +780,30 @@
                             {{--Desktop Cart Starts Here--}}
 
                             <div class="cart-box">
-                                <a class="w-12 h-12  hover:bg-gray-200  rounded-full inline-flex items-center justify-center   relative"
-                                   href="cart.html">
-
+                                <a class="w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative"
+                                   href="{{ route('main.cart') }}">
                                     <div
-                                        class="cart-box-close cursor-pointer w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative">
-                                        <div
-                                            class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
-                                            <span class="mt-[1px]">3</span>
-                                        </div>
-                                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
-                                                stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path
-                                                d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
-                                                stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path
-                                                d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
-                                                stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path d="M9 8H21" stroke="currentColor" stroke-width="1.5"
-                                                  stroke-miterlimit="10"
-                                                  stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>
+                                        class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
+                                        <span class="mt-[1px]">{{ @$quantity ? @$quantity : 0 }}</span>
                                     </div>
-
+                                    <span>
+                              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path
+                                     d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
+                                     stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                     stroke-linecap="round" stroke-linejoin="round"></path>
+                                 <path
+                                     d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
+                                     stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                     stroke-linecap="round" stroke-linejoin="round"></path>
+                                 <path
+                                     d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
+                                     stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                     stroke-linecap="round" stroke-linejoin="round"></path>
+                                 <path d="M9 8H21" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                       stroke-linecap="round" stroke-linejoin="round"></path>
+                              </svg>
+                           </span>
                                 </a>
                             </div>
 

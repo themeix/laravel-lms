@@ -58,12 +58,12 @@ class FrontendIndexController extends Controller
 
     public function allCategories1(){
         $data['categories'] = Category::all();
-        return view('frontend.course.category.courseCategories1', $data);
+        return view('frontend.course.category.allCategories1', $data);
     }
 
     public function allCategories2(){
         $data['categories'] = Category::all();
-        return view('frontend.course.category.courseCategories2',$data);
+        return view('frontend.course.category.allCategories2',$data);
     }
 
     public function courseDetails(){

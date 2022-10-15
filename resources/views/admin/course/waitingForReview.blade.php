@@ -223,7 +223,7 @@
                         datatype: "json",
                         success: function (data) {
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'center',
                                 icon: 'success',
                                 title: 'Course status has been updated',
                                 showConfirmButton: false,

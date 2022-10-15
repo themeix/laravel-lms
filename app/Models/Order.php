@@ -36,12 +36,12 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(Order_item::class, 'order_id');
+        return $this->hasMany(OrderItem::class, 'order_id');
     }
 
     public function getAdminCommissionAttribute()
     {
-        return Order_item::where('order_id', $this->id)->sum('admin_commission');
+        return OrderItem::where('order_id', $this->id)->sum('admin_commission');
     }
 
     public function getTotalRevenueAttribute()

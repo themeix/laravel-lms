@@ -185,7 +185,7 @@
                         datatype: "json",
                         success: function (data) {
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'center',
                                 icon: 'success',
                                 title: 'Student status has been changed',
                                 showConfirmButton: false,

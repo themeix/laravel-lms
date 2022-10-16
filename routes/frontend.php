@@ -46,6 +46,7 @@ Route::get('/about-style-2', [FrontendIndexController::class, 'about2'])->name('
 
 //Contact Us
 Route::get('/contact', [FrontendIndexController::class, 'contact'])->name('main.contact');
+Route::post('/contact/store', [FrontendIndexController::class, 'contactMessageStore'])->name('main.contact.store');
 
 
 //NewsLetter
@@ -57,11 +58,21 @@ Route::get('/blog/index', [BlogController::class, 'index'])->name('main.blog.ind
 Route::get('/blog/details', [BlogController::class, 'details'])->name('main.blog.details');
 
 
+//Search
+Route::get('/search', [FrontendIndexController::class, 'search'])->name('main.search');
+
+
+
 //Cart & Checkout
 Route::middleware(['auth'])->group(function () {
     Route::get('cart', [CartManagementController::class, 'cartList'])->name('main.cart');
-    Route::get('checkout', [CartManagementController::class, 'goToCheckout'])->name('main.checkout');
-    Route::post('apply-coupon', [CartManagementController::class, 'applyCoupon'])->name('student.applyCoupon');
-    Route::get('addToCart', [CartManagementController::class, 'addToCart'])->name('student.addToCart');
+    Route::get('getQuantity', [CartManagementController::class, 'getQuantity'])->name('main.getQuantity');
+
+    Route::get('getStates', [CartManagementController::class,'getStates'])->name('main.getStates');
+
+    Route::get('checkout', [CartManagementController::class, 'checkout'])->name('main.checkout');
+    Route::post('apply-coupon', [CartManagementController::class, 'applyCoupon'])->name('main.applyCoupon');
+    Route::get('addToCart', [CartManagementController::class, 'addToCart'])->name('main.addToCart');
+    Route::get('buyNow', [CartManagementController::class, 'buyNow'])->name('main.buyNow');
     Route::get('cart-delete/{id}', [CartManagementController::class, 'cartDelete'])->name('main.cartDelete');
 });

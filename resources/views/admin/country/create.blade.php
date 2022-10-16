@@ -63,7 +63,7 @@
                                         <div class="mb-1">
                                             <label class="form-label" for="short_name">Short Name</label>
 
-                                            <input type="text" name="short_name" id="short_name" value="{{old('short_name')}}" class="form-control" placeholder="Short Name">
+                                            <input type="text" name="short_name" id="short_name" value="{{old('short_name')}}" class="form-control" placeholder="Short Name" style='text-transform:uppercase'>
 
                                             @if ($errors->has('short_name'))
                                                 <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('short_name') }}</span>

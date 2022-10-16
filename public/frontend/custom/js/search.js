@@ -1,24 +1,27 @@
-(function () {
-    'use strict'
-    $(document).keyup('.searchBar',function() {
-        var title = $('.searchCourse').val()
-        var search_route = $('.search_route').val()
-
-        if (title) {
-            $('.searchBox').removeClass('d-none')
-            $('.searchBox').addClass('d-block')
-        } else {
-            $('.searchBox').removeClass('d-block')
-            $('.searchBox').addClass('d-none')
+$(document).ready(function () {
+    $(document).on('keyup', '.in-autocomplete', function (event) {
+        $('.autocomplete-items').remove();
+        var txtBox = $(this);
+        var searchTerm = $(this).val();
+        if(searchTerm != ''){
+            /*var attribute = $(this).attr('id');
+            if(searchField == "" || domain == ""){
+                return false;
+            }*/
+            $.ajax({
+                url: root + "/AutoCompleteSearch/searchAction",
+                method:"POST",
+                data:{
+                    searchTerm:searchTerm
+                },
+                success:function(response){
+                    $("<div/>", {
+                        html: response,
+                        class:'autocomplete-items'
+                    }).insertAfter(txtBox);
+                }
+            })
         }
-
-        $.ajax({
-            type: "GET",
-            url: search_route,
-            data: {'title': title},
-            success: function (response) {
-                $('.appendCourseSearchList').html(response);
-            }
-        });
     });
-})()
+
+});

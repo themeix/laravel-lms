@@ -1,5 +1,5 @@
 @extends('layouts.frontEndMaster')
-@section('title','Dashboard')
+@section('title','Cart')
 @section('content')
 
     @if(sizeof($carts)>0)
@@ -123,15 +123,15 @@
                                     <p class=" text-2xl font-medium text-black-200">$ {{ $total }}</p>
                                 </div>
                             </div>
-                            <div class="flex gap-3">
+                            {{--<div class="flex gap-3">
                                 <div class="flex-col">
-                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required>
                                 </div>
                                 <div class="flex-col">
                                     <p class="text-gray-800">Agree with our company <a class="text-blue-600" href="#">privacy
                                             policy</a> and conditions of use. </p>
                                 </div>
-                            </div>
+                            </div>--}}
                             <div class="order-button mt-6">
                                 <a class="py-3 w-full mb-4 bg-blue-600 text-white block text-center px-6 rounded-md text-lg font-medium transition duration-500 hover:bg-black-200"
                                    href="{{ route('main.checkout') }}">Checkout</a>

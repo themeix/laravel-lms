@@ -1,5 +1,5 @@
 @extends('layouts.frontEndMaster')
-@section('title','Dashboard')
+@section('title','Contact Us')
 @section('content')
     <!--  ====================== Breadcrum  Area Start =============================  -->
     <section class="breadcrumb-area md:py-32 relative py-20  bg-blue-100 overflow-hidden">
@@ -9,9 +9,9 @@
                     data-aos-delay="100">Contact</h2>
             </div>
             <ul class="flex gap-2 justify-center mt-6 relative z-10" data-aos="fade-up" data-aos-delay="200">
-                <li><a class="hover:text-blue-600 transition duration-500" href="index.html">Home </a> </li>
+                <li><a class="hover:text-blue-600 transition duration-500" href="{{ route('main.index') }}">Home </a> </li>
                 <li>/</li>
-                <li> <a class="hover:text-blue-600 transition duration-500" href="#"> Contact </a></li>
+                <li> Contact </li>
             </ul>
         </div>
         <div class="shape-breadcrumb absolute top-0 right-0">
@@ -140,34 +140,47 @@
                         </p>
                     </div>
                     <div class="contact-forms  bg-white shadow-4xl p-10">
-                        <form action="#">
+                        <form action="{{ route('main.contact.store') }}" method="post">
+                            @csrf
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div class="flex-col">
                                     <input
                                         class=" appearance-none border rounded w-full py-3 px-3 bg-white  placeholder-blue-50 leading-tight focus:outline-blue-600 focus:shadow-outline"
-                                        id="text" type="text" placeholder="Your Name*">
+                                        id="text" type="text" name="name" value="{{ old('name') }}" placeholder="Your Name*" required>
+
+                                    @if ($errors->has('name'))
+                                        <span style="color: red;"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('name') }}</span>
+                                    @endif
                                 </div>
                                 <div class="flex-col">
                                     <input
                                         class=" appearance-none border rounded w-full py-3 px-3 bg-white  placeholder-blue-50 leading-tight focus:outline-blue-500 focus:shadow-outline"
-                                        id="tel" type="tel" placeholder="Your Phone*">
+                                        id="tel" type="tel" name="phone" value="{{ old('phone') }}" placeholder="Your Phone*" >
+
                                 </div>
                             </div>
                             <div class="grid-grid-cols-1 mt-4">
                                 <div class="flex-col">
                                     <input
                                         class=" appearance-none border rounded w-full py-3 px-3 bg-white  placeholder-blue-50 leading-tight focus:outline-blue-500 focus:shadow-outline"
-                                        id="email" type="email" placeholder="Your Email*">
+                                        id="email" type="email" name="email" value="{{ old('email') }}" placeholder="Your Email*" required>
+
+                                    @if ($errors->has('email'))
+                                        <span style="color: red;"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('email') }}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="grid-grid-cols-1 mt-4">
                                 <div class="flex-col">
                               <textarea
-                                  class="appearance-none border rounded w-full py-3 px-3 bg-white  placeholder-blue-50 leading-tight focus:outline-blue-500 focus:shadow-outline"
-                                  placeholder="Message" cols="30" rows="6"></textarea>
+                                  class=" arifText appearance-none border rounded w-full py-3 px-3 bg-white  placeholder-blue-600 leading-tight focus:outline-blue-500 focus:shadow-outline" placeholder="Message" cols="30" name="message" rows="6"> {{old('message')}}</textarea>
+
+                                    @if ($errors->has('message'))
+                                        <span style="color: red;"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('message') }}</span>
+                                    @endif
                                 </div>
                                 <div class="contact-button mt-4 text-end">
-                                    <button type="button"
+                                    <button type="submit"
                                             class="bg-blue-600 py-4 px-12 hover:bg-black-200 w-full md:w-auto text-center hover:text-white transition duration-500 rounded-md text-white inline-block">Send
                                         Message</button>
                                 </div>

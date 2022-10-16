@@ -227,7 +227,13 @@
                             <div
                                 class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
                                 <div class="name-box flex justify-between">
-                                    <p class="text-blue-600 text-xl font-bold">$ {{$course->price}}</p>
+                                    <p class="text-blue-600 text-xl font-bold">
+                                        @if($course->price != 0.00)
+                                            $ {{$course->price}}
+                                        @else
+                                            Free
+                                        @endif
+                                    </p>
                                     <span class="text-blue-50">12 July, 2022</span>
                                 </div>
                                 <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
@@ -257,10 +263,25 @@
                                     </div>
                                 </div>
                                 <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                    <a class="border-blue-20 border  inline-block py-2.5 px-5 rounded-md  hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                       href="cart.html">Add to Cart</a>
-                                    <a class="border-blue-20 border  inline-block py-2.5 px-5 rounded-md  hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                       href="checkout.html">Buy Now</a>
+                                    <form action="{{ route('main.addToCart') }}" method="GET" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                        <input type="hidden" value="{{ $course->title }}" name="title">
+                                        <input type="hidden" value="{{ $course->price }}" name="price">
+                                        <input type="hidden" value="{{ $course->image }}"  name="image">
+                                        <input type="hidden" value="1" name="quantity">
+                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">Add To Cart</button>
+                                    </form>
+
+                                    <form action="{{ route('main.buyNow') }}" method="GET" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                        <input type="hidden" value="{{ $course->title }}" name="title">
+                                        <input type="hidden" value="{{ $course->price }}" name="price">
+                                        <input type="hidden" value="{{ $course->image }}"  name="image">
+                                        <input type="hidden" value="1" name="quantity">
+                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">Buy Now</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -415,7 +436,7 @@
                     </div>
 
                     <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-                        @foreach($showingCourses as $showingCourse)
+                        @foreach($showingCourses as $course)
                             <div class="lessons-item group hover:-translate-y-2 duration-500 hover:shadow-md transition"
                                  data-aos="fade-up" data-aos-delay="1000">
                                 <div class="lessons-images relative overflow-hidden">
@@ -428,11 +449,17 @@
                                 <div
                                     class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
                                     <div class="name-box flex justify-between">
-                                        <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
+                                        <p class="text-blue-600 text-xl font-bold">
+                                            @if($course->price != 0.00)
+                                                $ {{$course->price}}
+                                            @else
+                                                Free
+                                            @endif
+                                        </p>
                                         <span class="text-blue-50">12 July, 2022</span>
                                     </div>
                                     <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
-                                        <a href="course.html">{{ $showingCourse->title }}</a>
+                                        <a href="course.html">{{ $course->title }}</a>
                                     </h3>
                                     <div class="reviews-box flex justify-between pt-5">
                                         <div class="flex items-center">
@@ -458,10 +485,25 @@
                                         </div>
                                     </div>
                                     <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                        <a class="border-blue-20 border  inline-block py-2.5 px-5 rounded-md  hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                           href="cart.html">Add to Cart</a>
-                                        <a class="border-blue-20 border  inline-block py-2.5 px-5 rounded-md  hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                           href="checkout.html">Buy Now</a>
+                                        <form action="{{ route('main.addToCart') }}" method="GET" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                            <input type="hidden" value="{{ $course->title }}" name="title">
+                                            <input type="hidden" value="{{ $course->price }}" name="price">
+                                            <input type="hidden" value="{{ $course->image }}"  name="image">
+                                            <input type="hidden" value="1" name="quantity">
+                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">Add To Cart</button>
+                                        </form>
+
+                                        <form action="{{ route('main.buyNow') }}" method="GET" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                            <input type="hidden" value="{{ $course->title }}" name="title">
+                                            <input type="hidden" value="{{ $course->price }}" name="price">
+                                            <input type="hidden" value="{{ $course->image }}"  name="image">
+                                            <input type="hidden" value="1" name="quantity">
+                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">Buy Now</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -503,7 +545,7 @@
                     </div>
 
                     <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-                        @foreach($showingCourses1 as $showingCourse1)
+                        @foreach($showingCourses1 as $course)
                             <div class="lessons-item group hover:-translate-y-2 duration-500 hover:shadow-md transition"
                                  data-aos="fade-up" data-aos-delay="500">
                                 <div class="lessons-images relative overflow-hidden">
@@ -516,11 +558,17 @@
                                 <div
                                     class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
                                     <div class="name-box flex justify-between">
-                                        <p class="text-blue-600 text-xl font-bold">$ 29.99</p>
+                                        <p class="text-blue-600 text-xl font-bold">
+                                            @if($course->price != 0.00)
+                                                $ {{$course->price}}
+                                            @else
+                                                Free
+                                            @endif
+                                        </p>
                                         <span class="text-blue-50">12 July, 2022</span>
                                     </div>
                                     <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
-                                        <a href="course.html">{{ $showingCourse1->title }}</a>
+                                        <a href="course.html">{{ $course->title }}</a>
                                     </h3>
                                     <div class="reviews-box flex justify-between pt-5">
                                         <div class="flex items-center">
@@ -546,10 +594,25 @@
                                         </div>
                                     </div>
                                     <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                        <a class=" border-blue-20 border inline-block py-2.5 px-5 rounded-md   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                           href="cart.html">Add to Cart</a>
-                                        <a class=" border-blue-20 border inline-block py-2.5 px-5 rounded-md   hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                           href="checkout.html">Buy Now</a>
+                                        <form action="{{ route('main.addToCart') }}" method="GET" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                            <input type="hidden" value="{{ $course->title }}" name="title">
+                                            <input type="hidden" value="{{ $course->price }}" name="price">
+                                            <input type="hidden" value="{{ $course->image }}"  name="image">
+                                            <input type="hidden" value="1" name="quantity">
+                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">Add To Cart</button>
+                                        </form>
+
+                                        <form action="{{ route('main.buyNow') }}" method="GET" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                            <input type="hidden" value="{{ $course->title }}" name="title">
+                                            <input type="hidden" value="{{ $course->price }}" name="price">
+                                            <input type="hidden" value="{{ $course->image }}"  name="image">
+                                            <input type="hidden" value="1" name="quantity">
+                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">Buy Now</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -620,7 +683,7 @@
                                             </li>
                                             <li>
                                                 <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                                   href="{{ $instructor->twitter }}" target="_blank">
+                                                   href="{{ $instructor->linkedin }}" target="_blank">
                                                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                         <path class="group-hover:fill-white"

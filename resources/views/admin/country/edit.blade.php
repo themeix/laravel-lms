@@ -75,6 +75,7 @@
                                                 aria-label="Name"
                                                 aria-describedby="basic-addon-name"
                                                 required
+                                                style='text-transform:uppercase'
                                             />
                                             @if ($errors->has('short_name'))
                                                 <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('short_name') }}</span>

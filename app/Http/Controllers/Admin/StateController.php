@@ -124,6 +124,6 @@ class StateController extends Controller
 
         Alert::toast('State Deleted Successfully.', 'warning');
 
-        return redirect()->route('country.index')->with('delete-message', 'State Deleted successfully.');
+        return redirect()->route('state.index')->with('delete-message', 'State Deleted successfully.');
     }
 }

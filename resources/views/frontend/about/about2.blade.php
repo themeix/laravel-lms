@@ -311,7 +311,7 @@
                                 <ul class="flex justify-center gap-2">
                                     <li>
                                         <a class="bg-stone-50 group hover:bg-facebook-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
+                                           href="{{ $instructor->facebook }}">
                                             <svg class="inline-block " width="9" height="16" viewBox="0 0 9 16"
                                                  fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -323,7 +323,7 @@
                                     </li>
                                     <li>
                                         <a class="bg-stone-50 group hover:bg-linkedin-100  h-8 w-8 flex items-center justify-center  !transition   !duration-500  rounded "
-                                           href="#">
+                                           href="{{ $instructor->linkedin }}">
                                             <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path class="group-hover:fill-white"

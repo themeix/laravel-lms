@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contact_us', function (Blueprint $table) {
+        Schema::create('banks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone')->nullable();
-            $table->string('email');
-            $table->unsignedBigInteger('contact_us_issue_id')->nullable();
-            $table->text('message')->nullable();
+            $table->string('account_name');
+            $table->string('account_number');
+            $table->tinyInteger('status')->default(1)->comment('1=active,0=inactive');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_us');
+        Schema::dropIfExists('banks');
     }
 };

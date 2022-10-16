@@ -37,16 +37,28 @@
             letter-spacing: 0.14px;
 
         }
+        select.arifSelect {
+            display: block!important;
+            border: 1px solid #e5e5e5;
+            padding-top: 0.625rem;
+            padding-bottom: 0.625rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            border-radius: 0.25rem;
+            outline: none;
+
+        }
 
         .buyButton:hover {
             box-shadow: unset !important;
         }
 
-        .nice-select{
-            display: none; !important;
+        .nice-select {
+            display: none;
+        !important;
         }
 
-        .addToCart{
+        .addToCart {
             cursor: pointer;
         }
 
@@ -267,7 +279,13 @@
                                href="{{ route('main.cart') }}">
                                 <div
                                     class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
-                                    <span class="mt-[1px]">{{ @$quantity ? @$quantity : 0 }}</span>
+                                    <span class="mt-[1px]" id="quantity">
+                                        @if(Auth::user() != null)
+                                            {{ $quantity = \App\Models\CartManagement::where('user_id', Auth::user()->id)->count() }}
+                                        @else
+                                            {{ $quantity = 0 }}
+                                        @endif
+                                    </span>
                                 </div>
                                 <span>
                               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -555,7 +573,7 @@
                                     </div>
                                     <input
                                         class=" appearance-none  rounded w-full py-4 px-3 placeholder-black-200   leading-tight focus:outline-none focus:shadow-outline"
-                                        id="username" type="text" placeholder="Type and press enter">
+                                        id="search" name="search" type="text" placeholder="Type and press enter">
                                     <div class="search-open-close">
                                  <span class="search-close cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -784,7 +802,13 @@
                                    href="{{ route('main.cart') }}">
                                     <div
                                         class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
-                                        <span class="mt-[1px]">{{ @$quantity ? @$quantity : 0 }}</span>
+                                        <span class="mt-[1px]" id="quantity">
+                                            @if(Auth::user() != null)
+                                                {{ $quantity = \App\Models\CartManagement::where('user_id', Auth::user()->id)->count() }}
+                                            @else
+                                                {{ $quantity = 0 }}
+                                            @endif
+                                        </span>
                                     </div>
                                     <span>
                               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -936,6 +960,42 @@
 </div>
 <!-- gulp:js -->
 <script src="{{asset('frontend/assets/js/build.min.js')}}"></script> <!-- endgulp -->
+
+
+<script>
+    $('#search').on('keyup', function(){
+        search();
+    });
+    search();
+    function search(){
+        debugger;
+
+        var keyword = $('#search').val();
+        $.post('{{ route("main.search") }}',
+            {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                keyword:keyword
+            },
+            function(data){
+                table_post_row(data);
+                console.log(data);
+            });
+    }
+    // table row with ajax
+    function table_post_row(data){
+        var html = '';
+        $.each(data, function(key, value){
+            html += '<tr>';
+            html += '<td>'+value.id+'</td>';
+            html += '<td>'+value.title+'</td>';
+            html += '<td>'+value.description+'</td>';
+            html += '<td>'+value.created_at+'</td>';
+            html += '</tr>';
+        });
+        $('#table_post_row').html(html);
+    }
+</script>
+
 
 
 @stack('scripts')

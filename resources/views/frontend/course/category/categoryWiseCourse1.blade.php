@@ -326,10 +326,23 @@
                                         </div>
                                         <div class="col-span-8">
                                             <div class="lessons-bottom-box ">
-                                                <div class="name-box flex justify-between">
-                                                    <a class="text-black-200 hover:text-blue-600"
-                                                       href="{{route('main.instructorWiseCourses',$course->instructor->uuid)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
+                                                <div class="flex justify-between items-center">
+                                                    <div class="name-box flex justify-between">
+                                                        <a class="text-black-200 hover:text-blue-600"
+                                                           href="{{route('main.instructorWiseCourses',$course->instructor->uuid)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
+                                                    </div>
+                                                    <div class="name-box flex justify-between">
+                                                        <p class="text-blue-600 text-xl font-bold">
+                                                            @if($course->price != 0.00)
+                                                                $ {{$course->price}}
+                                                            @else
+                                                                Free
+                                                            @endif
+                                                        </p>
+                                                    </div>
                                                 </div>
+
+
                                                 <h3
                                                     class="md:text-2xl text-xl font-semibold mt-2 text-black-200 mb-2 hover:text-blue-600">
                                                     <a href="course.html">{{$course->title}}</a>
@@ -361,10 +374,33 @@
                                                     </div>
                                                 </div>
                                                 <div class="reviews-box border-t pt-7 mt-7 flex gap-3">
-                                                    <a class="border-blue-20 border inline-block py-2.5 px-5 rounded font-medium hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                                       href="cart.html">Add to Cart</a>
-                                                    <a class="border-blue-20 border inline-block py-2.5 px-5 rounded font-medium hover:bg-blue-600 hover:border-blue-600 transition duration-500 hover:text-white"
-                                                       href="checkout.html">Buy Now</a>
+                                                    <form action="{{ route('main.addToCart') }}" method="GET"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                                        <input type="hidden" value="{{ $course->title }}" name="title">
+                                                        <input type="hidden" value="{{ $course->price }}" name="price">
+                                                        <input type="hidden" value="{{ $course->image }}" name="image">
+                                                        <input type="hidden" value="1" name="quantity">
+                                                        <button
+                                                            class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
+                                                            Add To Cart
+                                                        </button>
+                                                    </form>
+
+                                                    <form action="{{ route('main.buyNow') }}" method="GET"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                                        <input type="hidden" value="{{ $course->title }}" name="title">
+                                                        <input type="hidden" value="{{ $course->price }}" name="price">
+                                                        <input type="hidden" value="{{ $course->image }}" name="image">
+                                                        <input type="hidden" value="1" name="quantity">
+                                                        <button
+                                                            class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
+                                                            Buy Now
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

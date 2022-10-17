@@ -301,4 +301,18 @@ class CartManagementController extends Controller
         Alert::warning('Warning', 'Course removed from your Cart!');
         return redirect()->back();
     }
+
+
+    //Banking & Payment Section Starts
+
+    public function fetchBank(Request $request)
+    {
+        $bank_id = Bank::find($request->bank_id);
+        if ($bank_id){
+            return response()->json([
+                'account_number' => $bank_id->account_number,
+            ]);
+        }
+    }
+
 }

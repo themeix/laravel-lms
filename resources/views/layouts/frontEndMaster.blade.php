@@ -37,8 +37,9 @@
             letter-spacing: 0.14px;
 
         }
+
         select.arifSelect {
-            display: block!important;
+            display: block !important;
             border: 1px solid #e5e5e5;
             padding-top: 0.625rem;
             padding-bottom: 0.625rem;
@@ -798,37 +799,129 @@
                             {{--Desktop Cart Starts Here--}}
 
                             <div class="cart-box">
-                                <a class="w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative"
-                                   href="{{ route('main.cart') }}">
+                                <div class="relative">
                                     <div
-                                        class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
-                                        <span class="mt-[1px]" id="quantity">
-                                            @if(Auth::user() != null)
-                                                {{ $quantity = \App\Models\CartManagement::where('user_id', Auth::user()->id)->count() }}
-                                            @else
-                                                {{ $quantity = 0 }}
-                                            @endif
-                                        </span>
+                                        class="cart-box-close cursor-pointer w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative">
+                                        <div
+                                            class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
+                                            <span class="mt-[1px]">
+
+                                                @if(Auth::user() != null)
+                                                    {{ $quantity = \App\Models\CartManagement::where('user_id', Auth::user()->id)->count() }}
+                                                @else
+                                                    {{ $quantity = 0 }}
+                                                @endif
+
+                                            </span>
+                                        </div>
+                                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
+                                                stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path
+                                                d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
+                                                stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path
+                                                d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
+                                                stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M9 8H21" stroke="currentColor" stroke-width="1.5"
+                                                  stroke-miterlimit="10"
+                                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
                                     </div>
-                                    <span>
-                              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
-                                     stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                     stroke-linecap="round" stroke-linejoin="round"></path>
-                                 <path
-                                     d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
-                                     stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                     stroke-linecap="round" stroke-linejoin="round"></path>
-                                 <path
-                                     d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
-                                     stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                     stroke-linecap="round" stroke-linejoin="round"></path>
-                                 <path d="M9 8H21" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                       stroke-linecap="round" stroke-linejoin="round"></path>
-                              </svg>
-                           </span>
-                                </a>
+                                    <div
+                                        class="cart-wrap  opacity-0 invisible absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0  translate-y-10">
+                                        <div class="overflow-hidden rounded-xl shadow  ">
+                                            <div class="relative bg-white">
+                                                <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
+                                                    <h3 class="text-xl font-semibold text-black-200">Shopping cart</h3>
+                                                    <div class="divide-y divide-slate-100 dark:divide-slate-700">
+                                                        @if(Auth::user() != null)
+                                                            @php
+                                                                $carts = \App\Models\CartManagement::where('user_id', Auth::user()->id)->get();
+                                                                $total = \App\Models\CartManagement::whereUserId(Auth::user()->id)->sum('price');
+                                                            @endphp
+                                                            @foreach($carts as $item)
+
+                                                                <div class="flex py-5 last:pb-0">
+                                                                    <div
+                                                                        class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                                                        <img class="h-full object-cover"
+                                                                             src="{{asset('frontend/assets/images/lessons-images-1-1.webp')}}"
+                                                                             alt="#">
+                                                                    </div>
+                                                                    <div class="ml-4 flex flex-1 flex-col">
+                                                                        <div>
+                                                                            <div class="flex justify-between ">
+                                                                                <div>
+                                                                                    <h3
+                                                                                        class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
+                                                                                        <a href="courses-lesson-1.html">
+                                                                                            {{ $item->course->title }} </a>
+                                                                                    </h3>
+                                                                                    <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                        <span>{{ @$item->course->category->name }}</span>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="mt-0.5">
+                                                                                    <div
+                                                                                        class="flex items-center border border-blue-600 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
+                                                                                        <span
+                                                                                            class="text-blue-600">$ {{$item->price}}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="flex flex-1 items-end justify-between text-sm">
+                                                                            <p></p>
+                                                                            <div class="flex">
+                                                                                <a href="{{ route('main.cartDelete', $item->id) }}">
+                                                                                    <img src="{{asset('frontend/custom/image/icons8-remove-48.png')}}"
+                                                                                         alt="trash" style="width: 35px; height: 35px;">
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="p-5  bg-white">
+                                                    <p class="flex justify-between font-semibold text-black-200">
+                                             <span><span>Subtotal</span>
+                                                 <span class="block text-sm">Shipping
+                                                   and taxes calculated at checkout.
+                                                 </span>
+                                             </span>
+                                                        <span>
+                                                            @if(Auth::user() != null)
+                                                                $ {{ $total }}
+                                                            @else
+                                                                $ 0
+                                                            @endif
+                                                        </span>
+                                                    </p>
+
+                                                    <div class="flex space-x-2 mt-5"><a
+                                                            class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    bg-blue-600 hover:bg-black-200 transition duration-500 text-white  flex-1"
+                                                            rel="noopener noreferrer" href="{{ route('main.cart') }}">View
+                                                            cart</a>
+                                                        <a class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    hover:bg-blue-600 bg-black-200 transition duration-500 text-white  flex-1"
+                                                           rel="noopener noreferrer"
+                                                           href="{{ route('main.checkout') }}">Check out</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             {{--Desktop Cart Ends Here--}}
@@ -963,39 +1056,47 @@
 
 
 <script>
-    $('#search').on('keyup', function(){
+    $('#search').on('keyup', function () {
         search();
     });
     search();
-    function search(){
+
+    function search() {
         debugger;
 
         var keyword = $('#search').val();
         $.post('{{ route("main.search") }}',
             {
                 _token: $('meta[name="csrf-token"]').attr('content'),
-                keyword:keyword
+                keyword: keyword
             },
-            function(data){
+            function (data) {
                 table_post_row(data);
                 console.log(data);
             });
     }
+
     // table row with ajax
-    function table_post_row(data){
+    function table_post_row(data) {
         var html = '';
-        $.each(data, function(key, value){
+        $.each(data, function (key, value) {
             html += '<tr>';
-            html += '<td>'+value.id+'</td>';
-            html += '<td>'+value.title+'</td>';
-            html += '<td>'+value.description+'</td>';
-            html += '<td>'+value.created_at+'</td>';
+            html += '<td>' + value.id + '</td>';
+            html += '<td>' + value.title + '</td>';
+            html += '<td>' + value.description + '</td>';
+            html += '<td>' + value.created_at + '</td>';
             html += '</tr>';
         });
         $('#table_post_row').html(html);
     }
-</script>
 
+
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+
+
+</script>
 
 
 @stack('scripts')

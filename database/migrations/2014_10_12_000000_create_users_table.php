@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
 
             $table->tinyInteger('type')->comment('1=admin, 2=instructor, 3=student')->default(3);
-            $table->string('phone_number', 50)->nullable();
+            $table->string('phone_number', 50);
             $table->mediumText('address')->nullable();
 
             $table->string('provider_id')->nullable();

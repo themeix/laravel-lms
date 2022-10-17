@@ -68,6 +68,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cart', [CartManagementController::class, 'cartList'])->name('main.cart');
     Route::get('getQuantity', [CartManagementController::class, 'getQuantity'])->name('main.getQuantity');
 
+    Route::get('fetch-bank', [CartManagementController::class, 'fetchBank'])->name('main.fetchBank');
+
     Route::get('getStates', [CartManagementController::class,'getStates'])->name('main.getStates');
 
     Route::get('checkout', [CartManagementController::class, 'checkout'])->name('main.checkout');

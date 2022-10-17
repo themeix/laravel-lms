@@ -8,7 +8,7 @@
     <form class="auth-register-form mt-2" method="POST" action="{{ route('register') }}">
         @csrf
         <div class="mb-1">
-            <label for="register-username" class="form-label">Username</label>
+            <label for="register-username" class="form-label">Name</label>
             <input
                 type="text"
                 class="form-control @error('name') is-invalid @enderror"
@@ -28,6 +28,7 @@
                                     </span>
             @enderror
         </div>
+
         <div class="mb-1">
             <label for="register-email" class="form-label">Email</label>
             <input
@@ -46,6 +47,34 @@
                                     </span>
             @enderror
         </div>
+
+
+
+
+        <div class="mb-1">
+            <label for="register-phone" class="form-label">Phone (With Country Code)</label>
+            <input
+                type="number"
+                class="form-control @error('phone_number') is-invalid @enderror"
+                id="phone_number"
+                name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number"
+                placeholder="Enter Your Phone Number"
+                aria-describedby="register-phone"
+                tabindex="2"
+            />
+
+            @error('phone_number')
+            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+            @enderror
+        </div>
+
+
+
+
+
+
 
         <div class="mb-1">
             <label for="register-password" class="form-label">Password</label>

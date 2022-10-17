@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
@@ -36,7 +37,6 @@ Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin
 Route::get('category/index', [CategoryController::class, 'index'])->name('category.index');
 Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
 Route::post('category/store', [CategoryController::class, 'store'])->name('category.store')/*->middleware('isDemo')*/;
-
 Route::get('category/edit/{uuid}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('category/update/{uuid}', [CategoryController::class, 'update'])->name('category.update');
 Route::post('category/delete/{uuid}', [CategoryController::class, 'delete'])->name('category.delete')/*->middleware('isDemo')*/;
@@ -186,6 +186,16 @@ Route::post('promotion/changeStatus', [PromotionController::class, 'changePromot
 Route::get('promotion/addPromotionalCourse', [PromotionController::class, 'addPromotionCourseList'])->name('promotion.addPromotionalCourse');
 Route::get('promotion/removePromotionalCourse', [PromotionController::class, 'removePromotionCourseList'])->name('promotion.removePromotionalCourse')/*->middleware('isDemo')*/;
 
+
+//Bank
+//Category
+Route::get('bank/index', [BankController::class, 'index'])->name('bank.index');
+Route::get('bank/create', [BankController::class, 'create'])->name('bank.create');
+Route::post('bank/changeStatus', [BankController::class, 'changeStatus'])->name('bank.changeStatus');
+Route::post('bank/store', [BankController::class, 'store'])->name('bank.store')/*->middleware('isDemo')*/;
+Route::get('bank/edit/{id}', [BankController::class, 'edit'])->name('bank.edit');
+Route::post('bank/update/{id}', [BankController::class, 'update'])->name('bank.update');
+Route::post('bank/delete/{id}', [BankController::class, 'delete'])->name('bank.delete')/*->middleware('isDemo')*/;
 
 
 

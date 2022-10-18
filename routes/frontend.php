@@ -19,6 +19,9 @@ Route::get('/index-style-2', [FrontendIndexController::class, 'index2'])->name('
 Route::get('all-courses-style-1', [FrontendIndexController::class, 'allCourses1'])->name('main.allCourses1');
 Route::get('all-courses-style-2', [FrontendIndexController::class, 'allCourses2'])->name('main.allCourses2');
 
+//Course Details
+Route::get('course-details/{uuid}', [FrontendIndexController::class, 'courseDetails'])->name('main.courseDetails');
+
 
 //Category Wise Courses
 Route::get('category-courses-style-1/{uuid}', [FrontendIndexController::class, 'categoryWiseCourses1'])->name('main.categoryWiseCourses1');
@@ -28,9 +31,6 @@ Route::get('category-courses-style-2/{uuid}', [FrontendIndexController::class, '
 //Instructor Wise Courses
 Route::get('/instructor-courses/{uuid}', [FrontendIndexController::class, 'instructorWiseCourses'])->name('main.instructorWiseCourses');
 
-
-//Single Course
-Route::get('/course-details', [FrontendIndexController::class, 'courseDetails'])->name('main.courseDetails');
 
 
 //All Categories
@@ -62,19 +62,3 @@ Route::get('/blog/details', [BlogController::class, 'details'])->name('main.blog
 Route::get('/search', [FrontendIndexController::class, 'search'])->name('main.search');
 
 
-
-//Cart & Checkout
-Route::middleware(['auth'])->group(function () {
-    Route::get('cart', [CartManagementController::class, 'cartList'])->name('main.cart');
-    Route::get('getQuantity', [CartManagementController::class, 'getQuantity'])->name('main.getQuantity');
-
-    Route::get('fetch-bank', [CartManagementController::class, 'fetchBank'])->name('main.fetchBank');
-
-    Route::get('getStates', [CartManagementController::class,'getStates'])->name('main.getStates');
-
-    Route::get('checkout', [CartManagementController::class, 'checkout'])->name('main.checkout');
-    Route::post('apply-coupon', [CartManagementController::class, 'applyCoupon'])->name('main.applyCoupon');
-    Route::get('addToCart', [CartManagementController::class, 'addToCart'])->name('main.addToCart');
-    Route::get('buyNow', [CartManagementController::class, 'buyNow'])->name('main.buyNow');
-    Route::get('cart-delete/{id}', [CartManagementController::class, 'cartDelete'])->name('main.cartDelete');
-});

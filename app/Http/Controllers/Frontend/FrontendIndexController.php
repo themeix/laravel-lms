@@ -76,9 +76,12 @@ class FrontendIndexController extends Controller
         return view('frontend.course.category.allCategories2', $data);
     }
 
-    public function courseDetails()
+    public function courseDetails($uuid)
     {
-        return view('frontend.course.courseDetails');
+        $data['course'] = Course::where('uuid', $uuid)->first();
+        $data['instructor'] = Instructor::where('id', $data['course']->instructor_id)->first();
+        $data['instructorCourses'] = Course::where('instructor_id', $data['instructor']->id)->where('status', 1)->get();
+        return view('frontend.course.courseDetails', $data);
     }
 
     public function about1()

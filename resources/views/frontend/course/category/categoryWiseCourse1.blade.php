@@ -313,7 +313,7 @@
                                         class="md:grid flex flex-col  md:grid-cols-12 gap-6 p-6 border border-blue-20 hover:border-blue-800 transition duration-300 rounded-bl-md rounded-br-md">
                                         <div class="col-span-4">
                                             <div class="course-images  h-full relative overflow-hidden rounded">
-                                                <a class="" href="course.html">
+                                                <a class="" href="{{ route('main.courseDetails', $course->uuid) }}">
                                                     <img
                                                         class="group-hover:scale-125  transition duration-500 w-full h-full max-h-64 object-cover rounded"
                                                         src="{{asset('frontend/assets/images/web-design/list-webdesign-1.webp')}}"
@@ -345,7 +345,7 @@
 
                                                 <h3
                                                     class="md:text-2xl text-xl font-semibold mt-2 text-black-200 mb-2 hover:text-blue-600">
-                                                    <a href="course.html">{{$course->title}}</a>
+                                                    <a href="{{ route('main.courseDetails', $course->uuid) }}">{{$course->title}}</a>
                                                 </h3>
                                                 <div class="reviews-box flex justify-between pt-5">
                                                     <div class="flex items-center">
@@ -373,35 +373,45 @@
                                                         <p>5.0 (80 Reviews)</p>
                                                     </div>
                                                 </div>
-                                                <div class="reviews-box border-t pt-7 mt-7 flex gap-3">
-                                                    <form action="{{ route('main.addToCart') }}" method="GET"
-                                                          enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                                        <input type="hidden" value="{{ $course->title }}" name="title">
-                                                        <input type="hidden" value="{{ $course->price }}" name="price">
-                                                        <input type="hidden" value="{{ $course->image }}" name="image">
-                                                        <input type="hidden" value="1" name="quantity">
-                                                        <button
-                                                            class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
-                                                            Add To Cart
-                                                        </button>
-                                                    </form>
+                                                @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
+                                                    <div class="reviews-box border-t pt-7 mt-7 flex gap-3">
+                                                        <form action="{{ route('main.addToCart') }}" method="GET"
+                                                              enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $course->id }}"
+                                                                   name="course_id">
+                                                            <input type="hidden" value="{{ $course->title }}"
+                                                                   name="title">
+                                                            <input type="hidden" value="{{ $course->price }}"
+                                                                   name="price">
+                                                            <input type="hidden" value="{{ $course->image }}"
+                                                                   name="image">
+                                                            <input type="hidden" value="1" name="quantity">
+                                                            <button
+                                                                class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
+                                                                Add To Cart
+                                                            </button>
+                                                        </form>
 
-                                                    <form action="{{ route('main.buyNow') }}" method="GET"
-                                                          enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                                        <input type="hidden" value="{{ $course->title }}" name="title">
-                                                        <input type="hidden" value="{{ $course->price }}" name="price">
-                                                        <input type="hidden" value="{{ $course->image }}" name="image">
-                                                        <input type="hidden" value="1" name="quantity">
-                                                        <button
-                                                            class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
-                                                            Buy Now
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                        <form action="{{ route('main.buyNow') }}" method="GET"
+                                                              enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $course->id }}"
+                                                                   name="course_id">
+                                                            <input type="hidden" value="{{ $course->title }}"
+                                                                   name="title">
+                                                            <input type="hidden" value="{{ $course->price }}"
+                                                                   name="price">
+                                                            <input type="hidden" value="{{ $course->image }}"
+                                                                   name="image">
+                                                            <input type="hidden" value="1" name="quantity">
+                                                            <button
+                                                                class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
+                                                                Buy Now
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

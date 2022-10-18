@@ -58,7 +58,7 @@
                 class="form-control @error('phone_number') is-invalid @enderror"
                 id="phone_number"
                 name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number"
-                placeholder="Enter Your Phone Number"
+                placeholder="+12025550179"
                 aria-describedby="register-phone"
                 tabindex="2"
             />

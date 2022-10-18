@@ -28,107 +28,115 @@ class CartManagementController extends Controller
 
     public function addToCart(Request $request)
     {
-        if (!Auth::check()) {
-            $response['msg'] = "You need to login first!";
-            $response['status'] = 401;
-            return response()->json($response);
+        if (Auth::user()->type == 1) {
+
+            Alert::error('Error', 'You are not allowed to add course to cart!');
+
+            return redirect()->back();
         }
 
-        if ($request->course_id) {
-            $courseOrderExits = OrderItem::whereCourseId($request->course_id)->whereUserId(Auth::user()->id)->first();
 
-            if ($courseOrderExits) {
-                $order = Order::find($courseOrderExits->order_id);
-                if ($order) {
-                    if ($order->payment_status == 'due') {
-                        OrderItem::whereOrderId($courseOrderExits->order_id)->get()->map(function ($q) {
-                            $q->delete();
-                        });
-                        $order->delete();
-                    } elseif ($order->payment_status == 'pending') {
+        else {
 
-                        Alert::info('Info', "You've already request the course & status is pending!");
-                        return redirect()->back();
+            if ($request->course_id) {
+                $courseOrderExits = OrderItem::whereCourseId($request->course_id)->whereUserId(Auth::user()->id)->first();
 
-                    } elseif ($order->payment_status == 'paid' || $order->payment_status == 'free') {
-                        Alert::info('Info', "You've already purchased the course!");
-                        return redirect()->back();
+                if ($courseOrderExits) {
+                    $order = Order::find($courseOrderExits->order_id);
+                    if ($order) {
+                        if ($order->payment_status == 'due') {
+                            OrderItem::whereOrderId($courseOrderExits->order_id)->get()->map(function ($q) {
+                                $q->delete();
+                            });
+                            $order->delete();
+                        } elseif ($order->payment_status == 'pending') {
 
+                            Alert::info('Info', "You've already request the course & status is pending!");
+                            return redirect()->back();
+
+                        } elseif ($order->payment_status == 'paid' || $order->payment_status == 'free') {
+                            Alert::info('Info', "You've already purchased the course!");
+                            return redirect()->back();
+
+                        }
                     }
+                }
+
+                //Check  if course is your own or not
+
+                $ownCourseCheck = Course::whereUserId(Auth::user()->id)->where('id', $request->course_id)->first();
+
+                if ($ownCourseCheck) {
+                    Alert::info('Info', "This is your course. No need to purchase.");
+                    return redirect()->back();
+                }
+
+                $courseExits = Course::find($request->course_id);
+                if (!$courseExits) {
+
+                    Alert::error('Info', "Course not found!");
+                    return redirect()->back();
                 }
             }
 
-            //Check  if course is your own or not
+            $cartExists = CartManagement::whereUserId(Auth::user()->id)->whereCourseId($request->course_id)->first();
 
-            $ownCourseCheck = Course::whereUserId(Auth::user()->id)->where('id', $request->course_id)->first();
+            if ($cartExists) {
 
-            if ($ownCourseCheck) {
-                Alert::info('Info', "This is your course. No need to purchase.");
-                return redirect()->back();
-            }
-
-            $courseExits = Course::find($request->course_id);
-            if (!$courseExits) {
-
-                Alert::error('Info', "Course not found!");
-                return redirect()->back();
-            }
-        }
-
-        $cartExists = CartManagement::whereUserId(Auth::user()->id)->whereCourseId($request->course_id)->first();
-
-        if ($cartExists) {
-
-            Alert::warning('Warning', "Already added to cart!");
-            return redirect()->route('main.cart');
-
-        }
-
-        $courseExits = Course::where('id', $request->course_id)->first();
-
-        if ($courseExits) {
-            if ($courseExits->learner_accessibility == 2) {
-                $order = new Order();
-                $order->user_id = Auth::user()->id;
-                $order->order_number = rand(100000, 999999);
-                $order->payment_status = 'free';
-                $order->save();
-
-                $order_item = new OrderItem();
-                $order_item->order_id = $order->id;
-                $order_item->user_id = Auth::user()->id;
-                $order_item->course_id = $courseExits->id;
-                $order_item->owner_user_id = $courseExits->user_id ?? null;
-                $order_item->unit_price = 0;
-                $order_item->admin_commission = 0;
-                $order_item->owner_balance = 0;
-                $order_item->sell_commission = 0;
-                $order_item->save();
-
-
-                Alert::success('Success', 'Free Course added to your learning list!');
-
-                return redirect()->back();
+                Alert::warning('Warning', "Already added to cart!");
+                return redirect()->route('main.cart');
 
             }
+
+            $courseExits = Course::where('id', $request->course_id)->first();
+
+            if ($courseExits) {
+                if ($courseExits->learner_accessibility == 2) {
+                    $order = new Order();
+                    $order->user_id = Auth::user()->id;
+                    $order->order_number = rand(100000, 999999);
+                    $order->payment_status = 'free';
+                    $order->save();
+
+                    $order_item = new OrderItem();
+                    $order_item->order_id = $order->id;
+                    $order_item->user_id = Auth::user()->id;
+                    $order_item->course_id = $courseExits->id;
+                    $order_item->owner_user_id = $courseExits->user_id ?? null;
+                    $order_item->unit_price = 0;
+                    $order_item->admin_commission = 0;
+                    $order_item->owner_balance = 0;
+                    $order_item->sell_commission = 0;
+                    $order_item->save();
+
+
+                    Alert::success('Success', 'Free Course added to your learning list!');
+
+                    return redirect()->back();
+
+                }
+            }
+
+
+            $cart = new CartManagement();
+            $cart->user_id = Auth::user()->id;
+            $cart->course_id = $request->course_id;
+            $cart->product_id = $request->product_id;
+            $cart->main_price = $request->price;
+            $cart->price = $request->price;
+
+            $cart->save();
+
+            $quantity = CartManagement::whereUserId(Auth::user()->id)->count();
+
+
+            Alert::success('Success', 'Course added to your Cart!');
+
+            return redirect()->back();
+
         }
 
 
-        $cart = new CartManagement();
-        $cart->user_id = Auth::user()->id;
-        $cart->course_id = $request->course_id;
-        $cart->product_id = $request->product_id;
-        $cart->main_price = $request->price;
-        $cart->price = $request->price;
-
-        $cart->save();
-
-        $quantity = CartManagement::whereUserId(Auth::user()->id)->count();
-
-
-        Alert::success('Success', 'Course added to your Cart!');
-
-        return redirect()->back();
     }
 
     public function buyNow(Request $request)
@@ -279,14 +287,14 @@ class CartManagementController extends Controller
     }
 
 
-    public function getStates(Request $request) {
+    public function getStates(Request $request)
+    {
         $states = State::where('country_id', $request->country_id)
             ->orderBy('name')
             ->get()->toArray();
 
         return response()->json($states);
     }
-
 
 
     public function goToCheckout(Request $request)
@@ -308,7 +316,7 @@ class CartManagementController extends Controller
     public function fetchBank(Request $request)
     {
         $bank_id = Bank::find($request->bank_id);
-        if ($bank_id){
+        if ($bank_id) {
             return response()->json([
                 'account_number' => $bank_id->account_number,
             ]);

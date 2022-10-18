@@ -1,8 +1,8 @@
 @extends('layouts.frontEndMaster')
 @section('title','Checkout')
 @section('content')
-
     @if(sizeof($carts)>0)
+
         <!--  ====================== Breadcrum  Area Start =============================  -->
         <section class="breadcrumb-area md:py-32 relative py-20  bg-blue-100 overflow-hidden">
             <div class="container">
@@ -21,7 +21,58 @@
         <section class="villing-address-area md:py-28 py-20">
             <div class="container">
                 <div class="lg:grid lg:grid-cols-12 gap-6">
-                    <div class="col-span-6">
+                    <div class="col-span-8 ">
+                        <h3 class="text-2xl font-medium text-black-200 pb-7 mb-7">Order Summery</h3>
+                        <div class="villing-address-left border border-blue-5 p-4 rounded">
+                            <div class="shoppin-card-box-all ">
+                                <p class=" text-base ">{{ $quantity }} Items in cart </p>
+                                @foreach($carts as $cart)
+                                    <div class="md:grid md:grid-cols-12  md:gap-12  flex-col gap-8 items-center mt-5">
+                                        <div class="col-span-8 ">
+                                            <div class="shopping-cart-box ">
+                                                <div class="couses-box">
+
+                                                    <div class="lg:flex">
+                                                        <div class="lg:flex  gap-4 ">
+                                                            <div class="flex-col">
+                                                                <img
+                                                                    class="max-h-32 object-cover max-w-52 rounded mb-3 lg:mb-0"
+                                                                    src="{{asset('frontend/assets/images/shopping-cart.webp')}}" alt="images">
+                                                            </div>
+                                                            <div class="flex-col">
+                                                                <h4 class="text-black-200 font-medium mb-4"><a
+                                                                        class="hover:text-blue-600"
+                                                                        href="{{ route('main.courseDetails', $cart->course->uuid) }}">
+                                                                        {{ $cart->course->title }}
+                                                                    </a>
+                                                                </h4>
+                                                                <div class="author-box flex items-center mt-4">
+                                                                    <div class="course-content">
+                                                                        <p class="text-sm text-blue-50 font-normal ">
+                                                                           <a href="{{ route('main.instructorWiseCourses', $cart->course->instructor->uuid) }}"> {{ $cart->course->instructor->name }}</a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-4 mt-4 lg:mt-0">
+                                            <div class="flex-col lg:text-right w-full">
+                                                <p class="text-black-200 font-medium">${{ $cart->course->price }}</p>
+                                                <p class="text-blue-50">
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+
                         <div class="villing-address-box border mt-4 p-4">
                             <h3 class="text-2xl font-medium text-black-200 pb-7">Billing Address</h3>
                             <div class="countery-box border-blue-5  rounded ">
@@ -89,6 +140,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="payment-method mt-10 ">
                             <h3 class="text-2xl font-medium text-black-200 pb-7">Payment Method</h3>
 
@@ -138,8 +191,9 @@
                                                 <p class="text-black-200 mb-4 text-lg"> Account Number <span
                                                         class="text-blue-800">*</span>
                                                 </p>
-                                                <input class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                    type="number"  name="account_number" id="account_number" readonly>
+                                                <input
+                                                    class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                    type="number" name="account_number" id="account_number" readonly>
                                             </div>
                                         </div>
                                         <div class="deposit-box mt-5">
@@ -161,7 +215,9 @@
                                                         type="file">
                                                 </div>
                                             </div>
-                                            <p class="text-gray-800 mt-5" style="font-style: italic; font-size: 13px; color: gray;">*** We protect your payment information using
+                                            <p class="text-gray-800 mt-5"
+                                               style="font-style: italic; font-size: 13px; color: gray;">*** We protect
+                                                your payment information using
                                                 encryption to provide
                                                 bank-level security.</p>
                                         </div>
@@ -333,81 +389,29 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
-
                     </div>
-                    <div class="col-span-6">
-                        <div class="billing-summery-box p-8 shadow-4xl mt-4 mb-4" style="border: 1px solid #e5e7eb">
-                            <h3 class="text-2xl font-medium text-black-200 pb-2 mb-2">Order Summery</h3>
-                            <div class="shoppin-card-box-all ">
-                                <p class=" text-base ">{{ $quantity }} Items in cart </p>
-                                @foreach($carts as $cart)
-                                    <div class="md:grid md:grid-cols-12  md:gap-12  flex-col gap-8 items-center mt-5">
-                                        <div class="col-span-8 ">
-                                            <div class="shopping-cart-box ">
-                                                <div class="couses-box">
-
-                                                    <div class="lg:flex">
-                                                        <div class="lg:flex  gap-4 ">
-                                                            <div class="flex-col">
-                                                                <img
-                                                                    class="max-h-32 object-cover max-w-52 rounded mb-3 lg:mb-0"
-                                                                    src="{{asset('frontend/assets/images/shopping-cart.webp')}}"
-                                                                    alt="images">
-                                                            </div>
-                                                            <div class="flex-col">
-                                                                <h4 class="text-black-200 font-medium mb-4">
-                                                                    <a
-                                                                        class="hover:text-blue-600"
-                                                                        href="course.html">
-
-                                                                        {{ $cart->course->title }}
-                                                                    </a>
-                                                                </h4>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-span-4 mt-4 lg:mt-0">
-                                            <div class="flex-col lg:text-right w-full">
-                                                <p class="text-black-200 font-medium">$ {{$cart->course->price}}</p>
-                                                {{--<p class="text-blue-50">
-                                                    <del> $ 100.00</del>
-                                                </p>--}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="billing-summery-box p-8 shadow-4xl" style="border: 1px solid #e5e7eb">
+                    <div class="col-span-4">
+                        <div class="billing-summery-box p-8 shadow-4xl">
                             <h3 class="text-2xl font-medium text-black-200 pb-7 mb-7">Billing Summery</h3>
                             <div class="item-info flex justify-between mb-6">
                                 <p class="text-gray-800">Original price:</p>
                                 <p>$ {{ $total }}</p>
                             </div>
-                            {{--<div class="item-info flex justify-between mb-6 border-b pb-6">
+                            <div class="item-info flex justify-between mb-6 border-b pb-6">
                                 <p class="text-gray-800">Selling price:</p>
                                 <p>
                                     <del>$ {{ $total }}</del>
                                 </p>
-                            </div>--}}
+                            </div>
                             <div class="item-info flex justify-between mb-6 border-b pb-4">
                                 <p class="text-gray-800">Total:</p>
                                 <p class="text-2xl font-medium">$ {{ $total }}</p>
                             </div>
+
                             <div class="item-button">
                                 <a class="bg-blue-600 py-3 w-full  text-center block mt-6 text-white font-medium rounded hover:bg-black-200 transition duration-500"
-                                   href="#">Pay ${{ $total }}</a>
+                                   href="#">Pay $ {{ $total }}</a>
                             </div>
                         </div>
                     </div>
@@ -415,11 +419,13 @@
             </div>
         </section>
         <!--  ====================== villing address Area End =============================  -->
+
     @else
         <section class="breadcrumb-area md:py-32 relative py-20  bg-blue-100 overflow-hidden">
             <div class="container">
                 <div class="breadcrumb-titel md:w-7/12 m-auto text-center z-10 relative">
-                    <h2 class="xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-black-200   font-medium" data-aos="fade-up"
+                    <h2 class="xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-black-200   font-medium"
+                        data-aos="fade-up"
                         data-aos-delay="100" style="color: #FF5733!important;">No Items Found</h2>
                     <br>
                     <h6>Please Add Course in your Cart</h6>
@@ -431,13 +437,9 @@
         </section>
     @endif
 
-
-
-
     <input type="hidden" class="fetchBankRoute" value="{{ route('main.fetchBank') }}">
-
-
 @endsection
+
 
 
 @push('scripts')
@@ -467,7 +469,6 @@
             });
             $('#country_id').trigger('change');
         });
-
 
 
     </script>

@@ -275,11 +275,13 @@
                         @endif
 
                         {{--Mobile Cart Starts herer--}}
-                        <div class="cart-box">
-                            <a class="w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative"
-                               href="{{ route('main.cart') }}">
-                                <div
-                                    class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
+
+                        @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
+                            <div class="cart-box">
+                                <a class="w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative"
+                                   href="{{ route('main.cart') }}">
+                                    <div
+                                        class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
                                     <span class="mt-[1px]" id="quantity">
                                         @if(Auth::user() != null)
                                             {{ $quantity = \App\Models\CartManagement::where('user_id', Auth::user()->id)->count() }}
@@ -287,8 +289,8 @@
                                             {{ $quantity = 0 }}
                                         @endif
                                     </span>
-                                </div>
-                                <span>
+                                    </div>
+                                    <span>
                               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <path
                                      d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
@@ -306,8 +308,10 @@
                                        stroke-linecap="round" stroke-linejoin="round"></path>
                               </svg>
                            </span>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        @endif
+                        {{--Mobile Cart Ends here--}}
                     </div>
                 </div>
                 <div class="flex-col">
@@ -338,7 +342,7 @@
                             style="display: block;">
                             <li class="relative lg:px-2 lg:py-5 dropdown ">
                                 <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                   href="#"> Home <span
+                                   href="javascript:void(0);"> Home <span
                                         class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span></a>
                                 <ul
                                     class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
@@ -352,7 +356,7 @@
                             </li>
                             <li class="relative lg:px-2 lg:py-5 dropdown ">
                                 <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                   href="#"> Courses <span
+                                   href="javascript:void(0);"> Courses <span
                                         class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span></a>
                                 <ul
                                     class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-52   submenu">
@@ -374,14 +378,11 @@
                                     <li>
                                         <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                            href="{{route('main.allCategories2')}}">All Catagories 2 </a></li>
-                                    <li>
-                                        <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.courseDetails')}}"> Course </a></li>
                                 </ul>
                             </li>
                             <li class="relative lg:px-2 lg:py-5 dropdown ">
                                 <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                   href="#"> Blog <span
+                                   href="javascript:void(0);"> Blog <span
                                         class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span></a>
                                 <ul
                                     class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
@@ -395,7 +396,7 @@
                             </li>
                             <li class="relative lg:px-2 lg:py-5 dropdown ">
                                 <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                   href="#"> Pages <span
+                                   href="javascript:void(0);"> Pages <span
                                         class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span></a>
                                 <ul
                                     class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
@@ -446,7 +447,7 @@
                                 class="toggle-menu-class  dropdown-menu bg-white lg:bg-transparent shadow lg:shadow-none absolute justify-center lg:relative inset-x-0 hidden lg:flex lg:flex-grow items-center mt-10 lg:mt-0 mobile-hover">
                                 <li class="relative lg:px-2 lg:py-5 dropdown ">
                                     <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                       href="#">
+                                       href="javascript:void(0);">
                                         Home
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                              aria-hidden="true" class="ml-1 -mr-1 h-4 w-4 text-slate-400">
@@ -469,7 +470,7 @@
                                 </li>
                                 <li class="relative lg:px-2 lg:py-5 dropdown ">
                                     <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                       href="#">
+                                       href="javascript:void(0);">
                                         Courses
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                              aria-hidden="true" class="ml-1 -mr-1 h-4 w-4 text-slate-400">
@@ -501,15 +502,11 @@
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.allCategories2')}}">All Catagories 2 </a></li>
 
-
-                                        <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.courseDetails')}}"> Course </a></li>
                                     </ul>
                                 </li>
                                 <li class="relative lg:px-2 lg:py-5 dropdown ">
                                     <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                       href="#">
+                                       href="javascript:void(0);">
                                         Blog
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                              aria-hidden="true" class="ml-1 -mr-1 h-4 w-4 text-slate-400">
@@ -532,7 +529,7 @@
                                 </li>
                                 <li class="relative lg:px-2 lg:py-5 dropdown ">
                                     <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                       href="#">
+                                       href="javascript:void(0);">
                                         Pages
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                              aria-hidden="true" class="ml-1 -mr-1 h-4 w-4 text-slate-400">
@@ -797,13 +794,13 @@
                             @endif
 
                             {{--Desktop Cart Starts Here--}}
-
-                            <div class="cart-box">
-                                <div class="relative">
-                                    <div
-                                        class="cart-box-close cursor-pointer w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative">
+                            @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
+                                <div class="cart-box">
+                                    <div class="relative">
                                         <div
-                                            class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
+                                            class="cart-box-close cursor-pointer w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative">
+                                            <div
+                                                class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
                                             <span class="mt-[1px]">
 
                                                 @if(Auth::user() != null)
@@ -813,116 +810,124 @@
                                                 @endif
 
                                             </span>
+                                            </div>
+                                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
+                                                    stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path
+                                                    d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
+                                                    stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path
+                                                    d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
+                                                    stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M9 8H21" stroke="currentColor" stroke-width="1.5"
+                                                      stroke-miterlimit="10"
+                                                      stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
                                         </div>
-                                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
-                                                stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path
-                                                d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
-                                                stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path
-                                                d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
-                                                stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path d="M9 8H21" stroke="currentColor" stroke-width="1.5"
-                                                  stroke-miterlimit="10"
-                                                  stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>
-                                    </div>
-                                    <div
-                                        class="cart-wrap  opacity-0 invisible absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0  translate-y-10">
-                                        <div class="overflow-hidden rounded-xl shadow  ">
-                                            <div class="relative bg-white">
-                                                <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
-                                                    <h3 class="text-xl font-semibold text-black-200">Shopping cart</h3>
-                                                    <div class="divide-y divide-slate-100 dark:divide-slate-700">
-                                                        @if(Auth::user() != null)
-                                                            @php
-                                                                $carts = \App\Models\CartManagement::where('user_id', Auth::user()->id)->get();
-                                                                $total = \App\Models\CartManagement::whereUserId(Auth::user()->id)->sum('price');
-                                                            @endphp
-                                                            @foreach($carts as $item)
+                                        <div
+                                            class="cart-wrap  opacity-0 invisible absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0  translate-y-10">
+                                            <div class="overflow-hidden rounded-xl shadow  ">
+                                                <div class="relative bg-white">
+                                                    <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
+                                                        <h3 class="text-xl font-semibold text-black-200">Shopping
+                                                            cart</h3>
+                                                        <div class="divide-y divide-slate-100 dark:divide-slate-700">
+                                                            @if(Auth::user() != null)
+                                                                @php
+                                                                    $carts = \App\Models\CartManagement::where('user_id', Auth::user()->id)->get();
+                                                                    $total = \App\Models\CartManagement::whereUserId(Auth::user()->id)->sum('price');
+                                                                @endphp
+                                                                @foreach($carts as $item)
 
-                                                                <div class="flex py-5 last:pb-0">
-                                                                    <div
-                                                                        class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                                                                        <img class="h-full object-cover"
-                                                                             src="{{asset('frontend/assets/images/lessons-images-1-1.webp')}}"
-                                                                             alt="#">
-                                                                    </div>
-                                                                    <div class="ml-4 flex flex-1 flex-col">
-                                                                        <div>
-                                                                            <div class="flex justify-between ">
-                                                                                <div>
-                                                                                    <h3
-                                                                                        class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
-                                                                                        <a href="courses-lesson-1.html">
-                                                                                            {{ $item->course->title }} </a>
-                                                                                    </h3>
-                                                                                    <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                                                                                        <span>{{ @$item->course->category->name }}</span>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <div class="mt-0.5">
-                                                                                    <div
-                                                                                        class="flex items-center border border-blue-600 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
+                                                                    <div class="flex py-5 last:pb-0">
+                                                                        <div
+                                                                            class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                                                            <a href="{{ route('main.courseDetails', $item->course->uuid) }}">
+                                                                                <img class="h-full object-cover"
+                                                                                     src="{{asset('frontend/assets/images/lessons-images-1-1.webp')}}"
+                                                                                     alt="image">
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="ml-4 flex flex-1 flex-col">
+                                                                            <div>
+                                                                                <div class="flex justify-between ">
+                                                                                    <div>
+                                                                                        <h3
+                                                                                            class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
+                                                                                            <a href="{{ route('main.courseDetails', $item->course->uuid) }}">
+                                                                                                {{ $item->course->title }} </a>
+                                                                                        </h3>
+                                                                                        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                            <a href="{{ route('main.categoryWiseCourses1', $item->course->category->uuid) }}">
+                                                                                                <span>{{ @$item->course->category->name }}</span>
+                                                                                            </a>
+
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <div class="mt-0.5">
+                                                                                        <div
+                                                                                            class="flex items-center border border-blue-600 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
                                                                                         <span
                                                                                             class="text-blue-600">$ {{$item->price}}</span>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="flex flex-1 items-end justify-between text-sm">
-                                                                            <p></p>
-                                                                            <div class="flex">
-                                                                                <a href="{{ route('main.cartDelete', $item->id) }}">
-                                                                                    <img src="{{asset('frontend/custom/image/icons8-remove-48.png')}}"
-                                                                                         alt="trash" style="width: 35px; height: 35px;">
-                                                                                </a>
+                                                                            <div
+                                                                                class="flex flex-1 items-end justify-between text-sm">
+                                                                                <p></p>
+                                                                                <div class="flex">
+                                                                                    <a href="{{ route('main.cartDelete', $item->id) }}"
+                                                                                       style="color: red;">
+                                                                                        Remove
+                                                                                    </a>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            @endforeach
-                                                        @endif
+                                                                @endforeach
+                                                            @endif
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="p-5  bg-white">
-                                                    <p class="flex justify-between font-semibold text-black-200">
+                                                    <div class="p-5  bg-white">
+                                                        <p class="flex justify-between font-semibold text-black-200">
                                              <span><span>Subtotal</span>
                                                  <span class="block text-sm">Shipping
                                                    and taxes calculated at checkout.
                                                  </span>
                                              </span>
-                                                        <span>
+                                                            <span>
                                                             @if(Auth::user() != null)
-                                                                $ {{ $total }}
-                                                            @else
-                                                                $ 0
-                                                            @endif
+                                                                    $ {{ $total }}
+                                                                @else
+                                                                    $ 0
+                                                                @endif
                                                         </span>
-                                                    </p>
+                                                        </p>
 
-                                                    <div class="flex space-x-2 mt-5"><a
-                                                            class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    bg-blue-600 hover:bg-black-200 transition duration-500 text-white  flex-1"
-                                                            rel="noopener noreferrer" href="{{ route('main.cart') }}">View
-                                                            cart</a>
-                                                        <a class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    hover:bg-blue-600 bg-black-200 transition duration-500 text-white  flex-1"
-                                                           rel="noopener noreferrer"
-                                                           href="{{ route('main.checkout') }}">Check out</a>
+                                                        <div class="flex space-x-2 mt-5"><a
+                                                                class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    bg-blue-600 hover:bg-black-200 transition duration-500 text-white  flex-1"
+                                                                rel="noopener noreferrer"
+                                                                href="{{ route('main.cart') }}">View
+                                                                cart</a>
+                                                            <a class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    hover:bg-blue-600 bg-black-200 transition duration-500 text-white  flex-1"
+                                                               rel="noopener noreferrer"
+                                                               href="{{ route('main.checkout') }}">Check out</a>
+                                                        </div>
                                                     </div>
-                                                </div>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
 
                             {{--Desktop Cart Ends Here--}}
 

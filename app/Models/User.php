@@ -85,6 +85,17 @@ class User extends Authenticatable
     }
 
 
+    public function instructor()
+    {
+        return $this->hasOne(Instructor::class);
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+
     public function courses()
     {
         return $this->hasMany(Course::class, 'user_id');
@@ -98,16 +109,6 @@ class User extends Authenticatable
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class, 'owner_user_id', 'id');
-    }
-
-    public function instructor()
-    {
-        return $this->hasOne(Instructor::class);
-    }
-
-    public function student()
-    {
-        return $this->hasOne(Student::class);
     }
 
 

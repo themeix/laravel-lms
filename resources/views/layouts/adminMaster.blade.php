@@ -676,6 +676,22 @@
             </li>
 
 
+            <li class=" nav-item"><a class="d-flex align-items-center" href="javascript:void(0);"><i data-feather='pie-chart'></i><span
+                        class="menu-title text-truncate" data-i18n="User">Financial Report</span></a>
+                <ul class="menu-content">
+                    <li class="{{ (request()->is('admin/order-pending*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('report.order-pending') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Order Pending</span></a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center" href="#"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Instructor Payment</span></a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+
             {{--<li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='headphones'></i><span
                         class="menu-title text-truncate" data-i18n="User">Support Ticket</span></a>
                 <ul class="menu-content">

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Instructor;
 use App\Models\Bank;
 use App\Models\CartManagement;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Course;
 use App\Models\Order;
+use App\Models\Order_item;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\State;
+use App\Models\Student;
 use App\Models\User;
 use App\Models\Withdraw;
 
@@ -33,10 +36,7 @@ class CartManagementController extends Controller
             Alert::error('Error', 'You are not allowed to add course to cart!');
 
             return redirect()->back();
-        }
-
-
-        else {
+        } else {
 
             if ($request->course_id) {
                 $courseOrderExits = OrderItem::whereCourseId($request->course_id)->whereUserId(Auth::user()->id)->first();
@@ -271,6 +271,14 @@ class CartManagementController extends Controller
 
         $data['banks'] = Bank::orderBy('name', 'asc')->where('status', 1)->get();
 
+        if (Auth::user()->type == 3) {
+            $data['student'] = Student::whereUserId(Auth::user()->id)->first();
+        }
+
+        if (Auth::user()->type == 2) {
+            $data['instructor'] = Instructor::whereUserId(Auth::user()->id)->first();
+        }
+
         $data['user'] = User::find(Auth::user()->id);
 
         if (old('country_id')) {
@@ -297,17 +305,117 @@ class CartManagementController extends Controller
     }
 
 
-    public function goToCheckout(Request $request)
-    {
-
-    }
-
     public function cartDelete($id)
     {
         $cart = CartManagement::findOrFail($id);
         $cart->delete();
         Alert::warning('Warning', 'Course removed from your Cart!');
         return redirect()->back();
+    }
+
+    //Processing Payment & Order
+    public function processOrder(Request $request)
+    {
+
+        if ($request->payment_method == 'bank') {
+            if (empty($request->deposit_by) || is_null($request->deposit_slip)) {
+                Alert::error('Error', 'Bank Information Not Valid!');
+                return redirect()->back();
+            }
+        }
+
+        $order = $this->placeOrder($request->payment_method);
+        /** order billing address */
+
+        if (auth::user()->student) {
+            $student = Student::find(auth::user()->student->id);
+            $student->fill($request->all());
+            $student->save();
+        }
+
+        if ($request->payment_method == 'bank') {
+            $deposit_by = $request->deposit_by;
+            $deposit_slip = $this->uploadFileWithDetails('bank', $request->deposit_slip);
+
+            $order->payment_status = 'pending';
+            $order->deposit_by =  $deposit_by;
+            $order->deposit_slip =  $deposit_slip['path'];
+            $order->payment_method = 'bank';
+            $order->bank_id = $request->bank_id;
+            $order->save();
+
+            /** ====== Send notification =========*/
+            $text = "New course enrolled pending request";
+            $target_url = route('report.order-pending');
+            $this->send($text, 1, $target_url, null);
+            /** ====== Send notification =========*/
+
+            Alert::success('success', 'Request has been Placed! Please Wait for Approve');
+            return redirect()->route('student.thank-you');
+        }
+
+
+
+
+    }
+
+
+    private function placeOrder($payment_method)
+    {
+        $carts = CartManagement::whereUserId(@Auth::user()->id)->get();
+        $order = new Order();
+        $order->user_id = Auth::user()->id;
+        $order->order_number = rand(100000, 999999);
+        $order->sub_total = $carts->sum('price');
+        $order->discount = $carts->sum('discount');
+        $order->platform_charge = get_platform_charge($carts->sum('price'));
+        $order->current_currency = get_currency_code();
+        $order->grand_total = $order->sub_total + $order->platform_charge;
+        $order->payment_method = $payment_method;
+
+        $payment_currency = '';
+        $conversion_rate = '';
+
+        if ($payment_method == 'bank') {
+            $payment_currency = get_option('bank_currency');
+            $conversion_rate = get_option('bank_conversion_rate') ? get_option('bank_conversion_rate') : 0;
+        }
+
+        $order->payment_currency = $payment_currency;
+        $order->conversion_rate = $conversion_rate;
+        if ($conversion_rate) {
+            $order->grand_total_with_conversation_rate = ($order->sub_total + $order->platform_charge) * $conversion_rate;
+        }
+
+        $order->save();
+
+        foreach ($carts as $cart) {
+            $order_item = new OrderItem();
+            $order_item->order_id = $order->id;
+            $order_item->user_id = Auth::user()->id;
+            if ($cart->course_id) {
+                $order_item->course_id = $cart->course_id;
+                $order_item->owner_user_id = $cart->course ? $cart->course->user_id : null;
+            }
+
+            if ($cart->product_id) {
+                $order_item->product_id = $cart->product_id;
+                $order_item->owner_user_id = $cart->product ? $cart->product->user_id : null;
+                $order_item->type = 2;
+            }
+            $order_item->unit_price = $cart->price;
+            if (get_option('sell_commission')) {
+                $order_item->admin_commission = admin_sell_commission($cart->price);
+                $order_item->owner_balance = $cart->price - admin_sell_commission($cart->price);
+                $order_item->sell_commission = get_option('sell_commission');
+            } else {
+                $order_item->owner_balance = $cart->price;
+            }
+
+            $order_item->save();
+        }
+        CartManagement::whereUserId(@Auth::user()->id)->delete();
+        return $order;
     }
 
 
@@ -322,5 +430,6 @@ class CartManagementController extends Controller
             ]);
         }
     }
+
 
 }

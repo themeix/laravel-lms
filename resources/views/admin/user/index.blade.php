@@ -125,7 +125,7 @@
 
                                         <td>
                                             @if($user->status == 1) <span class="status badge badge-glow bg-success">Active</span> @endif
-                                                @if($user->status == 0) <span class="status badge badge-glow bg-danger">Inactive</span> @endif
+                                                @if($user->status == 2) <span class="status badge badge-glow bg-danger">Inactive</span> @endif
                                         </td>
 
                                         <td>

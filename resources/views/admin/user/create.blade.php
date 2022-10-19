@@ -143,7 +143,7 @@
                                             <select class="form-select" name="status" id="blog-edit-status">
                                                 <option value="">---Select Status---</option>
                                                 <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
+                                                <option value="2">Inactive</option>
 
                                             </select>
                                         </div>

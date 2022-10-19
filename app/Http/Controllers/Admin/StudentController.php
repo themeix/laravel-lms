@@ -254,8 +254,13 @@ class StudentController extends Controller
     public function changeStudentStatus(Request $request)
     {
         $student = Student::findOrFail($request->id);
+        $user = User::findOrFail($student->user_id);
+
         $student->status = $request->status;
+        $user->status = $request->status;
+
         $student->save();
+        $user->save();
 
         return response()->json([
             'data' => 'success',

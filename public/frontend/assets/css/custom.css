@@ -350,6 +350,10 @@ select.arifSelect {
     display: block!important;
 }
 
+input.arifInput {
+    display: block!important;
+}
+
 /**
  * 05. magnific effect
  */

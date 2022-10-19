@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Student\CartManagementController;
 
+use App\Http\Controllers\Student\MyCourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Student\StudentDashboardController;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -23,5 +24,7 @@ Route::post('apply-coupon', [CartManagementController::class, 'applyCoupon'])->n
 Route::get('addToCart', [CartManagementController::class, 'addToCart'])->name('main.addToCart');
 Route::get('buyNow', [CartManagementController::class, 'buyNow'])->name('main.buyNow');
 Route::get('cart-delete/{id}', [CartManagementController::class, 'cartDelete'])->name('main.cartDelete');
+Route::post('processOrder', [CartManagementController::class, 'processOrder'])->name('main.processOrder');
 
 
+Route::get('thank-you', [MyCourseController::class, 'thankYou'])->name('main.thankYou');

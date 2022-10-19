@@ -23,7 +23,7 @@ class Admin
          * role 3 student
          */
 
-        if (auth()->user()->type == 1) {
+        if (auth()->user()->type == 1 && auth()->user()->status == 1) {
             return $next($request);
         } else {
 

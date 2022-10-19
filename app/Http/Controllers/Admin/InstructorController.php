@@ -29,12 +29,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 class InstructorController extends Controller
 {
     use ImageSaveTrait;
+
     protected $instructorModel, $studentModel;
+
     public function __construct(Instructor $instructor, Student $student)
     {
         $this->instructorModel = new Crud($instructor);
         $this->studentModel = new Crud($student);
     }
+
     public function index()
     {
         /*if (!Auth::user()->can('all_instructor')) {
@@ -76,14 +79,18 @@ class InstructorController extends Controller
     public function changeInstructorStatus(Request $request)
     {
         $instructor = Instructor::findOrFail($request->id);
+        $user = User::findOrFail($instructor->user_id);
+
         $instructor->status = $request->status;
+        $user->status = $request->status;
+
         $instructor->save();
+        $user->save();
 
         return response()->json([
             'data' => 'success',
         ]);
     }
-
 
 
     public function create()
@@ -104,25 +111,25 @@ class InstructorController extends Controller
             'phone_number' => 'required',
             'postal_code' => 'required',
             'country_id' => 'required',
-            'state_id' =>'required',
+            'state_id' => 'required',
             'city_id' => 'required',
             'address' => 'required',
             'gender' => 'required',
             'about_me' => 'required',
-            'facebook'=>'nullable',
-            'twitter'=>'nullable',
-            'linkedin'=>'nullable',
-            'pinterest'=>'nullable',
+            'facebook' => 'nullable',
+            'twitter' => 'nullable',
+            'linkedin' => 'nullable',
+            'pinterest' => 'nullable',
             'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
 
         $user = new User();
-        $user->name = $request->first_name . ' '. $request->last_name;
+        $user->name = $request->first_name . ' ' . $request->last_name;
         $user->email = $request->email;
         $user->email_verified_at = now();
         $user->password = Hash::make($request->password);
         $user->type = 2;
-        $user->image =  $request->image ? $this->saveImage('user', $request->image, null, null) :   null;
+        $user->image = $request->image ? $this->saveImage('user', $request->image, null, null) : null;
         $user->save();
 
 
@@ -180,13 +187,11 @@ class InstructorController extends Controller
 
         $data['countries'] = Country::orderBy('country_name', 'asc')->get();
 
-        if (old('country_id'))
-        {
+        if (old('country_id')) {
             $data['states'] = State::where('country_id', old('country_id'))->orderBy('name', 'asc')->get();
         }
 
-        if (old('state_id'))
-        {
+        if (old('state_id')) {
             $data['cities'] = City::where('state_id', old('state_id'))->orderBy('name', 'asc')->get();
         }
 
@@ -205,10 +210,10 @@ class InstructorController extends Controller
             'address' => 'required',
             'gender' => 'required',
             'about_me' => 'required',
-            'facebook'=>'nullable',
-            'twitter'=>'nullable',
-            'linkedin'=>'nullable',
-            'pinterest'=>'nullable',
+            'facebook' => 'nullable',
+            'twitter' => 'nullable',
+            'linkedin' => 'nullable',
+            'pinterest' => 'nullable',
             'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
 
@@ -220,20 +225,19 @@ class InstructorController extends Controller
             return redirect()->back();
         }
 
-        $user->name = $request->first_name . ' '. $request->last_name;
+        $user->name = $request->first_name . ' ' . $request->last_name;
         $user->email = $request->email;
-        if ($request->password){
+        if ($request->password) {
             $request->validate([
                 'password' => 'required|string|min:6'
             ]);
             $user->password = Hash::make($request->password);
         }
-        $user->image =  $request->image ? $this->saveImage('user', $request->image, null, null) :   $user->image;
+        $user->image = $request->image ? $this->saveImage('user', $request->image, null, null) : $user->image;
         $user->save();
 
-        if (Instructor::where('slug', Str::slug($user->name))->count() > 0)
-        {
-            $slug = Str::slug($user->name) . '-'. rand(100000, 999999);
+        if (Instructor::where('slug', Str::slug($user->name))->count() > 0) {
+            $slug = Str::slug($user->name) . '-' . rand(100000, 999999);
         } else {
             $slug = Str::slug($user->name);
         }
@@ -247,7 +251,7 @@ class InstructorController extends Controller
             'phone_number' => $request->phone_number,
             'slug' => $slug,
             'country_id' => $request->country_id,
-            'status'=> 1,
+            'status' => 1,
             'state_id' => $request->state_id,
             'city_id' => $request->city_id,
             'gender' => $request->gender,
@@ -280,15 +284,13 @@ class InstructorController extends Controller
     }
 
 
-
     public function changeStatus($uuid, $status)
     {
         $instructor = $this->instructorModel->getRecordByUuid($uuid);
         $instructor->status = $status;
         $instructor->save();
 
-        if ($status == 1)
-        {
+        if ($status == 1) {
             $user = User::find($instructor->user_id);
             $user->role = 2;
             $user->save();
@@ -297,10 +299,6 @@ class InstructorController extends Controller
         Alert::toast('Status Changed Successfully.', 'success');
         return redirect()->back();
     }
-
-
-
-
 
 
     public function delete($uuid)
@@ -315,40 +313,30 @@ class InstructorController extends Controller
 
         $data['courses'] = Course::where('instructor_id', $instructor->id)->get();
 
-        if($data['courses']->count() > 0)
-        {
+        if ($data['courses']->count() > 0) {
             Alert::toast('Instructor has courses. Please delete courses first.', 'warning');
             return redirect()->back();
         }
 
 
-
-        if ($instructor && $user){
+        if ($instructor && $user) {
             //Start:: Course Delete
             $courses = Course::whereUserId($user->id)->get();
-            foreach ($courses as $course)
-            {
+            foreach ($courses as $course) {
                 //start:: Course lesson delete
                 $lessons = CourseLesson::where('course_id', $course->id)->get();
-                if (count($lessons) > 0)
-                {
-                    foreach ($lessons as $lesson)
-                    {
+                if (count($lessons) > 0) {
+                    foreach ($lessons as $lesson) {
                         //start:: lecture delete
                         $lectures = CourseLecture::where('lesson_id', $lesson->id)->get();
-                        if (count($lectures) > 0)
-                        {
-                            foreach ($lectures as $lecture)
-                            {
+                        if (count($lectures) > 0) {
+                            foreach ($lectures as $lecture) {
                                 $lecture = CourseLecture::find($lecture->id);
-                                if ($lecture)
-                                {
+                                if ($lecture) {
                                     $this->deleteFile($lecture->file_path); // delete file from server
 
-                                    if ($lecture->type == 'vimeo')
-                                    {
-                                        if ($lecture->url_path)
-                                        {
+                                    if ($lecture->type == 'vimeo') {
+                                        if ($lecture->url_path) {
                                             $this->deleteVimeoVideoFile($lecture->url_path);
                                         }
                                     }

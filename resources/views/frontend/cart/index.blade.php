@@ -140,7 +140,7 @@
                         data-aos="fade-up"
                         data-aos-delay="100" style="color: #FF5733!important;">No Items in Cart</h2>
                     <br>
-                    <h6>Please Add Course in your Cart</h6>
+                    <h6>PLEASE ADD COURSE IN YOUR CART</h6>
                 </div>
             </div>
             <div class="shape-breadcrumb absolute top-0 right-0">

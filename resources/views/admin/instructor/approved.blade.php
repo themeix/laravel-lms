@@ -194,7 +194,7 @@
                             })
 
                             setTimeout(function(){
-                                window.location.reload();
+                                window.location.reload(true);
                             }, 1000);
                         },
                         error: function () {
@@ -202,7 +202,7 @@
                         },
                     });
                 } else if (result.dismiss === "cancel") {
-                    location.reload();
+                    window.location.reload(true);
                 }
             });
         });

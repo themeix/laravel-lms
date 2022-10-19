@@ -128,7 +128,7 @@
                                             <select class="form-select" name="status" id="blog-edit-status">
                                                 <option value="">---Select Status---</option>
                                                 <option value="1" @if($user->status == 1) selected @endif>Active</option>
-                                                <option value="0" @if($user->status == 0) selected @endif>Inactive</option>
+                                                <option value="2" @if($user->status == 2) selected @endif>Inactive</option>
 
                                             </select>
                                         </div>

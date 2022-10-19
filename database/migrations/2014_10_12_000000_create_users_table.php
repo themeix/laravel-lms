@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('provider_id')->nullable();
             $table->string('image')->nullable();
 
-            $table->tinyInteger('status')->default(1)->comment('1=active, 0=inactive');
-            $table->tinyInteger('existence')->default(1)->comment('1=active, 0=deleted');
+            $table->tinyInteger('status')->default(1)->comment('1=active, 2=inactive');
+            $table->tinyInteger('existence')->default(1)->comment('1=active, 2=deleted');
 
             $table->rememberToken();
             $table->timestamps();

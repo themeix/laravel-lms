@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\KeyPointsController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\UserController;
@@ -289,3 +290,7 @@ Route::post('city/store', [CityController::class, 'store'])->name('city.store')/
 Route::get('city/edit/{uuid}', [CityController::class, 'edit'])->name('city.edit');
 Route::post('city/update/{uuid}', [CityController::class, 'update'])->name('city.update')/*->middleware('isDemo')*/;
 Route::post('city/delete/{uuid}', [CityController::class, 'delete'])->name('city.delete')/*->middleware('isDemo')*/;
+
+
+//Financial Reports
+Route::get('order-pending', [ReportController::class, 'orderReportPending'])->name('report.order-pending');

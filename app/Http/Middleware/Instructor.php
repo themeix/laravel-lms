@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Instructor
 {
@@ -22,14 +23,11 @@ class Instructor
          * only instructor can access instructor panel
          */
 
-
         if (auth()->user()->type == 2 && auth()->user()->instructor->status == 1) {
             return $next($request);
         } else {
-
             abort('403');
         }
-
 
     }
 }

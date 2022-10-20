@@ -2162,39 +2162,56 @@
                            </div>
                         </div>
 
-                            @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
+                         @if(Auth::user() != null)
+                             @php
+                                 $isPurchased = \App\Models\OrderItem::where('course_id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                 $ownCourse = \App\Models\Course::where('id', $course->id)->where('user_id', Auth::user()->id)->first();
+                             @endphp
+                         @endif
 
-                                <div class="reviews-box border-t border-b mb-7 pt-7 mt-7  pb-7 flex justify-between">
-                                    <form action="{{route('main.addToCart') }}" method="GET"
-                                          enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                        <input type="hidden" value="{{ $course->title }}" name="title">
-                                        <input type="hidden" value="{{ $course->price }}" name="price">
-                                        <input type="hidden" value="{{ $course->image }}" name="image">
-                                        <input type="hidden" value="1" name="quantity">
-                                        <button
-                                            class="border-blue-20 border inline-block py-2.5 px-8 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
-                                            Add To Cart
-                                        </button>
-                                    </form>
+                         @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
+                             <div class="reviews-box border-t border-b pb-7 pt-7 pt-7 mt-7 flex justify-between">
+                                 <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                     Add To Cart
+                                 </button>
 
-                                    <form action="{{ route('main.buyNow') }}" method="GET"
-                                          enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                        <input type="hidden" value="{{ $course->title }}" name="title">
-                                        <input type="hidden" value="{{ $course->price }}" name="price">
-                                        <input type="hidden" value="{{ $course->image }}" name="image">
-                                        <input type="hidden" value="1" name="quantity">
-                                        <button
-                                            class="py-2.5 px-8 hover:border-blue-50 border rounded-full inline-block hover:text-black-200  bg-blue-600 hover:bg-transparent  border-blue-600 text-white transition duration-500 ">
-                                            Buy Now
-                                        </button>
-                                    </form>
-                                </div>
+                                 <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                     Buy Now
+                                 </button>
+                             </div>
+                         @else
 
-                            @endif
+                             <div class="reviews-box border-t border-b pb-7 pt-7 pt-7 mt-7 flex justify-between">
+                                 <form action="{{route('main.addToCart') }}" method="GET"
+                                       enctype="multipart/form-data">
+                                     @csrf
+                                     <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                     <input type="hidden" value="{{ $course->title }}" name="title">
+                                     <input type="hidden" value="{{ $course->price }}" name="price">
+                                     <input type="hidden" value="{{ $course->image }}" name="image">
+                                     <input type="hidden" value="1" name="quantity">
+                                     <button
+                                         class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
+                                         Add To Cart
+                                     </button>
+                                 </form>
+
+                                 <form action="{{ route('main.buyNow') }}" method="GET"
+                                       enctype="multipart/form-data">
+                                     @csrf
+                                     <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                     <input type="hidden" value="{{ $course->title }}" name="title">
+                                     <input type="hidden" value="{{ $course->price }}" name="price">
+                                     <input type="hidden" value="{{ $course->image }}" name="image">
+                                     <input type="hidden" value="1" name="quantity">
+                                     <button
+                                         class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
+                                         Buy Now
+                                     </button>
+                                 </form>
+                             </div>
+
+                         @endif
 
                         <div class="course-info-item mb-5">
                            <span class="flex gap-3 items-center ">
@@ -2416,7 +2433,24 @@
                               <p>5.0 (80 Reviews)</p>
                            </div>
                         </div>
-                         @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
+                         @if(Auth::user() != null)
+                             @php
+                                 $isPurchased = \App\Models\OrderItem::where('course_id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                 $ownCourse = \App\Models\Course::where('id', $course->id)->where('user_id', Auth::user()->id)->first();
+                             @endphp
+                         @endif
+
+                         @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
+                             <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                 <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                     Add To Cart
+                                 </button>
+
+                                 <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                     Buy Now
+                                 </button>
+                             </div>
+                         @else
 
                              <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
                                  <form action="{{route('main.addToCart') }}" method="GET"

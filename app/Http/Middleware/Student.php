@@ -34,11 +34,19 @@ class Student
             }
 
             if (auth()->user()->type == 3) {
-                if (auth()->user()->student->status == 1) {
-                    return $next($request);
+
+                $student = auth()->user()->student;
+                if ($student) {
+                    if (auth()->user()->student->status == 1) {
+                        return $next($request);
+                    } else {
+                        abort('403');
+                    }
                 } else {
-                    abort('403');
+                    return $next($request);
                 }
+
+
             }
 
 

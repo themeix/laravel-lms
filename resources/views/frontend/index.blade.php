@@ -236,9 +236,10 @@
                         <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
                              data-aos-delay="500">
                             <div class="lessons-images relative overflow-hidden">
-                                <a href="{{ route('main.courseDetails', $course->uuid) }}"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                            src="{{asset('frontend/assets/images/lessons-images-1.webp')}}"
-                                                            alt="images">
+                                <a href="{{ route('main.courseDetails', $course->uuid) }}"> <img
+                                        class="rounded-t-md max-h-64 w-full object-cover"
+                                        src="{{asset('frontend/assets/images/lessons-images-1.webp')}}"
+                                        alt="images">
                                 </a>
 
                             </div>
@@ -256,7 +257,8 @@
                                 </div>
                                 <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
                                     <a
-                                        href="{{ route('main.courseDetails', $course->uuid) }}">{{$course->title}}</a></h3>
+                                        href="{{ route('main.courseDetails', $course->uuid) }}">{{$course->title}}</a>
+                                </h3>
                                 <div class="reviews-box flex justify-between pt-5">
                                     <div class="flex items-center">
                            <span class="mr-2">
@@ -282,7 +284,24 @@
                                         <p>5.0 (80 Reviews)</p>
                                     </div>
                                 </div>
-                                @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
+                                @if(Auth::user() != null)
+                                    @php
+                                        $isPurchased = \App\Models\OrderItem::where('course_id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                        $ownCourse = \App\Models\Course::where('id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                    @endphp
+                                @endif
+
+                                @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
+                                    <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                            Add To Cart
+                                        </button>
+
+                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                            Buy Now
+                                        </button>
+                                    </div>
+                                @else
 
                                     <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
                                         <form action="{{route('main.addToCart') }}" method="GET"
@@ -466,9 +485,10 @@
                             <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
                                  data-aos-delay="1000">
                                 <div class="lessons-images relative overflow-hidden">
-                                    <a href="{{ route('main.courseDetails', $course->uuid) }}"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                                src="{{getImageFile($course->image_path)}}"
-                                                                alt="images"></a>
+                                    <a href="{{ route('main.courseDetails', $course->uuid) }}"> <img
+                                            class="rounded-t-md max-h-64 w-full object-cover"
+                                            src="{{getImageFile($course->image_path)}}"
+                                            alt="images"></a>
                                 </div>
                                 <div
                                     class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
@@ -484,7 +504,8 @@
                                     </div>
                                     <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
                                         <a
-                                            href="{{ route('main.courseDetails', $course->uuid) }}">{{ $course->title }}</a></h3>
+                                            href="{{ route('main.courseDetails', $course->uuid) }}">{{ $course->title }}</a>
+                                    </h3>
                                     <div class="reviews-box flex justify-between pt-5">
                                         <div class="flex items-center">
                            <span class="mr-2">
@@ -510,9 +531,27 @@
                                             <p>5.0 (80 Reviews)</p>
                                         </div>
                                     </div>
-                                    @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
+                                    @if(Auth::user() != null)
+                                        @php
+                                            $isPurchased = \App\Models\OrderItem::where('course_id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                            $ownCourse = \App\Models\Course::where('id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                        @endphp
+                                    @endif
+
+                                    @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
                                         <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                            <form action="{{ route('main.addToCart') }}" method="GET"
+                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                                Add To Cart
+                                            </button>
+
+                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                                Buy Now
+                                            </button>
+                                        </div>
+                                    @else
+
+                                        <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                            <form action="{{route('main.addToCart') }}" method="GET"
                                                   enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" value="{{ $course->id }}" name="course_id">
@@ -540,6 +579,7 @@
                                                 </button>
                                             </form>
                                         </div>
+
                                     @endif
                                 </div>
                             </div>
@@ -587,9 +627,10 @@
                             <div class="lessons-item group hover:-translate-y-2  !duration-500 " data-aos="fade-up"
                                  data-aos-delay="500">
                                 <div class="lessons-images relative overflow-hidden">
-                                    <a href="{{ route('main.courseDetails', $course->uuid) }}"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                                src="{{asset('frontend/assets/images/webdesign-1.webp')}}"
-                                                                alt="images"></a>
+                                    <a href="{{ route('main.courseDetails', $course->uuid) }}"> <img
+                                            class="rounded-t-md max-h-64 w-full object-cover"
+                                            src="{{asset('frontend/assets/images/webdesign-1.webp')}}"
+                                            alt="images"></a>
                                 </div>
                                 <div
                                     class="lessons-bottom-box p-6 border border-blue-20 border-t-0 rounded-bl-md rounded-br-md">
@@ -605,7 +646,8 @@
                                     </div>
                                     <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
                                         <a
-                                            href="{{ route('main.courseDetails', $course->uuid) }}">{{ $course->title }}</a></h3>
+                                            href="{{ route('main.courseDetails', $course->uuid) }}">{{ $course->title }}</a>
+                                    </h3>
                                     <div class="reviews-box flex justify-between pt-5">
                                         <div class="flex items-center">
                            <span class="mr-2">
@@ -631,9 +673,27 @@
                                             <p>5.0 (80 Reviews)</p>
                                         </div>
                                     </div>
-                                    @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
+                                    @if(Auth::user() != null)
+                                        @php
+                                            $isPurchased = \App\Models\OrderItem::where('course_id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                            $ownCourse = \App\Models\Course::where('id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                        @endphp
+                                    @endif
+
+                                    @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
                                         <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                            <form action="{{ route('main.addToCart') }}" method="GET"
+                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                                Add To Cart
+                                            </button>
+
+                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                                Buy Now
+                                            </button>
+                                        </div>
+                                    @else
+
+                                        <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                            <form action="{{route('main.addToCart') }}" method="GET"
                                                   enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" value="{{ $course->id }}" name="course_id">
@@ -661,6 +721,7 @@
                                                 </button>
                                             </form>
                                         </div>
+
                                     @endif
                                 </div>
                             </div>

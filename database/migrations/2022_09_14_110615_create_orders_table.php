@@ -23,8 +23,15 @@ return new class extends Migration
             $table->decimal('shipping_cost')->default(0.00);
             $table->decimal('tax')->default(0.00);
             $table->decimal('platform_charge')->default(0.00);
+            $table->string('current_currency')->nullable();
+            $table->string('payment_currency')->nullable();
+            $table->decimal('conversion_rate',28,8)->default(0)->nullable();
+            $table->decimal('grand_total_with_conversation_rate',28,8)->default(0)->nullable();
             $table->decimal('grand_total')->default(0.00);
             $table->string('payment_method', 100)->nullable();
+            $table->string('deposit_by')->nullable();
+            $table->string('deposit_slip')->nullable();
+            $table->unsignedBigInteger('bank_id')->nullable();
             $table->mediumText('customer_comment')->nullable();
             $table->string('payment_status', 15)->default('due')->comment('paid, due, free, pending, cancelled');
             $table->tinyInteger('delivery_status')->default(0)->comment('0=pending, 1=complete');

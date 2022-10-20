@@ -20,7 +20,7 @@
         <!--  ====================== villing address Area Start =============================  -->
         <section class="villing-address-area md:py-28 py-20">
             <div class="container">
-                <form action="{{ route('main.processOrder') }}" method="post">
+                <form action="{{ route('main.processOrder') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="lg:grid lg:grid-cols-12 gap-6">
                         <div class="col-span-8 ">
@@ -79,7 +79,7 @@
                             </div>
 
 
-                            @if(Auth::user()->type == 2)
+                            @if(Auth::user()->type == 2 && Auth::user()->instructor)
                                 <div class="villing-address-box border mt-4 p-4">
                                     <h3 class="text-2xl font-medium text-black-200 pb-7">Billing Information</h3>
                                     <div class="countery-box border-blue-5  rounded ">
@@ -117,10 +117,10 @@
                                                         name="last_name" id="last_name"
                                                         type="text" placeholder="Name"/>
 
-                                                    @if ($errors->has('first_name'))
+                                                    @if ($errors->has('last_name'))
                                                         <span class="text-danger"><i
                                                                 class="fas fa-exclamation-triangle"></i>
-                                                    {{ $errors->first('first_name') }}</span>
+                                                    {{ $errors->first('last_name') }}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -251,9 +251,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endif
 
-                            @if(Auth::user()->type == 3)
+                            @elseif(Auth::user()->type == 3 && Auth::user()->student)
                                 <div class="villing-address-box border mt-4 p-4">
                                     <h3 class="text-2xl font-medium text-black-200 pb-7">Billing Information</h3>
                                     <div class="countery-box border-blue-5  rounded ">
@@ -291,10 +290,10 @@
                                                         name="last_name" id="last_name"
                                                         type="text" placeholder="Name"/>
 
-                                                    @if ($errors->has('first_name'))
+                                                    @if ($errors->has('last_name'))
                                                         <span class="text-danger"><i
                                                                 class="fas fa-exclamation-triangle"></i>
-                                                    {{ $errors->first('first_name') }}</span>
+                                                    {{ $errors->first('last_name') }}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -425,43 +424,252 @@
                                         </div>
                                     </div>
                                 </div>
+
+                            @else
+                                <div class="villing-address-box border mt-4 p-4">
+                                    <h3 class="text-2xl font-medium text-black-200 pb-7">Billing Information</h3>
+                                    <div class="countery-box border-blue-5  rounded ">
+
+                                        <div class="grid md:grid-cols-2 gap-4">
+
+                                            <div class="flex-col  gap-4">
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg">First Name <span
+                                                            class="text-blue-800">*</span>
+                                                    </p>
+                                                    <input
+                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        value="{{ old('first_name') }}"
+                                                        name="first_name" id="first_name"
+                                                        type="text" placeholder="Name"/>
+
+                                                    @if ($errors->has('first_name'))
+                                                        <span class="text-danger"><i
+                                                                class="fas fa-exclamation-triangle"></i>
+                                                    {{ $errors->first('first_name') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+
+                                            <div class="flex-col  gap-4">
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg">Last Name <span
+                                                            class="text-blue-800">*</span>
+                                                    </p>
+                                                    <input
+                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        value=" {{ old('last_name') }}"
+                                                        name="last_name" id="last_name"
+                                                        type="text" placeholder="Name"/>
+
+                                                    @if ($errors->has('last_name'))
+                                                        <span class="text-danger"><i
+                                                                class="fas fa-exclamation-triangle"></i>
+                                                    {{ $errors->first('last_name') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+
+                                            <div class="flex-col  gap-4">
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg">Email <span
+                                                            class="text-blue-800">*</span>
+                                                    </p>
+                                                    <input
+                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        name="email" id="email"
+                                                        value="{{ old('email') }}"
+                                                        type="email" placeholder="Eamil"/>
+
+                                                    @if ($errors->has('email'))
+                                                        <span class="text-danger"><i
+                                                                class="fas fa-exclamation-triangle"></i>
+                                                    {{ $errors->first('email') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="flex-col  gap-4">
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg">Phone Number <span
+                                                            class="text-blue-800">*</span>
+                                                    </p>
+                                                    <input
+                                                        class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        name="phone_number" value="{{ old('phone_number') }}"
+                                                        type="number" placeholder="Phone Number"/>
+                                                    @if ($errors->has('phone_number'))
+                                                        <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('phone_number') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+
+                                            <div class="flex-col select-box">
+                                                <p class="text-black-200 mb-4 text-lg"> Country<span
+                                                        class="text-blue-800">*</span>
+                                                </p>
+
+                                                <select class="w-full arifSelect bg-white text-gray-500"
+                                                        name="country_id"
+                                                        id="country_id">
+                                                    <option value="">--- Select Country ---</option>
+
+                                                    @foreach ($countries as $country)
+                                                        <option value="{{ $country->id }}"
+                                                        @if (old('country_id'))
+                                                            {{ old('country_id') == $country->id ? 'selected' : '' }}
+                                                            @else
+                                                            {{ $user->country_id == $country->id ? 'selected' : '' }}
+                                                            @endif>
+                                                            {{ $country->country_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @if ($errors->has('country_id'))
+                                                    <span class="text-danger"><i
+                                                            class="fas fa-exclamation-triangle"></i>
+                                                    {{ $errors->first('country_id') }}</span>
+                                                @endif
+                                            </div>
+                                            <div class="flex-col">
+                                                <p class="text-black-200 mb-4 text-lg"> State <span
+                                                        class="text-blue-800">*</span>
+                                                </p>
+
+
+                                                <select class="w-full arifSelect bg-white text-gray-500"
+                                                        name="state_id"
+                                                        id="state_id">
+                                                    <option value="">--- Select State ---</option>
+
+                                                    @if (old('country_id'))
+                                                        @foreach ($states as $state)
+                                                            <option value="{{ $state->id }}"
+                                                                {{ old('state_id') == $state->id ? 'selected' : '' }}>
+                                                                {{ $state->name }}</option>
+                                                        @endforeach
+                                                    @else
+                                                        @if ($user->country)
+                                                            @foreach ($user->country->states as $selected_state)
+                                                                <option value="{{ $selected_state->id }}"
+                                                                    {{ $user->state_id == $selected_state->id ? 'selected' : '' }}>
+                                                                    {{ $selected_state->name }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                </select>
+                                                @if ($errors->has('state_id'))
+                                                    <span class="text-danger"><i
+                                                            class="fas fa-exclamation-triangle"></i>
+                                                    {{ $errors->first('state_id') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+
+                                        <div class="grid  gap-4 pt-4">
+                                            <div class="flex-col">
+                                                <p class="text-black-200 mb-4 text-lg">Full Address <span
+                                                        class="text-blue-800">*</span>
+                                                </p>
+                                                <textarea rows="2"
+                                                          class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                          name="address" id="address"
+                                                          type="text"
+                                                          placeholder="Address">{{ old('address') }} </textarea>
+                                                @if ($errors->has('address'))
+                                                    <span class="text-danger"><i
+                                                            class="fas fa-exclamation-triangle"></i>
+                                                    {{ $errors->first('address') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endif
 
-
+                            {{--Payment method--}}
                             <div class="payment-method mt-10 ">
                                 <h3 class="text-2xl font-medium text-black-200 pb-7">Payment Method</h3>
 
+                                @if (get_option('paypal_status') == 1)
+                                    <div class="check-box-area border p-5 mb-5  rounded-md ">
+                                        <div class="flex items-center">
+                                            <input  type="checkbox"  class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                    name="payment_method"
+                                                    value="paypal" {{ old('payment_method') == 'paypal' ? 'checked' : '' }}
+                                                    id="bankPayment"/>
+                                            <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay With Paypal</label>
+                                        </div>
+                                    </div>
+                                @endif
 
-                                <div class="check-box-area border p-5  rounded-md ">
-                                    <nav class="tabs  ">
-                                        <button data-target="panel-0"
-                                                class="tab ml-7 chek-box relative mb-3 text-black-200 flex items-center gap-2"
-                                                name="payment_method"
-                                                value="bank" {{ old('payment_method') == 'bank' ? 'checked' : '' }}
-                                                id="bankPayment">
+                                @if (get_option('stripe_status') == 1)
+                                    <div class="check-box-area border p-5 mb-5  rounded-md ">
 
-                                            Pay with Bank
-                                        </button>
-                                        <button data-target="panel-1"
-                                                class="tab ml-7 chek-box  relative mb-3 text-black-200 flex items-center gap-2 ">
+                                        <div class="flex items-center">
+                                            <input  type="checkbox"  class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                    name="payment_method"
+                                                    value="stripe" {{ old('payment_method') == 'stripe' ? 'checked' : '' }}
+                                                    id="bankPayment"/>
+                                            <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay With Credit Card</label>
+                                        </div>
 
-                                            Pay with Paypal
-                                        </button>
-                                        <button data-target="panel-2"
-                                                class="tab ml-7 chek-box relative  mb-3 text-black-200  flex items-center gap-2">
-
-                                            Pay with Credit Card/ Debit Card
-                                        </button>
-                                    </nav>
-                                </div>
-
-                                <div id="panels">
-                                    <div class="panel-0 tab-content py-5">
                                         <div class="debit-card-box border p-5  rounded mt-5">
-
-                                            <div class="grid md:grid-cols-1 gap-4 mt-5">
-
+                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg"> Card Number <span
+                                                            class="text-blue-800">*</span></p>
+                                                    <input
+                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        type="number" placeholder="1243 5684 5485 2654">
+                                                </div>
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg"> Card security code <span
+                                                            class="text-blue-800">*</span></p>
+                                                    <input
+                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        type="number" placeholder="Type your security code">
+                                                </div>
                                             </div>
+                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Month <span
+                                                            class="text-blue-800">*</span>
+                                                    </p>
+                                                    <input
+                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        type="date">
+                                                </div>
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Year <span
+                                                            class="text-blue-800">*</span>
+                                                    </p>
+                                                    <input
+                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        type="month">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                @endif
+
+                                @if(sizeof($banks) > 0)
+                                    <div class="check-box-area border p-5 mb-5  rounded-md ">
+                                        <div class="flex items-center">
+                                            <input  type="checkbox"  class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                   name="payment_method"
+                                                   value="bank" {{ old('payment_method') == 'bank' ? 'checked' : '' }}
+                                                   id="bankPayment"/>
+                                            <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay With Bank</label>
+                                        </div>
+
+
+
+                                        <div class="debit-card-box border p-5  rounded mt-5">
                                             <div class="grid md:grid-cols-2 gap-4 mt-5">
                                                 <div class="flex-col">
                                                     <p class="text-black-200 mb-4 text-lg"> Name <span
@@ -476,6 +684,13 @@
                                                                 {{ $bank->name }}</option>
                                                         @endforeach
                                                     </select>
+
+                                                    @if ($errors->has('bank_id'))
+                                                        <span class="text-danger"><i
+                                                                class="fas fa-exclamation-triangle"></i>
+                                                    {{ $errors->first('bank_id') }}</span>
+                                                    @endif
+
                                                 </div>
                                                 <div class="flex-col">
                                                     <p class="text-black-200 mb-4 text-lg"> Account Number <span
@@ -514,182 +729,24 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <p class="text-gray-800 mt-5"
-                                                   style="font-style: italic; font-size: 13px; color: gray;">*** We
-                                                    protect
-                                                    your payment information using
-                                                    encryption to provide
-                                                    bank-level security.</p>
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <div class="panel-1 tab-content py-5">
-                                        <div class="debit-card-box border p-5  rounded mt-5">
-                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Card Number <span
-                                                            class="text-blue-800">*</span></p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="number" placeholder="1243 5684 5485 2654">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Card security code <span
-                                                            class="text-blue-800">*</span></p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="number" placeholder="Type your security code">
-                                                </div>
-                                            </div>
-                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Month <span
-                                                            class="text-blue-800">*</span>
-                                                    </p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="date">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Year <span
-                                                            class="text-blue-800">*</span>
-                                                    </p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="month">
-                                                </div>
-                                            </div>
-                                            <div class="grid md:grid-cols-1 gap-4 mt-5">
-
-                                            </div>
-                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Name <span
-                                                            class="text-blue-800">*</span></p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="text" placeholder="Type Bank name">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Account Number <span
-                                                            class="text-blue-800">*</span>
-                                                    </p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="number" placeholder="1254 5651 4568 554">
-                                                </div>
-                                            </div>
-                                            <div class="deposit-box mt-5">
-                                                <div class="grid md:grid-cols-2 gap-4 ">
-                                                    <div class="flex-col">
-                                                        <p class="text-black-200 mb-4 text-lg"> Deposit By <span
-                                                                class="text-blue-800">*</span>
-                                                        </p>
-                                                        <input
-                                                            class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                            type="text" placeholder="Smith Done">
-                                                    </div>
-                                                    <div class="flex-col">
-                                                        <p class="text-black-200 mb-4 text-lg"> Deposit Slip <span
-                                                                class="text-blue-800">*</span>
-                                                        </p>
-                                                        <input
-                                                            class=" appearance-none border rounded w-full py-2 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                            type="file">
-                                                    </div>
-                                                </div>
-                                                <p class="text-gray-800 mt-5"> We protect your payment information using
-                                                    encryption to provide
-                                                    bank-level security. </p>
-                                            </div>
-                                        </div>
 
                                     </div>
-                                    <div class="panel-2 tab-content py-5">
-                                        <div class="debit-card-box border p-5  rounded mt-5">
+                                @endif
 
-                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Card Number <span
-                                                            class="text-blue-800">*</span></p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="number" placeholder="1243 5684 5485 2654">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Card security code <span
-                                                            class="text-blue-800">*</span></p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="number" placeholder="Type your security code">
-                                                </div>
-                                            </div>
-                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Month <span
-                                                            class="text-blue-800">*</span>
-                                                    </p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="date">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Year <span
-                                                            class="text-blue-800">*</span>
-                                                    </p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="month">
-                                                </div>
-                                            </div>
-                                            <div class="grid md:grid-cols-1 gap-4 mt-5">
 
-                                            </div>
-                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Name <span
-                                                            class="text-blue-800">*</span></p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="text" placeholder="Type Bank name">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Account Number <span
-                                                            class="text-blue-800">*</span>
-                                                    </p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="number" placeholder="1254 5651 4568 554">
-                                                </div>
-                                            </div>
-                                            <div class="deposit-box mt-5">
-                                                <div class="grid md:grid-cols-2 gap-4 ">
-                                                    <div class="flex-col">
-                                                        <p class="text-black-200 mb-4 text-lg"> Deposit By <span
-                                                                class="text-blue-800">*</span>
-                                                        </p>
-                                                        <input
-                                                            class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                            type="text" placeholder="Smith Done">
-                                                    </div>
-                                                    <div class="flex-col">
-                                                        <p class="text-black-200 mb-4 text-lg"> Deposit Slip <span
-                                                                class="text-blue-800">*</span>
-                                                        </p>
-                                                        <input
-                                                            class=" appearance-none border rounded w-full py-2 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                            type="file">
-                                                    </div>
-                                                </div>
-                                                <p class="text-gray-800 mt-5"> We protect your payment information using
-                                                    encryption to provide
-                                                    bank-level security. </p>
-                                            </div>
-                                        </div>
-                                    </div>
+
+                                <div class="mb-5 mt-5 p-5 font-bold">
+                                    <p>
+                                        *** We
+                                        protect
+                                        your payment information using
+                                        encryption to provide
+                                        bank-level security.</p>
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-span-4">

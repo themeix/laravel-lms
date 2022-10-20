@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('account_name');
             $table->string('account_number');
-            $table->tinyInteger('status')->default(1)->comment('1=active,0=inactive');
+            $table->tinyInteger('status')->default(1)->comment('1=active,2=inactive');
             $table->timestamps();
         });
     }

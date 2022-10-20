@@ -34,7 +34,6 @@
         <div class="content-body">
 
 
-
             @if(Session::has('create-message'))
                 <div class="row">
                     <div class="col-12">
@@ -70,8 +69,6 @@
                     </div>
                 </div>
             @endif
-
-
 
 
             <section id="column-search-datatable">
@@ -113,7 +110,7 @@
                                                         Active
                                                     </option>
 
-                                                    <option value="0" @if($bank->status == 0) selected @endif>
+                                                    <option value="2" @if($bank->status == 2) selected @endif>
                                                         Inactive
                                                     </option>
                                                 </select>
@@ -123,15 +120,18 @@
 
                                         <td>
                                             <div class="action__buttons">
-                                                <a href="{{route('bank.edit', [$bank->id])}}" class="btn-action" title="Edit">
+                                                <a href="{{route('bank.edit', [$bank->id])}}" class="btn-action"
+                                                   title="Edit">
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
 
 
-                                                <form action="{{route('bank.delete', [$bank->id])}}" class="mb-0" method="post" class="d-inline">
+                                                <form action="{{route('bank.delete', [$bank->id])}}" class="mb-0"
+                                                      method="post" class="d-inline">
                                                     @csrf
 
-                                                    <a href="{{route('bank.delete', [$bank->id])}}"  class="btn-action confirm-delete"  title="Delete">
+                                                    <a href="{{route('bank.delete', [$bank->id])}}"
+                                                       class="btn-action confirm-delete" title="Delete">
                                                         <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
                                                     </a>
 
@@ -139,7 +139,6 @@
                                             </div>
                                         </td>
                                     </tr>
-
 
                                 @endforeach
                                 </tbody>
@@ -180,7 +179,6 @@
             });
             e.preventDefault();
         });
-
 
 
         'use strict'

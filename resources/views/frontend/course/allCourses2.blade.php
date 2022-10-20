@@ -72,9 +72,27 @@
                                     <p>5.0 (80 Reviews)</p>
                                 </div>
                             </div>
-                            @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
+                            @if(Auth::user() != null)
+                                @php
+                                    $isPurchased = \App\Models\OrderItem::where('course_id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                    $ownCourse = \App\Models\Course::where('id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                @endphp
+                            @endif
+
+                            @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
                                 <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                    <form action="{{ route('main.addToCart') }}" method="GET"
+                                    <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                        Add To Cart
+                                    </button>
+
+                                    <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                        Buy Now
+                                    </button>
+                                </div>
+                            @else
+
+                                <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                    <form action="{{route('main.addToCart') }}" method="GET"
                                           enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" value="{{ $course->id }}" name="course_id">
@@ -102,6 +120,7 @@
                                         </button>
                                     </form>
                                 </div>
+
                             @endif
                         </div>
                     </div>

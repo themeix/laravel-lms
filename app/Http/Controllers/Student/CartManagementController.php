@@ -317,8 +317,14 @@ class CartManagementController extends Controller
     public function processOrder(Request $request)
     {
 
+        if (is_null($request->payment_method)) {
+            Alert::warning('warning', 'Please Select Payment Method');
+            return redirect()->back();
+        }
+
+
         if ($request->payment_method == 'bank') {
-            if (empty($request->deposit_by) || is_null($request->deposit_slip)) {
+            if (empty($request->deposit_by) || is_null($request->deposit_slip) || empty($request->account_number) || empty($request->bank_id)) {
                 Alert::error('Error', 'Bank Information Not Valid!');
                 return redirect()->back();
             }
@@ -326,6 +332,10 @@ class CartManagementController extends Controller
 
         $order = $this->placeOrder($request->payment_method);
         /** order billing address */
+
+        if(!auth::user()->student || !auth::user()->instuctor){
+
+        }
 
         if (auth::user()->student) {
             $student = Student::find(auth::user()->student->id);
@@ -351,7 +361,7 @@ class CartManagementController extends Controller
             /** ====== Send notification =========*/
 
             Alert::success('success', 'Request has been Placed! Please Wait for Approve');
-            return redirect()->route('student.thank-you');
+            return redirect()->route('main.thankYou');
         }
 
 
@@ -369,7 +379,7 @@ class CartManagementController extends Controller
         $order->sub_total = $carts->sum('price');
         $order->discount = $carts->sum('discount');
         $order->platform_charge = get_platform_charge($carts->sum('price'));
-        $order->current_currency = get_currency_code();
+        /*$order->current_currency = get_currency_code();*/
         $order->grand_total = $order->sub_total + $order->platform_charge;
         $order->payment_method = $payment_method;
 
@@ -414,6 +424,7 @@ class CartManagementController extends Controller
 
             $order_item->save();
         }
+
         CartManagement::whereUserId(@Auth::user()->id)->delete();
         return $order;
     }

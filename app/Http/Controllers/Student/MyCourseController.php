@@ -12,7 +12,6 @@ class MyCourseController extends Controller
 {
     public function thankYou()
     {
-        $data['pageTitle'] = 'New Enroll Course';
         $new_order = Order::whereUserId(auth()->id())->latest()->first();
         $data['new_courses'] = [];
         if ($new_order) {

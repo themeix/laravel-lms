@@ -373,19 +373,33 @@
                                                         <p>5.0 (80 Reviews)</p>
                                                     </div>
                                                 </div>
-                                                @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
-                                                    <div class="reviews-box border-t pt-7 mt-7 flex gap-3">
-                                                        <form action="{{ route('main.addToCart') }}" method="GET"
+                                                @if(Auth::user() != null)
+                                                    @php
+                                                        $isPurchased = \App\Models\OrderItem::where('course_id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                                        $ownCourse = \App\Models\Course::where('id', $course->id)->where('user_id', Auth::user()->id)->first();
+                                                    @endphp
+                                                @endif
+
+                                                @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
+                                                    <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                                            Add To Cart
+                                                        </button>
+
+                                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                                            Buy Now
+                                                        </button>
+                                                    </div>
+                                                @else
+
+                                                    <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+                                                        <form action="{{route('main.addToCart') }}" method="GET"
                                                               enctype="multipart/form-data">
                                                             @csrf
-                                                            <input type="hidden" value="{{ $course->id }}"
-                                                                   name="course_id">
-                                                            <input type="hidden" value="{{ $course->title }}"
-                                                                   name="title">
-                                                            <input type="hidden" value="{{ $course->price }}"
-                                                                   name="price">
-                                                            <input type="hidden" value="{{ $course->image }}"
-                                                                   name="image">
+                                                            <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                                            <input type="hidden" value="{{ $course->title }}" name="title">
+                                                            <input type="hidden" value="{{ $course->price }}" name="price">
+                                                            <input type="hidden" value="{{ $course->image }}" name="image">
                                                             <input type="hidden" value="1" name="quantity">
                                                             <button
                                                                 class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
@@ -396,14 +410,10 @@
                                                         <form action="{{ route('main.buyNow') }}" method="GET"
                                                               enctype="multipart/form-data">
                                                             @csrf
-                                                            <input type="hidden" value="{{ $course->id }}"
-                                                                   name="course_id">
-                                                            <input type="hidden" value="{{ $course->title }}"
-                                                                   name="title">
-                                                            <input type="hidden" value="{{ $course->price }}"
-                                                                   name="price">
-                                                            <input type="hidden" value="{{ $course->image }}"
-                                                                   name="image">
+                                                            <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                                            <input type="hidden" value="{{ $course->title }}" name="title">
+                                                            <input type="hidden" value="{{ $course->price }}" name="price">
+                                                            <input type="hidden" value="{{ $course->image }}" name="image">
                                                             <input type="hidden" value="1" name="quantity">
                                                             <button
                                                                 class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
@@ -411,6 +421,7 @@
                                                             </button>
                                                         </form>
                                                     </div>
+
                                                 @endif
                                             </div>
                                         </div>

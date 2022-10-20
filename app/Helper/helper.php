@@ -117,7 +117,7 @@ function get_currency_placement()
 
 function get_platform_charge($sub_total)
 {
-    return ($sub_total * get_option('platform_charge')) / 100;
+    return ($sub_total * floatval(get_option('platform_charge'))) / 100;
 }
 
 function admin_sell_commission($amount)

@@ -37,6 +37,12 @@ JS Table of Conttent
 
     });
 
+    $(".notification-box-close").on("click", function (c) {
+        c.preventDefault();
+        $(".notification-box ").toggleClass("card-opened");
+
+    });
+
 
 
 

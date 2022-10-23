@@ -1,5 +1,5 @@
 @extends('layouts.frontEndMaster')
-@section('title','Dashboard')
+@section('title','Category Wise Courses')
 @section('content')
     <!-- ================ Breadcrum  Area Start =============================  -->
     <section class="breadcrumb-area md:py-32 py-20  bg-blue-100 overflow-hidden relative">

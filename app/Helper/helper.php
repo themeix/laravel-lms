@@ -274,7 +274,8 @@ function notificationForUser()
 
 function adminNotifications()
 {
-    return \App\Models\Notification::where('user_type', 1)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->paginate(5);
+    $admin_notifictions = \App\Models\Notification::where('user_type', 1)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->paginate(5);
+    return $admin_notifictions;
 }
 
 function studentCourseProgress($course_id)

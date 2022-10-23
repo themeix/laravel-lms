@@ -168,7 +168,7 @@
 
                                         @if(Auth::user()->type != 1)
                                             <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                               href="checkout.html">
+                                               href="{{ route('student.learning') }}">
                                                 <div
                                                     class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -326,6 +326,172 @@
                             </div>
                         @endif
                         {{--Mobile Cart Ends here--}}
+
+                        {{--Mobile Notification Starts here--}}
+                        @if((Auth::user() != null))
+
+                            @php
+                                $adminNotifications = \App\Models\Notification::where('user_type', 1)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->get();
+                                $instructorNotifications = \App\Models\Notification::where('user_type', 2)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->get();
+                                $studentNotifications = \App\Models\Notification::where('user_type', 3)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->get();
+                            @endphp
+
+                            <div class="notification-box">
+                                <div class="relative">
+                                    <div
+                                        class="notification-box-close cursor-pointer w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative">
+                                        <div
+                                            class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
+                                            <span class="mt-[1px]">
+
+                                                @if(Auth::user()->type == 1)
+                                                    {{ count($adminNotifications) }}
+                                                @elseif(Auth::user()->type == 2)
+                                                    {{ count($instructorNotifications)}}
+                                                @elseif(Auth::user()->type == 3)
+                                                    {{ count($studentNotifications)}}
+                                                @else
+                                                    {{ 0 }}
+                                                @endif
+
+                                            </span>
+                                        </div>
+                                        <img src="{{asset('frontend/custom/image/bell.png')}}" height="25px"
+                                             width="25px" alt="cart">
+                                    </div>
+                                    <div
+                                        class="cart-wrap  opacity-0 invisible absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0  translate-y-10">
+                                        <div class="overflow-hidden rounded-xl shadow  ">
+                                            <div class="relative bg-white">
+                                                <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
+                                                    <h3 class="text-xl font-semibold text-black-200">Notification
+                                                        Area</h3>
+                                                    <div class="divide-y divide-slate-100 dark:divide-slate-700">
+                                                        @if(Auth::user()->type == 1)
+                                                            @foreach($adminNotifications as $adminNotification)
+                                                                <a href="{{route('notification.url', [$adminNotification->uuid])}}">
+                                                                    <div class="flex py-5 last:pb-0">
+                                                                        <div
+                                                                            class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                                                            <img class="h-full object-cover"
+                                                                                 src="{{ asset($adminNotification->sender->image_path) }}"
+                                                                                 alt="image">
+                                                                        </div>
+                                                                        <div class="ml-4 flex flex-1 flex-col">
+                                                                            <div>
+                                                                                <div class="flex justify-between ">
+                                                                                    <div>
+                                                                                        <h3 class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
+
+                                                                                            {{$adminNotification->sender->name}}
+                                                                                        </h3>
+                                                                                        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                            <span> {{$adminNotification->text}} </span>
+                                                                                        </p>
+                                                                                        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                            <span> {{@$adminNotification->created_at->diffForHumans()}} </span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </a>
+                                                            @endforeach
+                                                        @endif
+
+                                                        @if(Auth::user()->type == 2)
+                                                            @foreach($instructorNotifications as $instructorNotification)
+                                                                <a href="{{route('notification.url', [$instructorNotification->uuid])}}">
+                                                                    <div class="flex py-5 last:pb-0">
+                                                                        <div
+                                                                            class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                                                            <img class="h-full object-cover"
+                                                                                 src="{{ asset($instructorNotification->sender->image_path) }}"
+                                                                                 alt="image">
+                                                                        </div>
+                                                                        <div class="ml-4 flex flex-1 flex-col">
+                                                                            <div>
+                                                                                <div class="flex justify-between ">
+                                                                                    <div>
+                                                                                        <h3 class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
+
+                                                                                            {{$instructorNotification->sender->name}}
+                                                                                        </h3>
+                                                                                        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                            <span> {{$instructorNotification->text}} </span>
+                                                                                        </p>
+                                                                                        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                            <span> {{@$instructorNotification->created_at->diffForHumans()}} </span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </a>
+                                                            @endforeach
+                                                        @endif
+
+                                                        @if(Auth::user()->type == 3)
+                                                            @foreach($studentNotifications as $studentNotifications)
+                                                                <a href="{{route('notification.url', [$studentNotifications->uuid])}}">
+                                                                    <div class="flex py-5 last:pb-0">
+                                                                        <div
+                                                                            class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                                                            <img class="h-full object-cover"
+                                                                                 src="{{ asset($studentNotifications->sender->image_path) }}"
+                                                                                 alt="image">
+                                                                        </div>
+                                                                        <div class="ml-4 flex flex-1 flex-col">
+                                                                            <div>
+                                                                                <div class="flex justify-between ">
+                                                                                    <div>
+                                                                                        <h3 class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
+
+                                                                                            {{$studentNotifications->sender->name}}
+                                                                                        </h3>
+                                                                                        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                            <span> {{$studentNotifications->text}} </span>
+                                                                                        </p>
+                                                                                        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                            <span> {{@$studentNotifications->created_at->diffForHumans()}} </span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </a>
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="p-5  bg-white">
+                                                    <div class="flex space-x-2 mt-5"><a
+                                                            class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    bg-blue-600 hover:bg-black-200 transition duration-500 text-white  flex-1"
+                                                            rel="noopener noreferrer"
+                                                            href="{{ route('notification.read.all') }}">
+                                                            Read all notifications
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        {{--Mobile Notification Ends here--}}
+
+
                     </div>
 
                 </div>
@@ -345,6 +511,9 @@
                         </a>
                     </div>
                 </div>
+
+                {{--MObile menu starts here--}}
+
                 <div class="flex-col relative">
                     <div id="sidebar-btn" class="inline-block w-8  absolute cursor-pointer">
                         <span></span>
@@ -429,8 +598,12 @@
                                    href="{{route('main.contact')}}"> Contact </a>
                             </li>
                         </ul>
+
+
                     </div>
                 </div>
+
+                {{--Mobile menu ends here--}}
             </div>
         </div>
     </div>
@@ -701,7 +874,7 @@
                                             @if(Auth::user()->type != 1)
 
                                                 <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                                   href="checkout.html">
+                                                   href="{{ route('student.learning') }}">
                                                     <div
                                                         class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -962,6 +1135,172 @@
 
                             {{--Desktop Cart Ends Here--}}
 
+                            {{--Desktop Notification Area Start--}}
+
+                            @if((Auth::user() != null))
+
+                                @php
+                                    $adminNotifications = \App\Models\Notification::where('user_type', 1)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->get();
+                                    $instructorNotifications = \App\Models\Notification::where('user_type', 2)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->get();
+                                    $studentNotifications = \App\Models\Notification::where('user_type', 3)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->get();
+                                @endphp
+
+                                <div class="notification-box">
+                                    <div class="relative">
+                                        <div
+                                            class="notification-box-close cursor-pointer w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative">
+                                            <div
+                                                class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
+                                            <span class="mt-[1px]">
+
+                                                @if(Auth::user()->type == 1)
+                                                    {{ count($adminNotifications) }}
+                                                @elseif(Auth::user()->type == 2)
+                                                    {{ count($instructorNotifications)}}
+                                                @elseif(Auth::user()->type == 3)
+                                                    {{ count($studentNotifications)}}
+                                                @else
+                                                    {{ 0 }}
+                                                @endif
+
+                                            </span>
+                                            </div>
+                                            <img src="{{asset('frontend/custom/image/bell.png')}}" height="25px"
+                                                 width="25px" alt="cart">
+                                        </div>
+                                        <div
+                                            class="cart-wrap  opacity-0 invisible absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0  translate-y-10">
+                                            <div class="overflow-hidden rounded-xl shadow  ">
+                                                <div class="relative bg-white">
+                                                    <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
+                                                        <h3 class="text-xl font-semibold text-black-200">Notification
+                                                            Area</h3>
+                                                        <div class="divide-y divide-slate-100 dark:divide-slate-700">
+                                                            @if(Auth::user()->type == 1)
+                                                                @foreach($adminNotifications as $adminNotification)
+                                                                    <a href="{{route('notification.url', [$adminNotification->uuid])}}">
+                                                                        <div class="flex py-5 last:pb-0">
+                                                                            <div
+                                                                                class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                                                                <img class="h-full object-cover"
+                                                                                     src="{{ asset($adminNotification->sender->image_path) }}"
+                                                                                     alt="image">
+                                                                            </div>
+                                                                            <div class="ml-4 flex flex-1 flex-col">
+                                                                                <div>
+                                                                                    <div class="flex justify-between ">
+                                                                                        <div>
+                                                                                            <h3 class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
+
+                                                                                                {{$adminNotification->sender->name}}
+                                                                                            </h3>
+                                                                                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                                <span> {{$adminNotification->text}} </span>
+                                                                                            </p>
+                                                                                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                                <span> {{@$adminNotification->created_at->diffForHumans()}} </span>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </a>
+                                                                @endforeach
+                                                            @endif
+
+                                                            @if(Auth::user()->type == 2)
+                                                                @foreach($instructorNotifications as $instructorNotification)
+                                                                    <a href="{{route('notification.url', [$instructorNotification->uuid])}}">
+                                                                        <div class="flex py-5 last:pb-0">
+                                                                            <div
+                                                                                class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                                                                <img class="h-full object-cover"
+                                                                                     src="{{ asset($instructorNotification->sender->image_path) }}"
+                                                                                     alt="image">
+                                                                            </div>
+                                                                            <div class="ml-4 flex flex-1 flex-col">
+                                                                                <div>
+                                                                                    <div class="flex justify-between ">
+                                                                                        <div>
+                                                                                            <h3 class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
+
+                                                                                                {{$instructorNotification->sender->name}}
+                                                                                            </h3>
+                                                                                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                                <span> {{$instructorNotification->text}} </span>
+                                                                                            </p>
+                                                                                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                                <span> {{@$instructorNotification->created_at->diffForHumans()}} </span>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </a>
+                                                                @endforeach
+                                                            @endif
+
+                                                            @if(Auth::user()->type == 3)
+                                                                @foreach($studentNotifications as $studentNotifications)
+                                                                    <a href="{{route('notification.url', [$studentNotifications->uuid])}}">
+                                                                        <div class="flex py-5 last:pb-0">
+                                                                            <div
+                                                                                class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                                                                <img class="h-full object-cover"
+                                                                                     src="{{ asset($studentNotifications->sender->image_path) }}"
+                                                                                     alt="image">
+                                                                            </div>
+                                                                            <div class="ml-4 flex flex-1 flex-col">
+                                                                                <div>
+                                                                                    <div class="flex justify-between ">
+                                                                                        <div>
+                                                                                            <h3 class="text-base font-medium text-black-200 hover:text-blue-600 transition duration-500">
+
+                                                                                                {{$studentNotifications->sender->name}}
+                                                                                            </h3>
+                                                                                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                                <span> {{$studentNotifications->text}} </span>
+                                                                                            </p>
+                                                                                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                                <span> {{@$studentNotifications->created_at->diffForHumans()}} </span>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </a>
+                                                                @endforeach
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-5  bg-white">
+                                                        <div class="flex space-x-2 mt-5"><a
+                                                                class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    bg-blue-600 hover:bg-black-200 transition duration-500 text-white  flex-1"
+                                                                rel="noopener noreferrer"
+                                                                href="{{ route('notification.read.all') }}">
+                                                                Read all notifications
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{--Desktop Notification Area End--}}
+
                         </div>
                     </div>
                 </nav>
@@ -1092,6 +1431,8 @@
 
 
 <script>
+
+
     $('#search').on('keyup', function () {
         search();
     });

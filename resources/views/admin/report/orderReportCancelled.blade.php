@@ -1,5 +1,5 @@
 @extends('layouts.adminMaster')
-@section('title','Order Pending List')
+@section('title','Order Cancelled List')
 
 
 
@@ -15,12 +15,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Order Pending List</h2>
+                        <h2 class="content-header-title float-start mb-0">Order Cancelled List</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Order Pending List
+                                <li class="breadcrumb-item active">Order Cancelled List
                                 </li>
                             </ol>
                         </div>
@@ -188,67 +188,6 @@
         $(document).ready(function () {
             $('#example').DataTable();
         });
-
-        $(document).on('click', '.confirm-delete', function (e) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                showCancelButton: true,
-
-                confirmButtonText: 'Yes, Delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $(this).parent('form').trigger('submit')
-                } else if (result.isDenied) {
-                    Swal.fire('Changes are not saved', '', 'info')
-                }
-            });
-            e.preventDefault();
-        });
-
-
-        'use strict'
-        $(".status").change(function () {
-            var id = $(this).closest('tr').find('#hidden_id').html();
-            var status_value = $(this).closest('tr').find('.status option:selected').val();
-            Swal.fire({
-                title: "Are you sure to change status?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Yes, Change it!",
-                cancelButtonText: "No, cancel!",
-                reverseButtons: true
-            }).then(function (result) {
-                if (result.value) {
-                    $.ajax({
-                        type: "POST",
-                        url: "{{route('admin.student.changeStudentStatus')}}",
-                        data: {"status": status_value, "id": id, "_token": "{{ csrf_token() }}",},
-                        datatype: "json",
-                        success: function (data) {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Student status has been changed',
-                                showConfirmButton: false,
-                                timer: 1000
-                            })
-
-                            setTimeout(function () {
-                                window.location.reload(true);
-                            }, 1000);
-                        },
-                        error: function () {
-                            alert("Error!");
-                        },
-                    });
-                } else if (result.dismiss === "cancel") {
-                    window.location.reload(true);
-                }
-            });
-        });
-
-
     </script>
 @endpush
 

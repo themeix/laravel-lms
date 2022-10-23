@@ -292,5 +292,12 @@ Route::post('city/update/{uuid}', [CityController::class, 'update'])->name('city
 Route::post('city/delete/{uuid}', [CityController::class, 'delete'])->name('city.delete')/*->middleware('isDemo')*/;
 
 
-//Financial Reports
+//Manage Order
 Route::get('order-pending', [ReportController::class, 'orderReportPending'])->name('report.order-pending');
+Route::get('order-pending/show/{uuid}', [ReportController::class, 'orderReportPendingShow'])->name('report.order-pending.show');
+
+
+Route::get('order-cancelled', [ReportController::class, 'orderReportCancelled'])->name('report.orderCancelled');
+Route::get('order-cancelled/show/{uuid}', [ReportController::class, 'orderReportCancelledShow'])->name('report.orderCancelled.show');
+
+Route::get('order-paid/{uuid}/{status}', [ReportController::class, 'orderReportPaidStatus'])->name('report.order-paid');

@@ -94,7 +94,7 @@
                             @else
 
                                 <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                    <form action="{{route('main.addToCart') }}" method="GET"
+                                    <form action="{{route('student.addToCart') }}" method="GET"
                                           enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" value="{{ $course->id }}" name="course_id">
@@ -108,7 +108,7 @@
                                         </button>
                                     </form>
 
-                                    <form action="{{ route('main.buyNow') }}" method="GET"
+                                    <form action="{{ route('student.buyNow') }}" method="GET"
                                           enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" value="{{ $course->id }}" name="course_id">

@@ -67,7 +67,7 @@
                                         <div class="flex-col">
                                             <p class="font-medium text-black-200 mb-10"> Action </p>
                                             <p>
-                                                <a href="{{ route('main.cartDelete', $cart->id) }}" style="color: red;">
+                                                <a href="{{ route('student.cartDelete', $cart->id) }}" style="color: red;">
                                                     Remove
                                                 </a>
                                             </p>
@@ -123,7 +123,7 @@
                         </div>
                         <div class="order-button mt-6">
                             <a class="py-3 w-full mb-4 bg-blue-600 text-white block text-center px-6 rounded-md text-lg font-medium transition duration-500 hover:text-black-200 hover:bg-blue-100"
-                               href="{{ route('main.checkout') }}">Checkout</a>
+                               href="{{ route('student.checkout') }}">Checkout</a>
 
                         </div>
                     </div>

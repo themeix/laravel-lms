@@ -83,6 +83,8 @@
         <div class="container">
             <div class="grid grid-cols-3   items-center justify-between">
                 <div class="flex-col relative">
+                    {{--Mobile User Start--}}
+
                     <div class="right-side-bar right-side-menu relative flex gap-4 flex-shrink-0">
 
                         @if (Auth::user() == null)
@@ -138,73 +140,83 @@
                                         </div>
                                         <div class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
 
-                                        <a href="{{route('home')}}"
-                                           class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200">
-                                            <div
-                                                class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
-                                                        stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                    <path
-                                                        d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z"
-                                                        stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                </svg>
-                                            </div>
-                                            <div class="ml-4">
-                                                <p class="text-sm font-medium text-black-200">My Dashboard</p>
-                                            </div>
-                                        </a>
-                                        <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                           href=" ">
-                                            <div
-                                                class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path d="M8 12.2H15" stroke="currentColor" stroke-width="1.5"
-                                                          stroke-miterlimit="10" stroke-linecap="round"
-                                                          stroke-linejoin="round">
-                                                    </path>
-                                                    <path d="M8 16.2H12.38" stroke="currentColor" stroke-width="1.5"
-                                                          stroke-miterlimit="10" stroke-linecap="round"
-                                                          stroke-linejoin="round">
-                                                    </path>
-                                                    <path
-                                                        d="M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z"
-                                                        stroke="currentColor" stroke-width="1.5"
-                                                        stroke-miterlimit="10"
-                                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path
-                                                        d="M16 4.02002C19.33 4.20002 21 5.43002 21 10V16C21 20 20 22 15 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002"
-                                                        stroke="currentColor" stroke-width="1.5"
-                                                        stroke-miterlimit="10"
-                                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                            </div>
-                                            <div class="ml-4">
-                                                <p class="text-sm font-medium text-black-200">My Order</p>
-                                            </div>
-                                        </a>
-                                        <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                           href="checkout.html">
-                                            <div
-                                                class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
-                                                        stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                </svg>
-                                            </div>
-                                            <div class="ml-4">
-                                                <p class="text-sm font-medium text-black-200">Wishlist</p>
-                                            </div>
-                                        </a>
+
+                                        @if(Auth::user()->type != 3)
+                                            <a href="{{route('home')}}"
+                                               class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200">
+                                                <div
+                                                    class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
+                                                            stroke="currentColor" stroke-width="1.5"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"></path>
+                                                        <path
+                                                            d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z"
+                                                            stroke="currentColor" stroke-width="1.5"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <p class="text-sm font-medium text-black-200">My Dashboard</p>
+                                                </div>
+                                            </a>
+                                        @endif
+
+                                        @if(Auth::user()->type != 1)
+                                            <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                               href="checkout.html">
+                                                <div
+                                                    class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path
+                                                            d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
+                                                            stroke="currentColor" stroke-width="1.5"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <p class="text-sm font-medium text-black-200">My Learning </p>
+                                                </div>
+                                            </a>
+                                        @endif
+
+                                        @if(Auth::user()->type != 1)
+                                            <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                               href=" ">
+                                                <div
+                                                    class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M8 12.2H15" stroke="currentColor" stroke-width="1.5"
+                                                              stroke-miterlimit="10" stroke-linecap="round"
+                                                              stroke-linejoin="round">
+                                                        </path>
+                                                        <path d="M8 16.2H12.38" stroke="currentColor" stroke-width="1.5"
+                                                              stroke-miterlimit="10" stroke-linecap="round"
+                                                              stroke-linejoin="round">
+                                                        </path>
+                                                        <path
+                                                            d="M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z"
+                                                            stroke="currentColor" stroke-width="1.5"
+                                                            stroke-miterlimit="10"
+                                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path
+                                                            d="M16 4.02002C19.33 4.20002 21 5.43002 21 10V16C21 20 20 22 15 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002"
+                                                            stroke="currentColor" stroke-width="1.5"
+                                                            stroke-miterlimit="10"
+                                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <p class="text-sm font-medium text-black-200">My Order</p>
+                                                </div>
+                                            </a>
+                                        @endif
+
                                         <div
                                             class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
                                         <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
@@ -238,7 +250,7 @@
                                                 </svg>
                                             </div>
                                             <div class="ml-4">
-                                                <p class="text-sm font-medium text-black-200">Help</p>
+                                                <p class="text-sm font-medium text-black-200">Profile</p>
                                             </div>
                                         </a>
                                         <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
@@ -274,12 +286,14 @@
                             </div>
                         @endif
 
+                        {{--Mobile User End--}}
+
                         {{--Mobile Cart Starts herer--}}
 
                         @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
                             <div class="cart-box">
                                 <a class="w-12 h-12  hover:bg-gray-200 transition duration-500  rounded-full inline-flex items-center justify-center   relative"
-                                   href="{{ route('main.cart') }}">
+                                   href="{{ route('student.cart') }}">
                                     <div
                                         class="w-4 h-4 flex items-center justify-center bg-blue-600 absolute top-1.5 right-1.5 rounded-full text-[11px] leading-none text-white font-medium">
                                     <span class="mt-[1px]" id="quantity">
@@ -313,6 +327,7 @@
                         @endif
                         {{--Mobile Cart Ends here--}}
                     </div>
+
                 </div>
                 <div class="flex-col">
                     <div class="header-logo">
@@ -601,7 +616,7 @@
                                 </div>
                             </div>
 
-
+                            {{--Desktop User Starts Here--}}
                             @if (Auth::user() == null)
                                 <div class="discount-button text-center">
                                     <a class="py-2 px-8 rounded-full border-slate-200 font-medium border inline-block bg-blue-600 hover:border-blue-200 hover:bg-black-200 text-white  !transition   !duration-500 "
@@ -657,73 +672,87 @@
                                             </div>
                                             <div
                                                 class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
-                                            <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                               href="{{route('home')}}">
-                                                <div
-                                                    class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
-                                                            stroke="currentColor" stroke-width="1.5"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"></path>
-                                                        <path
-                                                            d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z"
-                                                            stroke="currentColor" stroke-width="1.5"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"></path>
-                                                    </svg>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <p class="text-sm font-medium text-black-200">My Dashboard</p>
-                                                </div>
-                                            </a>
-                                            <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                               href="cart.html">
-                                                <div
-                                                    class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path d="M8 12.2H15" stroke="currentColor" stroke-width="1.5"
-                                                              stroke-miterlimit="10" stroke-linecap="round"
-                                                              stroke-linejoin="round">
-                                                        </path>
-                                                        <path d="M8 16.2H12.38" stroke="currentColor" stroke-width="1.5"
-                                                              stroke-miterlimit="10" stroke-linecap="round"
-                                                              stroke-linejoin="round">
-                                                        </path>
-                                                        <path
-                                                            d="M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z"
-                                                            stroke="currentColor" stroke-width="1.5"
-                                                            stroke-miterlimit="10"
-                                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        <path
-                                                            d="M16 4.02002C19.33 4.20002 21 5.43002 21 10V16C21 20 20 22 15 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002"
-                                                            stroke="currentColor" stroke-width="1.5"
-                                                            stroke-miterlimit="10"
-                                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </svg>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <p class="text-sm font-medium text-black-200">My Order</p>
-                                                </div>
-                                            </a>
-                                            <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                               href="checkout.html">
-                                                <div
-                                                    class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
-                                                            stroke="currentColor" stroke-width="1.5"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"></path>
-                                                    </svg>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <p class="text-sm font-medium text-black-200">Wishlist</p>
-                                                </div>
-                                            </a>
+
+                                            @if(Auth::user()->type != 3)
+                                                <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                                   href="{{route('home')}}">
+                                                    <div
+                                                        class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                            <path
+                                                                d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <p class="text-sm font-medium text-black-200">My Dashboard</p>
+                                                    </div>
+                                                </a>
+                                            @endif
+
+                                            @if(Auth::user()->type != 1)
+
+                                                <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                                   href="checkout.html">
+                                                    <div
+                                                        class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path
+                                                                d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <p class="text-sm font-medium text-black-200">My Learning</p>
+                                                    </div>
+                                                </a>
+
+                                            @endif
+
+                                            @if(Auth::user()->type != 1)
+                                                <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                                   href="cart.html">
+                                                    <div
+                                                        class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M8 12.2H15" stroke="currentColor"
+                                                                  stroke-width="1.5"
+                                                                  stroke-miterlimit="10" stroke-linecap="round"
+                                                                  stroke-linejoin="round">
+                                                            </path>
+                                                            <path d="M8 16.2H12.38" stroke="currentColor"
+                                                                  stroke-width="1.5"
+                                                                  stroke-miterlimit="10" stroke-linecap="round"
+                                                                  stroke-linejoin="round">
+                                                            </path>
+                                                            <path
+                                                                d="M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-miterlimit="10"
+                                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            <path
+                                                                d="M16 4.02002C19.33 4.20002 21 5.43002 21 10V16C21 20 20 22 15 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-miterlimit="10"
+                                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <p class="text-sm font-medium text-black-200">My Order</p>
+                                                    </div>
+                                                </a>
+                                            @endif
+
                                             <div
                                                 class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
                                             <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
@@ -757,7 +786,7 @@
                                                     </svg>
                                                 </div>
                                                 <div class="ml-4">
-                                                    <p class="text-sm font-medium text-black-200">Help</p>
+                                                    <p class="text-sm font-medium text-black-200">Profile</p>
                                                 </div>
                                             </a>
                                             <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
@@ -792,6 +821,8 @@
                                     </div>
                                 </div>
                             @endif
+
+                            {{--Desktop User Ends Here--}}
 
                             {{--Desktop Cart Starts Here--}}
                             @if((Auth::user() != null && Auth::user()->type != 1) || Auth::user() == null)
@@ -883,7 +914,7 @@
                                                                                 class="flex flex-1 items-end justify-between text-sm">
                                                                                 <p></p>
                                                                                 <div class="flex">
-                                                                                    <a href="{{ route('main.cartDelete', $item->id) }}"
+                                                                                    <a href="{{ route('student.cartDelete', $item->id) }}"
                                                                                        style="color: red;">
                                                                                         Remove
                                                                                     </a>
@@ -914,11 +945,11 @@
                                                         <div class="flex space-x-2 mt-5"><a
                                                                 class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    bg-blue-600 hover:bg-black-200 transition duration-500 text-white  flex-1"
                                                                 rel="noopener noreferrer"
-                                                                href="{{ route('main.cart') }}">View
+                                                                href="{{ route('student.cart') }}">View
                                                                 cart</a>
                                                             <a class=" relative inline-flex items-center justify-center rounded-full  font-medium py-3 px-4    hover:bg-blue-600 bg-black-200 transition duration-500 text-white  flex-1"
                                                                rel="noopener noreferrer"
-                                                               href="{{ route('main.checkout') }}">Check out</a>
+                                                               href="{{ route('student.checkout') }}">Check out</a>
                                                         </div>
                                                     </div>
 

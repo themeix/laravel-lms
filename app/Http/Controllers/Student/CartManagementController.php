@@ -84,7 +84,7 @@ class CartManagementController extends Controller
             if ($cartExists) {
 
                 Alert::warning('Warning', "Already added to cart!");
-                return redirect()->route('main.cart');
+                return redirect()->route('student.cart');
 
             }
 
@@ -193,7 +193,7 @@ class CartManagementController extends Controller
         if ($cartExists) {
 
             Alert::warning('Warning', "Already added to cart!");
-            return redirect()->route('main.cart');
+            return redirect()->route('student.cart');
 
         }
 
@@ -241,7 +241,7 @@ class CartManagementController extends Controller
 
         Alert::success('Success', 'Course added to your Cart!');
 
-        return redirect()->route('main.cart');
+        return redirect()->route('student.cart');
     }
 
     public function cartList()
@@ -361,7 +361,7 @@ class CartManagementController extends Controller
             /** ====== Send notification =========*/
 
             Alert::success('success', 'Request has been Placed! Please Wait for Approve');
-            return redirect()->route('main.thankYou');
+            return redirect()->route('student.thankYou');
         }
 
 

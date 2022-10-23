@@ -20,7 +20,7 @@
         <!--  ====================== villing address Area Start =============================  -->
         <section class="villing-address-area md:py-28 py-20">
             <div class="container">
-                <form action="{{ route('main.processOrder') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('student.processOrder') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="lg:grid lg:grid-cols-12 gap-6">
                         <div class="col-span-8 ">
@@ -797,7 +797,7 @@
         </section>
     @endif
 
-    <input type="hidden" class="fetchBankRoute" value="{{ route('main.fetchBank') }}">
+    <input type="hidden" class="fetchBankRoute" value="{{ route('student.fetchBank') }}">
 @endsection
 
 
@@ -815,7 +815,7 @@
                 if (country_id != '') {
                     $.ajax({
                         method: "GET",
-                        url: "{{ route('main.getStates') }}",
+                        url: "{{ route('student.getStates') }}",
                         data: {country_id: country_id}
                     }).done(function (data) {
                         $.each(data, function (index, item) {

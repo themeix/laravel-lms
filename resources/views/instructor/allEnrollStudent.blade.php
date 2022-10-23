@@ -101,6 +101,10 @@
 
 
                                     @foreach ($orderItems as $orderItem)
+                                        @php
+
+                                            @endphp
+
                                         <tr class="removable-item">
                                             <td>
                                                 @if($orderItem->order->user->image == null)

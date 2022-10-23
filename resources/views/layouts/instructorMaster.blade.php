@@ -140,6 +140,11 @@
                         class="ficon" data-feather="globe" title="Visit Website"></i>
                 </a>
             </li>
+
+
+
+            {{--Notification Area Start--}}
+
             <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#"
                                                                          data-bs-toggle="dropdown"><i class="ficon"
                                                                                                       data-feather="bell"></i><span
@@ -240,6 +245,12 @@
                             notifications</a></li>
                 </ul>
             </li>
+
+            {{--Notification Area End--}}
+
+
+
+
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
                                                            id="dropdown-user" href="#" data-bs-toggle="dropdown"
                                                            aria-haspopup="true" aria-expanded="false">

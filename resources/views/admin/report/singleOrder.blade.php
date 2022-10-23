@@ -1,5 +1,5 @@
 @extends('layouts.adminMaster')
-@section('title','Show Pending Order')
+@section('title','Show  Order')
 
 
 
@@ -15,12 +15,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Show Pending Order</h2>
+                        <h2 class="content-header-title float-start mb-0">Show  Order</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Show Pending Order
+                                <li class="breadcrumb-item active">Show  Order
                                 </li>
                             </ol>
                         </div>
@@ -211,6 +211,8 @@
                                     <td><strong>Action</strong></td>
                                     <td>
                                         <div class="card-header flex-row justify-content-start">
+
+                                        @if($order->payment_status != 'paid')
                                             <a href="{{ route('report.order-paid', [$order->uuid, 'paid']) }}">
                                                 <div class="action__buttons mb-1">
                                                     <button class="btn-action ms-2 btn btn-success" style="width: 150px;">
@@ -218,6 +220,7 @@
                                                     </button>
                                                 </div>
                                             </a>
+                                            @endif
 
                                             <a href="{{ route('report.order-paid', [$order->uuid, 'cancelled']) }}">
                                                 <div class="action__buttons mb-1">

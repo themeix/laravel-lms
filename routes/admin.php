@@ -293,6 +293,9 @@ Route::post('city/delete/{uuid}', [CityController::class, 'delete'])->name('city
 
 
 //Manage Order
+Route::get('all-order', [ReportController::class, 'allOrder'])->name('report.allOrder');
+Route::get('all-order/show/{uuid}', [ReportController::class, 'singleOrder'])->name('report.singleOrder.show');
+
 Route::get('order-pending', [ReportController::class, 'orderReportPending'])->name('report.order-pending');
 Route::get('order-pending/show/{uuid}', [ReportController::class, 'orderReportPendingShow'])->name('report.order-pending.show');
 

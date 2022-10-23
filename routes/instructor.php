@@ -77,7 +77,7 @@ Route::get('course/assessments/download', [AssignmentController::class, 'student
 
 
 //All Enroll Student List
-Route::get('allEnrollStudent/index', [StudentController::class, 'allEnrollStudentIndex'])->name('instructor.allEnrollStudent.index');
+Route::get('all-enrollStudent/index', [StudentController::class, 'allEnrollStudentIndex'])->name('instructor.allEnrollStudent.index');
 
 
 //Notice Routes Start

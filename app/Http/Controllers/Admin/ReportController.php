@@ -14,6 +14,38 @@ use App\Traits\SendNotification;
 class ReportController extends Controller
 {
     use SendNotification;
+
+
+    public function allOrder(){
+        if (!Auth::user()->can('finance')) {
+            abort('403');
+        } // end permission checking
+
+        $data['orders'] = Order::whereNot('payment_status', 'free')->withCount([
+            'items as total_admin_commission' => function ($q) {
+                $q->select(DB::raw("SUM(admin_commission)"));
+            },
+
+            'items as total_owner_balance' => function ($q) {
+                $q->select(DB::raw("SUM(owner_balance)"));
+            },
+        ])->get();
+
+        return view('admin.report.allOrder', $data);
+    }
+
+
+    public function singleOrder($uuid){
+        if (!Auth::user()->can('finance')) {
+            abort('403');
+        } // end permission checking
+
+        $data['order'] = Order::where('uuid', $uuid)->first();
+
+        return view ('admin.report.singleOrder', $data);
+    }
+
+
     public function orderReportPending()
     {
         if (!Auth::user()->can('finance')) {
@@ -125,6 +157,16 @@ class ReportController extends Controller
         $order->payment_status = $status;
         $order->save();
 
+        if($status == 'paid') {
+            Alert::toast('Order Payment Paid Successfully.', 'success');
+            return redirect()->route('report.order-pending')->with('update-message', 'Order Payment Paid Successfully.');
+        }
+
+        else{
+            Alert::toast('Order Cancelled.', 'warning');
+            return redirect()->route('report.order-pending')->with('warning-message', 'Order Cancelled.');
+        }
+
 
         /** ====== send notification to student ===== */
         $orderItems = OrderItem::where('order_id', $order->id)->get();
@@ -140,17 +182,10 @@ class ReportController extends Controller
                 $this->send($text2, 2, $target_url2, @$orderItem->course->user_id);
                 /** ====== Send notification to instructor =========*/
 
-                Alert::toast('Order Payment Paid Successfully.', 'success');
-
-                return redirect()->route('report.order-pending')->with('update-message', 'Order Payment Paid Successfully.');
-
             } else {
                 $text = "Your bank payment has been cancelled.";
                 $target_url = route('student.learning');
 
-                Alert::toast('Order Cancelled.', 'warning');
-
-                return redirect()->route('report.order-pending')->with('warning-message', 'Order Cancelled.');
             }
 
             $this->send($text, 3, $target_url, $order->user_id);

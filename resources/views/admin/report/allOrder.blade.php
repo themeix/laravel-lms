@@ -1,5 +1,5 @@
 @extends('layouts.adminMaster')
-@section('title','Order Pending List')
+@section('title','All Order List')
 
 
 
@@ -15,12 +15,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Order Pending List</h2>
+                        <h2 class="content-header-title float-start mb-0">All Order List</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Order Pending List
+                                <li class="breadcrumb-item active">All Order List
                                 </li>
                             </ol>
                         </div>
@@ -157,7 +157,7 @@
 
                                         </td>
                                         <td>
-                                            <a href="{{ route('report.order-pending.show', $order->uuid) }}">
+                                            <a href="{{ route('report.singleOrder.show', $order->uuid) }}">
                                                 <div class="action__buttons">
                                                     <button class="btn-action ms-2 btn btn-primary addPromotion">
                                                         <span>Details</span>
@@ -170,9 +170,6 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="mt-3">
-                                {{$orders->links()}}
-                            </div>
                         </div>
                     </div>
                 </div>

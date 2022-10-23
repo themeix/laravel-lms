@@ -50,18 +50,19 @@
 
     <style>
         .dataTables_info {
-            align-items: center;
-            text-align: center;
-            justify-content: center;
-            color: black;
+            align-items: center!important;
+            text-align: center!important;
+            justify-content: center!important;
+            color: black!important;
         }
 
         .indexTable {
-            overflow-x: scroll;
+            overflow-x: auto!important;
+            margin-right: 5px!important;
         }
 
         .action__buttons {
-            justify-content: center;
+            justify-content: center!important;
         }
     </style>
     <!-- END: Custom CSS-->

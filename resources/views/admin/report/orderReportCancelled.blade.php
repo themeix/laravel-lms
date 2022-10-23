@@ -157,7 +157,7 @@
 
                                         </td>
                                         <td>
-                                            <a href="{{ route('report.order-pending.show', $order->uuid) }}">
+                                            <a href="{{ route('report.orderCancelled.show', $order->uuid) }}">
                                                 <div class="action__buttons">
                                                     <button class="btn-action ms-2 btn btn-primary addPromotion">
                                                         <span>Details</span>

@@ -661,6 +661,29 @@
             </li>
 
 
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="javascript:void(0);"><i data-feather='pie-chart'></i><span
+                        class="menu-title text-truncate" data-i18n="User">Manage Order</span></a>
+                <ul class="menu-content">
+
+                    <li class="{{ (request()->is('admin/all-order*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('report.allOrder') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All Order</span></a>
+                    </li>
+
+                    <li class="{{ (request()->is('admin/order-pending*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('report.order-pending') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Order Pending</span></a>
+                    </li>
+
+                    <li class="{{ (request()->is('admin/order-cancelled*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('report.orderCancelled') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Cancelled Order</span></a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+
+
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='command'></i><span
                         class="menu-title text-truncate" data-i18n="User">Manage Payment</span></a>
                 <ul class="menu-content">
@@ -677,20 +700,7 @@
             </li>
 
 
-            <li class=" nav-item"><a class="d-flex align-items-center" href="javascript:void(0);"><i data-feather='pie-chart'></i><span
-                        class="menu-title text-truncate" data-i18n="User">Manage Order</span></a>
-                <ul class="menu-content">
-                    <li class="{{ (request()->is('admin/order-pending*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('report.order-pending') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Order Pending</span></a>
-                    </li>
 
-                    <li class="{{ (request()->is('admin/order-cancelled*')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('report.orderCancelled') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Cancelled Order</span></a>
-                    </li>
-
-
-                </ul>
-            </li>
 
 
             {{--<li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='headphones'></i><span

@@ -161,7 +161,7 @@
                                     <td>
                                         <div>
                                             @if(@$order->payment_method == 'bank')
-                                                {{ @$order->bank->name }}
+                                                {{ @$order->bank->name }} ({{ @$order->bank->account_number }})
                                             @endif
                                         </div>
                                     </td>
@@ -211,18 +211,10 @@
                                     <td><strong>Action</strong></td>
                                     <td>
                                         <div class="card-header flex-row justify-content-start">
-                                            <a href="">
+                                            <a href="{{ route('report.order-paid', [$order->uuid, 'paid']) }}">
                                                 <div class="action__buttons mb-2">
                                                     <button class="btn-action ms-2 btn btn-success" style="width: 150px;">
                                                         <span>Confirm Order</span>
-                                                    </button>
-                                                </div>
-                                            </a>
-
-                                            <a href="">
-                                                <div class="action__buttons mb-2">
-                                                    <button class="btn-action ms-2 btn btn-secondary">
-                                                        <span>Cancel</span>
                                                     </button>
                                                 </div>
                                             </a>

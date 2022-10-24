@@ -1,4 +1,4 @@
-@extends('layouts.adminMaster')
+@extends('layouts.instructorMaster')
 @section('title','Create Exam')
 
 
@@ -54,7 +54,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="name">Assignment Topic</label>
+                                            <label class="form-label" for="name">Exam Name</label>
 
                                             <input type="text" name="name"  placeholder="Enter your Exam Name"
                                                    value="{{ old('name') }}" class="form-control">

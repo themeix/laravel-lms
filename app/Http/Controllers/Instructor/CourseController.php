@@ -135,15 +135,6 @@ class CourseController extends Controller
         }
 
 
-        if ($request->key_points) {
-            foreach ($request->key_points as $key_point) {
-                $learn_Key_point = new LearnKeyPoint();
-                $learn_Key_point->course_id = $course->id;
-                $learn_Key_point->key_points_id = $key_point;
-                $learn_Key_point->save();
-            }
-        }
-
         Alert::toast('Course Created Successfully.', 'Success');
 
         return redirect()->route('instructor.course.index')->with('success-message', 'Course Created Successfully.');

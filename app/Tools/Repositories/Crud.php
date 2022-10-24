@@ -87,7 +87,7 @@ class Crud implements CrudInterface
 
     public function delete($id)
     {
-        return $this->model->destroy($id);
+        return $this->model->whereId($id)->delete();
     }
 
     public function deleteByUuid($uuid)

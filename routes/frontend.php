@@ -24,8 +24,8 @@ Route::get('course-details/{uuid}', [FrontendIndexController::class, 'courseDeta
 
 
 //Category Wise Courses
-Route::get('category-courses-style-1/{uuid}', [FrontendIndexController::class, 'categoryWiseCourses1'])->name('main.categoryWiseCourses1');
-Route::get('category-courses-style-2/{uuid}', [FrontendIndexController::class, 'categoryWiseCourses2'])->name('main.categoryWiseCourses2');
+Route::get('category-courses-style-1/{slug}', [FrontendIndexController::class, 'categoryWiseCourses1'])->name('main.categoryWiseCourses1');
+Route::get('category-courses-style-2/{slug}', [FrontendIndexController::class, 'categoryWiseCourses2'])->name('main.categoryWiseCourses2');
 
 
 //Instructor Wise Courses

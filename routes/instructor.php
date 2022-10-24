@@ -5,6 +5,7 @@ use App\Http\Controllers\Instructor\AssignmentController;
 use App\Http\Controllers\Instructor\CertificateController;
 use App\Http\Controllers\Instructor\DiscussionController;
 use App\Http\Controllers\Instructor\ExamController;
+use App\Http\Controllers\Instructor\KeyPointsController;
 use App\Http\Controllers\Instructor\LiveClassController;
 use App\Http\Controllers\Instructor\NoticeBoardController;
 use App\Http\Controllers\Instructor\ResourceController;
@@ -27,7 +28,6 @@ Route::post('course/update-overview/{uuid}', [CourseController::class, 'updateOv
 Route::post('course/update-category/{uuid}', [CourseController::class, 'updateCategory'])->name('instructor.course.course.update.category')/*->middleware('isDemo')*/;
 Route::delete('course/course-delete/{uuid}', [CourseController::class, 'delete'])->name('instructor.course.delete')->middleware('isDemo');
 //Course Routes End
-
 
 
 //Course Resource Routes Start
@@ -59,6 +59,24 @@ Route::post('course/exam/update-mcq-question/{question_uuid}', [ExamController::
 Route::get('course/exam/delete-question/{question_uuid}', [ExamController::class, 'deleteQuestion'])->name('exam.delete-question')/*->middleware('isDemo')*/;
 
 //Course Exam Routes End
+
+
+//Learn Key Points Routes Start Here
+
+Route::get('course/key-points/index/{course_uuid}', [KeyPointsController::class, 'index'])->name('instructor.course.key-points.index');
+
+Route::get('course/key-points/create/{course_uuid}', [KeyPointsController::class, 'create'])->name('instructor.course.key-points.create');
+
+Route::post('course/key-points/store/{course_uuid}', [KeyPointsController::class, 'store'])->name('instructor.course.key-points.store')/*->middleware('isDemo')*/;
+
+Route::get('course/key-points/edit/{course_uuid}/{id}', [KeyPointsController::class, 'edit'])->name('instructor.course.key-points.edit')/*->middleware('isDemo')*/;
+
+Route::post('course/key-points/store/{course_uuid}/{id}', [KeyPointsController::class, 'update'])->name('instructor.course.key-points.update')/*->middleware('isDemo')*/;
+
+Route::post('course/key-points/delete/{id}', [KeyPointsController::class, 'delete'])->name('instructor.course.key-points.delete')/*->middleware('isDemo')*/;
+
+//Learn Key Points Routes Ends Here
+
 
 
 

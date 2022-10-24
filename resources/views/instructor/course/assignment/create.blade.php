@@ -1,4 +1,4 @@
-@extends('layouts.adminMaster')
+@extends('layouts.instructorMaster')
 @section('title','Create Assignment')
 
 

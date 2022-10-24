@@ -99,6 +99,7 @@
                                     <th>Details</th>
                                     <th>Ratings</th>
                                     <th>Status</th>
+                                    <th>Add Key Points</th>
                                     <th>Resources</th>
                                     <th>Action</th>
                                 </tr>
@@ -151,7 +152,15 @@
                                                 <span class="badge badge-glow bg-danger">Pending</span>
                                             @endif
                                         </td>
-
+                                        <td>
+                                            <div class="mb-1">
+                                                <a href="{{route('instructor.course.key-points.index', [$course->uuid])}}">
+                                                    <button type="button" class="btn  btn-primary waves-effect"
+                                                            style="width: 120px">Key Points
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </td>
                                         <td>
                                             <div class="mb-1">
                                                 <a href="{{route('instructor.course.resource.index', [$course->uuid])}}">

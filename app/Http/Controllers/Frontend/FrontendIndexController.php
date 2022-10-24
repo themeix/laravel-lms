@@ -48,17 +48,17 @@ class FrontendIndexController extends Controller
     }
 
 
-    public function categoryWiseCourses1($uuid)
+    public function categoryWiseCourses1($slug)
     {
-        $data['category'] = Category::where('uuid', $uuid)->first();
+        $data['category'] = Category::where('slug', $slug)->first();
         $data['courses'] = Course::where('category_id', $data['category']->id)->where('status', 1)->get();
         $data['categories'] = Category::take(5)->get();
         return view('frontend.course.category.categoryWiseCourse1', $data);
     }
 
-    public function categoryWiseCourses2($uuid)
+    public function categoryWiseCourses2($slug)
     {
-        $data['category'] = Category::where('uuid', $uuid)->first();
+        $data['category'] = Category::where('slug', $slug)->first();
         $data['courses'] = Course::where('category_id', $data['category']->id)->where('status', 1)->get();
         $data['categories'] = Category::take(5)->get();
         return view('frontend.course.category.categoryWiseCourse2', $data);

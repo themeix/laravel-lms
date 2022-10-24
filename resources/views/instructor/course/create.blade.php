@@ -94,64 +94,6 @@
 
                                 </div>
 
-                                <div class="col-md-12 col-12">
-                                    <div class="mb-2">
-                                        <label class="form-label" for="tag_ids">Key Points</label>
-                                        <select id="blog-edit-category" name="key_points[]" class="select2 form-select" multiple>
-                                            @foreach($key_points as $key_point)
-                                                <option value="{{ $key_point->id }}">{{ $key_point->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                {{--<div class="row mb-30">
-                                    <div class="col-md-12 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="key_points">Course Description Key Points</label>
-
-                                        </div>
-                                        <div id="add_repeater">
-                                            <div data-repeater-list="key_points" class="">
-                                                <label for="name" class="text-lg-right text-black"> Name </label>
-                                                <div data-repeater-item="" class="form-group row align-items-center">
-                                                    <div class="custom-form-group mb-2 col-md-10">
-                                                        <input type="text" name="name key_points[]" id="key_points" value="{{old('key_points[]')}}" class="form-control" placeholder="Type key point name" required>
-                                                    </div>
-
-                                                    <div class="col mb-2">
-
-                                                        <button class="btn btn-outline-danger text-nowrap  waves-effect" data-repeater-delete="" type="button">
-                                                            <span>Delete</span>
-                                                        </button>
-
-
-                                                        <a href="javascript:;" data-repeater-delete=""
-                                                           class="theme-btn theme-button1 default-delete-btn-red default-hover-btn frontend-remove-btn btn-danger">
-                                                            <span class="iconify" data-icon="akar-icons:cross"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-2 mb-2">
-                                                <button class="btn btn-icon btn-outline-primary waves-effect waves-float waves-light" type="button" data-repeater-create="">
-                                                    <span>Add New</span>
-                                                </button>
-
-
-                                                <a id="add" href="javascript:;" data-repeater-create=""
-                                                   class="theme-btn default-hover-btn theme-button1">
-                                                    <span class="iconify" data-icon="akar-icons:plus"></span>
-                                                </a>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>--}}
-
 
                                 <div class="row">
                                     <div class="col-md-12 col-12">
@@ -380,9 +322,10 @@
     <script src="{{asset('app-assets/js/scripts/pages/page-blog-edit.js')}}"></script>
 
 
-    {{--<script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>--}}
+   {{-- <script src="{{asset('app-assets/js/scripts/forms/form-validation.js') }}"></script>--}}
     <script src="{{ asset('custom/js/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('custom/js/add-repeater.js') }}"></script>
+
     <script>
         $(function () {
             var subCategorySelectedId = '{{ old('subcategory_id') }}';
@@ -409,9 +352,9 @@
 
         $(document).ready(function () {
 
-            $('#blog-edit-category').select2({
+            /*$('#blog-edit-category').select2({
                 placeholder: '---Select  Key Points---'
-            });
+            });*/
 
             $('#blog-edit-category1').select2({
                 placeholder: '---Select  Tag---'

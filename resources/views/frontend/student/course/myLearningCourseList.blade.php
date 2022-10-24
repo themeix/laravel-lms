@@ -22,30 +22,11 @@
     <!--  ====================== Course Layout Area Start =============================  -->
     <section class="course-layout-area md:pt-32 pt-20">
         <div class="container">
-            <div class="md:grid md:grid-cols-12 flex flex-col lg:gap-16 gap-10">
+            <div class="flex flex-col lg:gap-16 gap-10">
+
                 <div class="col-span-12">
                     <div class="course-layout-right">
-                        <div
-                            class="course-layout-right-title-box bg-blue-100 p-4 flex items-center rounded-md justify-between">
-                            <div class="flex-col">
-                                <h2 class="md:text-2xl text-xl font-medium text-black-200 ">
-                                    {{$category->name}}</h2>
-                            </div>
-                            <div class="flex-col">
-                                <div class="box border-0">
-                                    <select>
-                                        <option data-display="Short by">Sort by</option>
-                                        <option value="1">Latest</option>
-                                        <option value="2">Oldest</option>
-                                        <option value="3">High to Low</option>
-                                        <option value="4">Low to High</option>
-                                        <option value="4">Top Rating</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if(count($orderItems) > 0)
+                        @if(sizeof($orderItems) > 0)
 
                             @foreach($orderItems as $orderItem)
                                 <div class="course-layout-item mt-7 group mb-6" data-aos="fade-up" data-aos-delay="400">
@@ -53,15 +34,13 @@
                                         class="md:grid flex flex-col  md:grid-cols-12 gap-6 p-6 border border-blue-20 hover:border-blue-800 transition duration-300 rounded-bl-md rounded-br-md">
                                         <div class="col-span-4">
                                             <div class="course-images  h-full relative overflow-hidden rounded">
-                                                <a class="" href="{{ route('student.my-course.show', @$orderItem->course->slug) }}">
-                                                    <img
-                                                        class="group-hover:scale-125  transition duration-500 w-full h-full max-h-64 object-cover rounded"
-                                                        src="{{ getImageFile(@$orderItem->course->image_path) }}"
-                                                        alt="images">
-                                                    <div
-                                                        class="overlay-images rounded-xl absolute top-0 w-full h-full bg-blue-5 left-0">
-                                                    </div>
-                                                </a>
+                                                <img
+                                                    class="group-hover:scale-125  transition duration-500 w-full h-full max-h-64 object-cover rounded"
+                                                    src="{{ getImageFile(@$orderItem->course->image_path) }}"
+                                                    alt="images">
+                                                <div
+                                                    class="overlay-images rounded-xl absolute top-0 w-full h-full bg-blue-5 left-0">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-span-8">
@@ -69,7 +48,7 @@
                                                 <div class="flex justify-between items-center">
                                                     <div class="name-box flex justify-between">
                                                         <a class="text-black-200 hover:text-blue-600"
-                                                           href="{{route('main.instructorWiseCourses',$course->instructor->uuid)}}">{{ @$orderItem->course->instructor->name }}</a>
+                                                           href="{{ route('main.instructorWiseCourses', $orderItem->course->instructor->uuid) }}">{{ @$orderItem->course->instructor->name }}</a>
                                                     </div>
                                                     <div class="name-box flex justify-between">
                                                         <p class="text-blue-600 text-xl font-bold">
@@ -90,7 +69,7 @@
 
                                                 <h3
                                                     class="md:text-2xl text-xl font-semibold mt-2 text-black-200 mb-2 hover:text-blue-600">
-                                                    <a href="{{ route('student.my-course.show', @$orderItem->course->slug) }}">{{ @$orderItem->course->title }}</a>
+                                                    <a href="{{ route('student.my-course.show',  @$orderItem->course->slug) }}">{{ @$orderItem->course->title }}</a>
                                                 </h3>
                                                 <div class="reviews-box flex justify-between pt-5">
                                                     <div class="flex items-center">
@@ -118,56 +97,19 @@
                                                         <p>5.0 (80 Reviews)</p>
                                                     </div>
                                                 </div>
-                                                @if(Auth::user() != null)
-                                                    @php
-                                                        $isPurchased = \App\Models\OrderItem::where('course_id', $course->id)->where('user_id', Auth::user()->id)->first();
-                                                        $ownCourse = \App\Models\Course::where('id', $course->id)->where('user_id', Auth::user()->id)->first();
-                                                    @endphp
-                                                @endif
 
-                                                @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
-                                                    <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
-                                                            Add To Cart
+
+                                                <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
+
+                                                    <a href="{{ route('student.my-course.show', @$orderItem->course->slug) }}">
+                                                        <button
+                                                            class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
+                                                            View Course
                                                         </button>
+                                                    </a>
+                                                </div>
 
-                                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
-                                                            Buy Now
-                                                        </button>
-                                                    </div>
-                                                @else
 
-                                                    <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                                        <form action="{{route('student.addToCart') }}" method="GET"
-                                                              enctype="multipart/form-data">
-                                                            @csrf
-                                                            <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                                            <input type="hidden" value="{{ $course->title }}" name="title">
-                                                            <input type="hidden" value="{{ $course->price }}" name="price">
-                                                            <input type="hidden" value="{{ $course->image }}" name="image">
-                                                            <input type="hidden" value="1" name="quantity">
-                                                            <button
-                                                                class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
-                                                                Add To Cart
-                                                            </button>
-                                                        </form>
-
-                                                        <form action="{{ route('student.buyNow') }}" method="GET"
-                                                              enctype="multipart/form-data">
-                                                            @csrf
-                                                            <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                                            <input type="hidden" value="{{ $course->title }}" name="title">
-                                                            <input type="hidden" value="{{ $course->price }}" name="price">
-                                                            <input type="hidden" value="{{ $course->image }}" name="image">
-                                                            <input type="hidden" value="1" name="quantity">
-                                                            <button
-                                                                class="border-blue-20 border inline-block py-2.5 px-5 rounded-full hover:bg-blue-600 hover:border-blue-600  !transition   !duration-500  hover:text-white">
-                                                                Buy Now
-                                                            </button>
-                                                        </form>
-                                                    </div>
-
-                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -183,8 +125,7 @@
 
                         @endif
 
-
-                        <div class="pagination-box mt-1" data-aos="fade-up" data-aos-delay="800">
+                        {{--<div class="pagination-box mt-1" data-aos="fade-up" data-aos-delay="800">
                             <ul class="flex items-center gap-3">
                                 <li>
                                     <a class="group" href="#">
@@ -214,7 +155,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
             </div>

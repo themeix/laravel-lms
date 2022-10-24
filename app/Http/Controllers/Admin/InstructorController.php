@@ -132,6 +132,13 @@ class InstructorController extends Controller
         $user->image = $request->image ? $this->saveImage('user', $request->image, null, null) : null;
         $user->save();
 
+        if (Instructor::where('slug', Str::slug($user->name))->count() > 0)
+        {
+            $slug = Str::slug($user->name) . '-'. rand(100000, 999999);
+        } else {
+            $slug = Str::slug($user->name);
+        }
+
 
         $instructor_data = [
             'user_id' => $user->id,
@@ -140,6 +147,7 @@ class InstructorController extends Controller
             'address' => $request->address,
             'professional_title' => $request->professional_title,
             'phone_number' => $request->phone_number,
+            'slug' => $slug,
             'status' => 1,
             'country_id' => $request->country_id,
             'state_id' => $request->state_id,

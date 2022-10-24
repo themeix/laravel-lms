@@ -55,7 +55,7 @@ class CategoryController extends Controller
 
 
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:categories,name',
             'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
@@ -114,7 +114,7 @@ class CategoryController extends Controller
 
 
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:categories,name,'.$category->id,
             'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 

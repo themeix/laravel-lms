@@ -307,7 +307,7 @@
 @push('scripts')
     <script src="{{asset('app-assets/vendors/js/editors/quill/quill.min.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/pages/page-blog-edit.js')}}"></script>
-    
+
         <script>
             $(function () {
                 var stateSelectedId = '{{ old('state_id') }}';
@@ -317,7 +317,7 @@
                     if (country_id != '') {
                         $.ajax({
                             method: "GET",
-                            url: "{{ route('student.getStates') }}",
+                            url: "{{ route('admin.student.getStates') }}",
                             data: { country_id: country_id }
                         }).done(function( data ) {
                             $.each(data, function( index, item ) {
@@ -341,7 +341,7 @@
                     if (state_id != '') {
                         $.ajax({
                             method: "GET",
-                            url: "{{ route('student.getCities') }}",
+                            url: "{{ route('admin.student.getCities') }}",
                             data: { state_id: state_id }
                         }).done(function( data ) {
                             $.each(data, function( index, item ) {

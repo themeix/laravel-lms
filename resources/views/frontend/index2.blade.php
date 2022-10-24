@@ -177,14 +177,14 @@
                             data-aos="fade-up" data-aos-delay="50">
                             <div class="popular-icon mb-6 inline-block ">
               <span class="w-16 h-16">
-                <a href="{{route('main.categoryWiseCourses2', $category->uuid)}}"><img
+                <a href="{{route('main.categoryWiseCourses2', $category->slug)}}"><img
                         src="{{getImageFile($category->image_path)}}" width="80" height="80" alt="category"></a>
               </span>
                             </div>
                             <h3 class="md:text-2xl text-xl font-semibold text-black-200 mb-1 hover:text-blue-600">
-                                <a href="{{route('main.categoryWiseCourses2', $category->uuid)}}">{{$category->name}} </a>
+                                <a href="{{route('main.categoryWiseCourses2', $category->slug)}}">{{$category->name}} </a>
                             </h3>
-                            <a href="{{route('main.categoryWiseCourses2', $category->uuid)}}"><p
+                            <a href="{{route('main.categoryWiseCourses2', $category->slug)}}"><p
                                     class="text-lg">{{ @$category->courses->where('status', 1)->count() }} Courses</p>
                             </a>
                         </div>
@@ -458,7 +458,7 @@
                             </div>
                             <div class="title-link">
                                 <a class="underline text-blue-600 font-semibold hover:text-black-200"
-                                   href="{{ route('main.categoryWiseCourses2', $showingCategories[0]->uuid) }}">View
+                                   href="{{ route('main.categoryWiseCourses2', $showingCategories[0]->slug) }}">View
                                     All</a>
                             </div>
                         </div>
@@ -596,7 +596,7 @@
                             </div>
                             <div class="title-link">
                                 <a class="underline text-blue-600 font-semibold hover:text-black-200"
-                                   href="{{ route('main.categoryWiseCourses2', $showingCategories[1]->uuid) }}">View
+                                   href="{{ route('main.categoryWiseCourses2', $showingCategories[1]->slug) }}">View
                                     All</a>
                             </div>
                         </div>

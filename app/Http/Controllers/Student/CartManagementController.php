@@ -32,9 +32,7 @@ class CartManagementController extends Controller
     public function addToCart(Request $request)
     {
         if (Auth::user()->type == 1) {
-
-            Alert::error('Error', 'You are not allowed to add course to cart!');
-
+            Alert::toast("You are not allowed to add course to cart!", 'error');
             return redirect()->back();
         } else {
 
@@ -51,11 +49,11 @@ class CartManagementController extends Controller
                             $order->delete();
                         } elseif ($order->payment_status == 'pending') {
 
-                            Alert::info('Info', "You've already request the course & status is pending!");
+                            Alert::toast("You've already request the course & status is pending!", 'info');
                             return redirect()->back();
 
                         } elseif ($order->payment_status == 'paid' || $order->payment_status == 'free') {
-                            Alert::info('Info', "You've already purchased the course!");
+                            Alert::toast("You've already purchased the course!", 'info');
                             return redirect()->back();
 
                         }
@@ -67,14 +65,14 @@ class CartManagementController extends Controller
                 $ownCourseCheck = Course::whereUserId(Auth::user()->id)->where('id', $request->course_id)->first();
 
                 if ($ownCourseCheck) {
-                    Alert::info('Info', "This is your course. No need to purchase.");
+                    Alert::toast("This is your course. No need to purchase.", 'info');
                     return redirect()->back();
                 }
 
                 $courseExits = Course::find($request->course_id);
                 if (!$courseExits) {
 
-                    Alert::error('Info', "Course not found!");
+                    Alert::toast("Course not found!", 'error');
                     return redirect()->back();
                 }
             }
@@ -82,8 +80,7 @@ class CartManagementController extends Controller
             $cartExists = CartManagement::whereUserId(Auth::user()->id)->whereCourseId($request->course_id)->first();
 
             if ($cartExists) {
-
-                Alert::warning('Warning', "Already added to cart!");
+                Alert::toast("Already added to cart!", 'warning');
                 return redirect()->route('student.cart');
 
             }
@@ -109,9 +106,7 @@ class CartManagementController extends Controller
                     $order_item->sell_commission = 0;
                     $order_item->save();
 
-
-                    Alert::success('Success', 'Free Course added to your learning list!');
-
+                    Alert::toast('Free Course added to your learning list!', 'success');
                     return redirect()->back();
 
                 }
@@ -129,9 +124,7 @@ class CartManagementController extends Controller
 
             $quantity = CartManagement::whereUserId(Auth::user()->id)->count();
 
-
-            Alert::success('Success', 'Course added to your Cart!');
-
+            Alert::toast('Course added to your Cart!', 'success');
             return redirect()->back();
 
         }
@@ -160,11 +153,11 @@ class CartManagementController extends Controller
                         $order->delete();
                     } elseif ($order->payment_status == 'pending') {
 
-                        Alert::info('Info', "You've already request the course & status is pending!");
+                        Alert::toast("You've already request the course & status is pending!", 'info');
                         return redirect()->back();
 
                     } elseif ($order->payment_status == 'paid' || $order->payment_status == 'free') {
-                        Alert::info('Info', "You've already purchased the course!");
+                        Alert::toast("You've already purchased the course!", 'info');
                         return redirect()->back();
 
                     }
@@ -176,14 +169,14 @@ class CartManagementController extends Controller
             $ownCourseCheck = Course::whereUserId(Auth::user()->id)->where('id', $request->course_id)->first();
 
             if ($ownCourseCheck) {
-                Alert::info('Info', "This is your course. No need to purchase.");
+                Alert::toast("This is your course. No need to purchase.", 'info');
                 return redirect()->back();
             }
 
             $courseExits = Course::find($request->course_id);
             if (!$courseExits) {
 
-                Alert::error('Info', "Course not found!");
+                Alert::toast("Course not found!", 'error');
                 return redirect()->back();
             }
         }
@@ -192,7 +185,7 @@ class CartManagementController extends Controller
 
         if ($cartExists) {
 
-            Alert::warning('Warning', "Already added to cart!");
+            Alert::toast("Already added to cart!", 'warning');
             return redirect()->route('student.cart');
 
         }
@@ -218,9 +211,7 @@ class CartManagementController extends Controller
                 $order_item->sell_commission = 0;
                 $order_item->save();
 
-
-                Alert::success('Success', 'Free Course added to your learning list!');
-
+                Alert::toast('Free Course added to your learning list!', 'success');
                 return redirect()->back();
 
             }
@@ -238,9 +229,7 @@ class CartManagementController extends Controller
 
         $quantity = CartManagement::whereUserId(Auth::user()->id)->count();
 
-
-        Alert::success('Success', 'Course added to your Cart!');
-
+        Alert::toast('Course added to your Cart!', 'success');
         return redirect()->route('student.cart');
     }
 
@@ -309,7 +298,7 @@ class CartManagementController extends Controller
     {
         $cart = CartManagement::findOrFail($id);
         $cart->delete();
-        Alert::warning('Warning', 'Course removed from your Cart!');
+        Alert::toast('Course removed from your Cart!', 'warning');
         return redirect()->back();
     }
 
@@ -318,14 +307,14 @@ class CartManagementController extends Controller
     {
 
         if (is_null($request->payment_method)) {
-            Alert::warning('warning', 'Please Select Payment Method');
+            Alert::toast('Please Select Payment Method', 'warning');
             return redirect()->back();
         }
 
 
         if ($request->payment_method == 'bank') {
             if (empty($request->deposit_by) || is_null($request->deposit_slip) || empty($request->account_number) || empty($request->bank_id)) {
-                Alert::error('Error', 'Bank Information Not Valid!');
+                Alert::toast('Bank Information Not Valid!', 'error');
                 return redirect()->back();
             }
         }
@@ -360,7 +349,7 @@ class CartManagementController extends Controller
             $this->send($text, 1, $target_url, null);
             /** ====== Send notification =========*/
 
-            Alert::success('success', 'Request has been Placed! Please Wait for Approve');
+            Alert::toast('Request has been Placed! Please Wait for Approve', 'success');
             return redirect()->route('student.thankYou');
         }
 

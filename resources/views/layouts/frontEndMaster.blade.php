@@ -1068,7 +1068,7 @@
                                                                                                 {{ $item->course->title }} </a>
                                                                                         </h3>
                                                                                         <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                                                                                            <a href="{{ route('main.categoryWiseCourses1', $item->course->category->uuid) }}">
+                                                                                            <a href="{{ route('main.categoryWiseCourses1', $item->course->category->slug) }}">
                                                                                                 <span>{{ @$item->course->category->name }}</span>
                                                                                             </a>
 

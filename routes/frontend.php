@@ -20,7 +20,7 @@ Route::get('all-courses-style-1', [FrontendIndexController::class, 'allCourses1'
 Route::get('all-courses-style-2', [FrontendIndexController::class, 'allCourses2'])->name('main.allCourses2');
 
 //Course Details
-Route::get('course-details/{uuid}', [FrontendIndexController::class, 'courseDetails'])->name('main.courseDetails');
+Route::get('course-details/{slug}', [FrontendIndexController::class, 'courseDetails'])->name('main.courseDetails');
 
 
 //Category Wise Courses
@@ -29,7 +29,7 @@ Route::get('category-courses-style-2/{slug}', [FrontendIndexController::class, '
 
 
 //Instructor Wise Courses
-Route::get('/instructor-courses/{uuid}', [FrontendIndexController::class, 'instructorWiseCourses'])->name('main.instructorWiseCourses');
+Route::get('/instructor-courses/{slug}', [FrontendIndexController::class, 'instructorWiseCourses'])->name('main.instructorWiseCourses');
 
 
 

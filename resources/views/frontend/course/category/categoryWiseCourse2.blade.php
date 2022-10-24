@@ -58,7 +58,7 @@
                         <div class="lessons-item group hover:-translate-y-2 duration-500" data-aos="fade-up"
                              data-aos-delay="300">
                             <div class="lessons-images relative overflow-hidden">
-                                <a href="{{ route('main.courseDetails', $course->uuid) }}"> <img class="rounded-t-md max-h-64 w-full object-cover"
+                                <a href="{{ route('main.courseDetails', $course->slug) }}"> <img class="rounded-t-md max-h-64 w-full object-cover"
                                                                                                  src="{{asset('frontend/assets/images/lessons-images-1.webp')}}"
                                                                                                  alt="images">
                                 </a>
@@ -82,13 +82,13 @@
 
                                 <div class="name-box flex justify-between mt-6">
                                     <a class="hover:text-blue-600"
-                                       href="{{route('main.instructorWiseCourses',$course->instructor->uuid)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
+                                       href="{{route('main.instructorWiseCourses',$course->instructor->slug)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
                                 </div>
 
 
                                 <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
                                     <a
-                                        href="{{ route('main.courseDetails', $course->uuid) }}">{{$course->title}}</a></h3>
+                                        href="{{ route('main.courseDetails', $course->slug) }}">{{$course->title}}</a></h3>
                                 <div class="reviews-box flex justify-between pt-5">
                                     <div class="flex items-center">
                              <span class="mr-2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"

@@ -76,9 +76,9 @@ class FrontendIndexController extends Controller
         return view('frontend.course.category.allCategories2', $data);
     }
 
-    public function courseDetails($uuid)
+    public function courseDetails($slug)
     {
-        $data['course'] = Course::where('uuid', $uuid)->first();
+        $data['course'] = Course::where('slug', $slug)->first();
         $data['instructor'] = Instructor::where('id', $data['course']->instructor_id)->first();
         $data['instructorCourses'] = Course::where('instructor_id', $data['instructor']->id)->where('status', 1)->get();
         return view('frontend.course.courseDetails', $data);
@@ -97,9 +97,9 @@ class FrontendIndexController extends Controller
     }
 
 
-    public function instructorWiseCourses($uuid)
+    public function instructorWiseCourses($slug)
     {
-        $data['instructor'] = Instructor::where('uuid', $uuid)->first();
+        $data['instructor'] = Instructor::where('slug', $slug)->first();
         $data['courses'] = Course::where('instructor_id', $data['instructor']->id)->where('status', 1)->get();
         return view('frontend.author.authorWiseCourse', $data);
     }

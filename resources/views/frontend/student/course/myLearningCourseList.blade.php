@@ -48,7 +48,7 @@
                                                 <div class="flex justify-between items-center">
                                                     <div class="name-box flex justify-between">
                                                         <a class="text-black-200 hover:text-blue-600"
-                                                           href="{{ route('main.instructorWiseCourses', $orderItem->course->instructor->uuid) }}">{{ @$orderItem->course->instructor->name }}</a>
+                                                           href="{{ route('main.instructorWiseCourses', $orderItem->course->instructor->slug) }}">{{ @$orderItem->course->instructor->name }}</a>
                                                     </div>
                                                     <div class="name-box flex justify-between">
                                                         <p class="text-blue-600 text-xl font-bold">

@@ -1,5 +1,5 @@
 @extends('layouts.instructorMaster')
-@section('title','Course Key Points')
+@section('title','Course Lectures')
 @section('content')
 
     <!-- BEGIN: Content-->
@@ -13,14 +13,14 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Course Key Points</h2>
+                        <h2 class="content-header-title float-start mb-0">Course Lecture List</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('instructor')}}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="{{route('instructor.course.index')}}">My Courses</a>
                                 </li>
-                                <li class="breadcrumb-item active">Course Key Points
+                                <li class="breadcrumb-item active">Course Lecture List
                                 </li>
                             </ol>
                         </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
                 <div class="mb-1 breadcrumb-right">
-                    <a href="{{route('instructor.course.key-points.create', [$course->uuid])}}">
+                    <a href="{{route('instructor.course.lecture.create', [$course->uuid])}}">
                         <button type="button" class="btn btn-primary">Add New</button>
                     </a>
                 </div>
@@ -108,37 +108,33 @@
                             <table id="example" class="table table-bordered dataTables_info" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>SL</th>
-                                    <th>Key Point</th>
+                                    <th>Name</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($key_points as $key_point)
-
+                                @foreach($resources as $resource)
                                     <tr class="removable-item">
-                                        <td>{{$loop->iteration}}</td>
-                                        <td style="text-align: left!important;">
-                                            {{ $key_point->name }}
+                                        <td>
+                                            <div class="resource-list-text">
+                                                <span class="iconify" data-icon="akar-icons:link-chain"></span>
+                                                <a href="{{ getImageFile($resource->file) }}"
+                                                   class="text-decoration-underline">{{ @$resource->original_filename }}</a> {{ $resource->size }}
+                                            </div>
                                         </td>
 
                                         <td>
-                                            <div class="action__buttons">
-                                                <a href="{{route('instructor.course.key-points.edit', [$course->uuid, $key_point->id])}}" class="btn-action" title="Edit">
-                                                    <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
-                                                </a>
 
+                                            <form id="form1" method="post"
+                                                  action="{{route('instructor.course.resource.delete', [$resource->uuid])}}">
+                                                @csrf
 
-                                                <form action="{{route('instructor.course.key-points.delete', [$key_point->id])}}" class="mb-0" method="post" class="d-inline">
-                                                    @csrf
+                                                <button type="submit" form="form1"
+                                                        class="btn btn-danger waves-effect waves-float waves-light confirm-delete">Delete
+                                                </button>
 
-                                                    <a href="{{route('instructor.course.key-points.delete', [$key_point->id])}}"  class="btn-action confirm-delete"  title="Delete">
-                                                        <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
-                                                    </a>
-
-                                                </form>
-                                            </div>
+                                            </form>
                                         </td>
                                     </tr>
 

@@ -313,7 +313,7 @@
                                         class="md:grid flex flex-col  md:grid-cols-12 gap-6 p-6 border border-blue-20 hover:border-blue-800 transition duration-300 rounded-bl-md rounded-br-md">
                                         <div class="col-span-4">
                                             <div class="course-images  h-full relative overflow-hidden rounded">
-                                                <a class="" href="{{ route('main.courseDetails', $course->uuid) }}">
+                                                <a class="" href="{{ route('main.courseDetails', $course->slug) }}">
                                                     <img
                                                         class="group-hover:scale-125  transition duration-500 w-full h-full max-h-64 object-cover rounded"
                                                         src="{{asset('frontend/assets/images/web-design/list-webdesign-1.webp')}}"
@@ -329,7 +329,7 @@
                                                 <div class="flex justify-between items-center">
                                                     <div class="name-box flex justify-between">
                                                         <a class="text-black-200 hover:text-blue-600"
-                                                           href="{{route('main.instructorWiseCourses',$course->instructor->uuid)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
+                                                           href="{{route('main.instructorWiseCourses',$course->instructor->slug)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
                                                     </div>
                                                     <div class="name-box flex justify-between">
                                                         <p class="text-blue-600 text-xl font-bold">
@@ -345,7 +345,7 @@
 
                                                 <h3
                                                     class="md:text-2xl text-xl font-semibold mt-2 text-black-200 mb-2 hover:text-blue-600">
-                                                    <a href="{{ route('main.courseDetails', $course->uuid) }}">{{$course->title}}</a>
+                                                    <a href="{{ route('main.courseDetails', $course->slug) }}">{{$course->title}}</a>
                                                 </h3>
                                                 <div class="reviews-box flex justify-between pt-5">
                                                     <div class="flex items-center">

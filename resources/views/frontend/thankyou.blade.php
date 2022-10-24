@@ -30,7 +30,7 @@
                                             <div class="couses-box">
                                                 <div class="lg:flex  gap-4 ">
                                                     <div class="flex-col">
-                                                        <a href="{{ route('main.courseDetails', $course->uuid) }}">
+                                                        <a href="{{ route('main.courseDetails', $course->slug) }}">
                                                         <img class="max-h-32 object-cover max-w-52 rounded mb-3 lg:mb-0"
                                                              src="{{asset('frontend/assets/images/shopping-cart.webp')}}"
                                                              alt="images">
@@ -39,12 +39,12 @@
                                                     </div>
                                                     <div class="flex-col">
                                                         <h4 class="text-black-200 font-medium mb-4">
-                                                            <a href="{{ route('main.courseDetails', $course->uuid) }}"> {{ $course->title }}</a>
+                                                            <a href="{{ route('main.courseDetails', $course->slug) }}"> {{ $course->title }}</a>
                                                         </h4>
                                                         <div class="author-box flex items-center mt-4">
                                                             <div class="course-content">
                                                                 <p class="text-sm text-blue-50 font-normal ">
-                                                                    <a href="{{ route('main.instructorWiseCourses', $course->instructor->uuid) }}"> {{ $course->instructor->name }}</a>
+                                                                    <a href="{{ route('main.instructorWiseCourses', $course->instructor->slug) }}"> {{ $course->instructor->name }}</a>
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -66,7 +66,7 @@
                     <div class="order-summery shadow-4xl p-10 bg-white">
                         <div class="order-button mt-6">
                             <a class="py-3 w-full mb-4 bg-blue-600 text-white block text-center px-6 rounded-md text-lg font-medium transition duration-500 hover:text-black-200 hover:bg-blue-100"
-                               href="{{ route('main.index') }}">My Learn Page</a>
+                               href="{{ route('student.learning') }}">My Learn Page</a>
 
                         </div>
                         <div class="order-button mt-6">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -16,9 +17,9 @@ class UserController extends Controller
 
     public function index()
     {
-        /*if (!Auth::user()->can('user_management')) {
+        if (!Auth::user()->can('user_management')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
@@ -29,9 +30,9 @@ class UserController extends Controller
 
     public function create()
     {
-       /* if (!Auth::user()->can('user_management')) {
+        if (!Auth::user()->can('user_management')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
@@ -43,9 +44,9 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        /*if (!Auth::user()->can('user_management')) {
+        if (!Auth::user()->can('user_management')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 
@@ -82,9 +83,9 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        /*if (!Auth::user()->can('user_management')) {
+        if (!Auth::user()->can('user_management')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
@@ -96,9 +97,9 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        /*if (!Auth::user()->can('user_management')) {
+        if (!Auth::user()->can('user_management')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 
@@ -140,9 +141,9 @@ class UserController extends Controller
 
     public function delete($id)
     {
-        /*if (!Auth::user()->can('user_management')) {
+        if (!Auth::user()->can('user_management')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 

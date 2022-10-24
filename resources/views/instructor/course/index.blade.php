@@ -155,39 +155,50 @@
                                         <td>
                                             <div class="mb-1">
                                                 <a href="{{route('instructor.course.key-points.index', [$course->uuid])}}">
-                                                    <button type="button" class="btn  btn-primary waves-effect"
-                                                            style="width: 120px">Key Points
+                                                    <button type="button" class="btn btn-primary waves-effect"
+                                                            style="width: 120px;">Key Points
                                                     </button>
                                                 </a>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="mb-1">
-                                                <a href="{{route('instructor.course.resource.index', [$course->uuid])}}">
-                                                    <button type="button" class="btn  btn-primary waves-effect"
-                                                            style="width: 100%">Resources
-                                                    </button>
-                                                </a>
+                                            <div style="display: flex; gap: 4px; justify-content: center;">
+
+
+                                                <div class="mb-1">
+                                                    <a href="{{route('instructor.course.resource.index', [$course->uuid])}}">
+                                                        <button type="button" class="btn  btn-primary waves-effect"
+                                                                style="width: 100%">Lessons
+                                                        </button>
+                                                    </a>
+                                                </div>
+
+                                                <div class="mb-1">
+                                                    <a href="{{route('instructor.course.resource.index', [$course->uuid])}}">
+                                                        <button type="button" class="btn  btn-secondary waves-effect"
+                                                                style="width: 100%">Resources
+                                                        </button>
+                                                    </a>
+                                                </div>
                                             </div>
+                                            <div style="display: flex; gap: 4px;">
+                                                <div class="mb-1">
+                                                    <a href="{{route('instructor.course.assignment.index', [$course->uuid])}}">
+                                                        <button type="button" class="btn  btn-info waves-effect"
+                                                                style="width: 100%">Assignment
+                                                        </button>
+                                                    </a>
+                                                </div>
 
-                                            <div class="mb-1">
-                                                <a href="{{route('instructor.course.assignment.index', [$course->uuid])}}">
-                                                    <button type="button" class="btn  btn-info waves-effect"
-                                                            style="width: 100%">Assignment
-                                                    </button>
-                                                </a>
+                                                <div>
+                                                    <a href="{{route('instructor.course.exam.index', [$course->uuid])}}">
+                                                        <button type="button" class="btn  btn-success waves-effect"
+                                                                style="width: 100%">Exam
+                                                        </button>
+                                                    </a>
+
+                                                </div>
                                             </div>
-
-                                            <div>
-                                                <a href="{{route('instructor.course.exam.index', [$course->uuid])}}">
-                                                    <button type="button" class="btn  btn-success waves-effect"
-                                                            style="width: 100%">Exam
-                                                    </button>
-                                                </a>
-
-                                            </div>
-
-
                                         </td>
 
                                         <td style="width: 80px;">

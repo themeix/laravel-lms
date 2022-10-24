@@ -218,7 +218,7 @@
                         <div class="lessons-item group hover:-translate-y-2 duration-500  hover:shadow-md transition"
                              data-aos="fade-up" data-aos-delay="500">
                             <div class="lessons-images relative overflow-hidden">
-                                <a href="{{ route('main.courseDetails', $course->uuid) }}">
+                                <a href="{{ route('main.courseDetails', $course->slug) }}">
                                     <img class="rounded-t-md max-h-64 w-full object-cover"
                                          src="{{asset('frontend/assets/images/lessons-images-1-1.webp')}}"
                                          alt="images">
@@ -237,7 +237,7 @@
                                     <span class="text-blue-50">12 July, 2022</span>
                                 </div>
                                 <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
-                                    <a href="{{ route('main.courseDetails', $course->uuid) }}">{{$course->title}}</a>
+                                    <a href="{{ route('main.courseDetails', $course->slug) }}">{{$course->title}}</a>
                                 </h3>
                                 <div class="reviews-box flex justify-between pt-5">
                                     <div class="flex items-center">
@@ -469,7 +469,7 @@
                             <div class="lessons-item group hover:-translate-y-2 duration-500 hover:shadow-md transition"
                                  data-aos="fade-up" data-aos-delay="1000">
                                 <div class="lessons-images relative overflow-hidden">
-                                    <a href="{{ route('main.courseDetails', $course->uuid) }}">
+                                    <a href="{{ route('main.courseDetails', $course->slug) }}">
                                         <img class="rounded-t-md max-h-64 w-full object-cover"
                                              src="{{asset('frontend/assets/images/home-2/ul-design-2-1.webp')}}"
                                              alt="images">
@@ -488,7 +488,7 @@
                                         <span class="text-blue-50">12 July, 2022</span>
                                     </div>
                                     <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
-                                        <a href="{{ route('main.courseDetails', $course->uuid) }}">{{ $course->title }}</a>
+                                        <a href="{{ route('main.courseDetails', $course->slug) }}">{{ $course->title }}</a>
                                     </h3>
                                     <div class="reviews-box flex justify-between pt-5">
                                         <div class="flex items-center">
@@ -607,7 +607,7 @@
                             <div class="lessons-item group hover:-translate-y-2 duration-500 hover:shadow-md transition"
                                  data-aos="fade-up" data-aos-delay="500">
                                 <div class="lessons-images relative overflow-hidden">
-                                    <a href="{{ route('main.courseDetails', $course->uuid) }}">
+                                    <a href="{{ route('main.courseDetails', $course->slug) }}">
                                         <img class="rounded-t-md max-h-64 w-full object-cover"
                                              src="{{asset('frontend/assets/images/home-2/ul-design-2-1.webp')}}"
                                              alt="images">
@@ -626,7 +626,7 @@
                                         <span class="text-blue-50">12 July, 2022</span>
                                     </div>
                                     <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
-                                        <a href="{{ route('main.courseDetails', $course->uuid) }}">{{ $course->title }}</a>
+                                        <a href="{{ route('main.courseDetails', $course->slug) }}">{{ $course->title }}</a>
                                     </h3>
                                     <div class="reviews-box flex justify-between pt-5">
                                         <div class="flex items-center">
@@ -730,7 +730,7 @@
                                 <div class="instructors-man relative">
                                     <div
                                         class="instructors-img relative before:absolute before:bg-blue-10 before:w-full before:h-full before:top-0 before:left-0  before:right-0">
-                                        <a href="{{route('main.instructorWiseCourses', $instructor->uuid)}}">
+                                        <a href="{{route('main.instructorWiseCourses', $instructor->slug)}}">
                                             <img
                                                 class=" w-full max-h-[262px] object-cover rounded-t-lg relative  object-top"
                                                 src="{{getImageFile($instructor->user ? @$instructor->user->image : '')}}"
@@ -740,7 +740,7 @@
                                     <div class="instructors-badge  text-center relative -mt-5 ">
                                         <div class="inline-block">
                                             <a class="flex items-center gap-2 text-center bg-yellow-800 rounded-full hover:bg-black-200 hover:text-white  bold py-2 px-12  !transition   !duration-500  text-black-200"
-                                               href="{{route('main.instructorWiseCourses', $instructor->uuid)}}">
+                                               href="{{route('main.instructorWiseCourses', $instructor->slug)}}">
                                                 <span
                                                     class="text-2xl font-bold">{{$instructor->publishedCourses->count()}} </span>
                                                 <span class=" test-sm mb-0">Courses</span>
@@ -751,7 +751,7 @@
                                 <div class="instructors-info text-center  p-4 bg-white">
                                     <h4>
                                         <a class="font-bold text-black-200 text-xl hover:text-blue-600  !transition   !duration-500 "
-                                           href="{{route('main.instructorWiseCourses', $instructor->uuid)}}">{{$instructor->name}}</a>
+                                           href="{{route('main.instructorWiseCourses', $instructor->slug)}}">{{$instructor->name}}</a>
                                     </h4>
                                     <p class="">Instructor</p>
                                     <div class="social-link mt-4">

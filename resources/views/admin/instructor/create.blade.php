@@ -155,7 +155,7 @@
                                             <label class="form-label" for="basic-addon-name">Phone Number</label>
 
                                             <input
-                                                type="text"
+                                                type="number"
                                                 name="phone_number" value="{{old('phone_number')}}"
                                                 class="form-control"
                                                 placeholder="Phone Number"

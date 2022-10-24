@@ -12,13 +12,13 @@
                             {{ $course->title }}
                         </h1>
                         <div class="author flex items-center">
-                            <a href="{{ route('main.instructorWiseCourses', $course->instructor->uuid) }}">
+                            <a href="{{ route('main.instructorWiseCourses', $course->instructor->slug) }}">
                                 <img class="w-10 h-10 rounded-full object-fit" src="{{getImageFile($instructor->user ? @$instructor->user->image : '')}}" alt="author">
 
                             </a>
                             <div class="course-content ml-2">
                                 <h6 class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
-                                    <a href="{{ route('main.instructorWiseCourses', $course->instructor->uuid)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
+                                    <a href="{{ route('main.instructorWiseCourses', $course->instructor->slug)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
                                 </h6>
                                 <p class="text-sm  font-normal opacity-60">{{$course->instructor ? $course->instructor->address : '' }}</p>
                             </div>
@@ -1212,14 +1212,14 @@
                               <div class="instructor-profile shadow-3xl rounded bg-white p-5">
                                  <div class="profile-info flex gap-3 items-center mb-8">
                                     <div class="flex-col">
-                                       <a href="{{route('main.instructorWiseCourses', $course->instructor->uuid)}}"><img class="w-16 h-16 rounded-full" src="{{getImageFile($instructor->user ? @$instructor->user->image : '')}}"
+                                       <a href="{{route('main.instructorWiseCourses', $course->instructor->slug)}}"><img class="w-16 h-16 rounded-full" src="{{getImageFile($instructor->user ? @$instructor->user->image : '')}}"
                                              alt="images"></a>
                                     </div>
                                     <div class="flex-col">
                                        <div class="profile-name ">
                                           <p class="text-blue-600 mb-1">Instructor</p>
                                           <h6><a class="text-black-200 hover:text-blue-600 font-medium transition duration-500"
-                                                href="{{route('main.instructorWiseCourses', $course->instructor->uuid)}}">{{$course->instructor ? $course->instructor->name : '' }} </a>
+                                                href="{{route('main.instructorWiseCourses', $course->instructor->slug)}}">{{$course->instructor ? $course->instructor->name : '' }} </a>
                                           </h6>
                                        </div>
                                     </div>
@@ -2377,7 +2377,7 @@
          <div class="container">
             <div class="section-title">
                <h3 class="font-medium text-black-200 text-3xl">More Courses by <span class="text-blue-600">
-                    <a href=" {{ route('main.instructorWiseCourses', $course->instructor->uuid) }}"> {{$course->instructor ? $course->instructor->name : '' }} </a></span>
+                    <a href=" {{ route('main.instructorWiseCourses', $course->instructor->slug) }}"> {{$course->instructor ? $course->instructor->name : '' }} </a></span>
                </h3>
             </div>
             <div class="relative">
@@ -2386,7 +2386,7 @@
                   <div class="lessons-item group hover:-translate-y-2 duration-500" data-aos="fade-up"
                      data-aos-delay="300">
                       <div class="lessons-images relative overflow-hidden">
-                          <a href="{{ route('main.courseDetails', $course->uuid) }}"> <img class="rounded-t-md max-h-64 w-full object-cover"
+                          <a href="{{ route('main.courseDetails', $course->slug) }}"> <img class="rounded-t-md max-h-64 w-full object-cover"
                                                                                            src="{{asset('frontend/assets/images/lessons-images-1.webp')}}"
                                                                                            alt="images">
                           </a>
@@ -2405,7 +2405,7 @@
                            <span class="text-blue-50">12 July, 2022</span>
                         </div>
                         <h3 class="md:text-2xl text-xl font-semibold mt-5 text-black-200 mb-2 hover:text-blue-600">
-                           <a href="{{ route('main.courseDetails', $course->uuid) }}">{{ $course->title }}</a>
+                           <a href="{{ route('main.courseDetails', $course->slug) }}">{{ $course->title }}</a>
                         </h3>
                         <div class="reviews-box flex justify-between pt-5">
                            <div class="flex items-center">

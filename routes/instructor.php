@@ -6,6 +6,7 @@ use App\Http\Controllers\Instructor\CertificateController;
 use App\Http\Controllers\Instructor\DiscussionController;
 use App\Http\Controllers\Instructor\ExamController;
 use App\Http\Controllers\Instructor\KeyPointsController;
+use App\Http\Controllers\Instructor\LessonController;
 use App\Http\Controllers\Instructor\LiveClassController;
 use App\Http\Controllers\Instructor\NoticeBoardController;
 use App\Http\Controllers\Instructor\ResourceController;
@@ -78,6 +79,13 @@ Route::post('course/key-points/delete/{id}', [KeyPointsController::class, 'delet
 //Learn Key Points Routes Ends Here
 
 
+
+//Course Lesson Routes Start
+Route::get('course/lesson/index/{course_uuid}', [LessonController::class, 'index'])->name('instructor.course.lesson.index');
+Route::get('course/lesson/create/{course_uuid}', [LessonController::class, 'create'])->name('instructor.course.lesson.create');
+Route::post('course/lesson/store/{course_uuid}', [LessonController::class, 'store'])->name('instructor.course.lesson.store')/*->middleware('isDemo')*/;
+Route::post('course/lesson/delete/{uuid}', [LessonController::class, 'delete'])->name('instructor.course.lesson.delete')/*->middleware('isDemo')*/;
+//Course Lecture Routes End
 
 
 // Course Assignment Routes Start

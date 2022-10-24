@@ -32,21 +32,21 @@
                                         <div class="couses-box">
                                             <div class="lg:flex  gap-4 ">
                                                 <div class="flex-col">
-                                                    <a href="{{ route('main.courseDetails', $cart->course->uuid) }}"> <img
+                                                    <a href="{{ route('main.courseDetails', $cart->course->slug) }}"> <img
                                                             class="max-h-32 object-cover max-w-52 rounded mb-3 lg:mb-0"
                                                             src="{{asset('frontend/assets/images/shopping-cart.webp')}}" alt="images"></a>
 
                                                 </div>
                                                 <div class="flex-col">
                                                     <h4 class="text-black-200 font-medium mb-4"><a
-                                                            class="hover:text-blue-600" href="{{ route('main.courseDetails', $cart->course->uuid) }}">
+                                                            class="hover:text-blue-600" href="{{ route('main.courseDetails', $cart->course->slug) }}">
                                                             {{ $cart->course->title }}
                                                         </a>
                                                     </h4>
                                                     <div class="author-box flex items-center mt-4">
                                                         <div class="course-content">
                                                             <p class="text-sm text-blue-50 font-normal ">
-                                                                <a href="{{ route('main.instructorWiseCourses', $cart->course->instructor->uuid) }}"> {{ $cart->course->instructor->name }}</a>
+                                                                <a href="{{ route('main.instructorWiseCourses', $cart->course->instructor->slug) }}"> {{ $cart->course->instructor->name }}</a>
                                                             </p>
                                                         </div>
                                                     </div>

@@ -89,7 +89,7 @@
                                 </h2>
                             </div>
                             @if(count($course->keyPoints) > 0)
-                                <div class="md:grid md:grid-cols-2 flex flex-col gap-6 pb-16 border-b">
+                                <div class="md:grid md:grid-cols-2 flex flex-col gap-6 pb-16">
                                     <div class="flex-col flex gap-6">
                                         @foreach(@$course->keyPoints as $key => $point)
                                             @if($key % 2 == 0)

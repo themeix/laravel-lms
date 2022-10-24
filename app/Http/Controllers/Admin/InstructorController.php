@@ -126,6 +126,7 @@ class InstructorController extends Controller
         $user = new User();
         $user->name = $request->first_name . ' ' . $request->last_name;
         $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
         $user->email_verified_at = now();
         $user->password = Hash::make($request->password);
         $user->type = 2;
@@ -147,7 +148,6 @@ class InstructorController extends Controller
             'address' => $request->address,
             'professional_title' => $request->professional_title,
             'phone_number' => $request->phone_number,
-            'slug' => $slug,
             'status' => 1,
             'country_id' => $request->country_id,
             'state_id' => $request->state_id,
@@ -159,6 +159,7 @@ class InstructorController extends Controller
             'twitter' => $request->twitter,
             'linkedin' => $request->linkedin,
             'pinterest' => $request->pinterest,
+            'slug' => $slug,
 
         ];
 
@@ -235,6 +236,7 @@ class InstructorController extends Controller
 
         $user->name = $request->first_name . ' ' . $request->last_name;
         $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
         if ($request->password) {
             $request->validate([
                 'password' => 'required|string|min:6'

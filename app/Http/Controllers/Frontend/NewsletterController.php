@@ -28,7 +28,7 @@ class NewsletterController extends Controller
         $subscription = Newsletter::where('email', $request->email)->first();
 
         if ($subscription) {
-            Alert::info('You are already subscribed to our newsletter');
+            Alert::toast('You are already subscribed to our newsletter', 'info');
             return back();
 
         }
@@ -39,7 +39,7 @@ class NewsletterController extends Controller
             ];
 
             $this->model->create($data);
-            Alert::success('You have successfully subscribed to our newsletter');
+            Alert::toast('You have successfully subscribed to our newsletter', 'success');
             return back();
         }
 

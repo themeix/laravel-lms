@@ -15,7 +15,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('tag.index')}}">City List</a>
+                                <li class="breadcrumb-item"><a href="{{route('city.index', [$country->uuid, $state->uuid])}}">City List</a>
                                 </li>
 
                                 <li class="breadcrumb-item active">Edit City
@@ -27,13 +27,26 @@
             </div>
             <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
                 <div class="mb-1 breadcrumb-right">
-                    <a href="{{route('city.index')}}">
+                    <a href="{{route('city.index', [$country->uuid, $state->uuid])}}">
                         <button type="button" class="btn btn-primary">City List</button>
                     </a>
                 </div>
             </div>
         </div>
         <div class="content-body">
+
+            <section id="default-breadcrumb">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Country - {{$country->country_name}} | State - {{ $state->name }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="bs-validation">
                 <div class="col-md-12 col-12">
                     <div class="card">
@@ -41,27 +54,8 @@
                             <h4 class="card-title">Bootstrap Validation</h4>
                         </div>--}}
                         <div class="card-body">
-                            <form class="needs-validation" action="{{route('city.update', [$city->uuid])}}" method="post" enctype="multipart/form-data">
+                            <form class="needs-validation" action="{{route('city.update', [$country->uuid, $state->uuid, $city->uuid])}}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <div class="row">
-                                    <div class="col-md-12 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="name">State Name</label>
-
-                                            <select class="form-select" name="state_id" id="state_id" required>
-                                                <option value="">---Select State----</option>
-                                                @foreach($states as $state)
-                                                    <option value="{{$state->id}}" {{$city->state_id == $state->id ? 'selected' : '' }}>{{$state->name}}</option>
-                                                @endforeach
-                                            </select>
-
-                                            @if ($errors->has('state_id'))
-                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('state_id') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
 
                                 <div class="row">
                                     <div class="col-md-12 col-12">

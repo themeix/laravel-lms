@@ -38,6 +38,19 @@
             </div>
         </div>
         <div class="content-body">
+
+            <section id="default-breadcrumb">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><strong>Course</strong> - {{@$exam->course->title}} </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="bs-validation">
                 <div class="col-md-12 col-12">
                     <div class="card">

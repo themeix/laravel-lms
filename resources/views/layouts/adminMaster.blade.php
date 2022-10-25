@@ -748,24 +748,9 @@
                         class="menu-title text-truncate" data-i18n="User">Application Settings</span></a>
                 <ul class="menu-content">
 
-                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                    <li class="{{ (request()->is('admin/location*')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{route('location.index')}}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="List">Location</span></a>
-
-
-                        <ul class="menu-content">
-                            <li class="{{ (request()->is('admin/country*')) ? 'active' : '' }}"><a
-                                    class="d-flex align-items-center" href="{{route('country.index')}}"><span
-                                        class="menu-item text-truncate" data-i18n="Basic">Country</span></a>
-                            </li>
-                            <li class="{{ (request()->is('admin/state*')) ? 'active' : '' }}"><a
-                                    class="d-flex align-items-center" href="{{route('state.index')}}"><span
-                                        class="menu-item text-truncate" data-i18n="Cover">State</span></a>
-                            </li>
-                            <li class="{{ (request()->is('admin/city*')) ? 'active' : '' }}"><a
-                                    class="d-flex align-items-center" href="{{route('city.index')}}"><span
-                                        class="menu-item text-truncate" data-i18n="Cover">City</span></a>
-                            </li>
-                        </ul>
                     </li>
 
 

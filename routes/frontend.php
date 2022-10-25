@@ -54,8 +54,8 @@ Route::post('newsletter/store',[NewsletterController::class, 'store'])->name('ma
 
 
 //Blog
-Route::get('/blog/index', [BlogController::class, 'index'])->name('main.blog.index');
-Route::get('/blog/details', [BlogController::class, 'details'])->name('main.blog.details');
+Route::get('blog', [BlogController::class, 'index'])->name('main.blog.index');
+Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('main.blog.details');
 
 
 //Search

@@ -1,5 +1,5 @@
 @extends('layouts.adminMaster')
-@section('title','State')
+@section('title','Country')
 @section('content')
 
     <!-- BEGIN: Content-->
@@ -12,12 +12,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">State List</h2>
+                        <h2 class="content-header-title float-start mb-0">Country List</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">State List
+                                <li class="breadcrumb-item active">Country List
                                 </li>
                             </ol>
                         </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
                 <div class="mb-1 breadcrumb-right">
-                    <a href="{{route('state.create')}}">
+                    <a href="{{route('location.create')}}">
                         <button type="button" class="btn btn-primary">Add New</button>
                     </a>
                 </div>
@@ -82,6 +82,7 @@
                 </div>
             @endif
 
+
             <section id="column-search-datatable">
                 <div class="card">
                     <div class="card-body indexTable">
@@ -89,33 +90,54 @@
                             <table id="example" class="table table-bordered dataTables_info" style="color: black;">
                                 <thead>
                                 <tr>
-                                    <th>State</th>
-                                    <th>Country</th>
+                                    <th>Name</th>
+                                    <th>Short Name</th>
+                                    <th>Phone Code</th>
+                                    <th>Continent</th>
+                                    <th>Add State</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($states as $state)
+                                @foreach($countries as $country)
                                     <tr class="removable-item">
                                         <td>
-                                            {{$state->name}}
+                                            {{$country->country_name}}
                                         </td>
 
                                         <td>
-                                            {{$state->country ? $state->country->country_name: ''}}
+                                            {{$country->short_name}}
+                                        </td>
+                                        <td>
+                                            {{$country->phonecode}}
+                                        </td>
+
+                                        <td>
+                                            {{$country->continent}}
+                                        </td>
+                                        <td>
+                                            <div>
+
+                                                <a href="{{ route('state.index', $country->uuid) }}">
+                                                    <button type="button" class="btn  btn-success waves-effect"
+                                                            style="width: 150px;">
+                                                        Add State
+                                                    </button>
+                                                </a>
+                                            </div>
                                         </td>
 
                                         <td>
                                             <div class="action__buttons">
-                                                <a href="{{route('state.edit', [$state->uuid])}}" class="btn-action" title="Edit">
+                                                <a href="{{route('location.edit', [$country->uuid])}}" class="btn-action" title="Edit">
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
 
-                                                <form action="{{route('state.delete', [$state->uuid])}}" class="mb-0" method="post" class="d-inline">
+                                                <form action="{{route('location.delete', [$country->uuid])}}" class="mb-0" method="post" class="d-inline">
                                                     @csrf
 
-                                                    <a href="{{route('state.delete', [$state->uuid])}}"  class="btn-action confirm-delete"  title="Delete">
+                                                    <a href="{{route('location.delete', [$country->uuid])}}"  class="btn-action confirm-delete"  title="Delete">
                                                         <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
                                                     </a>
 
@@ -162,5 +184,7 @@
             });
             e.preventDefault();
         });
+
+
     </script>
 @endpush

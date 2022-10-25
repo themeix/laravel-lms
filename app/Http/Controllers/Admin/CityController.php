@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\State;
 use App\Tools\Repositories\Crud;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,45 +16,56 @@ class CityController extends Controller
 {
     private $model;
     protected $stateModel;
-    public function __construct(State $state, City $city)
+    protected $countryModel;
+    public function __construct(State $state, City $city, Country $country)
     {
         $this->model = new Crud($city);
         $this->stateModel = new Crud($state);
+        $this->countryModel = new Crud($country);
     }
 
-    public function index()
+    public function index($country_uuid, $state_uuid)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
-        $data['cities'] = $this->model->getOrderById('DESC');
+        $data['country'] = $this->countryModel->getRecordByUuid($country_uuid);
 
-        return view('admin.city.index', $data);
+        $data['state'] = $this->stateModel->getRecordByUuid($state_uuid);
+
+        $data['cities'] = City::where('state_id', $data['state']->id)->get();
+
+        return view('admin.location.cities.index', $data);
     }
 
 
-    public function create()
+    public function create($country_uuid, $state_uuid)
     {
-        $data['states'] = $this->stateModel->all();
-        return view('admin.city.create', $data);
+        $data['country'] = $this->countryModel->getRecordByUuid($country_uuid);
+
+        $data['state'] = $this->stateModel->getRecordByUuid($state_uuid);
+
+        return view('admin.location.cities.create', $data);
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, $country_uuid, $state_uuid)
     {
+
+        $data['country'] = $this->countryModel->getRecordByUuid($country_uuid);
+
+        $data['state'] = $this->stateModel->getRecordByUuid($state_uuid);
+
         $request->validate([
-            'state_id' => 'required',
             'name' => 'required|string|max:255',
-
-
         ]);
 
         $data = [
 
-            'state_id' => $request->state_id,
+            'state_id' => $data['state']->id,
             'name' => $request->name,
             'slug' => Str::slug($request->name),
         ];
@@ -62,44 +74,44 @@ class CityController extends Controller
 
         Alert::toast('City Created Successfully.', 'success');
 
-        return redirect()->route('city.index')->with('create-message', 'City created successfully.');
+        return redirect()->route('city.index', [$country_uuid, $state_uuid])->with('create-message', 'City created successfully.');
     }
 
 
-    public function edit($uuid)
+    public function edit($country_uuid, $state_uuid, $uuid)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
-
-
+        }
         // end permission checking
+
+        $data['country'] = $this->countryModel->getRecordByUuid($country_uuid);
+
+        $data['state'] = $this->stateModel->getRecordByUuid($state_uuid);
 
         $data['city'] = $this->model->getRecordByUuid($uuid);
-        $data['states'] = $this->stateModel->all();
 
-
-        return view('admin.city.edit', $data);
+        return view('admin.location.cities.edit', $data);
     }
 
 
-    public function update(Request $request, $uuid)
+    public function update(Request $request, $country_uuid, $state_uuid,  $uuid)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
-
+        }
         // end permission checking
 
+        $data['country'] = $this->countryModel->getRecordByUuid($country_uuid);
 
+        $state = $this->stateModel->getRecordByUuid($state_uuid);
 
         $request->validate([
-            'state_id' => 'required',
             'name' => 'required|string|max:255',
         ]);
 
         $data = [
-            'state_id' => $request->state_id,
+            'state_id' => $state->id,
             'name' => $request->name,
             'slug' => Str::slug($request->name),
 
@@ -109,22 +121,25 @@ class CityController extends Controller
 
         Alert::toast('City Updated Successfully.', 'success');
 
-        return redirect()->route('city.index')->with('update-message', 'City Updated successfully.');
+        return redirect()->route('city.index',[$country_uuid, $state_uuid])->with('update-message', 'City Updated successfully.');
     }
 
 
-    public function delete($uuid)
+    public function delete($country_uuid, $state_uuid, $uuid)
     {
-        /*if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('manage_course_category')) {
             abort('403');
-        } */
-
+        }
         // end permission checking
+
+        $country = $this->countryModel->getRecordByUuid($country_uuid);
+
+        $state = $this->stateModel->getRecordByUuid($state_uuid);
 
         $this->model->deleteByUuid($uuid); // delete record
 
         Alert::toast('City Deleted Successfully.', 'warning');
 
-        return redirect()->route('city.index')->with('delete-message', 'City Deleted successfully.');
+        return redirect()->route('city.index', [$country_uuid, $state_uuid])->with('delete-message', 'City Deleted successfully.');
     }
 }

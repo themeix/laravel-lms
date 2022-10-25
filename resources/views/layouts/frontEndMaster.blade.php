@@ -564,20 +564,7 @@
                                            href="{{route('main.allCategories2')}}">All Catagories 2 </a></li>
                                 </ul>
                             </li>
-                            <li class="relative lg:px-2 lg:py-5 dropdown ">
-                                <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                   href="javascript:void(0);"> Blog <span
-                                        class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span></a>
-                                <ul
-                                    class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow lg:w-48   submenu">
-                                    <li>
-                                        <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.blog.index')}}"> Blog </a></li>
-                                    <li>
-                                        <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mb-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                           href="{{route('main.blog.details')}}"> Blog Details </a></li>
-                                </ul>
-                            </li>
+
                             <li class="relative lg:px-2 lg:py-5 dropdown ">
                                 <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
                                    href="javascript:void(0);"> Pages <span
@@ -593,6 +580,12 @@
 
                                 </ul>
                             </li>
+
+                            <li class="relative lg:px-2 lg:py-5 dropdown ">
+                                <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
+                                   href="{{route('main.blog.index')}}"> Blog </a>
+                            </li>
+
                             <li class="relative lg:px-2 lg:py-5 dropdown ">
                                 <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
                                    href="{{route('main.contact')}}"> Contact </a>
@@ -692,29 +685,7 @@
 
                                     </ul>
                                 </li>
-                                <li class="relative lg:px-2 lg:py-5 dropdown ">
-                                    <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
-                                       href="javascript:void(0);">
-                                        Blog
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                             aria-hidden="true" class="ml-1 -mr-1 h-4 w-4 text-slate-400">
-                                            <path class="group-hover:fill-blue-600" fill-rule="evenodd"
-                                                  d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                                                  clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span
-                                            class="leading-6 text-2xl text-center  bg-gray-200   w-6 h-6 absolute right-2 top-3 block lg:hidden toggle">+</span>
-                                    </a>
-                                    <ul
-                                        class="hidden lg:block bg-white rounded-md lg:absolute top-full lg:shadow  submenu">
-                                        <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2  rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.blog.index')}}"> Blog </a></li>
-                                        <li>
-                                            <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2  rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
-                                               href="{{route('main.blog.details')}}"> Blog Details </a></li>
-                                    </ul>
-                                </li>
+
                                 <li class="relative lg:px-2 lg:py-5 dropdown ">
                                     <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
                                        href="javascript:void(0);">
@@ -737,6 +708,14 @@
                                             <a class="py-2 lg:py-2 px-5 hover:bg-gray-200 border-coolGray-300 mx-2 mt-2 rounded-md flex items-center whitespace-nowrap text-black-200 font-normal transition duration-500 hover:text-blue-600"
                                                href="{{route('main.about2')}}"> About 2 </a></li>
                                     </ul>
+                                </li>
+
+                                <li class="relative lg:px-2 lg:py-5 dropdown ">
+                                    <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"
+                                       href="{{route('main.blog.index')}}">
+                                        Blog
+                                    </a>
+
                                 </li>
                                 <li class="relative lg:px-2 lg:py-5 dropdown ">
                                     <a class=" lg:hover:bg-gray-200 text-black-200 group py-2 px-4 rounded-full flex items-center text-coolGray-600 font-medium transition duration-500 hover:text-blue-600 arrow"

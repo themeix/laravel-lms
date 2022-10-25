@@ -26,9 +26,9 @@ class BlogController extends Controller
 
     public function index(){
 
-        /*if (!Auth::user()->can('manage_blog')) {
+        if (!Auth::user()->can('manage_blog')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 
@@ -39,9 +39,9 @@ class BlogController extends Controller
 
     public function create(){
 
-        /*if (!Auth::user()->can('manage_blog')) {
+        if (!Auth::user()->can('manage_blog')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
@@ -52,9 +52,9 @@ class BlogController extends Controller
     }
 
     public function store(Request $request){
-        /*if (!Auth::user()->can('manage_blog')) {
+        if (!Auth::user()->can('manage_blog')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 

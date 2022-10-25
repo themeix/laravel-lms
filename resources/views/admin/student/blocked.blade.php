@@ -111,7 +111,7 @@
                                         <td>{{@$student->state->name}}</td>
                                         <td>{{$student->address}}</td>
 
-                                        {{--<td>{{$instructor->country ? $instructor->country->country_name : '' }}</td>
+                                        {{--<td>{{$instructor->location ? $instructor->location->country_name : '' }}</td>
                                         <td>{{$instructor->state ? $instructor->state->name : '' }}</td>--}}
 
 

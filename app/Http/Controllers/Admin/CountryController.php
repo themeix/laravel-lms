@@ -20,7 +20,7 @@ class CountryController extends Controller
 
     public function index()
     {
-        if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('application_setting')) {
             abort('403');
         }
 
@@ -28,13 +28,13 @@ class CountryController extends Controller
 
         $data['countries'] = $this->model->getOrderById('DESC');
 
-        return view('admin.country.index', $data);
+        return view('admin.location.index', $data);
     }
 
 
     public function create()
     {
-        return view('admin.country.create');
+        return view('admin.location.create');
     }
 
 
@@ -57,17 +57,17 @@ class CountryController extends Controller
             'slug' => Str::slug($request->name),
         ];
 
-        $this->model->create($data); // create new country
+        $this->model->create($data); // create new location
 
         Alert::toast('Country Created Successfully.', 'success');
 
-        return redirect()->route('country.index')->with('create-message', 'Country created successfully.');
+        return redirect()->route('location.index')->with('create-message', 'Country created successfully.');
     }
 
 
     public function edit($uuid)
     {
-        if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('application_setting')) {
             abort('403');
         }
 
@@ -77,13 +77,13 @@ class CountryController extends Controller
         $data['country'] = $this->model->getRecordByUuid($uuid);
 
 
-        return view('admin.country.edit', $data);
+        return view('admin.location.edit', $data);
     }
 
 
     public function update(Request $request, $uuid)
     {
-        if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('application_setting')) {
             abort('403');
         }
 
@@ -111,13 +111,13 @@ class CountryController extends Controller
 
         Alert::toast('Country Updated Successfully.', 'success');
 
-        return redirect()->route('country.index')->with('update-message', 'Country Updated successfully.');
+        return redirect()->route('location.index')->with('update-message', 'Country Updated successfully.');
     }
 
 
     public function delete($uuid)
     {
-        if (!Auth::user()->can('manage_course_category')) {
+        if (!Auth::user()->can('application_setting')) {
             abort('403');
         }
 
@@ -127,6 +127,6 @@ class CountryController extends Controller
 
         Alert::toast('Country Deleted Successfully.', 'warning');
 
-        return redirect()->route('country.index')->with('delete-message', 'Country Deleted successfully.');
+        return redirect()->route('location.index')->with('delete-message', 'Country Deleted successfully.');
     }
 }

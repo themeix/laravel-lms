@@ -141,7 +141,7 @@ Route::get('blockedInstructor', [InstructorController::class, 'blockedInstructor
 Route::get('approvedInstructor', [InstructorController::class, 'approvedInstructor'])->name('instructor.approved');
 
 
-Route::get('get-state-by-country/{country_id}', [InstructorController::class, 'getStateByCountry']);
+Route::get('get-state-by-location/{country_id}', [InstructorController::class, 'getStateByCountry']);
 Route::get('get-city-by-state/{state_id}', [InstructorController::class, 'getCityByState']);
 
 
@@ -263,33 +263,33 @@ Route::post('user/delete/{id}', [UserController::class, 'delete'])->name('user.d
 
 
 //Location - Country
-Route::get('country/index', [CountryController::class, 'index'])->name('country.index');
-Route::get('country/create', [CountryController::class, 'create'])->name('country.create');
-Route::post('country/store', [CountryController::class, 'store'])->name('country.store')/*->middleware('isDemo')*/;
-Route::get('country/edit/{uuid}', [CountryController::class, 'edit'])->name('country.edit');
-Route::post('country/update/{uuid}', [CountryController::class, 'update'])->name('country.update')/*->middleware('isDemo')*/;
-Route::post('country/delete/{uuid}', [CountryController::class, 'delete'])->name('country.delete')/*->middleware('isDemo')*/;
+Route::get('location/index', [CountryController::class, 'index'])->name('location.index');
+Route::get('location/create', [CountryController::class, 'create'])->name('location.create');
+Route::post('location/store', [CountryController::class, 'store'])->name('location.store')/*->middleware('isDemo')*/;
+Route::get('location/edit/{uuid}', [CountryController::class, 'edit'])->name('location.edit');
+Route::post('location/update/{uuid}', [CountryController::class, 'update'])->name('location.update')/*->middleware('isDemo')*/;
+Route::post('location/delete/{uuid}', [CountryController::class, 'delete'])->name('location.delete')/*->middleware('isDemo')*/;
 
 
 
 
 //Location - State
-Route::get('state/index', [StateController::class, 'index'])->name('state.index');
-Route::get('state/create', [StateController::class, 'create'])->name('state.create');
-Route::post('state/store', [StateController::class, 'store'])->name('state.store')/*->middleware('isDemo')*/;
-Route::get('state/edit/{uuid}', [StateController::class, 'edit'])->name('state.edit');
-Route::post('state/update/{uuid}', [StateController::class, 'update'])->name('state.update')/*->middleware('isDemo')*/;
-Route::post('state/delete/{uuid}', [StateController::class, 'delete'])->name('state.delete')/*->middleware('isDemo')*/;
+Route::get('location/state-index/{country_uuid}', [StateController::class, 'index'])->name('state.index');
+Route::get('location/state-create{country_uuid}', [StateController::class, 'create'])->name('state.create');
+Route::post('location/state-store{country_uuid}', [StateController::class, 'store'])->name('state.store')/*->middleware('isDemo')*/;
+Route::get('location/state-edit/{country_uuid}/{uuid}', [StateController::class, 'edit'])->name('state.edit');
+Route::post('location/state-update/{country_uuid}/{uuid}', [StateController::class, 'update'])->name('state.update')/*->middleware('isDemo')*/;
+Route::post('location/state-delete/{country_uuid}/{uuid}', [StateController::class, 'delete'])->name('state.delete')/*->middleware('isDemo')*/;
 
 
 
 //Location - Country
-Route::get('city/index', [CityController::class, 'index'])->name('city.index');
-Route::get('city/create', [CityController::class, 'create'])->name('city.create');
-Route::post('city/store', [CityController::class, 'store'])->name('city.store')/*->middleware('isDemo')*/;
-Route::get('city/edit/{uuid}', [CityController::class, 'edit'])->name('city.edit');
-Route::post('city/update/{uuid}', [CityController::class, 'update'])->name('city.update')/*->middleware('isDemo')*/;
-Route::post('city/delete/{uuid}', [CityController::class, 'delete'])->name('city.delete')/*->middleware('isDemo')*/;
+Route::get('location/city-index/{country_uuid}/{state_uuid}', [CityController::class, 'index'])->name('city.index');
+Route::get('location/city-create/{country_uuid}/{state_uuid}', [CityController::class, 'create'])->name('city.create');
+Route::post('location/city-store/{country_uuid}/{state_uuid}', [CityController::class, 'store'])->name('city.store')/*->middleware('isDemo')*/;
+Route::get('location/city-edit/{country_uuid}/{state_uuid}/{uuid}', [CityController::class, 'edit'])->name('city.edit');
+Route::post('location/city-update/{country_uuid}/{state_uuid}/{uuid}', [CityController::class, 'update'])->name('city.update')/*->middleware('isDemo')*/;
+Route::post('location/city-delete/{country_uuid}/{state_uuid}/{uuid}', [CityController::class, 'delete'])->name('city.delete')/*->middleware('isDemo')*/;
 
 
 //Manage Order

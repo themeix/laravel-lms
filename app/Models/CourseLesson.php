@@ -25,7 +25,7 @@ class CourseLesson extends Model
 
     public function lectures()
     {
-        return $this->hasMany(Course_lecture::class, 'lesson_id');
+        return $this->hasMany(CourseLecture::class, 'lesson_id');
     }
 
     public function getVideoDurationAttribute()

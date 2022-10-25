@@ -22,7 +22,7 @@ $(function () {
     datepicker = $('.date-picker'),
     dueDate = $('.due-date-picker'),
     select2 = $('.invoiceto'),
-    countrySelect = $('#customer-country'),
+    countrySelect = $('#customer-location'),
     btnAddNewItem = $('.btn-add-new '),
     adminDetails = {
       'App Design': 'Designed UI kit & app pages.',
@@ -69,7 +69,7 @@ $(function () {
   // Country Select2
   if (countrySelect.length) {
     countrySelect.select2({
-      placeholder: 'Select country',
+      placeholder: 'Select location',
       dropdownParent: countrySelect.parent()
     });
   }

@@ -166,7 +166,7 @@
 
 
                                                 <div class="mb-1">
-                                                    <a href="{{route('instructor.course.resource.index', [$course->uuid])}}">
+                                                    <a href="{{route('instructor.course.lesson.index', [$course->uuid])}}">
                                                         <button type="button" class="btn  btn-primary waves-effect"
                                                                 style="width: 100%">Lessons
                                                         </button>

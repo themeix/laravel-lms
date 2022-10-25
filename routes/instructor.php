@@ -80,12 +80,22 @@ Route::post('course/key-points/delete/{id}', [KeyPointsController::class, 'delet
 
 
 
-//Course Lesson Routes Start
+//Course Lesson & Lectures Routes Start
 Route::get('course/lesson/index/{course_uuid}', [LessonController::class, 'index'])->name('instructor.course.lesson.index');
 Route::get('course/lesson/create/{course_uuid}', [LessonController::class, 'create'])->name('instructor.course.lesson.create');
 Route::post('course/lesson/store/{course_uuid}', [LessonController::class, 'store'])->name('instructor.course.lesson.store')/*->middleware('isDemo')*/;
+
+Route::get('course/lesson/edit/{course_uuid}/{uuid}', [LessonController::class, 'edit'])->name('instructor.course.lesson.edit');
+
+Route::post('course/lesson/update/{course_uuid}/{uuid}', [LessonController::class, 'update'])->name('instructor.course.lesson.update')/*->middleware('isDemo')*/;
+
 Route::post('course/lesson/delete/{uuid}', [LessonController::class, 'delete'])->name('instructor.course.lesson.delete')/*->middleware('isDemo')*/;
-//Course Lecture Routes End
+
+Route::get('course/lecture/{course_uuid}/{lesson_uuid}', [LessonController::class, 'lectureIndex_Create'])->name('instructor.course.lecture.index');
+
+Route::get('course/lecture-store/{course_uuid}/{lesson_uuid}', [LessonController::class, 'lectureStore'])->name('instructor.course.lecture.store');
+
+//Course Lesson & Lectures Routes End
 
 
 // Course Assignment Routes Start

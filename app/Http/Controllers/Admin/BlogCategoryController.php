@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Tools\Repositories\Crud;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
@@ -19,9 +20,9 @@ class BlogCategoryController extends Controller
 
     public function index(){
 
-        /*if (!Auth::user()->can('manage_blog')) {
+        if (!Auth::user()->can('manage_blog')) {
             abort('403');
-        }*/
+        }
 
         $data['blogCategories'] = $this->model->getOrderById('DESC');
 
@@ -30,17 +31,17 @@ class BlogCategoryController extends Controller
 
     public function create(){
 
-       /* if (!Auth::user()->can('manage_blog')) {
+        if (!Auth::user()->can('manage_blog')) {
             abort('403');
-        }*/
+        }
 
         return view('admin.blogCategory.create');
     }
 
     public function store(Request $request){
-        /*if (!Auth::user()->can('manage_blog')) {
+        if (!Auth::user()->can('manage_blog')) {
             abort('403');
-        } */
+        }
 
         $request->validate([
             'name' => 'required',
@@ -74,9 +75,9 @@ class BlogCategoryController extends Controller
     }
 
     public function update(Request $request, $uuid){
-        /*if (!Auth::user()->can('manage_blog')) {
+        if (!Auth::user()->can('manage_blog')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 

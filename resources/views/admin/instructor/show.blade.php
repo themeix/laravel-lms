@@ -24,7 +24,8 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a href="{{route('instructor.index')}}">Instructor List
+                                <li class="breadcrumb-item active"><a href="{{route('instructor.index')}}">Instructor
+                                        List
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">Show Instructor
@@ -70,11 +71,13 @@
                                     <ul class="list-unstyled">
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Email:</span>
-                                            <span class="status badge badge-glow badge-light-dark ">{{$instructor->user->email}}</span>
+                                            <span
+                                                class="status badge badge-glow badge-light-dark ">{{$instructor->user->email}}</span>
                                         </li>
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Mobile:</span>
-                                            <span class="status badge badge-glow badge-light-dark ">{{$instructor->phone_number ?? @$instructor->user->phone_number}}</span>
+                                            <span
+                                                class="status badge badge-glow badge-light-dark ">{{$instructor->phone_number ?? @$instructor->user->phone_number}}</span>
                                         </li>
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Country:</span>
@@ -164,12 +167,19 @@
                     <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-2">
                         <div class="row">
 
-                            <div class="col-lg-3 col-sm-6 col-12">
+                            <div class="col-lg-4 col-sm-6 col-12">
                                 <div class="card">
                                     <div class="card-header flex-column align-items-center pb-2">
                                         <div class="avatar bg-light-success p-50 m-0">
                                             <div class="avatar-content">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pocket avatar-icon font-medium-3"><path d="M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z"></path><polyline points="8 10 12 14 16 10"></polyline></svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-pocket avatar-icon font-medium-3">
+                                                    <path
+                                                        d="M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z"></path>
+                                                    <polyline points="8 10 12 14 16 10"></polyline>
+                                                </svg>
                                             </div>
                                         </div>
                                         <h2 class="fw-bolder mt-1">{{$instructor->publishedCourses->count()}}</h2>
@@ -179,31 +189,7 @@
                             </div>
 
 
-                            <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="card">
-                                    <div class="card-header flex-column align-items-center pb-2">
-                                        <div class="avatar bg-light-info p-50 m-0">
-                                            <div class="avatar-content">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                     stroke-width="2"
-                                                     stroke-linecap="round" stroke-linejoin="round"
-                                                     class="feather feather-package font-medium-5">
-                                                    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
-                                                    <path
-                                                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <h2 class="fw-bolder mt-1">{{$instructor->pendingCourses->count()}}</h2>
-                                        <p class="card-text">Pending Courses</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-sm-6 col-12">
+                            <div class="col-lg-4 col-sm-6 col-12">
                                 <div class="card">
                                     <div class="card-header flex-column align-items-center pb-2">
                                         <div class="avatar bg-light-danger p-50 m-0">
@@ -221,28 +207,36 @@
                                                 </svg>
                                             </div>
                                         </div>
-                                        <h2 class="fw-bolder mt-1">{{$instructor->holdCourses->count()}}</h2>
-                                        <p class="card-text">Hold Courses</p>
+                                        <h2 class="fw-bolder mt-1">
+                                            {{$instructor->pendingCourses->count() + $instructor->holdCourses->count()}}
+                                        </h2>
+                                        <p class="card-text">Pending Courses</p>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="col-lg-3 col-sm-6 col-12">
+                            <div class="col-lg-4 col-sm-6 col-12">
                                 <div class="card">
                                     <div class="card-header flex-column align-items-center pb-2">
                                         <div class="avatar bg-light-primary p-50 m-0">
                                             <div class="avatar-content">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign avatar-icon"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-dollar-sign avatar-icon">
+                                                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                                </svg>
                                             </div>
                                         </div>
-                                        <h2 class="fw-bolder mt-1">38.4K
+                                        <h2 class="fw-bolder mt-1">
 
-                                            {{--@if(get_currency_placement() == 'after')
+                                            @if(get_currency_placement() == 'after')
                                                 {{ @$total_earning }} {{ get_currency_symbol() }}
                                             @else
                                                 {{ get_currency_symbol() }} {{ @$total_earning }}
-                                            @endif--}}
+                                            @endif
 
                                         </h2>
                                         <p class="card-text">Total Earning</p>
@@ -254,22 +248,45 @@
 
                         <!-- Project table -->
                         <div class="card">
-                            <h4 class="card-header">Certifications</h4>
+                            <h4 class="card-header">All Courses</h4>
                             <table id="example" class="table table-bordered dataTables_info">
                                 <thead>
                                 <tr>
-                                    <th>Title Of The Certificate</th>
-                                    <th>Year</th>
+                                    <th>SL</th>
+                                    <th>Course Title</th>
+                                    <th>Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($instructor->certificates as $certificate)
+                                @foreach($courses as $course)
                                     <tr class="removable-item">
+                                        <td>{{$loop->iteration}}</td>
                                         <td>
-                                            <span class="data-text">{{$certificate->name}}</span>
+                                            <span class="data-text">{{$course->title}}</span>
                                         </td>
                                         <td>
-                                            <span class="data-text">{{$certificate->passing_year}}</span>
+                                            <span class="data-text">
+                                                 @if($course->status == 2)
+
+                                                    <span class="badge badge-glow bg-info">
+                                                    Pending
+                                                    </span>
+                                                @endif
+
+                                                @if($course->status == 1)
+                                                    <span class="badge badge-glow bg-success">
+                                                    Approved
+                                                    </span>
+                                                @endif
+
+                                                @if($course->status == 3)
+
+                                                    <span class="badge badge-glow bg-warning">
+                                                    Hold
+                                                    </span>
+                                                @endif
+
+                                            </span>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -279,7 +296,7 @@
                         <!-- /Project table -->
 
                         <!-- Activity Timeline -->
-                        <div class="card">
+                        {{--<div class="card">
                             <h4 class="card-header">Awards</h4>
                             <table id="example" class="table table-bordered dataTables_info">
                                 <thead>
@@ -301,7 +318,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                        </div>
+                        </div>--}}
                         <!-- /Activity Timeline -->
 
                     </div>

@@ -40,9 +40,9 @@ class InstructorController extends Controller
 
     public function index()
     {
-        /*if (!Auth::user()->can('all_instructor')) {
+        if (!Auth::user()->can('all_instructor')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 
@@ -53,9 +53,9 @@ class InstructorController extends Controller
 
     public function approvedInstructor()
     {
-        /*if (!Auth::user()->can('approved_instructor')) {
+        if (!Auth::user()->can('approved_instructor')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
@@ -65,9 +65,9 @@ class InstructorController extends Controller
 
     public function blockedInstructor()
     {
-        /*if (!Auth::user()->can('approved_instructor')) {
+        if (!Auth::user()->can('approved_instructor')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 
@@ -78,6 +78,10 @@ class InstructorController extends Controller
 
     public function changeInstructorStatus(Request $request)
     {
+        if (!Auth::user()->can('manage_instructor')) {
+            abort('403');
+        }
+
         $instructor = Instructor::findOrFail($request->id);
         $user = User::findOrFail($instructor->user_id);
 
@@ -95,6 +99,10 @@ class InstructorController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->can('manage_instructor')) {
+            abort('403');
+        }
+
         $data['countries'] = Country::orderBy('country_name', 'asc')->get();
         return view('admin.instructor.create', $data);
     }
@@ -102,6 +110,10 @@ class InstructorController extends Controller
 
     public function store(Request $request)
     {
+        if (!Auth::user()->can('manage_instructor')) {
+            abort('403');
+        }
+
         $request->validate([
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
@@ -120,7 +132,7 @@ class InstructorController extends Controller
             'twitter' => 'nullable',
             'linkedin' => 'nullable',
             'pinterest' => 'nullable',
-            'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
+            'image' => 'file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
 
         $user = new User();
@@ -174,16 +186,23 @@ class InstructorController extends Controller
 
     public function show($uuid)
     {
+        if (!Auth::user()->can('manage_instructor')) {
+            abort('403');
+        }
+
         $data['instructor'] = $this->instructorModel->getRecordByUuid($uuid);
-        $date['userCourseIds'] = Course::whereUserId($data['instructor']->user->id)->pluck('id')->toArray();
-        /*if (count($userCourseIds) > 0){
-            $orderItems = OrderItem::whereIn('course_id', $userCourseIds)
+
+        $data['courses'] = Course::where('instructor_id', $data['instructor']->id)->get();
+
+        $data['userCourseIds'] = Course::whereUserId($data['instructor']->user->id)->pluck('id')->toArray();
+        if (count($data['userCourseIds']) > 0){
+            $orderItems = OrderItem::whereIn('course_id', $data['userCourseIds'])
                 ->whereYear("created_at", now()->year)->whereMonth("created_at", now()->month)
                 ->whereHas('order', function ($q) {
                     $q->where('payment_status', 'paid');
                 });
             $data['total_earning'] = $orderItems->sum('owner_balance');
-        }*/
+        }
 
         return view('admin.instructor.show', $data);
     }
@@ -191,6 +210,10 @@ class InstructorController extends Controller
 
     public function edit($uuid)
     {
+        if (!Auth::user()->can('manage_instructor')) {
+            abort('403');
+        }
+
         $data['instructor'] = $this->instructorModel->getRecordByUuid($uuid);
         $data['user'] = User::findOrfail($data['instructor']->user_id);
 
@@ -210,6 +233,10 @@ class InstructorController extends Controller
 
     public function update(Request $request, $uuid)
     {
+        if (!Auth::user()->can('manage_instructor')) {
+            abort('403');
+        }
+
         $request->validate([
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
@@ -223,7 +250,7 @@ class InstructorController extends Controller
             'twitter' => 'nullable',
             'linkedin' => 'nullable',
             'pinterest' => 'nullable',
-            'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
+            'image' => 'file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
 
         $instructor = $this->instructorModel->getRecordByUuid($uuid);
@@ -296,6 +323,10 @@ class InstructorController extends Controller
 
     public function changeStatus($uuid, $status)
     {
+        if (!Auth::user()->can('manage_instructor')) {
+            abort('403');
+        }
+
         $instructor = $this->instructorModel->getRecordByUuid($uuid);
         $instructor->status = $status;
         $instructor->save();
@@ -315,8 +346,7 @@ class InstructorController extends Controller
     {
         if (!Auth::user()->can('manage_instructor')) {
             abort('403');
-        } // end permission checking
-
+        }
 
         $instructor = $this->instructorModel->getRecordByUuid($uuid);
         $user = User::findOrfail($instructor->user_id);
@@ -325,52 +355,10 @@ class InstructorController extends Controller
 
         if ($data['courses']->count() > 0) {
             Alert::toast('Instructor has courses. Please delete courses first.', 'warning');
-            return redirect()->back();
+            return redirect()->back()->with('warning-message', 'Instructor has courses. Please delete courses first.');
         }
 
-
-        if ($instructor && $user) {
-            //Start:: Course Delete
-            $courses = Course::whereUserId($user->id)->get();
-            foreach ($courses as $course) {
-                //start:: Course lesson delete
-                $lessons = CourseLesson::where('course_id', $course->id)->get();
-                if (count($lessons) > 0) {
-                    foreach ($lessons as $lesson) {
-                        //start:: lecture delete
-                        $lectures = CourseLecture::where('lesson_id', $lesson->id)->get();
-                        if (count($lectures) > 0) {
-                            foreach ($lectures as $lecture) {
-                                $lecture = CourseLecture::find($lecture->id);
-                                if ($lecture) {
-                                    $this->deleteFile($lecture->file_path); // delete file from server
-
-                                    if ($lecture->type == 'vimeo') {
-                                        if ($lecture->url_path) {
-                                            $this->deleteVimeoVideoFile($lecture->url_path);
-                                        }
-                                    }
-
-                                    CourseLectureView::where('course_lecture_id', $lecture->id)->get()->map(function ($q) {
-                                        $q->delete();
-                                    });
-
-                                    CourseLecture::find($lecture->id)->delete(); // delete lecture record
-                                }
-                            }
-                        }
-                        //end:: delete lesson record
-                        CourseLesson::find($lesson->id)->delete();
-                    }
-                }
-                //end
-
-                $this->deleteFile($course->image);
-                $this->deleteVideoFile($course->video);
-                $course->delete();
-            }
-            //End:: Course Delete
-        }
+        $user->delete();
         $this->instructorModel->deleteByUuid($uuid);
 
         Alert::toast('Instructor Deleted Successfully.', 'success');

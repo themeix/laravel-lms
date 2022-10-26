@@ -4,11 +4,15 @@ use App\Http\Controllers\Student\CartManagementController;
 
 use App\Http\Controllers\Student\MyCourseController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Student\StudentDashboardController;
+use App\Http\Controllers\Student\StudentController;
 use RealRashid\SweetAlert\Facades\Alert;
 
+//Profile
+Route::get('profile', [StudentController::class, 'profile'])->name('student.profile');
+Route::post('profileStore', [StudentController::class, 'profileStore'])->name('student.profileStore');
 
-Route::get('dashboard', [StudentDashboardController::class, 'index'])->name('student');
+Route::get('change-password', [StudentController::class, 'ChangePassword'])->name('student.changePassword');
+Route::post('change-password-store', [StudentController::class, 'ChangePasswordStore'])->name('student.changePasswordStore');
 
 
 //Cart & Checkout Management
@@ -18,6 +22,7 @@ Route::get('getQuantity', [CartManagementController::class, 'getQuantity'])->nam
 Route::get('fetch-bank', [CartManagementController::class, 'fetchBank'])->name('student.fetchBank');
 
 Route::get('getStates', [CartManagementController::class,'getStates'])->name('student.getStates');
+Route::get('getCities', [CartManagementController::class,'getCities'])->name('student.getCities');
 
 Route::get('checkout', [CartManagementController::class, 'checkout'])->name('student.checkout');
 Route::post('apply-coupon', [CartManagementController::class, 'applyCoupon'])->name('student.applyCoupon');

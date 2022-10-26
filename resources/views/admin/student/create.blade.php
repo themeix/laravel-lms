@@ -178,7 +178,7 @@
                                             <label class="form-label" for="basic-addon-name">Postal/Zip Code</label>
 
                                             <input
-                                                    type="text"
+                                                    type="number"
                                                     name="postal_code" value="{{old('postal_code')}}" placeholder="Postal Code"
                                                     class="form-control"
                                                     aria-label="Name"
@@ -279,7 +279,7 @@
                                                     @if ($errors->has('image'))
                                                         <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
                                                     @endif
-                                                    <p>Accepted Image Files: JPEG, JPG, PNG <br> Accepted Size: 300 x 300 (1MB)</p>
+                                                    <p> Accepted Size: 300 x 300 (1MB)</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -317,19 +317,18 @@
                     if (country_id != '') {
                         $.ajax({
                             method: "GET",
-                            url: "{{ route('admin.student.getStates') }}",
-                            data: { country_id: country_id }
-                        }).done(function( data ) {
-                            $.each(data, function( index, item ) {
+                            url: "{{ route('admin.getStates') }}",
+                            data: {country_id: country_id}
+                        }).done(function (data) {
+                            $.each(data, function (index, item) {
                                 if (stateSelectedId == item.id)
-                                    $('#state_id').append('<option value="'+item.id+'" selected>'+item.name+'</option>');
+                                    $('#state_id').append('<option value="' + item.id + '" selected>' + item.name + '</option>');
                                 else
-                                    $('#state_id').append('<option value="'+item.id+'">'+item.name+'</option>');
+                                    $('#state_id').append('<option value="' + item.id + '">' + item.name + '</option>');
                             });
                         });
                     }
                 });
-                $('#country_id').trigger('change');
             });
 
 
@@ -341,19 +340,18 @@
                     if (state_id != '') {
                         $.ajax({
                             method: "GET",
-                            url: "{{ route('admin.student.getCities') }}",
-                            data: { state_id: state_id }
-                        }).done(function( data ) {
-                            $.each(data, function( index, item ) {
+                            url: "{{ route('admin.getCities') }}",
+                            data: {state_id: state_id}
+                        }).done(function (data) {
+                            $.each(data, function (index, item) {
                                 if (citySelectedId == item.id)
-                                    $('#city_id').append('<option value="'+item.id+'" selected>'+item.name+'</option>');
+                                    $('#city_id').append('<option value="' + item.id + '" selected>' + item.name + '</option>');
                                 else
-                                    $('#city_id').append('<option value="'+item.id+'">'+item.name+'</option>');
+                                    $('#city_id').append('<option value="' + item.id + '">' + item.name + '</option>');
                             });
                         });
                     }
                 });
-                $('#state_id').trigger('change');
             });
 
         </script>

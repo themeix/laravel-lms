@@ -34,6 +34,18 @@ use App\Http\Controllers\Admin\StudentController;
 
 Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin');
 
+//Get Cities & States
+Route::get('getStates', [AdminDashboardController::class,'getStates'])->name('admin.getStates');
+Route::get('getCities', [AdminDashboardController::class,'getCities'])->name('admin.getCities');
+
+
+//Profile & Password
+Route::get('profile', [AdminDashboardController::class, 'profile'])->name('admin.profile');
+Route::post('profile-store', [AdminDashboardController::class, 'profileStore'])->name('admin.profileStore');
+Route::get('change-password', [AdminDashboardController::class, 'changePassword'])->name('admin.changePassword');
+Route::post('change-password-store', [AdminDashboardController::class, 'changePasswordStore'])->name('admin.changePasswordStore');
+
+
 //Category
 Route::get('category/index', [CategoryController::class, 'index'])->name('category.index');
 Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
@@ -158,8 +170,7 @@ Route::post('student/delete/{uuid}', [StudentController::class, 'delete'])->name
 Route::post('student/change-student-status', [StudentController::class, 'changeStudentStatus'])->name('admin.student.changeStudentStatus')/*->middleware('isDemo')*/;
 Route::get('blockedStudent', [StudentController::class, 'blockedStudent'])->name('student.blocked');
 Route::get('approvedStudent', [StudentController::class, 'approvedStudent'])->name('student.approved');
-Route::get('student/getStates', [StudentController::class,'getStates'])->name('admin.student.getStates');
-Route::get('student/getCities', [StudentController::class,'getCities'])->name('admin.student.getCities');
+
 
 
 

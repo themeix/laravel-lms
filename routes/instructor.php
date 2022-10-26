@@ -18,6 +18,12 @@ use App\Http\Controllers\Instructor\StudentController;
 
 Route::get('dashboard', [InstructorDashboardController::class, 'index'])->name('instructor');
 
+//Profile & Password
+Route::get('profile', [InstructorDashboardController::class, 'profile'])->name('instructor.profile');
+Route::post('profile-store', [InstructorDashboardController::class, 'profileStore'])->name('instructor.profileStore');
+Route::get('change-password', [InstructorDashboardController::class, 'changePassword'])->name('instructor.changePassword');
+Route::post('change-password-store', [InstructorDashboardController::class, 'changePasswordStore'])->name('instructor.changePasswordStore');
+
 
 //Course Routes Start
 Route::get('course/index', [CourseController::class, 'index'])->name('instructor.course.index');

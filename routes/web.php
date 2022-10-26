@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\InstallerController;
 use Illuminate\Support\Facades\Auth;

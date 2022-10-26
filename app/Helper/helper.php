@@ -368,7 +368,7 @@ function checkStudentCourseView($course_id, $lecture_id)
 
 function studentCoursesCount($user_id)
 {
-    /*$allUserOrder = Order::where('user_id', $user_id);
+    $allUserOrder = Order::where('user_id', $user_id);
     $paidOrderIds = $allUserOrder->where('payment_status', 'paid')->pluck('id')->toArray();
 
     $allUserOrder = Order::where('user_id', $user_id);
@@ -378,7 +378,8 @@ function studentCoursesCount($user_id)
 
     $orderItems = OrderItem::whereIn('order_id', $orderIds)->count();
 
-    return $orderItems;*/
+    return $orderItems;
 }
+
 
 

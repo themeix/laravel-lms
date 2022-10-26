@@ -143,7 +143,7 @@
                     <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
                         <div class="row">
 
-                            <div class="col-lg-6 col-sm-6 col-12">
+                            <div class="col-lg-12 col-sm-6 col-12">
                                 <div class="card">
                                     <div class="card-header flex-column align-items-center pb-2">
                                         <div class="avatar bg-light-success p-50 m-0">
@@ -151,34 +151,8 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pocket avatar-icon font-medium-3"><path d="M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z"></path><polyline points="8 10 12 14 16 10"></polyline></svg>
                                             </div>
                                         </div>
-                                        <h2 class="fw-bolder mt-1">0</h2>
+                                        <h2 class="fw-bolder mt-1">{{ studentCoursesCount($student->user_id) }}</h2>
                                         <p class="card-text">Total Enrolled Courses</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-                            <div class="col-lg-6 col-sm-6 col-12">
-                                <div class="card">
-                                    <div class="card-header flex-column align-items-center pb-2">
-                                        <div class="avatar bg-light-primary p-50 m-0">
-                                            <div class="avatar-content">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign avatar-icon"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                            </div>
-                                        </div>
-                                        <h2 class="fw-bolder mt-1">38.4K
-
-                                            {{--@if(get_currency_placement() == 'after')
-                                                {{ @$total_earning }} {{ get_currency_symbol() }}
-                                            @else
-                                                {{ get_currency_symbol() }} {{ @$total_earning }}
-                                            @endif--}}
-
-                                        </h2>
-                                        <p class="card-text">Total Payment</p>
                                     </div>
                                 </div>
                             </div>
@@ -190,21 +164,19 @@
                             <table id="example" class="table table-bordered dataTables_info">
                                 <thead>
                                 <tr>
-                                    <th>Image</th>
+                                    <th>SL</th>
                                     <th>Title</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{--@foreach($orderItems as $orderItem)
+                                @foreach($orderItems as $orderItem)
                                     <tr>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>
-                                            <a href="{{route('admin.course.view', [@$orderItem->course->uuid])}}"><img src="{{ getImageFile(@$orderItem->course->image_path) }}" alt="course" class="img-fluid" width="80"></a>
-                                        </td>
-                                        <td>
-                                            <span class="data-text"><a href="{{route('admin.course.view', [@$orderItem->course->uuid])}}">{{ @$orderItem->course->title }}</a></span>
+                                            <span class="data-text"><a href="{{--{{route('admin.course.view', [@$orderItem->course->uuid])}}--}}">{{ @$orderItem->course->title }}</a></span>
                                         </td>
                                     </tr>
-                                @endforeach--}}
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

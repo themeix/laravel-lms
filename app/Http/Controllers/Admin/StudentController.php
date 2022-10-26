@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Tools\Repositories\Crud;
 use App\Traits\ImageSaveTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -38,9 +39,9 @@ class StudentController extends Controller
 
     public function approvedStudent()
     {
-        /*if (!Auth::user()->can('approved_instructor')) {
+        if (!Auth::user()->can('manage_student')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
@@ -50,9 +51,9 @@ class StudentController extends Controller
 
     public function blockedStudent()
     {
-        /*if (!Auth::user()->can('approved_instructor')) {
+        if (!Auth::user()->can('manage_student')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 
@@ -65,6 +66,12 @@ class StudentController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->can('manage_student')) {
+            abort('403');
+        }
+
+        // end permission checking
+
         $data['countries'] = Country::orderBy('country_name', 'asc')->get();
 
         return view('admin.student.create', $data);
@@ -73,6 +80,12 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
+        if (!Auth::user()->can('manage_student')) {
+            abort('403');
+        }
+
+        // end permission checking
+
         $request->validate([
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
@@ -86,13 +99,14 @@ class StudentController extends Controller
             'city_id' => 'required',
             'postal_code' => 'required',
             'about_me' => 'required',
-            'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
+            'image' => 'file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
 
 
         $user = new User();
         $user->name = $request->first_name . ' '. $request->last_name;
         $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
         $user->email_verified_at = now();
         $user->password = Hash::make($request->password);
         $user->type = 3;
@@ -128,9 +142,15 @@ class StudentController extends Controller
     public function show($uuid)
     {
 
+        if (!Auth::user()->can('manage_student')) {
+            abort('403');
+        }
+
+        // end permission checking
+
         $data['student'] = $this->studentModel->getRecordByUuid($uuid);
 
-        /*$allUserOrder = Order::where('user_id', $data['student']->user_id);
+        $allUserOrder = Order::where('user_id', $data['student']->user_id);
         $paidOrderIds = $allUserOrder->where('payment_status', 'paid')->pluck('id')->toArray();
 
         $allUserOrder = Order::where('user_id', $data['student']->user_id);
@@ -138,7 +158,7 @@ class StudentController extends Controller
 
         $orderIds = array_merge($paidOrderIds, $freeOrderIds);
 
-        $data['orderItems'] = OrderItem::whereIn('order_id', $orderIds)->latest()->paginate(15);*/
+        $data['orderItems'] = OrderItem::whereIn('order_id', $orderIds)->latest()->paginate(15);
 
         return view('admin.student.show', $data);
     }
@@ -146,6 +166,12 @@ class StudentController extends Controller
 
     public function edit($uuid)
     {
+        if (!Auth::user()->can('manage_student')) {
+            abort('403');
+        }
+
+        // end permission checking
+
         $data['student'] = $this->studentModel->getRecordByUuid($uuid);
         $data['user'] = User::findOrfail($data['student']->user_id);
 
@@ -167,6 +193,12 @@ class StudentController extends Controller
 
     public function update(Request $request, $uuid)
     {
+        if (!Auth::user()->can('manage_student')) {
+            abort('403');
+        }
+
+        // end permission checking
+
         $request->validate([
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
@@ -175,7 +207,7 @@ class StudentController extends Controller
             'address' => 'required',
             'gender' => 'required',
             'about_me' => 'required',
-            'image' => 'mimes:jpeg,png,jpg|file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
+            'image' => 'file|dimensions:min_width=300,min_height=300,max_width=300,max_height=300|max:1024'
         ]);
 
         $student = $this->studentModel->getRecordByUuid($uuid);
@@ -189,6 +221,7 @@ class StudentController extends Controller
 
         $user->name = $request->first_name . ' '. $request->last_name;
         $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
         if ($request->password){
             $request->validate([
                 'password' => 'required|string|min:6'
@@ -221,7 +254,20 @@ class StudentController extends Controller
 
     public function delete($uuid)
     {
+        if (!Auth::user()->can('manage_student')) {
+            abort('403');
+        }
+
+        // end permission checking
+
         $student = $this->studentModel->getRecordByUuid($uuid);
+
+        $order = OrderItem::where('user_id', $student->user->id)->get();
+
+        if(count($order)>0){
+            Alert::toast('Student has purchased courses. You can not delete it.', 'warning');
+            return redirect()->route('student.index')->with('warning-message', 'Student has purchased courses. You can not delete.');
+        }
 
         if ($student){
             $this->deleteFile(@$student->user->image);
@@ -253,6 +299,13 @@ class StudentController extends Controller
 
     public function changeStudentStatus(Request $request)
     {
+
+        if (!Auth::user()->can('manage_student')) {
+            abort('403');
+        }
+
+        // end permission checking
+
         $student = Student::findOrFail($request->id);
         $user = User::findOrFail($student->user_id);
 

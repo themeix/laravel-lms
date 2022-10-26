@@ -293,6 +293,15 @@ class CartManagementController extends Controller
         return response()->json($states);
     }
 
+    public function getCities(Request $request)
+    {
+        $cities = City::where('state_id', $request->state_id)
+            ->orderBy('name')
+            ->get()->toArray();
+
+        return response()->json($cities);
+    }
+
 
     public function cartDelete($id)
     {

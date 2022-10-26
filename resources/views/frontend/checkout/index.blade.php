@@ -336,6 +336,8 @@
                                                         class="text-blue-800">*</span>
                                                 </p>
 
+
+
                                                 @if ($student->country_id && $student->country)
                                                     <input type="text" value="{{ $student->country->country_name }}"
                                                            class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
@@ -366,6 +368,7 @@
                                                     {{ $errors->first('country_id') }}</span>
                                                 @endif
                                             </div>
+
                                             <div class="flex-col">
                                                 <p class="text-black-200 mb-4 text-lg"> State <span
                                                         class="text-blue-800">*</span>
@@ -407,6 +410,50 @@
                                                     {{ $errors->first('state_id') }}</span>
                                                 @endif
                                             </div>
+
+
+                                            <div class="flex-col">
+                                                <p class="text-black-200 mb-4 text-lg"> City <span
+                                                        class="text-blue-800">*</span>
+                                                </p>
+
+                                                @if ($student->state_id && $student->state)
+                                                    <input type="text" value="{{ $student->state->name }}"
+                                                           class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                           readonly>
+                                                    <input type="hidden" name="state_id"
+                                                           value="{{ $student->state_id }}">
+                                                @else
+
+                                                    <select class="w-full arifSelect bg-white text-gray-500"
+                                                            name="state_id"
+                                                            id="state_id">
+                                                        <option value="">--- Select State ---</option>
+
+                                                        @if (old('country_id'))
+                                                            @foreach ($states as $state)
+                                                                <option value="{{ $state->id }}"
+                                                                    {{ old('state_id') == $state->id ? 'selected' : '' }}>
+                                                                    {{ $state->name }}</option>
+                                                            @endforeach
+                                                        @else
+                                                            @if ($user->country)
+                                                                @foreach ($user->country->states as $selected_state)
+                                                                    <option value="{{ $selected_state->id }}"
+                                                                        {{ $user->state_id == $selected_state->id ? 'selected' : '' }}>
+                                                                        {{ $selected_state->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endif
+                                                    </select>
+                                                @endif
+                                                @if ($errors->has('state_id'))
+                                                    <span class="text-danger"><i
+                                                            class="fas fa-exclamation-triangle"></i>
+                                                    {{ $errors->first('state_id') }}</span>
+                                                @endif
+                                            </div>
+
                                         </div>
 
 

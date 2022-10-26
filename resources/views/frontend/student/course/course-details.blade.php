@@ -12,7 +12,7 @@
                             {{ $course->title }}
                         </h1>
                         <div class="author flex items-center">
-                            <a href="{{ route('main.instructorWiseCourses', $course->instructor->uuid) }}">
+                            <a href="{{ route('main.instructorWiseCourses', $course->instructor->slug) }}">
                                 <img class="w-10 h-10 rounded-full object-fit"
                                      src="{{getImageFile($course->instructor->user ? @$course->instructor->user->image : '')}}"
                                      alt="author">
@@ -20,7 +20,7 @@
                             </a>
                             <div class="course-content ml-2">
                                 <h6 class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
-                                    <a href="{{ route('main.instructorWiseCourses', $course->instructor->uuid)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
+                                    <a href="{{ route('main.instructorWiseCourses', $course->instructor->slug)}}">{{$course->instructor ? $course->instructor->name : '' }}</a>
                                 </h6>
                                 <p class="text-sm  font-normal opacity-60">Instructor</p>
                             </div>

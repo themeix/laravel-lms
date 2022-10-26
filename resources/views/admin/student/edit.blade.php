@@ -120,26 +120,6 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basic-default-password1">Password</label>
-                                            <input
-                                                type="password"
-                                                id="password"
-                                                class="form-control"
-                                                name="password" value="" placeholder="Password"
-                                                required
-                                            />
-                                            @if ($errors->has('password'))
-                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('password') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
                                             <label class="form-label" for="basic-addon-name">Phone Number</label>
 
                                             <input
@@ -157,6 +137,10 @@
                                         </div>
                                     </div>
 
+                                </div>
+
+
+                                <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="basic-addon-name">Address</label>
@@ -174,10 +158,6 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
-
-
-                                <div class="row">
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
@@ -198,6 +178,10 @@
                                             @endif
                                         </div>
                                     </div>
+                                </div>
+
+
+                                <div class="row">
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
@@ -216,10 +200,6 @@
                                             <div class="invalid-feedback">Please select your country</div>
                                         </div>
                                     </div>
-                                </div>
-
-
-                                <div class="row">
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
@@ -229,7 +209,8 @@
                                                 <option value="">--Select State--</option>
                                                 @if(old('country_id'))
                                                     @foreach($states as $state)
-                                                        <option value="{{$state->id}}" {{old('state_id') == $state->id ? 'selected' : ''}} >{{$state->name}}</option>
+                                                        <option
+                                                            value="{{$state->id}}" {{old('state_id') == $state->id ? 'selected' : ''}} >{{$state->name}}</option>
                                                     @endforeach
                                                 @else
                                                     @if($student->country)
@@ -244,7 +225,10 @@
                                             <div class="invalid-feedback">Please enter your State.</div>
                                         </div>
                                     </div>
+                                </div>
 
+
+                                <div class="row">
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
@@ -254,12 +238,14 @@
                                                 <option value="">--Select City--</option>
                                                 @if(old('state_id'))
                                                     @foreach($cities as $city)
-                                                        <option value="{{$city->id}}" {{old('city_id') == $city->id ? 'selected' : '' }} >{{$city->name}}</option>
+                                                        <option
+                                                            value="{{$city->id}}" {{old('city_id') == $city->id ? 'selected' : '' }} >{{$city->name}}</option>
                                                     @endforeach
                                                 @else
                                                     @if($student->state)
                                                         @foreach($student->state->cities as $selected_city)
-                                                            <option value="{{$selected_city->id}}" {{$student->city_id == $selected_city->id ? 'selected' : '' }} >{{$selected_city->name}}</option>
+                                                            <option
+                                                                value="{{$selected_city->id}}" {{$student->city_id == $selected_city->id ? 'selected' : '' }} >{{$selected_city->name}}</option>
                                                         @endforeach
                                                     @endif
                                                 @endif
@@ -268,18 +254,24 @@
                                             <div class="invalid-feedback">Please enter your City.</div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row">
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1">Gender</label>
                                             <select class="form-select" name="gender" id="gender" required>
                                                 <option value="">--Select Gender--</option>
-                                                <option value="Male" {{ $student->gender == 'Male' ? 'selected' : '' }} >Male</option>
-                                                <option value="Female" {{ $student->gender == 'Female' ? 'selected' : '' }} >Female</option>
-                                                <option value="Others" {{ $student->gender == 'Others' ? 'selected' : '' }} >Others</option>
+                                                <option
+                                                    value="Male" {{ $student->gender == 'Male' ? 'selected' : '' }} >
+                                                    Male
+                                                </option>
+                                                <option
+                                                    value="Female" {{ $student->gender == 'Female' ? 'selected' : '' }} >
+                                                    Female
+                                                </option>
+                                                <option
+                                                    value="Others" {{ $student->gender == 'Others' ? 'selected' : '' }} >
+                                                    Others
+                                                </option>
                                             </select>
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please select your Gender</div>
@@ -290,7 +282,8 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="d-block form-label" for="validationBioBootstrap">About Student</label>
+                                            <label class="d-block form-label" for="validationBioBootstrap">About
+                                                Student</label>
                                             <textarea
                                                 class="form-control"
                                                 id="about_me"
@@ -309,24 +302,36 @@
                                         <div class="border rounded p-2">
                                             <h4 class="mb-1">Image</h4>
                                             <div class="d-flex flex-column flex-md-row">
-                                                <img src="{{asset('custom/image/imagePreview.svg')}}" id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                @if($student->user->image)
+                                                    <img src="{{getImageFile($student->user->image)}}"
+                                                         id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0"
+                                                         width="170" height="110" alt="Blog Featured Image"/>
+                                                @else
+
+                                                    <img src="{{asset('custom/image/imagePreview.svg')}}"
+                                                         id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0"
+                                                         width="170" height="110" alt="Blog Featured Image"/>
+
+                                                @endif
                                                 <div class="featured-info">
                                                     <p class="my-50">
                                                         <a href="#" id="blog-image-text">C:\fakepath\banner.jpg</a>
                                                     </p>
                                                     <div class="d-inline-block">
-                                                        <input class="form-control" type="file" name="image" id="blogCustomFile" accept="image/*" onchange="previewFile(this)"/>
+                                                        <input class="form-control" type="file" name="image"
+                                                               id="blogCustomFile" accept="image/*"
+                                                               onchange="previewFile(this)"/>
                                                     </div>
                                                     @if ($errors->has('image'))
-                                                        <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
+                                                        <span class="text-danger"><i
+                                                                class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
                                                     @endif
-                                                    <p>Accepted Image Files: JPEG, JPG, PNG <br> Accepted Size: 300 x 300 (1MB)</p>
+                                                    <p>Accepted Size: 300 x 300 (1MB)</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
 
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -360,14 +365,14 @@
                 if (country_id != '') {
                     $.ajax({
                         method: "GET",
-                        url: "{{ route('student.getStates') }}",
-                        data: { country_id: country_id }
-                    }).done(function( data ) {
-                        $.each(data, function( index, item ) {
+                        url: "{{ route('admin.getStates') }}",
+                        data: {country_id: country_id}
+                    }).done(function (data) {
+                        $.each(data, function (index, item) {
                             if (stateSelectedId == item.id)
-                                $('#state_id').append('<option value="'+item.id+'" selected>'+item.name+'</option>');
+                                $('#state_id').append('<option value="' + item.id + '" selected>' + item.name + '</option>');
                             else
-                                $('#state_id').append('<option value="'+item.id+'">'+item.name+'</option>');
+                                $('#state_id').append('<option value="' + item.id + '">' + item.name + '</option>');
                         });
                     });
                 }
@@ -383,14 +388,14 @@
                 if (state_id != '') {
                     $.ajax({
                         method: "GET",
-                        url: "{{ route('student.getCities') }}",
-                        data: { state_id: state_id }
-                    }).done(function( data ) {
-                        $.each(data, function( index, item ) {
+                        url: "{{ route('admin.getCities') }}",
+                        data: {state_id: state_id}
+                    }).done(function (data) {
+                        $.each(data, function (index, item) {
                             if (citySelectedId == item.id)
-                                $('#city_id').append('<option value="'+item.id+'" selected>'+item.name+'</option>');
+                                $('#city_id').append('<option value="' + item.id + '" selected>' + item.name + '</option>');
                             else
-                                $('#city_id').append('<option value="'+item.id+'">'+item.name+'</option>');
+                                $('#city_id').append('<option value="' + item.id + '">' + item.name + '</option>');
                         });
                     });
                 }

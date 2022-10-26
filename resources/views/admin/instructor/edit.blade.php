@@ -124,19 +124,22 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basic-default-password1">Password</label>
+                                            <label class="form-label" for="basic-addon-name">Phone Number</label>
+
                                             <input
-                                                type="password"
-                                                name="password" value=""
+                                                type="text"
+                                                name="phone_number" value="{{$instructor->phone_number}}"
                                                 class="form-control"
-                                                placeholder="password"
+                                                placeholder="Phone Number"
+                                                aria-label="Name"
+                                                aria-describedby="basic-addon-name"
                                                 required
                                             />
-                                            @if ($errors->has('password'))
-                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('password') }}</span>
+                                            @if ($errors->has('phone_number'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('phone_number') }}</span>
                                             @endif
                                             <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your password.</div>
+                                            <div class="invalid-feedback">Please enter your Phone Number.</div>
                                         </div>
                                     </div>
 
@@ -164,30 +167,7 @@
                                             <div class="invalid-feedback">Please enter your Professional Title.</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="basic-addon-name">Phone Number</label>
 
-                                            <input
-                                                type="text"
-                                                name="phone_number" value="{{$instructor->phone_number}}"
-                                                class="form-control"
-                                                placeholder="Phone Number"
-                                                aria-label="Name"
-                                                aria-describedby="basic-addon-name"
-                                                required
-                                            />
-                                            @if ($errors->has('phone_number'))
-                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('phone_number') }}</span>
-                                            @endif
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your Phone Number.</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="basic-addon-name">Address</label>
@@ -208,6 +188,12 @@
                                             <div class="invalid-feedback">Please enter your Address.</div>
                                         </div>
                                     </div>
+
+                                </div>
+
+
+                                <div class="row">
+
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="basic-addon-name">Zip Code / Postal
@@ -230,10 +216,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-
-                                <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1">Country</label>
@@ -251,6 +234,11 @@
                                             <div class="invalid-feedback">Please select your country</div>
                                         </div>
                                     </div>
+                                </div>
+
+
+                                <div class="row">
+
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="basic-addon-name">State</label>
@@ -275,9 +263,7 @@
                                             <div class="invalid-feedback">Please enter your State.</div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="basic-addon-name">City</label>
@@ -302,7 +288,11 @@
                                             <div class="invalid-feedback">Please enter your City.</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-12 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="select-country1">Gender</label>
                                             <select class="form-select" name="gender" id="gender" required>
@@ -446,9 +436,17 @@
                                             <h4 class="mb-1">Image</h4>
                                             <div class="d-flex flex-column flex-md-row">
 
-                                                <img src="{{asset('custom/image/imagePreview.svg')}}"
-                                                     id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0"
-                                                     width="170" height="110" alt=" Image"/>
+                                                @if($instructor->user->image)
+                                                    <img src="{{getImageFile($instructor->user->image)}}"
+                                                         id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0"
+                                                         width="150" height="110" alt="Blog Featured Image"/>
+                                                @else
+
+                                                    <img src="{{asset('custom/image/imagePreview.svg')}}"
+                                                         id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0"
+                                                         width="150" height="110" alt="Blog Featured Image"/>
+
+                                                @endif
                                                 <div class="featured-info">
                                                     <p class="my-50">
                                                         <a href="#" id="blog-image-text">C:\fakepath\banner.jpg</a>
@@ -501,14 +499,14 @@
                 if (country_id != '') {
                     $.ajax({
                         method: "GET",
-                        url: "{{ route('student.getStates') }}",
-                        data: { country_id: country_id }
-                    }).done(function( data ) {
-                        $.each(data, function( index, item ) {
+                        url: "{{ route('admin.getStates') }}",
+                        data: {country_id: country_id}
+                    }).done(function (data) {
+                        $.each(data, function (index, item) {
                             if (stateSelectedId == item.id)
-                                $('#state_id').append('<option value="'+item.id+'" selected>'+item.name+'</option>');
+                                $('#state_id').append('<option value="' + item.id + '" selected>' + item.name + '</option>');
                             else
-                                $('#state_id').append('<option value="'+item.id+'">'+item.name+'</option>');
+                                $('#state_id').append('<option value="' + item.id + '">' + item.name + '</option>');
                         });
                     });
                 }
@@ -524,14 +522,14 @@
                 if (state_id != '') {
                     $.ajax({
                         method: "GET",
-                        url: "{{ route('student.getCities') }}",
-                        data: { state_id: state_id }
-                    }).done(function( data ) {
-                        $.each(data, function( index, item ) {
+                        url: "{{ route('admin.getCities') }}",
+                        data: {state_id: state_id}
+                    }).done(function (data) {
+                        $.each(data, function (index, item) {
                             if (citySelectedId == item.id)
-                                $('#city_id').append('<option value="'+item.id+'" selected>'+item.name+'</option>');
+                                $('#city_id').append('<option value="' + item.id + '" selected>' + item.name + '</option>');
                             else
-                                $('#city_id').append('<option value="'+item.id+'">'+item.name+'</option>');
+                                $('#city_id').append('<option value="' + item.id + '">' + item.name + '</option>');
                         });
                     });
                 }

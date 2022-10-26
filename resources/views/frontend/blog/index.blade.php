@@ -30,7 +30,7 @@
                             <div class="blog-post-box shadow-5xl rounded-b">
                                 <div class="blog-post-images">
                                     <img class="w-full rounded-t max-h-96 object-cover"
-                                         src="{{asset('frontend/assets/images/blog/blog-1.webp')}}"
+                                         src="{{getImageFile($blog->image)}}"
                                          alt="images">
                                 </div>
                                 <div class="blog-post-wrap p-6">
@@ -67,11 +67,11 @@
                                             {{$blog->title}}
                                         </a>
                                     </H2>
-                                    <p class="pt-4">However with times little tricks chance of sight world to then did
-                                        made, of near nor trumpet the he experience an responded indeed.
+                                    <p class="pt-4">
+                                        {!!  Str::limit($blog->details, 200) !!}
                                     </p>
                                     <a class="flex items-center gap-2 mt-8 group hover:text-blue-600 transition duration-500"
-                                       href="#">
+                                       href="{{ route('main.blog.details', $blog->slug) }}">
                                         Read more
                                         <span>
                                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none"

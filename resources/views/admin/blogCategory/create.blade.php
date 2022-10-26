@@ -75,7 +75,7 @@
                                             <select class="form-select" name="status" id="status" required>
                                                 <option value="">---Select Status----</option>
                                                 <option value="1">Active</option>
-                                                <option value="0">Deactivate</option>
+                                                <option value="0">Inactive</option>
 
                                             </select>
                                         </div>

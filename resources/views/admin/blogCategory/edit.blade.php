@@ -76,7 +76,7 @@
                                                 <option value="">---Select Status----</option>
 
                                                 <option value="1" @if($blogCategory->status == 1) selected @endif>Active</option>
-                                                <option value="0" @if($blogCategory->status == 0) selected @endif>Deactivate</option>
+                                                <option value="0" @if($blogCategory->status == 0) selected @endif>Inactive</option>
 
                                             </select>
                                         </div>

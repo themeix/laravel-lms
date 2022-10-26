@@ -106,9 +106,14 @@
 
                                         <td>
                                             @if($blogCategory->status == 1)
-                                                <span class="status bg-green">Active</span>
+                                                <span class="badge badge-glow bg-success">
+                                                    Active
+                                                    </span>
+                                                <span class="status bg-green"></span>
                                             @else
-                                                <span class="status bg-red">Deactivated</span>
+                                                <span class="badge badge-glow bg-danger">
+                                                    Inactive
+                                                    </span>
                                             @endif
                                         </td>
 

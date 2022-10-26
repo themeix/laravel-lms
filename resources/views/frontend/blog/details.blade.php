@@ -32,7 +32,7 @@
                         <div class="blog-post-box  ">
                             <div class="blog-post-images">
                                 <img class="w-full rounded max-h-96 object-cover"
-                                     src="{{asset('frontend/assets/images/blog/blog-1.webp')}}" alt="images">
+                                     src="{{getImageFile($blog->image)}}" alt="images">
                             </div>
                             <div class="blog-post-wrap pt-5 mx-10">
                                 <div class="blog-post-top mb-5">
@@ -47,7 +47,7 @@
                                                  fill="#757F8F"/>
                                           </svg>
                                        </span>
-                                            Business
+                                            {{$blog->category->name}}
                                         </a>
                                         <p class="flex gap-4 items-center ">
                                        <span>
@@ -58,97 +58,23 @@
                                                  fill="#757F8F"/>
                                           </svg>
                                        </span>
-                                            12 July, 2022
+                                            {{ date('d M Y', strtotime(@$blog->created_at)) }}
                                         </p>
                                     </div>
                                 </div>
                                 <H2
                                     class="text-black-200 font-medium md:text-3xl text-2xl hover:text-blue-500 transition duration-500 mb-5">
-                                    <a href="#">Mars postage the practice hologram borne and as the brown everything
-                                        tone.</a>
+                                    {{$blog->title}}
                                 </H2>
                                 <div class="gh-content">
-                                    <p>However with times little tricks chance of sight world to then did made, of
-                                        near nor trumpet the he experience an responded indeed. It's that puzzles
-                                        the a kind is was performed him, dressing the well, accounts bidding for
-                                        right privilege every days,
-                                    </p>
-                                    <p> The at hometown all with and over that board to all of it up and the in it
-                                        phase a of success that it were my of slight succeed to a that, would from
-                                        is the on it make that of control for sign time cold been hollow presented
-                                        collection what with bored size been at legs, find select decided sofas were
-                                        he housed of before to people should for front the good in so river though
-                                        the I his refinement two no right mainly into.
-                                    </p>
-                                    <ul>
-                                        <li> Mars postage the practice hologram</li>
-                                        <li>No a picture first of was math with bits phase</li>
-                                        <li> However with times little tricks chance</li>
-                                    </ul>
-                                    <div class="blog-quote border-slate-200 shadow-3xl">
-                                        <div class="blog-quote-wrap flex p-8 gap-4">
-                                            <div class="quote-icon">
-                                          <span>
-                                             <svg width="40" height="28" viewBox="0 0 40 28" fill="none"
-                                                  xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M31.3796 10.4211C31.2997 9.55738 31.3608 7.20952 33.61 3.94467C33.7801 3.6983 33.7492 3.36603 33.538 3.1548C32.621 2.23781 32.0532 1.65916 31.655 1.25425C31.1314 0.720352 30.8923 0.477081 30.5425 0.159868C30.3089 -0.05012 29.9554 -0.0537765 29.7193 0.152059C25.799 3.56337 21.4446 10.6123 22.0747 19.2484C22.4439 24.3193 26.1428 28 30.8694 28C35.72 28 39.6663 24.0542 39.6663 19.2036C39.6663 14.5242 35.9936 10.6868 31.3796 10.4211ZM30.8694 26.7604C26.8104 26.7604 23.6321 23.5634 23.3107 19.1588C22.6019 9.44601 28.3756 3.13664 30.12 1.46609C30.2901 1.63375 30.4844 1.83103 30.7707 2.12277C31.1157 2.47383 31.5878 2.95442 32.302 3.67109C29.5716 7.87773 30.0867 10.875 30.3125 11.3048C30.4196 11.5088 30.6393 11.6462 30.8694 11.6462C35.0366 11.6462 38.4267 15.0363 38.4267 19.2036C38.4267 23.3703 35.0366 26.7604 30.8694 26.7604Z"
-                                                    fill="#757F8F"/>
-                                                <path
-                                                    d="M9.36704 10.4211C9.28653 9.5598 9.34584 7.21374 11.5974 3.94467C11.767 3.6983 11.7367 3.36603 11.5254 3.1548C10.6102 2.2396 10.0431 1.66158 9.64546 1.25666C9.12011 0.721592 8.88038 0.477639 8.53056 0.159868C8.2969 -0.0501199 7.94343 -0.0531569 7.70741 0.151439C3.78705 3.56275 -0.567902 10.6105 0.0609461 19.2484C0.4314 24.3187 4.13079 28 8.85738 28C13.7081 28 17.6544 24.0542 17.6544 19.2036C17.6544 14.5236 13.9816 10.6856 9.36704 10.4211ZM8.85738 26.7604C4.79906 26.7604 1.61893 23.5634 1.29695 19.1582C0.590006 9.44297 6.36368 3.13602 8.10804 1.46609C8.27874 1.63375 8.47366 1.83227 8.76057 2.12463C9.10493 2.47568 9.57647 2.95566 10.2895 3.67109C7.55909 7.87835 8.0742 10.875 8.29993 11.3042C8.4071 11.5081 8.62737 11.6462 8.85738 11.6462C13.0247 11.6462 16.4148 15.0363 16.4148 19.2036C16.4148 23.3703 13.0247 26.7604 8.85738 26.7604Z"
-                                                    fill="#757F8F"/>
-                                             </svg>
-                                          </span>
-                                            </div>
-                                            <div class="blog-qutoe-right">
-                                                <p class="mb-4 text-xl">However with times little tricks chance of
-                                                    sight world to then did made, of near nor trumpet the he
-                                                    experience an responded indeed.
-                                                </p>
-                                                <a class=" hover:text-black-200 transition duration-500 text-xl "
-                                                   href="#">Rianna Cook</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div class="flex-col">
-                                            <img class="rounded max-h-[202px] w-full bg-top object-cover"
-                                                 src="{{asset('frontend/assets/images/lessons-images-3.webp')}}"
-                                                 alt="images">
-                                        </div>
-                                        <div class="flex-col">
-                                            <img class="rounded max-h-[202px] w-full bg-top object-cover"
-                                                 src="{{asset('frontend/assets/images/lessons-images-4.webp')}}"
-                                                 alt="images">
-                                        </div>
-                                    </div>
-                                    <h3>The disguised the want those please way.</h3>
-                                    <p>However with times little tricks chance of sight world to then did made, of
-                                        near nor trumpet the he experience an responded indeed. It's that puzzles
-                                        the a kind is was performed him, dressing the well, accounts bidding for
-                                        right privilege every days,
-                                    </p>
-                                    <p>
-                                        Their of queen, shall to the regretting evening. And my detailed walls for
-                                        or have making and, derived enough a he officer with counter-productive one
-                                        they the eagerly parameters few cache building five packed ran screen math
-                                        be made most in though, fees ability somewhere, the and survey blocks try to
-                                        of or with there turn where have the be my looked pervasively title so your
-                                        caching self-discipline.
-                                    </p>
-                                    <h3>Analyzed admittance</h3>
-                                    <p>However with times little tricks chance of sight world to then did made, of
-                                        near nor trumpet the he experience an responded indeed. It's that puzzles
-                                        the a kind is was performed him, dressing the well, accounts bidding for
-                                        right privilege every days,
-                                    </p>
+                                    {!! $blog->details !!}
                                 </div>
                                 <div class="share-link md:mt-28 mt-20 flex items-center gap-8">
                                     <p>SHARE:</p>
                                     <ul class="flex gap-4">
                                         <li>
                                             <a class="bg-gray-400 hover:bg-linkedin-100 group transition duration-500 w-10 h-10 flex items-center justify-center rounded-full"
-                                               href="#">
+                                               href="https://www.linkedin.com/shareArticle?url={{ route('main.blog.details', $blog->slug) }}">
                                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path class="group-hover:fill-white" fill-rule="evenodd"
@@ -160,7 +86,7 @@
                                         </li>
                                         <li>
                                             <a class="bg-gray-400 hover:bg-linkedin-100 group transition duration-500 w-10 h-10 flex items-center justify-center rounded-full"
-                                               href="#">
+                                               href="http://www.facebook.com/share.php?u={{ route('main.blog.details', $blog->slug) }}">
                                                 <svg width="10" height="14" viewBox="0 0 10 14" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path class="group-hover:fill-white"
@@ -171,7 +97,7 @@
                                         </li>
                                         <li>
                                             <a class="bg-gray-400 hover:bg-linkedin-100 group transition duration-500 w-10 h-10 flex items-center justify-center rounded-full"
-                                               href="#">
+                                               href="https://twitter.com/share?url={{ route('main.blog.details', $blog->slug) }}">
                                                 <svg width="18" height="14" viewBox="0 0 18 14" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path class="group-hover:fill-white"

@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use App\Models\Tag;
+use App\Models\User;
 use App\Tools\Repositories\Crud;
 use App\Traits\ImageSaveTrait;
 use Illuminate\Support\Facades\Auth;
@@ -65,7 +66,7 @@ class BlogController extends Controller
             'details' => ['required'],
             'status' => ['required'],
             'blog_category_id' => 'required',
-            'image' => 'mimes:jpeg,png,jpg|file|max:1024'
+            'image' => 'file|dimensions:min_width=870 ,min_height=500 ,max_width=870 ,max_height=500 |max:1024'
         ]);
 
 
@@ -97,6 +98,11 @@ class BlogController extends Controller
 
     public function show($uuid){
         $data['blog'] = $this->model->getRecordByUuid($uuid);
+
+        $data['user'] = User::where('id', $data['blog']->user_id)->first();
+
+        $data['blogTags'] = BlogTag::where('blog_id', $data['blog']->id)->get();
+
         return view('admin.blog.show',$data);
     }
 
@@ -128,7 +134,7 @@ class BlogController extends Controller
             'details' => ['required'],
             'status' => ['required'],
             'blog_category_id' => 'required',
-            'image' => 'mimes:jpeg,png,jpg|file|max:1024'
+            'image' => 'file|dimensions:min_width=870 ,min_height=500 ,max_width=870 ,max_height=500 |max:1024'
         ]);
 
 

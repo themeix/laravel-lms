@@ -316,7 +316,7 @@
                                                 <a class="" href="{{ route('main.courseDetails', $course->slug) }}">
                                                     <img
                                                         class="group-hover:scale-125  transition duration-500 w-full h-full max-h-64 object-cover rounded"
-                                                        src="{{asset('frontend/assets/images/web-design/list-webdesign-1.webp')}}"
+                                                        src="{{getImageFile($course->image)}}"
                                                         alt="images">
                                                     <div
                                                         class="overlay-images rounded-xl absolute top-0 w-full h-full bg-blue-5 left-0">

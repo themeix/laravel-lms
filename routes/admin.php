@@ -5,9 +5,11 @@ use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\KeyPointsController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\UserController;
 use App\Models\BlogCategory;
@@ -233,7 +235,7 @@ Route::get('blogCategory/create', [BlogCategoryController::class, 'create'])->na
 Route::post('blogCategory/store', [BlogCategoryController::class, 'store'])->name('blogCategory.store')/*->middleware('isDemo')*/;
 Route::get('blogCategory/edit/{uuid}', [BlogCategoryController::class, 'edit'])->name('blogCategory.edit');
 Route::post('blogCategory/update/{uuid}', [BlogCategoryController::class, 'update'])->name('blogCategory.update')/*->middleware('isDemo')*/;
-Route::get('blogCategory/delete/{uuid}', [BlogCategoryController::class, 'delete'])->name('blogCategory.delete')/*->middleware('isDemo')*/;
+Route::post('blogCategory/delete/{uuid}', [BlogCategoryController::class, 'delete'])->name('blogCategory.delete')/*->middleware('isDemo')*/;
 
 
 
@@ -315,3 +317,17 @@ Route::get('order-cancelled', [ReportController::class, 'orderReportCancelled'])
 Route::get('order-cancelled/show/{uuid}', [ReportController::class, 'orderReportCancelledShow'])->name('report.orderCancelled.show');
 
 Route::get('order-paid/{uuid}/{status}', [ReportController::class, 'orderReportPaidStatus'])->name('report.order-paid');
+
+
+//Currency
+Route::get('currency/index', [CurrencyController::class, 'index'])->name('currency.index');
+Route::get('currency/create', [CurrencyController::class, 'create'])->name('currency.create');
+Route::post('currency/store', [CurrencyController::class, 'store'])->name('currency.store')/*->middleware('isDemo')*/;
+Route::get('currency/edit/{id}', [CurrencyController::class, 'edit'])->name('currency.edit');
+Route::post('currency/update/{id}', [CurrencyController::class, 'update'])->name('currency.update');
+Route::post('currency/delete/{id}', [CurrencyController::class, 'delete'])->name('currency.delete')/*->middleware('isDemo')*/;
+
+//Settings
+
+Route::post('save-setting', [SettingController::class, 'saveSetting'])->name('setting.save')/*->middleware('isDemo')*/;
+Route::get('payment-method/paypal', [SettingController::class, 'paypal'])->name('payment-method.paypal');

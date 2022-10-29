@@ -209,12 +209,16 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="mb-1">
-                                            <label class="form-label" for="select-country1">Status</label>
+                                            <label class="form-label" for="status">Status</label>
                                             <select name="status" id="status" class="form-control">
                                                 <option value="">--Select Option--</option>
                                                 <option value="1">Active</option>
                                                 <option value="0">Deactivated</option>
                                             </select>
+
+                                            @if ($errors->has('status'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('status') }}</span>
+                                            @endif
 
                                         </div>
                                     </div>

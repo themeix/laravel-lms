@@ -55,9 +55,7 @@
                                 <div class="lessons-item group hover:-translate-y-2 duration-500" data-aos="fade-up"
                                      data-aos-delay="300">
                                     <div class="lessons-images relative overflow-hidden">
-                                        <a href="{{ route('main.courseDetails', $course->slug) }}"> <img class="rounded-t-md max-h-64 w-full object-cover"
-                                                                                                         src="{{asset('frontend/assets/images/lessons-images-1.webp')}}"
-                                                                                                         alt="images">
+                                        <a href="{{ route('main.courseDetails', $course->slug) }}"> <img class="rounded-t-md max-h-64 w-full object-cover" src="{{getImageFile($course->image)}}" alt="images">
                                         </a>
 
                                     </div>

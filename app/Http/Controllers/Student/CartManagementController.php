@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
+use App\Models\CouponCourse;
+use App\Models\CouponInstructor;
 use App\Models\Instructor;
 use App\Models\Bank;
 use App\Models\CartManagement;
@@ -10,9 +13,9 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Course;
 use App\Models\Order;
-use App\Models\Order_item;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\PromotionCourse;
 use App\Models\State;
 use App\Models\Student;
 use App\Models\User;
@@ -20,6 +23,7 @@ use App\Models\Withdraw;
 
 use App\Traits\ImageSaveTrait;
 use App\Traits\SendNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -112,10 +116,30 @@ class CartManagementController extends Controller
                 }
             }
 
+            /*$have_coupon = CouponCourse::where('course_id', $request->course_id)->where('coupon_id', function ($query){
+                $query -> from('coupons')->select('id')->where('start_date', '<=', Carbon::now()->format('Y-m-d'))->where('end_date', '>=', Carbon::now()->format('Y-m-d'))->first();
+            })->latest()->first();*/
+
+
+            $have_coupon = CouponCourse::where('course_id', $request->course_id)->latest()->first();
+
+            if ($have_coupon) {
+                $have_coupon_valid = Coupon::where('id', $have_coupon->id)->where('status', 1)->where('start_date', '<=', Carbon::now()->format('Y-m-d'))->where('end_date', '>=', Carbon::now()->format('Y-m-d'))->first();
+            }
+
+
+            $have_promotion = PromotionCourse::where('course_id', $request->course_id)->latest()->first();
+
 
             $cart = new CartManagement();
             $cart->user_id = Auth::user()->id;
             $cart->course_id = $request->course_id;
+            if ($have_coupon && $have_coupon_valid) {
+                $cart->coupon_id = $have_coupon->id;
+            }
+            if ($have_promotion) {
+                $cart->promotion_id = $have_promotion->id;
+            }
             $cart->product_id = $request->product_id;
             $cart->main_price = $request->price;
             $cart->price = $request->price;
@@ -218,10 +242,26 @@ class CartManagementController extends Controller
         }
 
 
+        $have_coupon = CouponCourse::where('course_id', $request->course_id)->latest()->first();
+
+        if ($have_coupon) {
+            $have_coupon_valid = Coupon::where('id', $have_coupon->id)->where('status', 1)->where('start_date', '<=', Carbon::now()->format('Y-m-d'))->where('end_date', '>=', Carbon::now()->format('Y-m-d'))->first();
+        }
+
+
+        $have_promotion = PromotionCourse::where('course_id', $request->course_id)->latest()->first();
+
+
         $cart = new CartManagement();
         $cart->user_id = Auth::user()->id;
         $cart->course_id = $request->course_id;
         $cart->product_id = $request->product_id;
+        if ($have_coupon && $have_coupon_valid) {
+            $cart->coupon_id = $have_coupon->id;
+        }
+        if ($have_promotion) {
+            $cart->promotion_id = $have_promotion->id;
+        }
         $cart->main_price = $request->price;
         $cart->price = $request->price;
 
@@ -236,7 +276,10 @@ class CartManagementController extends Controller
     public function cartList()
     {
         $data['carts'] = CartManagement::whereUserId(Auth::user()->id)->get();
-        $data['total'] = CartManagement::whereUserId(Auth::user()->id)->sum('price');
+        $data['total'] = CartManagement::whereUserId(Auth::user()->id)->sum('main_price');
+        $data['total_after_discount'] = CartManagement::whereUserId(Auth::user()->id)->sum('price');
+        $data['discount_percent'] = CartManagement::whereUserId(Auth::user()->id)->sum('discount_percent');
+        $data['discount_amount'] = CartManagement::whereUserId(Auth::user()->id)->sum('discount');
 
         $quantity = CartManagement::whereUserId(Auth::user()->id)->count();
 
@@ -254,7 +297,10 @@ class CartManagementController extends Controller
     public function checkout()
     {
         $data['carts'] = CartManagement::whereUserId(Auth::user()->id)->get();
-        $data['total'] = CartManagement::whereUserId(Auth::user()->id)->sum('price');
+        $data['total'] = CartManagement::whereUserId(Auth::user()->id)->sum('main_price');
+        $data['total_after_discount'] = CartManagement::whereUserId(Auth::user()->id)->sum('price');
+        $data['discount_percent'] = CartManagement::whereUserId(Auth::user()->id)->sum('discount_percent');
+        $data['discount_amount'] = CartManagement::whereUserId(Auth::user()->id)->sum('discount');
 
         $data['countries'] = Country::orderBy('country_name', 'asc')->get();
 
@@ -281,6 +327,131 @@ class CartManagementController extends Controller
         $data['quantity'] = CartManagement::whereUserId(Auth::user()->id)->count();
 
         return view('frontend.checkout.index', $data);
+    }
+
+    public function applyCoupon(Request $request)
+    {
+        if (!Auth::check()) {
+            Alert::toast('You need to login first!', 'warning');
+            return redirect()->back();
+        }
+
+        if (!$request->coupon_code) {
+            Alert::toast('Enter coupon code!', 'warning');
+            return redirect()->back();
+        }
+
+
+        if ($request->id) {
+            $cart = CartManagement::where('id', $request->id)->first();
+            $cart_price = $cart->main_price;
+            if (!$cart) {
+                Alert::toast('Cart item not found!', 'error');
+                return redirect()->back();
+            }
+
+            $coupon = Coupon::where('coupon_code_name', $request->coupon_code)->where('start_date', '<=', Carbon::now()->format('Y-m-d'))->where('end_date', '>=', Carbon::now()->format('Y-m-d'))->first();
+
+            if ($coupon) {
+                if (floatval($cart_price) < $coupon->minimum_amount) {
+                    Alert::toast("Minimum " . get_currency_code() . $coupon->minimum_amount . " need to buy for use this coupon!", 'warning');
+                    return redirect()->back();
+                }
+            }
+            if (!$coupon) {
+                Alert::toast('Invalid coupon code!', 'warning');
+                return redirect()->back();
+            }
+
+
+            if (CartManagement::whereUserId(@Auth::user()->id)->whereAppliedCouponId($coupon->id)->count() > 0) {
+                Alert::toast("You've already used this coupon!", 'warning');
+                return redirect()->back();
+
+            }
+
+            $discount_price = ($cart->price * $coupon->percentage) / 100;
+
+            if ($coupon->coupon_type == 1) {
+                $cart->price = round($cart->price - $discount_price);
+                $cart->discount = $discount_price;
+                $cart->applied_coupon_id = $coupon->id;
+                $cart->discount_percent = $coupon->percentage;
+                $cart->save();
+
+                /*$carts = CartManagement::whereUserId(@Auth::user()->id)->get();*/
+                Alert::toast("Coupon Applied", 'success');
+                return redirect()->back();
+                /*$response['price'] = $cart->price;
+                $response['discount'] = $cart->discount;
+                $response['total'] = get_number_format($carts->sum('price'));
+                $response['platform_charge'] = get_platform_charge($carts->sum('price'));
+                $response['grand_total'] = get_number_format($carts->sum('price') + get_platform_charge($carts->sum('price')));
+                $response['status'] = 200;
+                return response()->json($response);*/
+            } elseif ($coupon->coupon_type == 2) {
+                if ($cart->course) {
+                    $user_id = $cart->course->user_id;
+                } else {
+                    $user_id = $cart->product->user_id;
+                }
+
+                $couponInstructor = CouponInstructor::where('coupon_id', $coupon->id)->where('user_id', $user_id)->orderBy('id', 'desc')->first();
+                if ($couponInstructor) {
+
+                    $cart->price = round($cart->price - $discount_price);
+                    $cart->discount = $discount_price;
+                    $cart->applied_coupon_id = $coupon->id;
+                    $cart->discount_percent = $coupon->percentage;
+                    $cart->save();
+
+                    /*$carts = CartManagement::whereUserId(@Auth::user()->id)->get();*/
+                    Alert::toast("Coupon Applied", 'success');
+                    return redirect()->back();
+                    /*$response['price'] = $cart->price;
+                    $response['discount'] = $cart->discount;
+                    $response['total'] = get_number_format($carts->sum('price'));
+                    $response['platform_charge'] = get_platform_charge($carts->sum('price'));
+                    $response['grand_total'] = get_number_format($carts->sum('price') + get_platform_charge($carts->sum('price')));
+                    $response['status'] = 200;
+                    return response()->json($response);*/
+                } else {
+                    $response['msg'] = "Invalid coupon code!";
+                    $response['status'] = 404;
+                    return response()->json($response);
+                }
+            } elseif ($coupon->coupon_type == 3) {
+                $couponCourse = CouponCourse::where('coupon_id', $coupon->id)->where('course_id', $cart->course_id)->orderBy('id', 'desc')->first();
+                if ($couponCourse) {
+
+                    $cart->price = round($cart->price - $discount_price);
+                    $cart->discount = $discount_price;
+                    $cart->applied_coupon_id = $coupon->id;
+                    $cart->discount_percent = $coupon->percentage;
+                    $cart->save();
+
+                    /*$carts = CartManagement::whereUserId(@Auth::user()->id)->get();*/
+                    Alert::toast("Coupon Applied", 'success');
+                    return redirect()->back();
+                    /*$response['price'] = $cart->price;
+                    $response['discount'] = $cart->discount;
+                    $response['total'] = get_number_format($carts->sum('price'));
+                    $response['platform_charge'] = get_platform_charge($carts->sum('price'));
+                    $response['grand_total'] = get_number_format($carts->sum('price') + get_platform_charge($carts->sum('price')));
+                    $response['status'] = 200;
+                    return response()->json($response);*/
+                } else {
+                    Alert::toast('Invalid coupon code!', 'warning');
+                    return redirect()->back();
+                }
+            } else {
+                Alert::toast('Invalid coupon code!', 'warning');
+                return redirect()->back();
+            }
+        } else {
+            Alert::toast('Cart item not found!', 'error');
+            return redirect()->back();
+        }
     }
 
 
@@ -315,15 +486,27 @@ class CartManagementController extends Controller
     public function processOrder(Request $request)
     {
 
+        if(empty($request->first_name) || empty($request->last_name)){
+            Alert::toast('Please give your full name!', 'warning');
+            return redirect()->back();
+        }
+
+        if(empty($request->email) ||  empty($request->phone_number)){
+            Alert::toast('Please give your contact information!', 'warning');
+            return redirect()->back();
+        }
+
+
+
         if (is_null($request->payment_method)) {
-            Alert::toast('Please Select Payment Method', 'warning');
+            Alert::toast('Please select payment method', 'warning');
             return redirect()->back();
         }
 
 
         if ($request->payment_method == 'bank') {
             if (empty($request->deposit_by) || is_null($request->deposit_slip) || empty($request->account_number) || empty($request->bank_id)) {
-                Alert::toast('Bank Information Not Valid!', 'error');
+                Alert::toast('Invalid bank information!', 'error');
                 return redirect()->back();
             }
         }
@@ -331,8 +514,16 @@ class CartManagementController extends Controller
         $order = $this->placeOrder($request->payment_method);
         /** order billing address */
 
-        if(!auth::user()->student || !auth::user()->instuctor){
-
+        if (!auth::user()->student) {
+            $student = new Student();
+            $student->user_id = auth::user()->id;
+            $student->first_name = $request->first_name;
+            $student->last_name = $request->last_name;
+            $student->phone_number = $request->phone_number;
+            $student->country_id = $request->country_id;
+            $student->state_id = $request->state_id;
+            $student->address = $request->address;
+            $student->save();
         }
 
         if (auth::user()->student) {
@@ -346,8 +537,8 @@ class CartManagementController extends Controller
             $deposit_slip = $this->uploadFileWithDetails('bank', $request->deposit_slip);
 
             $order->payment_status = 'pending';
-            $order->deposit_by =  $deposit_by;
-            $order->deposit_slip =  $deposit_slip['path'];
+            $order->deposit_by = $deposit_by;
+            $order->deposit_slip = $deposit_slip['path'];
             $order->payment_method = 'bank';
             $order->bank_id = $request->bank_id;
             $order->save();
@@ -361,8 +552,6 @@ class CartManagementController extends Controller
             Alert::toast('Request has been Placed! Please Wait for Approve', 'success');
             return redirect()->route('student.thankYou');
         }
-
-
 
 
     }

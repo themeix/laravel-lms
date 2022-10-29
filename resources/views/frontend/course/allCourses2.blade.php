@@ -30,7 +30,7 @@
                         <div class="lessons-images relative overflow-hidden">
                             <a href="{{ route('main.courseDetails', $course->slug) }}">
                                 <img class="rounded-t-md max-h-64 w-full object-cover"
-                                     src="{{asset('frontend/assets/images/lessons-images-1-1.webp')}}"
+                                     src="{{getImageFile($course->image)}}"
                                      alt="images">
                             </a>
                         </div>

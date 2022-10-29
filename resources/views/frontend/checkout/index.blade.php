@@ -40,7 +40,7 @@
                                                                 <div class="flex-col">
                                                                     <a href="{{ route('main.courseDetails', $cart->course->slug) }}"><img
                                                                             class="max-h-32 object-cover max-w-52 rounded mb-3 lg:mb-0"
-                                                                            src="{{asset('frontend/assets/images/shopping-cart.webp')}}"
+                                                                            src="{{getImageFile($cart->course->image)}}"
                                                                             alt="images">
                                                                     </a>
                                                                 </div>
@@ -58,6 +58,34 @@
                                                                             </p>
                                                                         </div>
                                                                     </div>
+
+                                                                    @if($cart->coupon_id != null)
+
+                                                                        @php
+                                                                            $coupon = \App\Models\Coupon::where('id', $cart->coupon_id)->first();
+                                                                        @endphp
+
+                                                                        <div class="author-box flex items-center mt-4">
+                                                                            <div class="course-content">
+                                                                                @if($cart->applied_coupon_id != null)
+
+                                                                                    <p class="text-sm text-blue-50 font-normal "
+                                                                                       style="color: #00C851;">
+                                                                                        {{ $coupon->coupon_code_name }} - Applied
+
+                                                                                    </p>
+
+                                                                                @else
+                                                                                    <p class="text-sm text-blue-50 font-normal "
+                                                                                       style="color: orangered;">
+                                                                                        {{ $coupon->coupon_code_name }} - {{$coupon->percentage}}% off
+
+                                                                                    </p>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -66,11 +94,21 @@
                                             </div>
                                             <div class="col-span-4 mt-4 lg:mt-0">
                                                 <div class="flex-col lg:text-right w-full">
+                                                    @if($cart->applied_coupon_id != null)
                                                     <p class="text-black-200 font-medium">
-                                                        ${{ $cart->course->price }}</p>
-                                                    <p class="text-blue-50">
+                                                        <del> ${{ $cart->main_price }} </del></p>
+                                                        <p class="text-black-200 font-medium">
+                                                            ${{ $cart->price }}</p>
 
-                                                    </p>
+                                                    @else
+                                                        <p class="text-black-200 font-medium">
+                                                            ${{ $cart->main_price }}</p>
+                                                        <p class="text-blue-50">
+
+                                                        </p>
+
+                                                        @endif
+
                                                 </div>
                                             </div>
                                         </div>
@@ -95,7 +133,7 @@
                                                         class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         value="{{ $instructor->first_name }}"
                                                         name="first_name" id="first_name"
-                                                        type="text" placeholder="Name"/>
+                                                        type="text" placeholder="First name" required/>
 
                                                     @if ($errors->has('first_name'))
                                                         <span class="text-danger"><i
@@ -115,7 +153,7 @@
                                                         class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         value=" {{ $instructor->last_name }}"
                                                         name="last_name" id="last_name"
-                                                        type="text" placeholder="Name"/>
+                                                        type="text" placeholder="Last name" required/>
 
                                                     @if ($errors->has('last_name'))
                                                         <span class="text-danger"><i
@@ -135,7 +173,7 @@
                                                         class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         name="email" id="email"
                                                         value="{{ $instructor->user->email }}"
-                                                        type="email" placeholder="Eamil"/>
+                                                        type="email" placeholder="Eamil" required/>
 
                                                     @if ($errors->has('email'))
                                                         <span class="text-danger"><i
@@ -153,7 +191,7 @@
                                                     <input
                                                         class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         name="phone_number" value="{{ $instructor->phone_number }}"
-                                                        type="number" placeholder="Phone Number"/>
+                                                        type="number" placeholder="Phone Number" required/>
                                                 </div>
                                             </div>
 
@@ -246,7 +284,7 @@
                                                           class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                           name="address" id="address"
                                                           type="text"
-                                                          placeholder="Address">{{ $instructor->address }} </textarea>
+                                                          placeholder="Address" >{{ $instructor->address }} </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -268,7 +306,7 @@
                                                         class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         value="{{ $student->first_name }}"
                                                         name="first_name" id="first_name"
-                                                        type="text" placeholder="Name"/>
+                                                        type="text" placeholder="Name" required/>
 
                                                     @if ($errors->has('first_name'))
                                                         <span class="text-danger"><i
@@ -288,7 +326,7 @@
                                                         class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         value=" {{ $student->last_name }}"
                                                         name="last_name" id="last_name"
-                                                        type="text" placeholder="Name"/>
+                                                        type="text" placeholder="Name" required/>
 
                                                     @if ($errors->has('last_name'))
                                                         <span class="text-danger"><i
@@ -308,7 +346,7 @@
                                                         class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         name="email" id="email"
                                                         value="{{ $student->user->email }}"
-                                                        type="email" placeholder="Eamil"/>
+                                                        type="email" placeholder="Eamil" required/>
 
                                                     @if ($errors->has('email'))
                                                         <span class="text-danger"><i
@@ -326,7 +364,7 @@
                                                     <input
                                                         class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         name="phone_number" value="{{ $student->phone_number }}"
-                                                        type="number" placeholder="Phone Number"/>
+                                                        type="number" placeholder="Phone Number" required/>
                                                 </div>
                                             </div>
 
@@ -410,50 +448,6 @@
                                                     {{ $errors->first('state_id') }}</span>
                                                 @endif
                                             </div>
-
-
-                                            <div class="flex-col">
-                                                <p class="text-black-200 mb-4 text-lg"> City <span
-                                                        class="text-blue-800">*</span>
-                                                </p>
-
-                                                @if ($student->state_id && $student->state)
-                                                    <input type="text" value="{{ $student->state->name }}"
-                                                           class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                           readonly>
-                                                    <input type="hidden" name="state_id"
-                                                           value="{{ $student->state_id }}">
-                                                @else
-
-                                                    <select class="w-full arifSelect bg-white text-gray-500"
-                                                            name="state_id"
-                                                            id="state_id">
-                                                        <option value="">--- Select State ---</option>
-
-                                                        @if (old('country_id'))
-                                                            @foreach ($states as $state)
-                                                                <option value="{{ $state->id }}"
-                                                                    {{ old('state_id') == $state->id ? 'selected' : '' }}>
-                                                                    {{ $state->name }}</option>
-                                                            @endforeach
-                                                        @else
-                                                            @if ($user->country)
-                                                                @foreach ($user->country->states as $selected_state)
-                                                                    <option value="{{ $selected_state->id }}"
-                                                                        {{ $user->state_id == $selected_state->id ? 'selected' : '' }}>
-                                                                        {{ $selected_state->name }}</option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endif
-                                                    </select>
-                                                @endif
-                                                @if ($errors->has('state_id'))
-                                                    <span class="text-danger"><i
-                                                            class="fas fa-exclamation-triangle"></i>
-                                                    {{ $errors->first('state_id') }}</span>
-                                                @endif
-                                            </div>
-
                                         </div>
 
 
@@ -484,11 +478,10 @@
                                                     <p class="text-black-200 mb-4 text-lg">First Name <span
                                                             class="text-blue-800">*</span>
                                                     </p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                    <input class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         value="{{ old('first_name') }}"
                                                         name="first_name" id="first_name"
-                                                        type="text" placeholder="Name"/>
+                                                        type="text" placeholder="First name" required/>
 
                                                     @if ($errors->has('first_name'))
                                                         <span class="text-danger"><i
@@ -506,9 +499,9 @@
                                                     </p>
                                                     <input
                                                         class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        value=" {{ old('last_name') }}"
+                                                        value="{{ old('last_name') }}"
                                                         name="last_name" id="last_name"
-                                                        type="text" placeholder="Name"/>
+                                                        type="text" placeholder="Last name" required/>
 
                                                     @if ($errors->has('last_name'))
                                                         <span class="text-danger"><i
@@ -527,8 +520,8 @@
                                                     <input
                                                         class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         name="email" id="email"
-                                                        value="{{ old('email') }}"
-                                                        type="email" placeholder="Eamil"/>
+                                                        value="{{ Auth::user()->email }}"
+                                                        type="email" placeholder="Eamil" required/>
 
                                                     @if ($errors->has('email'))
                                                         <span class="text-danger"><i
@@ -545,8 +538,8 @@
                                                     </p>
                                                     <input
                                                         class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        name="phone_number" value="{{ old('phone_number') }}"
-                                                        type="number" placeholder="Phone Number"/>
+                                                        name="phone_number" value="{{ Auth::user()->phone_number }}"
+                                                        type="number" placeholder="Phone Number" required/>
                                                     @if ($errors->has('phone_number'))
                                                         <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('phone_number') }}</span>
                                                     @endif
@@ -804,20 +797,20 @@
                                     <p>$ {{ $total }}</p>
                                 </div>
                                 <div class="item-info flex justify-between mb-6 border-b pb-6">
-                                    <p class="text-gray-800">Selling price:</p>
+                                    <p class="text-gray-800">Discount: </p>
                                     <p>
-                                        <del>$ {{ $total }}</del>
+                                        <del>$ {{ $discount_amount }}</del>
                                     </p>
                                 </div>
                                 <div class="item-info flex justify-between mb-6 border-b pb-4">
-                                    <p class="text-gray-800">Total:</p>
-                                    <p class="text-2xl font-medium">$ {{ $total }}</p>
+                                    <p class="text-gray-800">Selling price:</p>
+                                    <p class="text-2xl font-medium">$ {{ $total_after_discount }}</p>
                                 </div>
 
                                 <div class="item-button">
                                     <button type="submit"
                                             class="bg-blue-600 py-3 w-full  text-center block mt-6 text-white font-medium rounded hover:bg-black-200 transition duration-500">
-                                        Pay $ {{ $total }}</button>
+                                        Pay $ {{ $total_after_discount }}</button>
                                 </div>
                             </div>
                         </div>
@@ -876,7 +869,6 @@
             });
             $('#country_id').trigger('change');
         });
-
 
     </script>
 @endpush

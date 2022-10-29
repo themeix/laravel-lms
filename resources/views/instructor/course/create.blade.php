@@ -45,9 +45,6 @@
             <section class="bs-validation">
                 <div class="col-md-12 col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Course Details</h3>
-                        </div>
                         <div class="card-body">
                             <form class="needs-validation" method="POST" action="{{route('instructor.course.store')}}" enctype="multipart/form-data" >
                                 @csrf
@@ -265,7 +262,7 @@
                                                     @if ($errors->has('image'))
                                                         <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('image') }}</span>
                                                     @endif
-                                                    <p>Image Format: 575px X 450px (1MB)<br>File Type: jpg, jpeg, png</p>
+                                                    <p>Accepted Image Size: 575 X 450 (1MB)</p>
                                                 </div>
                                             </div>
                                         </div>

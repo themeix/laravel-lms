@@ -587,17 +587,15 @@
                                 data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">SSLCOMMERZ</span></a>
                     </li>
 
-                    <li><a class="d-flex align-items-center" href="#"><i
+                    <li class="{{ (request()->is('admin/payment-method/paypal*')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ route('payment-method.paypal') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
-                                                                data-i18n="List">PayPal</span></a>
+                                                                data-i18n="List">PayPal</span>
+                        </a>
                     </li>
                     <li><a class="d-flex align-items-center" href="#"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                                                 data-i18n="List">Stripe</span></a>
-                    </li>
-                    <li><a class="d-flex align-items-center" href="#"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                                                data-i18n="List">Mollie</span></a>
                     </li>
                 </ul>
             </li>
@@ -732,6 +730,10 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='slack'></i><span
                         class="menu-title text-truncate" data-i18n="User">Application Settings</span></a>
                 <ul class="menu-content">
+
+                    <li class="{{ (request()->is('admin/currency*')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{route('currency.index')}}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="List">Currency</span></a>
 
                     <li class="{{ (request()->is('admin/location*')) ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href="{{route('location.index')}}"><i data-feather="circle"></i><span

@@ -31,8 +31,9 @@ Route::get('createCourse', [CourseController::class, 'create'])->name('instructo
 Route::post('course/store', [CourseController::class, 'store'])->name('instructor.course.store')/*->middleware('isDemo')*/;
 Route::get('course/show/{uuid}', [CourseController::class, 'show'])->name('instructor.course.show');
 Route::get('course/edit/{uuid}', [CourseController::class, 'edit'])->name('instructor.course.edit');
-Route::post('course/update-overview/{uuid}', [CourseController::class, 'updateOverview'])->name('instructor.course.update.overview')/*->middleware('isDemo')*/;
-Route::post('course/update-category/{uuid}', [CourseController::class, 'updateCategory'])->name('instructor.course.course.update.category')/*->middleware('isDemo')*/;
+
+Route::post('course/update/{uuid}', [CourseController::class, 'update'])->name('instructor.course.update');
+
 Route::delete('course/course-delete/{uuid}', [CourseController::class, 'delete'])->name('instructor.course.delete')->middleware('isDemo');
 //Course Routes End
 

@@ -3,83 +3,51 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+
+    public function paypal(){
+        return view('admin.app_settings.paypal');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function saveSetting(Request $request)
     {
-        //
+        $this->updateSettings($request);
+        Alert::toast('Succesfully saved', 'success');
+        return redirect()->back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    private function updateSettings($request)
     {
-        //
-    }
+        $inputs = Arr::except($request->all(), ['_token']);
+        $keys = [];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        foreach ($inputs as $k => $v) {
+            $keys[$k] = $k;
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        foreach ($inputs as $key => $value) {
+            $option = Setting::firstOrCreate(['option_key' => $key]);
+            $option->option_value = $value;
+            $option->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            $oldValue = env($key);
+            $newValue = str_replace(' ', '', $value);
+
+            $path = base_path('.env');
+            if (file_exists($path)) {
+                file_put_contents(
+                    $path, str_replace($key . '=' . $oldValue, $key . '=' . $newValue, file_get_contents($path))
+                );
+            }
+        }
+
     }
 }

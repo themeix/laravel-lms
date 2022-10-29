@@ -50,8 +50,8 @@
 
         }
 
-        .text-danger{
-            color:red!important;
+        .text-danger {
+            color: red !important;
         }
 
         .buyButton:hover {
@@ -1125,7 +1125,7 @@
                                                                             class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
                                                                             <a href="{{ route('main.courseDetails', $item->course->uuid) }}">
                                                                                 <img class="h-full object-cover"
-                                                                                     src="{{asset('frontend/assets/images/lessons-images-1-1.webp')}}"
+                                                                                     src="{{asset(getImageFile($item->course->image))}}"
                                                                                      alt="image">
                                                                             </a>
                                                                         </div>
@@ -1504,7 +1504,7 @@
 <script>
 
 
-    $('#search').on('keyup', function () {
+    /*$('#search').on('keyup', function () {
         search();
     });
     search();
@@ -1537,12 +1537,7 @@
         });
         $('#table_post_row').html(html);
     }
-
-
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-
+*/
 
 </script>
 

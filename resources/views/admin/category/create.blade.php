@@ -88,7 +88,7 @@
                                                 @endif
 
                                                 <div class="pt-2">
-                                                    <p> Recommend Size: 80 x 80 (1MB)</p>
+                                                    <p> Accepted Size: 150 x 150 (1MB)</p>
                                                 </div>
                                             </div>
                                         </div>

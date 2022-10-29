@@ -220,7 +220,7 @@
                             <div class="lessons-images relative overflow-hidden">
                                 <a href="{{ route('main.courseDetails', $course->slug) }}">
                                     <img class="rounded-t-md max-h-64 w-full object-cover"
-                                         src="{{asset('frontend/assets/images/lessons-images-1-1.webp')}}"
+                                         src="{{getImageFile($course->image)}}"
                                          alt="images">
                                 </a>
                             </div>
@@ -271,11 +271,15 @@
 
                                 @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
                                     <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                        <button
+                                            class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200"
+                                            style="cursor: not-allowed;">
                                             Add To Cart
                                         </button>
 
-                                        <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                        <button
+                                            class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200"
+                                            style="cursor: not-allowed;">
                                             Buy Now
                                         </button>
                                     </div>
@@ -471,7 +475,7 @@
                                 <div class="lessons-images relative overflow-hidden">
                                     <a href="{{ route('main.courseDetails', $course->slug) }}">
                                         <img class="rounded-t-md max-h-64 w-full object-cover"
-                                             src="{{asset('frontend/assets/images/home-2/ul-design-2-1.webp')}}"
+                                             src="{{getImageFile($course->image)}}"
                                              alt="images">
                                     </a>
                                 </div>
@@ -522,11 +526,15 @@
 
                                     @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
                                         <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                            <button
+                                                class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200"
+                                                style="cursor: not-allowed;">
                                                 Add To Cart
                                             </button>
 
-                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                            <button
+                                                class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200"
+                                                style="cursor: not-allowed;">
                                                 Buy Now
                                             </button>
                                         </div>
@@ -609,7 +617,7 @@
                                 <div class="lessons-images relative overflow-hidden">
                                     <a href="{{ route('main.courseDetails', $course->slug) }}">
                                         <img class="rounded-t-md max-h-64 w-full object-cover"
-                                             src="{{asset('frontend/assets/images/home-2/ul-design-2-1.webp')}}"
+                                             src="{{getImageFile($course->image)}}"
                                              alt="images">
                                     </a>
                                 </div>
@@ -660,11 +668,15 @@
 
                                     @if(Auth::user() !=null && (Auth::user()->type == 1 || $isPurchased != null || $ownCourse != null ))
                                         <div class="reviews-box border-t pt-7 mt-7 flex justify-between">
-                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                            <button
+                                                class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200"
+                                                style="cursor: not-allowed;">
                                                 Add To Cart
                                             </button>
 
-                                            <button class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200" style="cursor: not-allowed;">
+                                            <button
+                                                class="border-blue-20 border inline-block py-2.5 px-5 rounded-full !transition !duration-500 hover:text-black-200"
+                                                style="cursor: not-allowed;">
                                                 Buy Now
                                             </button>
                                         </div>
@@ -1130,145 +1142,81 @@
     </section>
     <!--  ====================== Testimonial Area Area End =============================  -->
     <!--  ====================== Blog Area Start =============================  -->
-    <section class="blog-area my-32 md:my-48  mt-20">
-        <div class="container">
-            <div class="section-title md:pb-16 pb-10 text-center lg:w-6/12 m-auto" data-aos="fade-up"
-                 data-aos-delay="500">
-                <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">Get News with
-                    Learn
-                </h2>
-                <p class="text-lg text-gray-800">The at hometown all with and over that board to all of it up and the in
-                    it
-                    phase a of success that it were my of slight succeed </p>
-            </div>
-            <div class="relative">
-                <div class="blog-slider-box">
-                    <div class="blog-slider-item">
-                        <div class="blog-slider-img relative">
-                            <img class="rounded-lg w-full max-h-80"
-                                 src="{{asset('frontend/assets/images/blog-slider-1.png')}}" alt="images">
-                            <div class="images-overlay rounded-lg bg-blue-5 absolute top-0 w-full h-full left-0"></div>
-                        </div>
-                        <div class="blog-content text-center bg-white relative z p-4 -mt-24 rounded mx-6">
-                            <div class="blog-button">
-                                <a class="bg-blue-600 hover:bg-blue-5 transition duration-500 hover:text-black-200 font-samibold py-2 rounded px-4 inline-block text-white"
-                                   href="courses.html">UI/UX</a>
+    @if(sizeof($blogs)>0)
+        <section class="blog-area my-32 md:my-48  mt-20">
+            <div class="container">
+                <div class="section-title md:pb-16 pb-10 text-center lg:w-6/12 m-auto" data-aos="fade-up"
+                     data-aos-delay="500">
+                    <h2 class="xl:text-5xl  lg:text-4xl md:text-3xl text-2xl font-medium text-black-200 mb-4 ">Get News
+                        with
+                        Learn
+                    </h2>
+                    <p class="text-lg text-gray-800">The at hometown all with and over that board to all of it up and
+                        the in
+                        it
+                        phase a of success that it were my of slight succeed </p>
+                </div>
+                <div class="relative">
+                    <div class="blog-slider-box">
+                        @foreach($blogs as $blog)
+                            <div class="blog-slider-item">
+                                <div class="blog-slider-img relative">
+                                    <img class="rounded-lg w-full max-h-80"
+                                         src="{{getImageFile($blog->image)}}" alt="images">
+                                    <div
+                                        class="images-overlay rounded-lg bg-blue-5 absolute top-0 w-full h-full left-0">
+                                    </div>
+                                </div>
+                                <div class="blog-content text-center bg-white relative z p-4 -mt-24 rounded mx-6">
+                                    <div class="blog-button">
+                                        <a class="bg-blue-600 hover:bg-blue-5  !transition   !duration-500  hover:text-black-200 font-samibold py-2 rounded px-4 inline-block text-white"
+                                           href="{{ route('main.categoryWiseBlog', $blog->category->slug) }}">{{ $blog->category->name }}</a>
+                                    </div>
+                                    <h4 class="mt-4"><a
+                                            class="text-black-200 text-xl font-semibold  hover:text-blue-600  !transition   !duration-500  "
+                                            href="{{route('main.blog.details', $blog->slug)}}">{{ $blog->title }}</a>
+                                    </h4>
+                                    <div class="meta-info flex gap-2 justify-center mt-4">
+                                        <span class="text-blue-50 uppercase">By</span>
+                                        <span class="uppercase">{{ $blog->user->name }}</span>
+                                        <span>| </span>
+                                        <p class="text-blue-50 uppercase">{{ date('d M Y', strtotime(@$blog->created_at)) }}</p>
+                                    </div>
+                                    <p class="mt-4">
+                                        {!!  Str::limit($blog->details, 80) !!}
+                                    </p>
+                                </div>
                             </div>
-                            <h4 class="mt-4">
-                                <a class="text-black-200 text-xl font-semibold  hover:text-blue-600 transition duration-500 "
-                                   href="blog.html">Rationale and was which the high but be haven.</a>
-                            </h4>
-                            <div class="meta-info flex gap-2 justify-center mt-4">
-                                <span class="text-blue-50 uppercase">BY</span>
-                                <span class="uppercase">Aaron Wise</span>
-                                <span>| </span>
-                                <p class="text-blue-50 uppercase">FEB 10, 2022</p>
-                            </div>
-                            <p class="mt-4">Have king's more volume brown rather table be a acknowledge
-                                counter-productive </p>
-                        </div>
+                        @endforeach
                     </div>
-                    <div class="blog-slider-item">
-                        <div class="blog-slider-img relative">
-                            <img class="rounded-lg w-full max-h-80"
-                                 src="{{asset('frontend/assets/images/blog-slider-2.png')}}" alt="images">
-                            <div class="images-overlay rounded-lg bg-blue-5 absolute top-0 w-full h-full left-0"></div>
-                        </div>
-                        <div class="blog-content text-center bg-white relative z p-4 -mt-24 rounded mx-6">
-                            <div class="blog-button">
-                                <a class="bg-blue-600 hover:bg-blue-5 transition duration-500 hover:text-black-200 font-samibold py-2 rounded px-4 inline-block text-white"
-                                   href="courses.html">DESIGNER</a>
-                            </div>
-                            <h4 class="mt-4">
-                                <a class="text-black-200 text-xl font-semibold  hover:text-blue-600 transition duration-500 "
-                                   href="blog.html">Rationale and was which the high but be haven.</a>
-                            </h4>
-                            <div class="meta-info flex gap-2 justify-center mt-4">
-                                <span class="text-blue-50 uppercase">BY</span>
-                                <span class="uppercase">Aaron Wise</span>
-                                <span>| </span>
-                                <p class="text-blue-50 uppercase">FEB 10, 2022</p>
-                            </div>
-                            <p class="mt-4">Have king's more volume brown rather table be a acknowledge
-                                counter-productive </p>
-                        </div>
-                    </div>
-                    <div class="blog-slider-item">
-                        <div class="blog-slider-img relative">
-                            <img class="rounded-lg w-full max-h-80"
-                                 src="{{asset('frontend/assets/images/blog-slider-3.png')}}" alt="images">
-                            <div class="images-overlay rounded-lg bg-blue-5 absolute top-0 w-full h-full left-0"></div>
-                        </div>
-                        <div class="blog-content text-center bg-white relative z p-4 -mt-24 rounded mx-6">
-                            <div class="blog-button">
-                                <a class="bg-blue-600 hover:bg-blue-5 transition duration-500 hover:text-black-200 font-samibold py-2 rounded px-4 inline-block text-white"
-                                   href="courses.html">DESIGNER</a>
-                            </div>
-                            <h4 class="mt-4">
-                                <a class="text-black-200 text-xl font-semibold  hover:text-blue-600 transition duration-500 "
-                                   href="blog.html">Rationale and was which the high but be haven.</a>
-                            </h4>
-                            <div class="meta-info flex gap-2 justify-center mt-4">
-                                <span class="text-blue-50 uppercase">BY</span>
-                                <span class="uppercase">Aaron Wise</span>
-                                <span>| </span>
-                                <p class="text-blue-50 uppercase">FEB 10, 2022</p>
-                            </div>
-                            <p class="mt-4">Have king's more volume brown rather table be a acknowledge
-                                counter-productive </p>
-                        </div>
-                    </div>
-                    <div class="blog-slider-item">
-                        <div class="blog-slider-img relative">
-                            <img class="rounded-lg w-full max-h-80"
-                                 src="{{asset('frontend/assets/images/blog-slider-2.png')}}" alt="images">
-                            <div class="images-overlay rounded-lg bg-blue-5 absolute top-0 w-full h-full left-0"></div>
-                        </div>
-                        <div class="blog-content text-center bg-white relative z p-4 -mt-24 rounded mx-6">
-                            <div class="blog-button">
-                                <a class="bg-blue-600 hover:bg-blue-5 transition duration-500 hover:text-black-200 font-samibold py-2 rounded px-4 inline-block text-white"
-                                   href="courses.html">DESIGNER</a>
-                            </div>
-                            <h4 class="mt-4">
-                                <a class="text-black-200 text-xl font-semibold  hover:text-blue-600 transition duration-500 "
-                                   href="">Rationale and was which the high but be haven.</a>
-                            </h4>
-                            <div class="meta-info flex gap-2 justify-center mt-4">
-                                <span class="text-blue-50 uppercase">BY</span>
-                                <span class="uppercase">Aaron Wise</span>
-                                <span>| </span>
-                                <p class="text-blue-50 uppercase">FEB 10, 2022</p>
-                            </div>
-                            <p class="mt-4">Have king's more volume brown rather table be a acknowledge
-                                counter-productive </p>
-                        </div>
+                    <div class="slider-arrows-3 hidden lg:block">
+                        <button
+                            class="slider-next-3 group h-12 w-12 rounded-full bg-blue-5 hover:bg-blue-600 transition duration-500 flex items-center justify-center slick-arrow"
+                            style="">
+                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path class="group-hover:fill-white"
+                                      d="M0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM21 9H1V7H21V9Z"
+                                      fill="
+         #035AE0"></path>
+                            </svg>
+                        </button>
+                        <button
+                            class="slider-prev-3 h-12 w-12 rounded-full bg-blue-5 hover:bg-blue-600 transition duration-500 group flex items-center justify-center slick-arrow"
+                            style="">
+                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path class=" group-hover:fill-white"
+                                      d="M20.7071 8.70711C21.0976 8.31658 21.0976 7.68342 20.7071 7.29289L14.3431 0.928932C13.9526 0.538408 13.3195 0.538408 12.9289 0.928932C12.5384 1.31946 12.5384 1.95262 12.9289 2.34315L18.5858 8L12.9289 13.6569C12.5384 14.0474 12.5384 14.6805 12.9289 15.0711C13.3195 15.4616 13.9526 15.4616 14.3431 15.0711L20.7071 8.70711ZM0 9H20V7H0V9Z"
+                                      fill="
+         #035AE0"></path>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <div class="slider-arrows-3 hidden lg:block">
-                    <button
-                        class="slider-next-3 group h-12 w-12 rounded-full bg-blue-5 hover:bg-blue-600 transition duration-500 flex items-center justify-center slick-arrow"
-                        style="">
-                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class="group-hover:fill-white"
-                                  d="M0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM21 9H1V7H21V9Z"
-                                  fill="
-         #035AE0"></path>
-                        </svg>
-                    </button>
-                    <button
-                        class="slider-prev-3 h-12 w-12 rounded-full bg-blue-5 hover:bg-blue-600 transition duration-500 group flex items-center justify-center slick-arrow"
-                        style="">
-                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class=" group-hover:fill-white"
-                                  d="M20.7071 8.70711C21.0976 8.31658 21.0976 7.68342 20.7071 7.29289L14.3431 0.928932C13.9526 0.538408 13.3195 0.538408 12.9289 0.928932C12.5384 1.31946 12.5384 1.95262 12.9289 2.34315L18.5858 8L12.9289 13.6569C12.5384 14.0474 12.5384 14.6805 12.9289 15.0711C13.3195 15.4616 13.9526 15.4616 14.3431 15.0711L20.7071 8.70711ZM0 9H20V7H0V9Z"
-                                  fill="
-         #035AE0"></path>
-                        </svg>
-                    </button>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!--  ====================== Blog  Area End =============================  -->
     <!--  ====================== Newsleter  Area Start =============================  -->
 

@@ -1,5 +1,5 @@
 @extends('layouts.adminMaster')
-@section('title','Blog Category List')
+@section('title','Currency List')
 @section('content')
 
     <!-- BEGIN: Content-->
@@ -8,16 +8,15 @@
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
-
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Blog Category List</h2>
+                        <h2 class="content-header-title float-start mb-0">Currency List</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Course Category List
+                                <li class="breadcrumb-item active">Currency List
                                 </li>
                             </ol>
                         </div>
@@ -26,7 +25,7 @@
             </div>
             <div class="content-header-right text-md-end col-md-3 col-12 d-md-block">
                 <div class="mb-1 breadcrumb-right">
-                    <a href="{{route('blogCategory.create')}}">
+                    <a href="{{route('currency.create')}}">
                         <button type="button" class="btn btn-primary">Add New</button>
                     </a>
                 </div>
@@ -71,63 +70,73 @@
                 </div>
             @endif
 
-            @if(Session::has('warning-message'))
-                <div class="row">
-                    <div class="col-md-12 col-12">
-                        <div class="alert alert-warning" role="alert">
-                            <div class="alert-body">
-                                {{ Session::get('warning-message') }}
+                @if(Session::has('error-message'))
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <div class="alert alert-danger" role="alert">
+                                <div class="alert-body">
+                                    {{ Session::get('error-message') }}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endif
+                @endif
 
 
             <section id="column-search-datatable">
                 <div class="card">
                     <div class="card-body indexTable">
                         <div class="col-12">
-                            <table id="example" class="table table-bordered dataTables_info" style="color: black;">
+                            <table id="example" class="table table-bordered dataTables_info"
+                                   style="color: black;text-align: center; justify-content: center; align-items: center; ">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Status</th>
+                                    <th>SL</th>
+                                    <th>Currency Code</th>
+                                    <th>Symbol</th>
+                                    <th>Currency Placement</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($blogCategories as $blogCategory)
+                                @foreach($currencies as $currency)
                                     <tr class="removable-item">
-                                        <td>
-                                            {{$blogCategory->name}}
-                                        </td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{$currency->currency_code}}
+                                            <b>
+                                                @if($currency->current_currency == 'on')
 
+                                                    <span class="status badge bg-primary ">
+                                                    (Current Currency)
+                                                </span>
+                                                @endif
+
+
+                                            </b>
+
+                                        </td>
+                                        <td>{{@$currency->symbol}}</td>
                                         <td>
-                                            @if($blogCategory->status == 1)
-                                                <span class="badge badge-glow bg-success">
-                                                    Active
-                                                    </span>
-                                                <span class="status bg-green"></span>
-                                            @else
-                                                <span class="badge badge-glow bg-danger">
-                                                    Inactive
-                                                    </span>
+                                            @if($currency->currency_placement == 'before')
+                                                Before Amount
+                                            @elseif($currency->currency_placement == 'after')
+                                                After Amount
                                             @endif
                                         </td>
-
                                         <td>
                                             <div class="action__buttons">
-                                                <a href="{{route('blogCategory.edit', [$blogCategory->uuid])}}" class="btn-action" title="Edit">
+                                                <a href="{{route('currency.edit', [$currency->id])}}" class="btn-action"
+                                                   title="Edit">
                                                     <img src="{{asset('custom/image/edit-2.svg')}}" alt="edit">
                                                 </a>
 
-                                                <form action="{{route('blogCategory.delete', [$blogCategory->uuid])}}" class="mb-0"
-                                                      method="post" class="d-inline">
+
+                                                <form action="{{route('currency.delete', [$currency->id])}}"
+                                                      class="mb-0" method="post" class="d-inline">
                                                     @csrf
 
-                                                    <a href="{{route('blogCategory.delete', [$blogCategory->uuid])}}"
+                                                    <a href="{{route('currency.delete', [$currency->id])}}"
                                                        class="btn-action confirm-delete" title="Delete">
                                                         <img src="{{asset('custom/image/trash-2.svg')}}" alt="trash">
                                                     </a>
@@ -136,7 +145,6 @@
                                             </div>
                                         </td>
                                     </tr>
-
 
                                 @endforeach
                                 </tbody>

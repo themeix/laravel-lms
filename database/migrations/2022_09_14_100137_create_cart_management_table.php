@@ -20,9 +20,11 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('promotion_id')->nullable();
             $table->unsignedBigInteger('coupon_id')->nullable();
+            $table->unsignedBigInteger('applied_coupon_id')->nullable();
             $table->decimal('main_price')->default(0.00);
             $table->decimal('price')->default(0.00);
             $table->decimal('discount')->default(0.00);
+            $table->decimal('discount_percent')->default(0.00);
             $table->timestamps();
         });
     }

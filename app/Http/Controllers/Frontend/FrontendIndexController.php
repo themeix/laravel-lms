@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\CartManagement;
 use App\Models\Category;
 use App\Models\ContactUs;
@@ -21,8 +22,9 @@ class FrontendIndexController extends Controller
     {
         $data['categories'] = Category::where('is_feature', 'yes')->take(8)->get();
         $data['showingCategories'] = Category::where('is_showing_course', 'yes')->take(2)->get();
-        $data['courses'] = Course::where('status', 1)->take(6)->orderBy('id', 'desc')->get();
-        $data['instructors'] = Instructor::where('status', 1)->orderBy('id', 'desc')->get();
+        $data['courses'] = Course::where('status', 1)->take(6)->orderBy('id', 'DESC')->get();
+        $data['instructors'] = Instructor::where('status', 1)->orderBy('id', 'DESC')->get();
+        $data['blogs'] = Blog::where('status', 1)->orderBy('id', 'DESC')->get();
         return view('frontend.index', $data);
     }
 
@@ -30,8 +32,9 @@ class FrontendIndexController extends Controller
     {
         $data['categories'] = Category::where('is_feature', 'yes')->take(8)->get();
         $data['showingCategories'] = Category::where('is_showing_course', 'yes')->take(2)->get();
-        $data['courses'] = Course::where('status', 1)->take(6)->orderBy('id', 'desc')->get();
-        $data['instructors'] = Instructor::where('status', 1)->orderBy('id', 'desc')->get();
+        $data['courses'] = Course::where('status', 1)->take(6)->orderBy('id', 'DESC')->get();
+        $data['instructors'] = Instructor::where('status', 1)->orderBy('id', 'DESC')->get();
+        $data['blogs'] = Blog::where('status', 1)->orderBy('id', 'DESC')->get();
         return view('frontend.index2', $data);
     }
 
@@ -80,7 +83,7 @@ class FrontendIndexController extends Controller
     {
         $data['course'] = Course::where('slug', $slug)->first();
         $data['instructor'] = Instructor::where('id', $data['course']->instructor_id)->first();
-        $data['instructorCourses'] = Course::where('instructor_id', $data['instructor']->id)->where('status', 1)->get();
+        $data['instructorCourses'] = Course::where('instructor_id', $data['instructor']->id)->whereNot('id',$data['course']->id)->where('status', 1)->get();
         return view('frontend.course.courseDetails', $data);
     }
 
@@ -152,7 +155,7 @@ class FrontendIndexController extends Controller
         $contact_us->message = $request->message;
         $contact_us->save();
 
-        Alert::success('Success', 'Message Send Successfully');
+        Alert::toast('Message sent successfully. Please wait for reply.','success');
         return redirect()->back();
     }
 

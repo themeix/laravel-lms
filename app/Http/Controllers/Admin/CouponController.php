@@ -9,11 +9,12 @@ use App\Models\CouponInstructor;
 use App\Models\Course;
 use App\Models\User;
 use App\Tools\Repositories\Crud;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
-
 
 
 class CouponController extends Controller
@@ -25,7 +26,8 @@ class CouponController extends Controller
         $this->couponModel = new Crud($coupon);
     }
 
-    public function index(){
+    public function index()
+    {
 
         if (!Auth::user()->can('manage_coupon')) {
             abort('403');
@@ -37,22 +39,24 @@ class CouponController extends Controller
         return view('admin.coupon.index', $data);
     }
 
-    public function create(){
+    public function create()
+    {
 
-        /*if (!Auth::user()->can('manage_coupon')) {
+        if (!Auth::user()->can('manage_coupon')) {
             abort('403');
-        }*/
+        }
 
         // end permission checking
 
 
-        $data['courses'] = Course::all();
+        $data['courses'] = Course::where('learner_accessibility', 1)->where('status', 1)->get();
         $data['instructors'] = User::whereType(2)->get();
 
         return view('admin.coupon.create', $data);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         if (!Auth::user()->can('manage_coupon')) {
             abort('403');
@@ -69,7 +73,7 @@ class CouponController extends Controller
             'maximum_use_limit' => ['required'],
             'start_date' => ['required'],
             'end_date' => ['required'],
-            'status' =>['required']
+            'status' => ['required']
         ]);
 
 
@@ -99,13 +103,13 @@ class CouponController extends Controller
         if ($request->coupon_type == 3) {
             if (count($request->course_ids) > 0) {
                 foreach ($request->course_ids as $course_id) {
+
                     $coupon_course = new CouponCourse();
                     $coupon_course->coupon_id = $coupon->id;
                     $coupon_course->course_id = $course_id;
                     $coupon_course->save();
                 }
             }
-
         }
 
 
@@ -115,7 +119,8 @@ class CouponController extends Controller
 
     }
 
-    public function edit($uuid){
+    public function edit($uuid)
+    {
 
         if (!Auth::user()->can('manage_coupon')) {
             abort('403');
@@ -123,7 +128,7 @@ class CouponController extends Controller
 
         // end permission checking
 
-        $data['courses'] = Course::all();
+        $data['courses'] = Course::where('learner_accessibility', 1)->where('status', 1)->get();
         $data['instructors'] = User::whereType(2)->get();
         $data['coupon'] = $this->couponModel->getRecordByUuid($uuid);
         $data['selectedCourseIDs'] = $data['coupon']->couponCourses->pluck('course_id')->toArray();
@@ -132,7 +137,8 @@ class CouponController extends Controller
         return view('admin.coupon.edit', $data);
     }
 
-    public function update(Request $request, $uuid){
+    public function update(Request $request, $uuid)
+    {
 
         if (!Auth::user()->can('manage_coupon')) {
             abort('403');
@@ -143,7 +149,7 @@ class CouponController extends Controller
         $coupon = $this->couponModel->getRecordByUuid($uuid);
 
         $request->validate([
-            'coupon_code_name' => 'required|min:2|max:255|unique:coupons,coupon_code_name,'.$coupon->id,
+            'coupon_code_name' => 'required|min:2|max:255|unique:coupons,coupon_code_name,' . $coupon->id,
             'coupon_type' => ['required'],
             'percentage' => ['required'],
             'minimum_amount' => ['required'],
@@ -154,7 +160,6 @@ class CouponController extends Controller
         ]);
 
 
-
         $data = [
             'coupon_code_name' => $request->coupon_code_name,
             'coupon_type' => $request->coupon_type,
@@ -162,8 +167,8 @@ class CouponController extends Controller
             'percentage' => $request->percentage,
             'minimum_amount' => $request->minimum_amount,
             'maximum_use_limit' => $request->maximum_use_limit,
-            'start_date' =>  $request->start_date,
-            'end_date' =>  $request->end_date,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
         ];
 
         $this->couponModel->updateByUuid($data, $uuid); // update Coupon
@@ -199,7 +204,8 @@ class CouponController extends Controller
         return redirect()->route('coupon.index')->with('update-message', 'Coupon Updated successfully.');
     }
 
-    public function delete($uuid){
+    public function delete($uuid)
+    {
 
         if (!Auth::user()->can('manage_coupon')) {
             abort('403');

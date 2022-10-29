@@ -82,7 +82,7 @@ class CourseController extends Controller
             'description' => ['required', 'string'],
             'price' => 'required',
             'learner_accessibility' => 'required',
-            'image' => 'nullable',
+            'image' => 'file|dimensions:min_width=575 ,min_height=450 ,max_width=575 ,max_height=450 |max:1024',
             'video' => 'nullable',
 
         ]);
@@ -144,11 +144,30 @@ class CourseController extends Controller
 
     public function edit($uuid)
     {
-        $data['navCourseUploadActiveClass'] = 'active';
-
-        $data['rules'] = CourseUploadRule::all();
         $data['course'] = $this->model->getRecordByUuid($uuid);
-        $data['key_points'] = KeyPoints::orderBy('name', 'asc')->select('id', 'name')->get();
+        $data['rules'] = CourseUploadRule::all();
+        $data['tags'] = Tag::orderBy('name', 'asc')->select('id', 'name')->get();
+        $data['languages'] = Language::orderBy('name', 'asc')->select('id', 'name')->get();
+        $data['difficulty_levels'] = DifficultyLevel::orderBy('name', 'asc')->select('id', 'name')->get();
+        $data['categories'] = Category::orderBy('name', 'asc')->get();
+
+        $selected_tags = [];
+
+        if (old('tag'))
+        {
+            $selected_tags = old('tag');
+
+        } elseif ($data['course']->tags->count() > 0)
+        {
+            foreach ($data['course']->tags as $tag)
+            {
+                $selected_tags[] = $tag->id;
+            }
+        } else {
+            $selected_tags = [];
+        }
+
+        $data['selected_tags'] = $selected_tags;
 
 
         return view('instructor.course.edit', $data);
@@ -157,9 +176,82 @@ class CourseController extends Controller
 
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
-        //
+        $request->validate([
+            'category_id' => 'required',
+            'subcategory_id' => 'nullable',
+            'language_id' => 'required',
+            'difficulty_level_id' => 'required',
+            'title' => ['required', 'string'],
+            'subtitle' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'price' => 'required',
+            'learner_accessibility' => 'required',
+            'image' => 'file|dimensions:min_width=575 ,min_height=450 ,max_width=575 ,max_height=450 |max:1024',
+            'video' => 'nullable',
+        ]);
+
+
+        $course = $this->model->getRecordByUuid($uuid);
+
+        if ($request->image) {
+            $this->deleteFile($course->image); // delete file from server
+            $image = $this->saveImage('course', $request->image, null, null); // new file upload into server
+        } else {
+            $image = $course->image;
+        }
+
+        if ($request->video) {
+            $this->deleteVideoFile($course->video); // delete file from server
+            $video = $this->uploadFile('course', $request->video); // new file upload into server
+        } else {
+            $video = $course->video;
+        }
+
+        if (Course::where('slug', Str::slug($request->title))->where('id', '!=', $course->id)->count() > 0)
+        {
+            $slug = Str::slug($request->title) . '-'. rand(100000, 999999);
+        } else {
+            $slug = Str::slug($request->title);
+        }
+
+
+        $data = [
+
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'slug' => $slug,
+            'status' => 2,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'language_id' => $request->language_id,
+            'price' => $request->price,
+            'difficulty_level_id' => $request->difficulty_level_id,
+            'learner_accessibility' => $request->learner_accessibility,
+            'image' => $image ?? null,
+            'video' => $video ?? null,
+            'intro_video_check' => $request->intro_video_check,
+            'youtube_video_id' => $request->youtube_video_id ?? null,
+
+        ];
+
+        $this->model->updateByUuid($data, $uuid); // update category
+
+        if ($request->tag_ids) {
+            foreach ($request->tag_ids as $tag_id) {
+                $courseTag = new CourseTag();
+                $courseTag->course_id = $course->id;
+                $courseTag->tag_id = $tag_id;
+                $courseTag->save();
+            }
+        }
+
+
+        Alert::toast('Course updated successfully.', 'success');
+
+        return redirect()->route('instructor.course.index')->with('update-message', 'Course updated Successfully.');
     }
 
 

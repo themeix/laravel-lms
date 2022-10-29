@@ -1,47 +1,45 @@
 @extends('layouts.frontEndMaster')
-@section('title','Blog')
+@section('title','Category Wise Blog')
 @section('content')
-
-    @if(sizeof($blogs) > 0)
-        <!--  ====================== Breadcrum  Area Start =============================  -->
-        <section class="breadcrumb-area md:py-32 relative py-20  bg-blue-100 overflow-hidden">
-            <div class="container">
-                <div class="breadcrumb-titel md:w-7/12 m-auto text-center z-10 relative">
-                    <h2 class="xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-black-200  font-medium"
-                        data-aos="fade-up"
-                        data-aos-delay="100"> Blog </h2>
-                </div>
-                <ul class="flex gap-2 justify-center mt-6 relative z-10" data-aos="fade-up" data-aos-delay="200">
-                    <li><a class="hover:text-blue-600 transition duration-500"
-                           href="{{ route('main.index') }}">Home </a>
-                    </li>
-                    <li>/</li>
-                    <li> Blog</li>
-                </ul>
+    <!--  ====================== Breadcrum  Area Start =============================  -->
+    <section class="breadcrumb-area md:py-32 relative py-20  bg-blue-100 overflow-hidden">
+        <div class="container">
+            <div class="breadcrumb-titel md:w-7/12 m-auto text-center z-10 relative">
+                <h2 class="xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-black-200  font-medium" data-aos="fade-up"
+                    data-aos-delay="100"> Blog </h2>
             </div>
-            <div class="shape-breadcrumb absolute top-0 right-0">
-                <img src="{{asset('frontend/assets/images/about/about-breadcrumb.svg')}}" alt="images">
-            </div>
-        </section>
-        <!--  ====================== Breadcrum  Area End =============================  -->
-        <!--  ====================== Blog  Area Start =============================  -->
-        <section class="blog-area md:py-32 py-20">
-            <div class="container">
-                <div class="lg:grid lg:grid-cols-8 mx-auto flex flex-col gap-12 lg:gap-24">
-                    <div class="col-span-5">
-                        <div class="blog-left flex flex-col gap-10">
-                            @foreach($blogs as $blog)
-                                <div class="blog-post-box shadow-5xl rounded-b">
-                                    <div class="blog-post-images">
-                                        <img class="w-full rounded-t max-h-96 object-cover"
-                                             src="{{getImageFile($blog->image)}}"
-                                             alt="images">
-                                    </div>
-                                    <div class="blog-post-wrap p-6">
-                                        <div class="blog-post-top mb-5">
-                                            <div class="tag-item flex justify-between">
-                                                <a class="flex gap-4 hover:text-blue-600 transition duration-500 items-center"
-                                                   href="{{ route('main.categoryWiseBlog',$blog->category->slug) }}">
+            <ul class="flex gap-2 justify-center mt-6 relative z-10" data-aos="fade-up" data-aos-delay="200">
+                <li><a class="hover:text-blue-600 transition duration-500" href="{{ route('main.index') }}">Home </a>
+                </li>
+                <li>/</li>
+                <li><a class="hover:text-blue-600 transition duration-500" href="{{ route('main.blog.index') }}"> Blog</a></li>
+                <li>/</li>
+                <li> {{$blog_category->name}}</li>
+            </ul>
+        </div>
+        <div class="shape-breadcrumb absolute top-0 right-0">
+            <img src="{{asset('frontend/assets/images/about/about-breadcrumb.svg')}}" alt="images">
+        </div>
+    </section>
+    <!--  ====================== Breadcrum  Area End =============================  -->
+    <!--  ====================== Blog  Area Start =============================  -->
+    <section class="blog-area md:py-32 py-20">
+        <div class="container">
+            <div class="lg:grid lg:grid-cols-8 mx-auto flex flex-col gap-12 lg:gap-24">
+                <div class="col-span-5">
+                    <div class="blog-left flex flex-col gap-10">
+                        @foreach($blogs as $blog)
+                            <div class="blog-post-box shadow-5xl rounded-b">
+                                <div class="blog-post-images">
+                                    <img class="w-full rounded-t max-h-96 object-cover"
+                                         src="{{getImageFile($blog->image)}}"
+                                         alt="images">
+                                </div>
+                                <div class="blog-post-wrap p-6">
+                                    <div class="blog-post-top mb-5">
+                                        <div class="tag-item flex justify-between">
+                                            <a class="flex gap-4 hover:text-blue-600 transition duration-500 items-center"
+                                               href="{{ route('main.categoryWiseBlog',$blog->category->slug) }}">
                                     <span>
                                        <svg width="17" height="14" viewBox="0 0 17 14" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -50,8 +48,69 @@
                                               fill="#757F8F"/>
                                        </svg>
                                     </span>
-                                                    {{ $blog->category->name }}
-                                                </a>
+                                                {{ $blog->category->name }}
+                                            </a>
+                                            <p class="flex gap-4 items-center ">
+                                    <span>
+                                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                          <path
+                                              d="M13.125 1.31089L9.62194 1.3109V0.438965C9.62194 0.197246 9.42616 0.00146484 9.18444 0.00146484C8.94272 0.00146484 8.74694 0.197246 8.74694 0.438965V1.31068H5.24694V0.438965C5.24694 0.197246 5.05116 0.00146484 4.80944 0.00146484C4.56772 0.00146484 4.37194 0.197246 4.37194 0.438965V1.31068H0.875C0.391781 1.31068 0 1.70246 0 2.18568V13.1232C0 13.6064 0.391781 13.9982 0.875 13.9982H13.125C13.6082 13.9982 14 13.6064 14 13.1232V2.18568C14 1.70267 13.6082 1.31089 13.125 1.31089ZM13.125 13.1232H0.875V2.18568H4.37194V2.62647C4.37194 2.86817 4.56772 3.06397 4.80944 3.06397C5.05116 3.06397 5.24694 2.86817 5.24694 2.62647V2.1859H8.74694V2.62668C8.74694 2.8684 8.94272 3.06418 9.18444 3.06418C9.42616 3.06418 9.62194 2.8684 9.62194 2.62668V2.1859H13.125V13.1232ZM10.0625 6.99839H10.9375C11.179 6.99839 11.375 6.80239 11.375 6.56089V5.68589C11.375 5.44439 11.179 5.24839 10.9375 5.24839H10.0625C9.821 5.24839 9.625 5.44439 9.625 5.68589V6.56089C9.625 6.80239 9.821 6.99839 10.0625 6.99839ZM10.0625 10.4982H10.9375C11.179 10.4982 11.375 10.3024 11.375 10.0607V9.18567C11.375 8.94417 11.179 8.74817 10.9375 8.74817H10.0625C9.821 8.74817 9.625 8.94417 9.625 9.18567V10.0607C9.625 10.3026 9.821 10.4982 10.0625 10.4982ZM7.4375 8.74817H6.5625C6.321 8.74817 6.125 8.94417 6.125 9.18567V10.0607C6.125 10.3024 6.321 10.4982 6.5625 10.4982H7.4375C7.679 10.4982 7.875 10.3024 7.875 10.0607V9.18567C7.875 8.94439 7.679 8.74817 7.4375 8.74817ZM7.4375 5.24839H6.5625C6.321 5.24839 6.125 5.44439 6.125 5.68589V6.56089C6.125 6.80239 6.321 6.99839 6.5625 6.99839H7.4375C7.679 6.99839 7.875 6.80239 7.875 6.56089V5.68589C7.875 5.44417 7.679 5.24839 7.4375 5.24839ZM3.9375 5.24839H3.0625C2.821 5.24839 2.625 5.44439 2.625 5.68589V6.56089C2.625 6.80239 2.821 6.99839 3.0625 6.99839H3.9375C4.179 6.99839 4.375 6.80239 4.375 6.56089V5.68589C4.375 5.44417 4.179 5.24839 3.9375 5.24839ZM3.9375 8.74817H3.0625C2.821 8.74817 2.625 8.94417 2.625 9.18567V10.0607C2.625 10.3024 2.821 10.4982 3.0625 10.4982H3.9375C4.179 10.4982 4.375 10.3024 4.375 10.0607V9.18567C4.375 8.94439 4.179 8.74817 3.9375 8.74817Z"
+                                              fill="#757F8F"/>
+                                       </svg>
+                                    </span>
+                                                {{ date('d M Y', strtotime(@$blog->created_at)) }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <H2
+                                        class="text-black-200 font-medium md:text-2xl text-xl hover:text-blue-500 transition duration-500">
+                                        <a href="{{ route('main.blog.details', $blog->slug) }}">
+                                            {{$blog->title}}
+                                        </a>
+                                    </H2>
+                                    <p class="pt-4">
+                                        {!!  Str::limit($blog->details, 200) !!}
+                                    </p>
+                                    <a class="flex items-center gap-2 mt-8 group hover:text-blue-600 transition duration-500"
+                                       href="{{ route('main.blog.details', $blog->slug) }}">
+                                        Read more
+                                        <span>
+                                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                    <path class="group-hover:fill-blue-600" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M0 5.00014C0 4.86753 0.052678 4.74036 0.146446 4.64659C0.240214 4.55282 0.367392 4.50014 0.5 4.50014H12.293L9.146 1.35414C9.09951 1.30766 9.06264 1.25247 9.03748 1.19173C9.01232 1.13099 8.99937 1.06589 8.99937 1.00014C8.99937 0.934399 9.01232 0.869299 9.03748 0.80856C9.06264 0.74782 9.09951 0.692631 9.146 0.646143C9.19249 0.599655 9.24768 0.562779 9.30842 0.53762C9.36916 0.512461 9.43426 0.499512 9.5 0.499512C9.56574 0.499512 9.63084 0.512461 9.69158 0.53762C9.75232 0.562779 9.80751 0.599655 9.854 0.646143L13.854 4.64614C13.9006 4.69259 13.9375 4.74776 13.9627 4.80851C13.9879 4.86926 14.0009 4.93438 14.0009 5.00014C14.0009 5.06591 13.9879 5.13103 13.9627 5.19178C13.9375 5.25252 13.9006 5.3077 13.854 5.35414L9.854 9.35414C9.80751 9.40063 9.75232 9.43751 9.69158 9.46267C9.63084 9.48783 9.56574 9.50077 9.5 9.50077C9.43426 9.50077 9.36916 9.48783 9.30842 9.46267C9.24768 9.43751 9.19249 9.40063 9.146 9.35414C9.09951 9.30766 9.06264 9.25247 9.03748 9.19173C9.01232 9.13099 8.99937 9.06589 8.99937 9.00014C8.99937 8.9344 9.01232 8.8693 9.03748 8.80856C9.06264 8.74782 9.09951 8.69263 9.146 8.64614L12.293 5.50014H0.5C0.367392 5.50014 0.240214 5.44746 0.146446 5.3537C0.052678 5.25993 0 5.13275 0 5.00014Z"
+                                          fill="#757F8F"/>
+                                 </svg>
+                              </span>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="col-span-3">
+                    <div class="site-menu shadow-5xl bg-white p-10">
+                        <h2 class="text-black-200 font-medium md:text-2xl text-xl">Latest Post</h2>
+
+
+                        @foreach($latest_blogs as $latest_blog)
+                            <div class="blog-post-item mt-10 border-b pb-10">
+                                <div class="grid grid-cols-12 gap-4 items-center">
+                                    <div class="col-span-4">
+                                        <div class="blog-post-item-images h-full">
+                                            <img class="rounded h-full object-cover"
+                                                 src="{{getImageFile($latest_blog->image)}}"
+                                                 alt="images">
+                                        </div>
+                                    </div>
+                                    <div class="col-span-8">
+                                        <div class="blog-post-wrap">
+                                            <h4>
+                                                <a class="text-black-200 font-medium hover:text-blue-600 transition duration-500"
+                                                   href="{{ route('main.blog.details', $latest_blog->slug) }}">{{ $latest_blog->title }}</a>
+                                            </h4>
+                                            <div class="date-tag flex gap-3 mt-4">
                                                 <p class="flex gap-4 items-center ">
                                     <span>
                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -61,87 +120,27 @@
                                               fill="#757F8F"/>
                                        </svg>
                                     </span>
-                                                    {{ date('d M Y', strtotime(@$blog->created_at)) }}
+                                                    {{ date('d M Y', strtotime(@$latest_blog->created_at)) }}
                                                 </p>
                                             </div>
                                         </div>
-                                        <H2
-                                            class="text-black-200 font-medium md:text-2xl text-xl hover:text-blue-500 transition duration-500">
-                                            <a href="{{ route('main.blog.details', $blog->slug) }}">
-                                                {{$blog->title}}
-                                            </a>
-                                        </H2>
-                                        <p class="pt-4">
-                                            {!!  Str::limit($blog->details, 200) !!}
-                                        </p>
-                                        <a class="flex items-center gap-2 mt-8 group hover:text-blue-600 transition duration-500"
-                                           href="{{ route('main.blog.details', $blog->slug) }}">
-                                            Read more
-                                            <span>
-                                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none"
-                                      xmlns="http://www.w3.org/2000/svg">
-                                    <path class="group-hover:fill-blue-600" fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M0 5.00014C0 4.86753 0.052678 4.74036 0.146446 4.64659C0.240214 4.55282 0.367392 4.50014 0.5 4.50014H12.293L9.146 1.35414C9.09951 1.30766 9.06264 1.25247 9.03748 1.19173C9.01232 1.13099 8.99937 1.06589 8.99937 1.00014C8.99937 0.934399 9.01232 0.869299 9.03748 0.80856C9.06264 0.74782 9.09951 0.692631 9.146 0.646143C9.19249 0.599655 9.24768 0.562779 9.30842 0.53762C9.36916 0.512461 9.43426 0.499512 9.5 0.499512C9.56574 0.499512 9.63084 0.512461 9.69158 0.53762C9.75232 0.562779 9.80751 0.599655 9.854 0.646143L13.854 4.64614C13.9006 4.69259 13.9375 4.74776 13.9627 4.80851C13.9879 4.86926 14.0009 4.93438 14.0009 5.00014C14.0009 5.06591 13.9879 5.13103 13.9627 5.19178C13.9375 5.25252 13.9006 5.3077 13.854 5.35414L9.854 9.35414C9.80751 9.40063 9.75232 9.43751 9.69158 9.46267C9.63084 9.48783 9.56574 9.50077 9.5 9.50077C9.43426 9.50077 9.36916 9.48783 9.30842 9.46267C9.24768 9.43751 9.19249 9.40063 9.146 9.35414C9.09951 9.30766 9.06264 9.25247 9.03748 9.19173C9.01232 9.13099 8.99937 9.06589 8.99937 9.00014C8.99937 8.9344 9.01232 8.8693 9.03748 8.80856C9.06264 8.74782 9.09951 8.69263 9.146 8.64614L12.293 5.50014H0.5C0.367392 5.50014 0.240214 5.44746 0.146446 5.3537C0.052678 5.25993 0 5.13275 0 5.00014Z"
-                                          fill="#757F8F"/>
-                                 </svg>
-                              </span>
-                                        </a>
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="col-span-3">
-                        <div class="site-menu shadow-5xl bg-white p-10">
-                            <h2 class="text-black-200 font-medium md:text-2xl text-xl">Latest Post</h2>
-
-                            @foreach($latest_blogs as $latest_blog)
-                                <div class="blog-post-item mt-10 border-b pb-10">
-                                    <div class="grid grid-cols-12 gap-4 items-center">
-                                        <div class="col-span-4">
-                                            <div class="blog-post-item-images h-full">
-                                                <img class="rounded h-full object-cover"
-                                                     src="{{getImageFile($latest_blog->image)}}"
-                                                     alt="images">
-                                            </div>
-                                        </div>
-                                        <div class="col-span-8">
-                                            <div class="blog-post-wrap">
-                                                <h4>
-                                                    <a class="text-black-200 font-medium hover:text-blue-600 transition duration-500"
-                                                       href="{{ route('main.blog.details', $latest_blog->slug) }}">{{ $latest_blog->title }}</a>
-                                                </h4>
-                                                <div class="date-tag flex gap-3 mt-4">
-                                                    <p class="flex gap-4 items-center ">
-                                    <span>
-                                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                          <path
-                                              d="M13.125 1.31089L9.62194 1.3109V0.438965C9.62194 0.197246 9.42616 0.00146484 9.18444 0.00146484C8.94272 0.00146484 8.74694 0.197246 8.74694 0.438965V1.31068H5.24694V0.438965C5.24694 0.197246 5.05116 0.00146484 4.80944 0.00146484C4.56772 0.00146484 4.37194 0.197246 4.37194 0.438965V1.31068H0.875C0.391781 1.31068 0 1.70246 0 2.18568V13.1232C0 13.6064 0.391781 13.9982 0.875 13.9982H13.125C13.6082 13.9982 14 13.6064 14 13.1232V2.18568C14 1.70267 13.6082 1.31089 13.125 1.31089ZM13.125 13.1232H0.875V2.18568H4.37194V2.62647C4.37194 2.86817 4.56772 3.06397 4.80944 3.06397C5.05116 3.06397 5.24694 2.86817 5.24694 2.62647V2.1859H8.74694V2.62668C8.74694 2.8684 8.94272 3.06418 9.18444 3.06418C9.42616 3.06418 9.62194 2.8684 9.62194 2.62668V2.1859H13.125V13.1232ZM10.0625 6.99839H10.9375C11.179 6.99839 11.375 6.80239 11.375 6.56089V5.68589C11.375 5.44439 11.179 5.24839 10.9375 5.24839H10.0625C9.821 5.24839 9.625 5.44439 9.625 5.68589V6.56089C9.625 6.80239 9.821 6.99839 10.0625 6.99839ZM10.0625 10.4982H10.9375C11.179 10.4982 11.375 10.3024 11.375 10.0607V9.18567C11.375 8.94417 11.179 8.74817 10.9375 8.74817H10.0625C9.821 8.74817 9.625 8.94417 9.625 9.18567V10.0607C9.625 10.3026 9.821 10.4982 10.0625 10.4982ZM7.4375 8.74817H6.5625C6.321 8.74817 6.125 8.94417 6.125 9.18567V10.0607C6.125 10.3024 6.321 10.4982 6.5625 10.4982H7.4375C7.679 10.4982 7.875 10.3024 7.875 10.0607V9.18567C7.875 8.94439 7.679 8.74817 7.4375 8.74817ZM7.4375 5.24839H6.5625C6.321 5.24839 6.125 5.44439 6.125 5.68589V6.56089C6.125 6.80239 6.321 6.99839 6.5625 6.99839H7.4375C7.679 6.99839 7.875 6.80239 7.875 6.56089V5.68589C7.875 5.44417 7.679 5.24839 7.4375 5.24839ZM3.9375 5.24839H3.0625C2.821 5.24839 2.625 5.44439 2.625 5.68589V6.56089C2.625 6.80239 2.821 6.99839 3.0625 6.99839H3.9375C4.179 6.99839 4.375 6.80239 4.375 6.56089V5.68589C4.375 5.44417 4.179 5.24839 3.9375 5.24839ZM3.9375 8.74817H3.0625C2.821 8.74817 2.625 8.94417 2.625 9.18567V10.0607C2.625 10.3024 2.821 10.4982 3.0625 10.4982H3.9375C4.179 10.4982 4.375 10.3024 4.375 10.0607V9.18567C4.375 8.94439 4.179 8.74817 3.9375 8.74817Z"
-                                              fill="#757F8F"/>
-                                       </svg>
-                                    </span>
-                                                        {{ date('d M Y', strtotime(@$latest_blog->created_at)) }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                            </div>
+                        @endforeach
 
 
-                            <div class="categories-box md:pt-16 pt-10">
-                                <h2 class="text-black-200 font-medium md:text-2xl text-xl">Archives</h2>
-                                <ul class="mt-10 gap-6 flex flex-col">
-                                    @foreach($blog_categories as $blog_category)
+                        <div class="categories-box md:pt-16 pt-10">
+                            <h2 class="text-black-200 font-medium md:text-2xl text-xl">Archives</h2>
+                            <ul class="mt-10 gap-6 flex flex-col">
+                                @foreach($blog_categories as $blog_category)
 
-                                        @php
-                                            $blog_posts = \App\Models\Blog::where('blog_category_id', $blog_category->id)->get();
-                                        @endphp
-                                        <li>
-                                            <a class="flex items-center gap-3  hover:text-blue-600 group transition duration-500"
-                                               href="{{ route('main.categoryWiseBlog', $blog_category->slug) }}">
+                                    @php
+                                        $blog_posts = \App\Models\Blog::where('blog_category_id', $blog_category->id)->get();
+                                    @endphp
+                                    <li>
+                                        <a class="flex items-center gap-3  hover:text-blue-600 group transition duration-500"
+                                           href="{{ route('main.categoryWiseBlog', $blog_category->slug) }}">
                                  <span>
                                     <svg width="6" height="8" viewBox="0 0 6 8" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -150,34 +149,17 @@
                                              fill="#757F8F" fill-opacity="0.5"/>
                                     </svg>
                                  </span>
-                                                {{$blog_category->name}} ({{count($blog_posts)}})
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-
+                                            {{$blog_category->name}} ({{count($blog_posts)}})
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
+
                     </div>
                 </div>
             </div>
-        </section>
-        <!--  ====================== Blog  Area End =============================  -->
-    @else
-
-        <section class="breadcrumb-area md:py-32 relative py-20  bg-blue-100 overflow-hidden">
-            <div class="container">
-                <div class="breadcrumb-titel md:w-7/12 m-auto text-center z-10 relative">
-                    <h2 class="xl:text-6xl lg:text-5xl md:text-4xl text-3xl text-black-200  font-medium"
-                        data-aos="fade-up"
-                        data-aos-delay="100"> No Blogs Found. </h2>
-                </div>
-            </div>
-            <div class="shape-breadcrumb absolute top-0 right-0">
-                <img src="{{asset('frontend/assets/images/about/about-breadcrumb.svg')}}" alt="images">
-            </div>
-        </section>
-    @endif
-
+        </div>
+    </section>
+    <!--  ====================== Blog  Area End =============================  -->
 @endsection

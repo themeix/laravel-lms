@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Tools\Repositories\Crud;
 use Illuminate\Support\Facades\Auth;
@@ -85,9 +86,18 @@ class BlogCategoryController extends Controller
             'name' => 'required',
         ]);
 
+        $slug = Str::slug($request->name);
+
+        if (BlogCategory::where('slug', $slug)->count() > 0)
+        {
+            $slug = Str::slug($request->name) . '-'. rand(100000, 999999);
+        }
+
+
         $data = [
             'name' => $request->name,
             'status' => $request->status,
+            'slug' =>$slug,
         ];
 
         $this->model->updateByUuid($data, $uuid); // update category
@@ -99,17 +109,31 @@ class BlogCategoryController extends Controller
 
     public function delete($uuid)
     {
-        /*if (!Auth::user()->can('manage_blog')) {
+        if (!Auth::user()->can('manage_blog')) {
             abort('403');
-        } */
+        }
 
         // end permission checking
 
-        $this->model->deleteByUuid($uuid); // delete record
+        $blog_category = BlogCategory::where('uuid', $uuid)->first();
+        $blogs = Blog:: where('blog_category_id', $blog_category->id)->get();
 
-        Alert::toast('Blog Category Deleted Successfully.', 'warning');
+        if( sizeof($blogs) > 0 ){
+            Alert::toast("You can't delete it. There is dependency.", 'warning');
+            return redirect()->back();
+        }
 
-        return redirect()->route('blogCategory.index')->with('delete-message', 'Blog Category Deleted successfully.');
+        else{
+            $this->model->deleteByUuid($uuid); // delete record
+
+
+            Alert::toast('Blog Category Deleted Successfully.', 'warning');
+
+            return redirect()->route('blogCategory.index')->with('delete-message', 'Blog Category Deleted successfully.');
+        }
+
+
+
     }
 
 }

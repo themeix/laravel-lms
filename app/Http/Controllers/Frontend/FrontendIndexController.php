@@ -21,7 +21,7 @@ class FrontendIndexController extends Controller
     public function index()
     {
         $data['categories'] = Category::where('is_feature', 'yes')->take(8)->get();
-        $data['showingCategories'] = Category::where('is_showing_course', 'yes')->take(2)->get();
+        $data['showingCategories'] = Category::where('is_showing_course', 'yes')->take(3)->get();
         $data['courses'] = Course::where('status', 1)->take(6)->orderBy('id', 'DESC')->get();
         $data['instructors'] = Instructor::where('status', 1)->orderBy('id', 'DESC')->get();
         $data['blogs'] = Blog::where('status', 1)->orderBy('id', 'DESC')->get();
@@ -31,7 +31,7 @@ class FrontendIndexController extends Controller
     public function index2()
     {
         $data['categories'] = Category::where('is_feature', 'yes')->take(8)->get();
-        $data['showingCategories'] = Category::where('is_showing_course', 'yes')->take(2)->get();
+        $data['showingCategories'] = Category::where('is_showing_course', 'yes')->take(3)->get();
         $data['courses'] = Course::where('status', 1)->take(6)->orderBy('id', 'DESC')->get();
         $data['instructors'] = Instructor::where('status', 1)->orderBy('id', 'DESC')->get();
         $data['blogs'] = Blog::where('status', 1)->orderBy('id', 'DESC')->get();

@@ -331,3 +331,5 @@ Route::post('currency/delete/{id}', [CurrencyController::class, 'delete'])->name
 
 Route::post('save-setting', [SettingController::class, 'saveSetting'])->name('setting.save')/*->middleware('isDemo')*/;
 Route::get('payment-method/paypal', [SettingController::class, 'paypal'])->name('payment-method.paypal');
+Route::get('payment-method/stripe', [SettingController::class, 'stripe'])->name('payment-method.stripe');
+Route::get('payment-method/sslcommerz', [SettingController::class, 'sslcommerz'])->name('payment-method.sslcommerz');

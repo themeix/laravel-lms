@@ -12,7 +12,15 @@ class SettingController extends Controller
 {
 
     public function paypal(){
-        return view('admin.app_settings.paypal');
+        return view('admin.app_settings.payment_method.paypal');
+    }
+
+    public function stripe(){
+        return view('admin.app_settings.payment_method.stripe');
+    }
+
+    public function sslcommerz(){
+        return view('admin.app_settings.payment_method.sslcommerz');
     }
 
 

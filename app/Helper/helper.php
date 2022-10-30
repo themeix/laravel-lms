@@ -6,6 +6,7 @@ use App\Models\Language;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\RankingLevel;
+use App\Models\Setting;
 use App\Models\Withdraw;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -57,10 +58,12 @@ function toastrMessage($message_type, $message)
 
 function get_option($option_key)
 {
-    $system_settings = config('settings');
+    $data['options'] = Setting::where('option_key', $option_key)->get();
 
-    if ($option_key && isset($system_settings[$option_key])) {
-        return $system_settings[$option_key];
+    if(sizeof($data['options']) > 0){
+        foreach ($data['options'] as $option){
+            return $option->option_value;
+        }
     } else {
         return '';
     }

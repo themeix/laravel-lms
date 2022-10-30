@@ -55,6 +55,30 @@
                                                             </div>
                                                         </div>
 
+                                                        @if($cart->applied_promotion_id != null)
+
+                                                            @php
+                                                                $promotion_course = \App\Models\PromotionCourse::where('id', $cart->applied_promotion_id)->first();
+
+                                                                    $promotion = \App\Models\Promotion::where('id', $promotion_course->promotion_id)->first();
+                                                            @endphp
+
+                                                            <div class="author-box flex items-center mt-4">
+                                                                <div class="course-content">
+                                                                    @if($cart->applied_promotion_id != null)
+
+                                                                        <p class="text-sm text-blue-50 font-normal "
+                                                                           style="color: #00C851;">
+                                                                            Promo: {{ $promotion->name }} - Applied
+
+                                                                        </p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                        @endif
+
+
                                                         @if($cart->coupon_id != null)
 
                                                             @php
@@ -67,14 +91,15 @@
 
                                                                         <p class="text-sm text-blue-50 font-normal "
                                                                            style="color: #00C851;">
-                                                                            {{ $coupon->coupon_code_name }} - Applied
+                                                                            Coupon: {{ $coupon->coupon_code_name }} - Applied
 
                                                                         </p>
 
                                                                     @else
                                                                         <p class="text-sm text-blue-50 font-normal "
                                                                            style="color: orangered;">
-                                                                            {{ $coupon->coupon_code_name }} - {{$coupon->percentage}}% off
+                                                                            {{ $coupon->coupon_code_name }}
+                                                                            - {{$coupon->percentage}}% off
 
                                                                         </p>
                                                                     @endif
@@ -95,7 +120,7 @@
                                             <div class="flex-col">
                                                 <p class="font-medium text-black-200 mb-10">Price</p>
 
-                                                @if($cart->applied_coupon_id != null)
+                                                @if($cart->applied_coupon_id != null || $cart->applied_promotion_id != null)
                                                     <p class="text-gray-800">
                                                         <del>$ {{ $cart->main_price }}</del>
                                                     </p>
@@ -155,7 +180,7 @@
                             </div>
                             <div class="flex justify-between mb-4 border-b pb-4">
                                 <div class="flex-col">
-                                    <p class="">Discount ({{ $discount_percent }}%) off:</p>
+                                    <p class="">({{ $discount_percent }}%) off:</p>
                                 </div>
                                 <div class="flex-col">
                                     <p class="">

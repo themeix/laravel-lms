@@ -59,6 +59,32 @@
                                                                         </div>
                                                                     </div>
 
+                                                                    @if($cart->applied_promotion_id != null)
+
+                                                                        @php
+                                                                            $promotion_course = \App\Models\PromotionCourse::where('id', $cart->applied_promotion_id)->first();
+
+                                                                                $promotion = \App\Models\Promotion::where('id', $promotion_course->promotion_id)->first();
+                                                                        @endphp
+
+                                                                        <div class="author-box flex items-center mt-4">
+                                                                            <div class="course-content">
+                                                                                @if($cart->applied_promotion_id != null)
+
+                                                                                    <p class="text-sm text-blue-50 font-normal "
+                                                                                       style="color: #00C851;">
+                                                                                        Promo: {{ $promotion->name }} -
+                                                                                        Applied
+
+                                                                                    </p>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+
+                                                                    @endif
+
+
+
                                                                     @if($cart->coupon_id != null)
 
                                                                         @php
@@ -71,14 +97,16 @@
 
                                                                                     <p class="text-sm text-blue-50 font-normal "
                                                                                        style="color: #00C851;">
-                                                                                        {{ $coupon->coupon_code_name }} - Applied
+                                                                                        Coupon: {{ $coupon->coupon_code_name }}
+                                                                                        - Applied
 
                                                                                     </p>
 
                                                                                 @else
                                                                                     <p class="text-sm text-blue-50 font-normal "
                                                                                        style="color: orangered;">
-                                                                                        {{ $coupon->coupon_code_name }} - {{$coupon->percentage}}% off
+                                                                                        {{ $coupon->coupon_code_name }}
+                                                                                        - {{$coupon->percentage}}% off
 
                                                                                     </p>
                                                                                 @endif
@@ -94,9 +122,10 @@
                                             </div>
                                             <div class="col-span-4 mt-4 lg:mt-0">
                                                 <div class="flex-col lg:text-right w-full">
-                                                    @if($cart->applied_coupon_id != null)
-                                                    <p class="text-black-200 font-medium">
-                                                        <del> ${{ $cart->main_price }} </del></p>
+                                                    @if($cart->applied_coupon_id != null || $cart->applied_promotion_id != null)
+                                                        <p class="text-black-200 font-medium">
+                                                            <del> ${{ $cart->main_price }} </del>
+                                                        </p>
                                                         <p class="text-black-200 font-medium">
                                                             ${{ $cart->price }}</p>
 
@@ -107,7 +136,7 @@
 
                                                         </p>
 
-                                                        @endif
+                                                    @endif
 
                                                 </div>
                                             </div>
@@ -284,7 +313,7 @@
                                                           class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                           name="address" id="address"
                                                           type="text"
-                                                          placeholder="Address" >{{ $instructor->address }} </textarea>
+                                                          placeholder="Address">{{ $instructor->address }} </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -373,7 +402,6 @@
                                                 <p class="text-black-200 mb-4 text-lg"> Country<span
                                                         class="text-blue-800">*</span>
                                                 </p>
-
 
 
                                                 @if ($student->country_id && $student->country)
@@ -478,7 +506,8 @@
                                                     <p class="text-black-200 mb-4 text-lg">First Name <span
                                                             class="text-blue-800">*</span>
                                                     </p>
-                                                    <input class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                    <input
+                                                        class="appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                                                         value="{{ old('first_name') }}"
                                                         name="first_name" id="first_name"
                                                         type="text" placeholder="First name" required/>
@@ -541,7 +570,8 @@
                                                         name="phone_number" value="{{ Auth::user()->phone_number }}"
                                                         type="number" placeholder="Phone Number" required/>
                                                     @if ($errors->has('phone_number'))
-                                                        <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('phone_number') }}</span>
+                                                        <span class="text-danger"><i
+                                                                class="fas fa-exclamation-triangle"></i> {{ $errors->first('phone_number') }}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -630,83 +660,24 @@
                                 </div>
                             @endif
 
+
                             {{--Payment method--}}
                             <div class="payment-method mt-10 ">
                                 <h3 class="text-2xl font-medium text-black-200 pb-7">Payment Method</h3>
 
-                                @if (get_option('paypal_status') == 1)
-                                    <div class="check-box-area border p-5 mb-5  rounded-md ">
-                                        <div class="flex items-center">
-                                            <input  type="checkbox"  class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                    name="payment_method"
-                                                    value="paypal" {{ old('payment_method') == 'paypal' ? 'checked' : '' }}
-                                                    id="bankPayment"/>
-                                            <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay With Paypal</label>
-                                        </div>
-                                    </div>
-                                @endif
-
-                                @if (get_option('stripe_status') == 1)
-                                    <div class="check-box-area border p-5 mb-5  rounded-md ">
-
-                                        <div class="flex items-center">
-                                            <input  type="checkbox"  class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                    name="payment_method"
-                                                    value="stripe" {{ old('payment_method') == 'stripe' ? 'checked' : '' }}
-                                                    id="bankPayment"/>
-                                            <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay With Credit Card</label>
-                                        </div>
-
-                                        <div class="debit-card-box border p-5  rounded mt-5">
-                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Card Number <span
-                                                            class="text-blue-800">*</span></p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="number" placeholder="1243 5684 5485 2654">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Card security code <span
-                                                            class="text-blue-800">*</span></p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="number" placeholder="Type your security code">
-                                                </div>
-                                            </div>
-                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Month <span
-                                                            class="text-blue-800">*</span>
-                                                    </p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="date">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Year <span
-                                                            class="text-blue-800">*</span>
-                                                    </p>
-                                                    <input
-                                                        class=" appearance-none border rounded w-full py-2.5 px-3 bg-white  text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-                                                        type="month">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                @endif
-
+                                {{--Bank--}}
                                 @if(sizeof($banks) > 0)
                                     <div class="check-box-area border p-5 mb-5  rounded-md ">
                                         <div class="flex items-center">
-                                            <input  type="checkbox"  class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                            <input type="checkbox" id="bankPayment" onclick="bankActive(this);"
+                                                   class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                                    name="payment_method"
                                                    value="bank" {{ old('payment_method') == 'bank' ? 'checked' : '' }}
-                                                   id="bankPayment"/>
-                                            <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay With Bank</label>
+                                            />
+                                            <label for="checked-checkbox"
+                                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay
+                                                With Bank</label>
                                         </div>
-
 
 
                                         <div class="debit-card-box border p-5  rounded mt-5">
@@ -777,8 +748,98 @@
                                 @endif
 
 
+                                {{--SSLCOMMERZE--}}
+                                {{-- @if (get_option('paypal_status') == 1)--}}
+                                <div class="check-box-area border p-5 mb-5  rounded-md ">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="sslPayment" onclick="sslActive(this);"
+                                               class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                               name="payment_method"
+                                               value="ssl"
+                                        />
+                                        <label for="checked-checkbox"
+                                               class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay
+                                            With SSLCOMMERZ</label>
+                                    </div>
+                                </div>
+                                {{--@endif--}}
 
-                                <div class="mb-5 mt-5 p-5 font-bold">
+                                {{--paypal--}}
+                                {{-- @if (get_option('paypal_status') == 1)--}}
+                                <div class="check-box-area border p-5 mb-5  rounded-md ">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="paypalPayment" onclick="paypalActive(this);"
+                                               class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                               name="payment_method"
+                                               value="paypal"
+                                            {{ old('payment_method') == 'paypal' ? 'checked' : '' }}
+                                        />
+                                        <label for="checked-checkbox"
+                                               class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay
+                                            With Paypal</label>
+
+                                    </div>
+                                </div>
+                                {{--@endif--}}
+
+
+                                {{--Stripe--}}
+                                @if (get_option('stripe_status') == 1)
+                                    <div class="check-box-area border p-5 mb-5  rounded-md ">
+
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="stripePayment" onclick="stripeActive(this);"
+                                                   class="w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                   name="payment_method"
+                                                   value="stripe" {{ old('payment_method') == 'stripe' ? 'checked' : '' }}
+                                            />
+                                            <label for="checked-checkbox"
+                                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pay
+                                                With Credit Card</label>
+                                        </div>
+
+                                        <div class="debit-card-box border p-5  rounded mt-5">
+                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg"> Card Number <span
+                                                            class="text-blue-800">*</span></p>
+                                                    <input
+                                                        class=" card-number appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        type="number" placeholder="1243 5684 5485 2654">
+                                                </div>
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg"> Card security code <span
+                                                            class="text-blue-800">*</span></p>
+                                                    <input
+                                                        class=" card-cvc appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        type="password">
+                                                </div>
+                                            </div>
+                                            <div class="grid md:grid-cols-2 gap-4 mt-5">
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Month <span
+                                                            class="text-blue-800">*</span>
+                                                    </p>
+
+                                                    <input
+                                                        class=" card-expiry-month appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        type="text" placeholder="MM">
+                                                </div>
+                                                <div class="flex-col">
+                                                    <p class="text-black-200 mb-4 text-lg"> Expiration Year <span
+                                                            class="text-blue-800">*</span>
+                                                    </p>
+
+                                                    <input
+                                                        class=" card-expiry-year appearance-none border rounded w-full py-2.5 px-3 bg-white  placeholder-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                                                        type="text" placeholder="YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <div class="mb-5 mt-5 p-5 font-normal">
                                     <p>
                                         *** We
                                         protect
@@ -789,6 +850,8 @@
 
                             </div>
                         </div>
+
+                        {{--Toatal Area--}}
                         <div class="col-span-4">
                             <div class="billing-summery-box p-8 shadow-4xl">
                                 <h3 class="text-2xl font-medium text-black-200 pb-7 mb-7">Billing Summery</h3>
@@ -845,6 +908,8 @@
 @push('scripts')
     <script src="{{ asset('frontend/custom/js/checkout.js') }}"></script>
 
+    <script src="https://js.stripe.com/v2/"></script>
+
 
     <script>
         $(function () {
@@ -869,6 +934,84 @@
             });
             $('#country_id').trigger('change');
         });
+
+
+        function bankActive() {
+            document.getElementById("paypalPayment").checked = false;
+            document.getElementById("stripePayment").checked = false;
+            document.getElementById("sslPayment").checked = false;
+        }
+
+        function paypalActive() {
+            document.getElementById("bankPayment").checked = false;
+            document.getElementById("stripePayment").checked = false;
+            document.getElementById("sslPayment").checked = false;
+        }
+
+        function stripeActive() {
+            document.getElementById("bankPayment").checked = false;
+            document.getElementById("paypalPayment").checked = false;
+            document.getElementById("sslPayment").checked = false;
+        }
+
+        function sslActive() {
+            document.getElementById("bankPayment").checked = false;
+            document.getElementById("paypalPayment").checked = false;
+            document.getElementById("stripePayment").checked = false;
+        }
+
+
+        $(function() {
+            var $form = $(".validation");
+            $('form.validation').bind('submit', function(e) {
+                var $form         = $(".validation"),
+                    inputVal = ['input[type=email]', 'input[type=password]',
+                        'input[type=text]', 'input[type=file]',
+                        'textarea'].join(', '),
+                    $inputs       = $form.find('.required').find(inputVal),
+                    $errorStatus = $form.find('div.error'),
+                    valid         = true;
+                $errorStatus.addClass('hide');
+
+                $('.has-error').removeClass('has-error');
+                $inputs.each(function(i, el) {
+                    var $input = $(el);
+                    if ($input.val() === '') {
+                        $input.parent().addClass('has-error');
+                        $errorStatus.removeClass('hide');
+                        e.preventDefault();
+                    }
+                });
+
+                if (!$form.data('cc-on-file')) {
+                    e.preventDefault();
+                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                    Stripe.createToken({
+                        number: $('.card-num').val(),
+                        cvc: $('.card-cvc').val(),
+                        exp_month: $('.card-expiry-month').val(),
+                        exp_year: $('.card-expiry-year').val()
+                    }, stripeHandleResponse);
+                }
+
+            });
+
+            function stripeHandleResponse(status, response) {
+                if (response.error) {
+                    $('.error')
+                        .removeClass('hide')
+                        .find('.alert')
+                        .text(response.error.message);
+                } else {
+                    var token = response['id'];
+                    $form.find('input[type=text]').empty();
+                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                    $form.get(0).submit();
+                }
+            }
+
+        });
+
 
     </script>
 @endpush

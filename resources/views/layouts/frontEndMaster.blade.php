@@ -1147,7 +1147,7 @@
                                                                                     </div>
                                                                                     <div class="mt-0.5">
                                                                                         <div
-                                                                                            class="flex items-center border border-blue-600 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
+                                                                                            class="flex items-center border border-blue-600 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium" style="width: 120px!important;">
                                                                                         <span
                                                                                             class="text-blue-600">$ {{$item->price}}</span>
                                                                                         </div>

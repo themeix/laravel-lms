@@ -13,14 +13,16 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Course;
 use App\Models\Order;
+use App\Models\OrderBillingAddress;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Promotion;
 use App\Models\PromotionCourse;
 use App\Models\State;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Withdraw;
-
+use Stripe;
 use App\Traits\ImageSaveTrait;
 use App\Traits\SendNotification;
 use Carbon\Carbon;
@@ -127,8 +129,16 @@ class CartManagementController extends Controller
                 $have_coupon_valid = Coupon::where('id', $have_coupon->id)->where('status', 1)->where('start_date', '<=', Carbon::now()->format('Y-m-d'))->where('end_date', '>=', Carbon::now()->format('Y-m-d'))->first();
             }
 
-
             $have_promotion = PromotionCourse::where('course_id', $request->course_id)->latest()->first();
+
+            /*if ($have_promotion) {
+                $startDate = date('d-m-Y H:i:s', strtotime(@$have_promotion->promotion->start_date));
+                $endDate = date('d-m-Y H:i:s', strtotime(@$have_promotion->promotion->end_date));
+
+                if (now()->gt($startDate) && now()->lt($endDate)) {
+                    $have_promotion_valid = Promotion::where('id', $have_promotion->promotion_id)->where('status',1)->first();
+                }
+            }*/
 
 
             $cart = new CartManagement();
@@ -137,9 +147,20 @@ class CartManagementController extends Controller
             if ($have_coupon && $have_coupon_valid) {
                 $cart->coupon_id = $have_coupon->id;
             }
+
             if ($have_promotion) {
-                $cart->promotion_id = $have_promotion->id;
+                $startDate = date('d-m-Y H:i:s', strtotime(@$have_promotion->promotion->start_date));
+                $endDate = date('d-m-Y H:i:s', strtotime(@$have_promotion->promotion->end_date));
+
+                if (now()->gt($startDate) && now()->lt($endDate)) {
+                    $have_promotion_valid = Promotion::where('id', $have_promotion->promotion_id)->where('status', 1)->first();
+
+                    if ($have_promotion_valid) {
+                        $cart->promotion_id = $have_promotion->id;
+                    }
+                }
             }
+
             $cart->product_id = $request->product_id;
             $cart->main_price = $request->price;
             $cart->price = $request->price;
@@ -256,12 +277,24 @@ class CartManagementController extends Controller
         $cart->user_id = Auth::user()->id;
         $cart->course_id = $request->course_id;
         $cart->product_id = $request->product_id;
+
         if ($have_coupon && $have_coupon_valid) {
             $cart->coupon_id = $have_coupon->id;
         }
+
         if ($have_promotion) {
-            $cart->promotion_id = $have_promotion->id;
+            $startDate = date('d-m-Y H:i:s', strtotime(@$have_promotion->promotion->start_date));
+            $endDate = date('d-m-Y H:i:s', strtotime(@$have_promotion->promotion->end_date));
+
+            if (now()->gt($startDate) && now()->lt($endDate)) {
+                $have_promotion_valid = Promotion::where('id', $have_promotion->promotion_id)->where('status', 1)->first();
+
+                if ($have_promotion_valid) {
+                    $cart->promotion_id = $have_promotion->id;
+                }
+            }
         }
+
         $cart->main_price = $request->price;
         $cart->price = $request->price;
 
@@ -276,10 +309,46 @@ class CartManagementController extends Controller
     public function cartList()
     {
         $data['carts'] = CartManagement::whereUserId(Auth::user()->id)->get();
+
+        foreach ($data['carts'] as $cart) {
+            if ($cart->promotion_id != null) {
+                $have_promotion = PromotionCourse::where('id', $cart->promotion_id)->first();
+
+                if ($have_promotion && $cart->applied_promotion_id != $cart->promotion_id) {
+                    $startDate = date('d-m-Y H:i:s', strtotime(@$have_promotion->promotion->start_date));
+                    $endDate = date('d-m-Y H:i:s', strtotime(@$have_promotion->promotion->end_date));
+
+                    if (now()->gt($startDate) && now()->lt($endDate)) {
+                        $have_promotion_valid = Promotion::where('id', $have_promotion->promotion_id)->where('status', 1)->first();
+
+                        if ($have_promotion_valid) {
+
+                            $previous_discount_percent = $cart->discount_percent;
+                            $previous_discount_amount = $cart->discount;
+
+                            $promotion_discount_amount = ($cart->price * $have_promotion_valid->percentage) / 100;
+                            $after_discount_price = $cart->price - $promotion_discount_amount;
+
+                            $present_discount_percent = $previous_discount_percent + $have_promotion_valid->percentage;
+                            $present_discount_amount = $previous_discount_amount + $promotion_discount_amount;
+
+                            $cart->applied_promotion_id = $have_promotion->id;
+                            $cart->price = $after_discount_price;
+                            $cart->discount = $present_discount_amount;
+                            $cart->discount_percent = $present_discount_percent;
+                            $cart->save();
+                        }
+                    }
+                }
+
+            }
+        }
+
         $data['total'] = CartManagement::whereUserId(Auth::user()->id)->sum('main_price');
         $data['total_after_discount'] = CartManagement::whereUserId(Auth::user()->id)->sum('price');
         $data['discount_percent'] = CartManagement::whereUserId(Auth::user()->id)->sum('discount_percent');
         $data['discount_amount'] = CartManagement::whereUserId(Auth::user()->id)->sum('discount');
+
 
         $quantity = CartManagement::whereUserId(Auth::user()->id)->count();
 
@@ -372,11 +441,17 @@ class CartManagementController extends Controller
 
             $discount_price = ($cart->price * $coupon->percentage) / 100;
 
+            $previous_discount_amount = $cart->discount;
+            $previous_discount_percent = $cart->discount_percent;
+
+            $present_discount_amount = $previous_discount_amount + $discount_price;
+            $previous_discount_percent = $previous_discount_percent + $coupon->percentage;
+
             if ($coupon->coupon_type == 1) {
                 $cart->price = round($cart->price - $discount_price);
-                $cart->discount = $discount_price;
+                $cart->discount = $present_discount_amount;
                 $cart->applied_coupon_id = $coupon->id;
-                $cart->discount_percent = $coupon->percentage;
+                $cart->discount_percent = $previous_discount_percent;
                 $cart->save();
 
                 /*$carts = CartManagement::whereUserId(@Auth::user()->id)->get();*/
@@ -400,9 +475,9 @@ class CartManagementController extends Controller
                 if ($couponInstructor) {
 
                     $cart->price = round($cart->price - $discount_price);
-                    $cart->discount = $discount_price;
+                    $cart->discount = $present_discount_amount;
                     $cart->applied_coupon_id = $coupon->id;
-                    $cart->discount_percent = $coupon->percentage;
+                    $cart->discount_percent = $previous_discount_percent;
                     $cart->save();
 
                     /*$carts = CartManagement::whereUserId(@Auth::user()->id)->get();*/
@@ -425,9 +500,9 @@ class CartManagementController extends Controller
                 if ($couponCourse) {
 
                     $cart->price = round($cart->price - $discount_price);
-                    $cart->discount = $discount_price;
+                    $cart->discount = $present_discount_amount;
                     $cart->applied_coupon_id = $coupon->id;
-                    $cart->discount_percent = $coupon->percentage;
+                    $cart->discount_percent = $previous_discount_percent;
                     $cart->save();
 
                     /*$carts = CartManagement::whereUserId(@Auth::user()->id)->get();*/
@@ -486,16 +561,15 @@ class CartManagementController extends Controller
     public function processOrder(Request $request)
     {
 
-        if(empty($request->first_name) || empty($request->last_name)){
+        if (empty($request->first_name) || empty($request->last_name)) {
             Alert::toast('Please give your full name!', 'warning');
             return redirect()->back();
         }
 
-        if(empty($request->email) ||  empty($request->phone_number)){
+        if (empty($request->email) || empty($request->phone_number)) {
             Alert::toast('Please give your contact information!', 'warning');
             return redirect()->back();
         }
-
 
 
         if (is_null($request->payment_method)) {
@@ -553,6 +627,50 @@ class CartManagementController extends Controller
             return redirect()->route('student.thankYou');
         }
 
+        elseif ($request->payment_method == 'stripe') {
+
+            try {
+                $stripe_grand_total_with_conversion_rate = $order->grand_total * (get_option('stripe_conversion_rate') ? get_option('stripe_conversion_rate') : 0);
+                $stripe_grand_total_with_conversion_rate = (float)preg_replace("/[^0-9.]+/", "", number_format($stripe_grand_total_with_conversion_rate, 2));
+
+                $stripeToken = $request->stripeToken;
+                Stripe\Stripe::setApiKey(get_option('STRIPE_SECRET_KEY'));
+                $charge = Stripe\Charge::create([
+                    "amount" => ($stripe_grand_total_with_conversion_rate * 100),
+                    "currency" => get_option('stripe_currency'),
+                    "source" => $stripeToken,
+                    "description" => 'Payment for purchase'
+                ]);
+
+                if ($charge->status == 'succeeded') {
+                    $order->payment_status = 'paid';
+                    $order->payment_method = 'stripe';
+                    $order->save();
+
+                    /** ====== Send notification =========*/
+                    $text = "New student enrolled";
+                    $target_url = route('instructor.allEnrollStudent.index');
+                    foreach ($order->items as $item) {
+                        if ($item->course) {
+                            $this->send($text, 2, $target_url, $item->course->user_id);
+                        }
+                    }
+
+                    $text = "Course has been sold";
+                    $this->send($text, 1, null, null);
+
+                    /** ====== Send notification =========*/
+
+                    Alert::toast('Payment has been completed', 'success');
+                    return redirect()->route('student.thankYou');
+                }
+            } catch (\Stripe\Error\Card $e) {
+                // The card has been declined
+                Alert::toast('Payment has been declined', 'error');
+                return redirect(url('/'));
+            }
+        }
+
 
     }
 
@@ -566,25 +684,34 @@ class CartManagementController extends Controller
         $order->sub_total = $carts->sum('price');
         $order->discount = $carts->sum('discount');
         $order->platform_charge = get_platform_charge($carts->sum('price'));
-        /*$order->current_currency = get_currency_code();*/
+        $order->current_currency = get_currency_code();
         $order->grand_total = $order->sub_total + $order->platform_charge;
         $order->payment_method = $payment_method;
 
         $payment_currency = '';
         $conversion_rate = '';
 
-        if ($payment_method == 'bank') {
+
+        if ($payment_method == 'paypal') {
+            $payment_currency = get_option('paypal_currency');
+            $conversion_rate = get_option('paypal_conversion_rate') ? get_option('paypal_conversion_rate') : 0;
+        } elseif ($payment_method == 'stripe') {
+            $payment_currency = get_option('stripe_currency');
+            $conversion_rate = get_option('stripe_conversion_rate') ? get_option('stripe_conversion_rate') : 0;
+        } elseif ($payment_method == 'bank') {
             $payment_currency = get_option('bank_currency');
             $conversion_rate = get_option('bank_conversion_rate') ? get_option('bank_conversion_rate') : 0;
         }
 
         $order->payment_currency = $payment_currency;
         $order->conversion_rate = $conversion_rate;
+
         if ($conversion_rate) {
             $order->grand_total_with_conversation_rate = ($order->sub_total + $order->platform_charge) * $conversion_rate;
         }
 
         $order->save();
+
 
         foreach ($carts as $cart) {
             $order_item = new OrderItem();

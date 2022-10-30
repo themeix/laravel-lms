@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id')->nullable();
             $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('promotion_id')->nullable();
+            $table->unsignedBigInteger('applied_promotion_id')->nullable();
             $table->unsignedBigInteger('coupon_id')->nullable();
             $table->unsignedBigInteger('applied_coupon_id')->nullable();
             $table->decimal('main_price')->default(0.00);

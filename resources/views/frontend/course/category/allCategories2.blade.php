@@ -48,11 +48,7 @@
         </div>
     </section>
     <!--  ====================== Popular Courses  Area End =============================  -->
-    <!--  ====================== Discount Area Start =============================  -->
 
-    {{ View::make('layouts.partials.webinar') }}
-
-    <!--  ====================== DiscountPost Area End =============================  -->
     <!--  ====================== Newsleter  Area Start =============================  -->
 
     {{ View::make('layouts.partials.newsLetter') }}

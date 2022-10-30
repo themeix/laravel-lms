@@ -583,17 +583,17 @@
                                                                 data-i18n="List">Bank</span></a>
                     </li>
 
-                    <li><a class="d-flex align-items-center" href="#"><i
+                    <li class="{{ (request()->is('admin/payment-method/sslcommerz')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('payment-method.sslcommerz') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">SSLCOMMERZ</span></a>
                     </li>
 
-                    <li class="{{ (request()->is('admin/payment-method/paypal*')) ? 'active' : '' }}">
+                    <li class="{{ (request()->is('admin/payment-method/paypal')) ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href="{{ route('payment-method.paypal') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                                                 data-i18n="List">PayPal</span>
                         </a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="#"><i
+                    <li class="{{ (request()->is('admin/payment-method/stripe')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('payment-method.stripe') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                                                 data-i18n="List">Stripe</span></a>
                     </li>

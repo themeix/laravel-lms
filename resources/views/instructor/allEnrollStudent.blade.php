@@ -107,7 +107,7 @@
 
                                         <tr class="removable-item">
                                             <td>
-                                                @if($orderItem->order->user->image == null)
+                                                @if(@$orderItem->order->user->image == null)
                                                     <img src="{{asset('custom/image/user-no-image.png')}}"
                                                          style="width: 50px; height: 50px; border-radius: 50%;">
                                                 @else

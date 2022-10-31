@@ -123,11 +123,14 @@
                                         <div class="col-md-6 col-12">
                                             <div class="mb-2">
                                                 <label class="form-label" for="blog-edit-status">Type</label>
-                                                <select class="form-select intro_video_check" name="intro_video_check"
+                                                <select class="form-select intro_video_check" name="type"
                                                         id="blog-edit-status intro_video_check">
                                                     <option value="">---Select Type---</option>
-                                                    <option value="1">Video File</option>
-                                                    <option value="2">Youtube Video</option>
+                                                    <option value="video">Video File</option>
+                                                    <option value="youtube">Youtube Video</option>
+                                                    @if(env('VIMEO_STATUS') == 'active')
+                                                        <option value="vimeo">Vimeo</option>
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>
@@ -136,13 +139,29 @@
                                             <div class="mb-2">
                                             </div>
                                             <div class="mb-2">
-                                                <input type="file" name="video" id="video" accept="video/mp4"
+                                                <input type="file" name="video_url" id="video_url" accept="video/mp4"
                                                        class="form-control d-none">
 
-                                                <input type="text" name="youtube_video_id" id="youtube_video_id"
+                                                <input type="text" name="youtube_url" id="youtube_url"
                                                        placeholder="Type / Paste your youtube video URL" value=""
                                                        class="form-control d-none">
+
+                                                <input type="text" name="vimeo_url" id="vimeo_url"
+                                                       placeholder="Type / Paste your vimeo URL" value=""
+                                                       class="form-control d-none">
                                             </div>
+
+
+                                            @if ($errors->has('video_url'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('video_url') }}</span>
+                                            @endif
+                                            @if ($errors->has('youtube_url'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('youtube_url') }}</span>
+                                            @endif
+                                            @if ($errors->has('vimeo_url'))
+                                                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> {{ $errors->first('vimeo_url') }}</span>
+                                            @endif
+
                                         </div>
                                     </div>
 
@@ -170,22 +189,84 @@
 
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="title">File Time Duration Format (HH:MM)
-                                                    (00:00)</label>
-
-                                                <input
-                                                    value="{{ old('file_duration') }}"
-                                                    type="text"
-                                                    id="file_duration"
-                                                    class="form-control"
-                                                    placeholder="File Time Duration Format (HH:MM) (00:00)"
-                                                    name="file_duration"
-                                                    required
-                                                />
-                                                @if ($errors->has('file_duration'))
+                                                <label class="form-label" for="title">Learner's Visibility</label>
+                                                <select name="lecture_type" class="form-select" required>
+                                                    <option value="">--Select Option--</option>
+                                                    <option value="1" @if(old('lecture_type') == 1) selected @endif >
+                                                        Show
+                                                    </option>
+                                                    <option value="2" @if(old('lecture_type') == 2) selected @endif >
+                                                        Lock
+                                                    </option>
+                                                </select>
+                                                @if ($errors->has('title'))
                                                     <span class="text-danger"><i
-                                                            class="fas fa-exclamation-triangle"></i> {{ $errors->first('file_duration') }}</span>
+                                                            class="fas fa-exclamation-triangle"></i> {{ $errors->first('title') }}</span>
                                                 @endif
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="title">
+
+                                                    File Time Duration
+
+                                                </label>
+                                                <div style="display: flex; gap: 4px;">
+                                                    <div class="col-2">
+                                                        <label class="form-label" for="title">Hour</label>
+                                                        <input
+                                                            value=""
+                                                            type="number"
+                                                            id="file_duration"
+                                                            class="form-control"
+                                                            placeholder="HH"
+                                                            name="hour"
+                                                            required
+                                                        />
+                                                        @if ($errors->has('hour'))
+                                                            <span class="text-danger"><i
+                                                                    class="fas fa-exclamation-triangle"></i> {{ $errors->first('hour') }}</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <label class="form-label" for="title">Minute</label>
+                                                        <input
+                                                            value=""
+                                                            type="number"
+                                                            id="file_duration"
+                                                            class="form-control"
+                                                            placeholder="MM"
+                                                            name="minute"
+                                                            required
+                                                        />
+
+                                                        @if ($errors->has('minute'))
+                                                            <span class="text-danger"><i
+                                                                    class="fas fa-exclamation-triangle"></i> {{ $errors->first('minute') }}</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <label class="form-label" for="title">Second</label>
+                                                        <input
+                                                            value=""
+                                                            type="number"
+                                                            id="file_duration"
+                                                            class="form-control"
+                                                            placeholder="SS"
+                                                            name="second"
+                                                            required
+                                                        />
+                                                        @if ($errors->has('second'))
+                                                            <span class="text-danger"><i
+                                                                    class="fas fa-exclamation-triangle"></i> {{ $errors->first('second') }}</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -207,7 +288,7 @@
                                 <thead>
                                 <tr>
                                     <th>Lecture No</th>
-                                    <th>Lecture</th>
+                                    <th>Title</th>
                                     <th>Type</th>
                                     <th>Duration</th>
                                     <th>Action</th>
@@ -222,7 +303,12 @@
                                             {{ $course_lecture->title }}
                                         </td>
                                         <td>
-                                            {{ $course_lecture->lecture_type }}
+                                            @if($course_lecture->lecture_type == 1)
+                                                <span class="status badge bg-primary">Show</span>
+
+                                            @elseif($course_lecture->lecture_type ==2)
+                                                <span class="status badge bg-success">Lock</span>
+                                            @endif
                                         </td>
                                         <td>
                                             {{ $course_lecture->file_duration }}
@@ -296,22 +382,28 @@
 
                 var intro_video_check = $(".intro_video_check").val();
 
-                if (intro_video_check == '1') {
-                    $('#video').removeClass('d-none');
-                    $('.videoSource').removeClass('d-none');
-                    $('#youtube_video_id').addClass('d-none');
+                if (intro_video_check == 'video') {
+                    $('#video_url').removeClass('d-none');
+                    $('#vimeo_url').addClass('d-none');
+                    $('#youtube_url').addClass('d-none');
                 }
 
-                if (intro_video_check == '2') {
-                    $('#video').addClass('d-none');
-                    $('.videoSource').addClass('d-none');
-                    $('#youtube_video_id').removeClass('d-none');
+                if (intro_video_check == 'youtube') {
+                    $('#video_url').addClass('d-none');
+                    $('#vimeo_url').addClass('d-none');
+                    $('#youtube_url').removeClass('d-none');
+                }
+
+                if (intro_video_check == 'vimeo') {
+                    $('#video_url').addClass('d-none');
+                    $('#vimeo_url').removeClass('d-none');
+                    $('#youtube_url').addClass('d-none');
                 }
 
                 if (intro_video_check == '') {
                     $('#video').addClass('d-none');
-                    $('.videoSource').addClass('d-none');
-                    $('#youtube_video_id').addClass('d-none');
+                    $('#vimeo_url').addClass('d-none');
+                    $('#youtube_url').addClass('d-none');
                 }
             });
         });

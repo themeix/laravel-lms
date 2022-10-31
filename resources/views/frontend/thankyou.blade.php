@@ -64,6 +64,13 @@
                 </div>
                 <div class="col-span-3 ">
                     <div class="order-summery shadow-4xl p-10 bg-white">
+
+                        <div class="order-button mt-6">
+                            <a class="py-3 w-full mb-4 bg-blue-600 text-white block text-center px-6 rounded-md text-lg font-medium transition duration-500 hover:text-black-200 hover:bg-blue-100"
+                               href="{{ route('student.order') }}">My Order Page</a>
+
+                        </div>
+
                         <div class="order-button mt-6">
                             <a class="py-3 w-full mb-4 bg-blue-600 text-white block text-center px-6 rounded-md text-lg font-medium transition duration-500 hover:text-black-200 hover:bg-blue-100"
                                href="{{ route('student.learning') }}">My Learn Page</a>

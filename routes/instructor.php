@@ -100,7 +100,7 @@ Route::post('course/lesson/delete/{uuid}', [LessonController::class, 'delete'])-
 
 Route::get('course/lecture/{course_uuid}/{lesson_uuid}', [LessonController::class, 'lectureIndex_Create'])->name('instructor.course.lecture.index');
 
-Route::get('course/lecture-store/{course_uuid}/{lesson_uuid}', [LessonController::class, 'lectureStore'])->name('instructor.course.lecture.store');
+Route::post('course/lecture-store/{course_uuid}/{lesson_uuid}', [LessonController::class, 'lectureStore'])->name('instructor.course.lecture.store');
 
 //Course Lesson & Lectures Routes End
 

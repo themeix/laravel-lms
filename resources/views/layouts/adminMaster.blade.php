@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 <head>
@@ -172,9 +173,19 @@
                             <a class="d-flex" href="{{route('notification.url', [$adminNotification->uuid])}}">
                                 <div class="list-item d-flex align-items-start">
                                     <div class="me-1">
-                                        <div class="avatar"><img
-                                                src="{{ asset($adminNotification->sender->image_path) }}'"
-                                                alt="avatar" width="32" height="32"></div>
+
+                                        @if($adminNotification->sender->image != null)
+                                            <div class="avatar"><img
+                                                    src="{{ asset($adminNotification->sender->image) }}"
+                                                    alt="avatar" width="32" height="32"></div>
+
+                                        @else
+
+                                            <div class="avatar"><img
+                                                    src="{{ asset('custom/image/user-no-image.png') }}"
+                                                    alt="avatar" width="32" height="32"></div>
+
+                                        @endif
                                     </div>
                                     <div class="list-item-body flex-grow-1">
                                         <h6 class="color-heading font-14 text-capitalize">{{$adminNotification->sender->name}}</h6>
@@ -460,6 +471,22 @@
                 </li>
             @endcanany
 
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='upload'></i><span
+                        class="menu-title text-truncate" data-i18n="User">Upload Settings</span></a>
+                <ul class="menu-content">
+                    <li class="{{ (request()->is('admin/upload-method/vimeo*')) ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="{{route('upload-method.vimeo')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Vimeo </span></a>
+                    </li>
+
+                    <li class="{{ (request()->is('admin/upload-method/aws')) ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="{{route('upload-method.aws')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">AWS</span></a>
+                    </li>
+                </ul>
+            </li>
+
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='book'></i><span
                         class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Manage Course</span></a>
                 <ul class="menu-content">
@@ -577,13 +604,21 @@
                     <span
                         class="menu-title text-truncate" data-i18n="User">Payment Settings</span></a>
                 <ul class="menu-content">
+
+                    <li class="{{ (request()->is('admin/currency*')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{route('currency.index')}}"><i
+                                data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="List">Currency</span></a>
+
+
                     <li class="{{ (request()->is('admin/bank*')) ? 'active' : '' }}"><a
                             class="d-flex align-items-center" href="{{route('bank.index')}}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                                                 data-i18n="List">Bank</span></a>
                     </li>
 
-                    <li class="{{ (request()->is('admin/payment-method/sslcommerz')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('payment-method.sslcommerz') }}"><i
+                    <li class="{{ (request()->is('admin/payment-method/sslcommerz')) ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="{{ route('payment-method.sslcommerz') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">SSLCOMMERZ</span></a>
                     </li>
 
@@ -593,7 +628,8 @@
                                                                 data-i18n="List">PayPal</span>
                         </a>
                     </li>
-                    <li class="{{ (request()->is('admin/payment-method/stripe')) ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('payment-method.stripe') }}"><i
+                    <li class="{{ (request()->is('admin/payment-method/stripe')) ? 'active' : '' }}"><a
+                            class="d-flex align-items-center" href="{{ route('payment-method.stripe') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                                                 data-i18n="List">Stripe</span></a>
                     </li>
@@ -731,14 +767,14 @@
                         class="menu-title text-truncate" data-i18n="User">Application Settings</span></a>
                 <ul class="menu-content">
 
-                    <li class="{{ (request()->is('admin/currency*')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href="{{route('currency.index')}}"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="List">Currency</span></a>
+
 
                     <li class="{{ (request()->is('admin/location*')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href="{{route('location.index')}}"><i data-feather="circle"></i><span
+                        <a class="d-flex align-items-center" href="{{route('location.index')}}"><i
+                                data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="List">Location</span></a>
                     </li>
+
 
 
                 </ul>

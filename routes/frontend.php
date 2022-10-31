@@ -46,7 +46,7 @@ Route::get('/about-style-2', [FrontendIndexController::class, 'about2'])->name('
 
 //Contact Us
 Route::get('/contact', [FrontendIndexController::class, 'contact'])->name('main.contact');
-Route::post('/contact/store', [FrontendIndexController::class, 'contactMessageStore'])->name('main.contact.store');
+Route::post('/contact/store', [FrontendIndexController::class, 'contactMessageStore'])->name('main.contact.store')->middleware('isDemo');
 
 
 //NewsLetter

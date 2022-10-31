@@ -9,10 +9,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 //Profile
 Route::get('profile', [StudentController::class, 'profile'])->name('student.profile');
-Route::post('profileStore', [StudentController::class, 'profileStore'])->name('student.profileStore');
+Route::post('profileStore', [StudentController::class, 'profileStore'])->name('student.profileStore')->middleware('isDemo');
 
 Route::get('change-password', [StudentController::class, 'ChangePassword'])->name('student.changePassword');
-Route::post('change-password-store', [StudentController::class, 'ChangePasswordStore'])->name('student.changePasswordStore');
+Route::post('change-password-store', [StudentController::class, 'ChangePasswordStore'])->name('student.changePasswordStore')->middleware('isDemo');
 
 
 //Cart & Checkout Management
@@ -29,9 +29,13 @@ Route::post('apply-coupon', [CartManagementController::class, 'applyCoupon'])->n
 Route::get('addToCart', [CartManagementController::class, 'addToCart'])->name('student.addToCart');
 Route::get('buyNow', [CartManagementController::class, 'buyNow'])->name('student.buyNow');
 Route::get('cart-delete/{id}', [CartManagementController::class, 'cartDelete'])->name('student.cartDelete');
-Route::post('processOrder', [CartManagementController::class, 'processOrder'])->name('student.processOrder');
+Route::post('processOrder', [CartManagementController::class, 'processOrder'])->name('student.processOrder')->middleware('isDemo');
 
 Route::get('thank-you', [MyCourseController::class, 'thankYou'])->name('student.thankYou');
+
+//Order Page
+Route::get('my-order', [MyCourseController::class,'myOrder'])->name('student.order');
+
 
 
 //Student Buying Courses

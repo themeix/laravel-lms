@@ -67,6 +67,16 @@
             cursor: pointer;
         }
 
+        .order-badge {
+            color: white;
+            padding: 4px;
+            text-align: center;
+            border-radius: 5px;
+            margin-left: auto!important;
+            margin-top: auto!important;
+            margin-bottom: auto!important;
+        }
+
     </style>
 
     @stack('styles')
@@ -191,7 +201,7 @@
 
                                         @if(Auth::user()->type != 1)
                                             <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                               href=" ">
+                                               href="{{ route('student.order') }}">
                                                 <div
                                                     class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -221,8 +231,7 @@
                                             </a>
                                         @endif
 
-                                        <div
-                                            class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
+                                        <div class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
 
                                         @if(Auth::user()->type == 3)
                                             <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
@@ -919,7 +928,7 @@
 
                                             @if(Auth::user()->type != 1)
                                                 <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg  hover:bg-gray-200  gray:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                                   href="cart.html">
+                                                   href="{{ route('student.order') }}">
                                                     <div
                                                         class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

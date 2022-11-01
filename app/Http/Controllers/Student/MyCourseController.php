@@ -8,6 +8,7 @@ use App\Models\Assignment;
 use App\Models\Course;
 use App\Models\Course_lecture;
 use App\Models\CourseLecture;
+use App\Models\CourseLesson;
 use App\Models\Discussion;
 use App\Models\Exam;
 use App\Models\LiveClass;
@@ -19,6 +20,9 @@ use App\Models\Question;
 use App\Models\Review;
 use App\Models\Take_exam;
 use App\Models\TakeExam;
+
+
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,29 +56,23 @@ class MyCourseController extends Controller
     }
 
 
-
     public function myCourseShow(Request $request, $slug, $action_type = null, $quiz_uuid = null, $answer_id = null)
     {
         $data['course'] = Course::whereSlug($slug)->firstOrfail();
 
         $orderItemId = OrderItem::where('course_id', $data['course']->id)->where('user_id', Auth::user()->id)->firstOrfail();
 
-        if($orderItemId){
+        if ($orderItemId) {
 
             $orderId = Order::where('id', $orderItemId->order_id)->firstOrfail();
 
-            if($orderId->payment_status == 'due'){
-                Alert::toast('Please pay your course fee!','warning');
+            if ($orderId->payment_status == 'due') {
+                Alert::toast('Please pay your course fee!', 'warning');
                 return redirect()->back();
-            }
-
-
-            elseif($orderId->payment_status == 'pending'){
-                Alert::toast('Please wait for admin approval! Your course request is pending.','warning');
+            } elseif ($orderId->payment_status == 'pending') {
+                Alert::toast('Please wait for admin approval! Your course request is pending.', 'warning');
                 return redirect()->back();
-            }
-
-            elseif($orderId->payment_status == 'paid' || $orderId->payment_status == 'free'){
+            } elseif ($orderId->payment_status == 'paid' || $orderId->payment_status == 'free') {
 
                 // Start:: Checking enrolled or not
                 $user = Auth::user();
@@ -204,6 +202,13 @@ class MyCourseController extends Controller
 
                 /** ------- save certificate ----------- */
 
+
+                /**-----Lessons & Lecture Starts--------**/
+
+
+                $data['lessons'] = CourseLesson::where('course_id', $data['course']->id)->orderBy('id', 'ASC')->get();
+
+
                 if ($request->get('lecture_uuid')) {
                     $lecture = CourseLecture::where('uuid', $request->get('lecture_uuid'))->firstOrFail();
                     $nextLectureId = CourseLecture::where('lesson_id', $lecture->lesson_id)->where('id', '>', $lecture->id)->min('id');
@@ -235,9 +240,7 @@ class MyCourseController extends Controller
 
 
             }
-        }
-
-        else{
+        } else {
             Alert::toast('At first you need to purchase this course!', 'error');
             return redirect()->back();
         }
@@ -245,8 +248,19 @@ class MyCourseController extends Controller
     }
 
 
+    public function course_video_duration($uuid)
+    {
+        $course = Course::where('uuid', $uuid)->first();
+        if ($course) {
+            $total_seconds = $course->course_duration;
 
-    public function myOrder(){
+        }
+
+    }
+
+
+    public function myOrder()
+    {
         $allUserOrder = Order::where('user_id', auth()->id());
         $OrderIds = $allUserOrder->pluck('id')->toArray();
         $data['orderItems'] = OrderItem::whereIn('order_id', $OrderIds)->get();

@@ -29,6 +29,7 @@ return new class extends Migration
             $table->decimal('price')->default(0.00);
             $table->unsignedInteger('learner_accessibility')->default(1)->comment('1=paid, 2=free');
             $table->string('image')->nullable();
+            $table->bigInteger('course_duration')->nullable()->default(0);
 
 
             $table->string('video')->nullable();

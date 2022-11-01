@@ -31,7 +31,7 @@ class LessonController extends Controller
     public function index($course_uuid)
     {
         $data['course'] = $this->courseModel->getRecordByUuid($course_uuid);
-        $data['course_lessons'] = $this->model->getOrderById('ASC');
+        $data['course_lessons'] = CourseLesson::where('course_id', $data['course']->id)->get();
         return view('instructor.course.lessons.index', $data);
     }
 
@@ -140,15 +140,6 @@ class LessonController extends Controller
 
         }
 
-        /*if ($request->file_duration) {
-            if (preg_match('/^([0-9][0-9]):[0-5][0-9]$/', $request->file_duration)) {
-
-            } else {
-                $request->validate([
-                    'file_duration' => 'date_format:H:i'
-                ]);
-            }
-        }*/
 
 
         if ($request->type == 'video') {
@@ -172,6 +163,15 @@ class LessonController extends Controller
                 $lecture->type = 'video';
                 $lecture->url_path = null;
                 $lecture->save();
+
+
+                $course = $data['course'];
+                $previous_course_duration = $course->course_duration;
+                $present_course_duration = $previous_course_duration + $lecture->file_duration_second;
+                $course->course_duration = $present_course_duration;
+                $course->save();
+
+
                 Alert::toast('Lecture uploaded successfully', 'success');
                 return redirect()->back();
             }
@@ -197,6 +197,13 @@ class LessonController extends Controller
                 $lecture->lecture_type = $request->lecture_type;
                 $lecture->type = 'youtube';
                 $lecture->save();
+
+                $course = $data['course'];
+                $previous_course_duration = $course->course_duration;
+                $present_course_duration = $previous_course_duration + $lecture->file_duration_second;
+                $course->course_duration = $present_course_duration;
+                $course->save();
+
                 Alert::toast('Lecture uploaded successfully', 'success');
                 return redirect()->back();
             }
@@ -219,6 +226,15 @@ class LessonController extends Controller
                     $lecture->type = 'vimeo';
                     $lecture->file_path = null;
                     $lecture->save();
+
+
+                    $course = $data['course'];
+                    $previous_course_duration = $course->course_duration;
+                    $present_course_duration = $previous_course_duration + $lecture->file_duration_second;
+                    $course->course_duration = $present_course_duration;
+                    $course->save();
+
+
                     Alert::toast('Lecture uploaded successfully', 'success');
                     return redirect()->back();
                 } else {

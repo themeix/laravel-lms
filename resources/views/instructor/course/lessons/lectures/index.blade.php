@@ -193,10 +193,10 @@
                                                 <select name="lecture_type" class="form-select" required>
                                                     <option value="">--Select Option--</option>
                                                     <option value="1" @if(old('lecture_type') == 1) selected @endif >
-                                                        Show
+                                                        Free
                                                     </option>
                                                     <option value="2" @if(old('lecture_type') == 2) selected @endif >
-                                                        Lock
+                                                        Paid
                                                     </option>
                                                 </select>
                                                 @if ($errors->has('title'))
@@ -304,10 +304,10 @@
                                         </td>
                                         <td>
                                             @if($course_lecture->lecture_type == 1)
-                                                <span class="status badge bg-primary">Show</span>
+                                                <span class="status badge bg-primary">Free</span>
 
                                             @elseif($course_lecture->lecture_type ==2)
-                                                <span class="status badge bg-success">Lock</span>
+                                                <span class="status badge bg-success">Paid</span>
                                             @endif
                                         </td>
                                         <td>

@@ -52,6 +52,10 @@ class ExamController extends Controller
             'duration' => $request->duration,
         ];
 
+        $course->updated_at = now();
+        $course->save();
+
+
         $exam = $this->model->create($data);
         return redirect(route('instructor.exam.question', [$exam->uuid]));
     }
@@ -74,6 +78,7 @@ class ExamController extends Controller
             'type' => $request->type
         ];
         $exam = $this->model->updateByUuid($data, $uuid);
+
 
         toastrMessage('success', 'Quiz has been updated');
         return redirect()->back();

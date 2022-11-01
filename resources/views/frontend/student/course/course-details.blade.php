@@ -180,6 +180,7 @@
                         </section>
                         {{--OVERVIEW SECTION END--}}
 
+
                         {{--CURRICULAR SECTION START--}}
                         <section class="curricullam-box mt-20 pt-20" id="course-curricullam">
                             <div class="learning-title">
@@ -187,821 +188,96 @@
                                     Course Curricullam
                                 </h2>
                             </div>
-                            <div id="accordion-collapse" data-accordion="collapse">
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-1">
-                                        <button type="button"
-                                                class="!bg-transparent text-gray-800 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
-                                                aria-controls="accordion-collapse-body-1">
-                                            <span class="text-black-200 font-bold">Home</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-1" aria-labelledby="accordion-collapse-heading-1">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10  underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-2">
-                                        <button type="button"
-                                                class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
-                                                aria-controls="accordion-collapse-body-2">
-                                            <span class="text-black-200 font-bold">Sketching</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-2" aria-labelledby="accordion-collapse-heading-2"
-                                         class="hidden">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10 underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
+                            @if(sizeof($lessons)>0)
+                                @php
+                                    $total_lesson = sizeof($lessons);
+                                @endphp
+
+                                @for($i = 0; $i < $total_lesson; $i++)
+                                    <div id="accordion-collapse" data-accordion="collapse">
+
+                                        <div class="accordion-collapse-item border-b ">
+                                            <h2 id="accordion-collapse-heading-{{$i}}">
+                                                <button type="button"
+                                                        class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
+                                                        data-accordion-target="#accordion-collapse-body-{{$i}}"
+                                                        aria-expanded="false"
+                                                        aria-controls="accordion-collapse-body-{{$i}}">
+                                                    <span class="text-black-200 font-bold">{{$lessons[$i]->name}}</span>
+                                                    <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0"
+                                                         width="16"
+                                                         height="8" viewBox="0 0 16 8" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
+                                                              stroke-linecap="round"
+                                                              stroke-linejoin="round"/>
+                                                    </svg>
+                                                </button>
+                                            </h2>
+
+                                            @php
+                                                $data['lectures'] = \App\Models\CourseLecture::where('lesson_id', $lessons[$i]->id)->get();
+                                            @endphp
+
+
+                                            <div id="accordion-collapse-body-{{$i}}"
+                                                 aria-labelledby="accordion-collapse-heading-{{$i}}"
+                                                 class="hidden">
+                                                <div class="p-5">
+
+                                                    @foreach($data['lectures'] as $lecture)
+
+                                                        <div
+                                                            class="curricullam-accordion-box flex justify-between mb-6">
+                                                            <div class="flex-col  ">
+                                                                <div class="course-play flex items-center">
+                                                                    <p class="mr-4">
+                                                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                             fill="none"
+                                                                             xmlns="http://www.w3.org/2000/svg">
+                                                                            <rect width="16" height="16" rx="8"
+                                                                                  fill="#5A5A5B"/>
+                                                                            <path
+                                                                                d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
+                                                                                fill="white"/>
+                                                                        </svg>
+                                                                    </p>
+                                                                    {{$lecture->title}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-col gap-2">
+                                                                <div class="preview-box flex items-center">
+
+                                                                    @if($lecture->type == 'youtube')
+                                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
+                                                                           href="{{$lecture->url_path}}">Preview</a>
+
+                                                                    @elseif($lecture->type == 'video')
+                                                                        <video class="videoPlayer" id="myVideo"
+                                                                               controls controlsList="nodownload"
+                                                                               style="margin: 15px; width:80%; top: 0px;">
+                                                                            <source class="xdPlayer lectureVideo"
+                                                                                    src="{{ getVideoFile($lecture->file_path) }}"
+                                                                                    type="video/mp4">
+                                                                        </video>
+                                                                    @endif
+
+                                                                    <p class="">{{$lecture->file_duration}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    @endforeach
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-3">
-                                        <button type="button"
-                                                class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-3" aria-expanded="false"
-                                                aria-controls="accordion-collapse-body-3">
-                                            <span class="text-black-200 font-bold">Figma Basics</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-3" aria-labelledby="accordion-collapse-heading-3"
-                                         class="hidden">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10 underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-4">
-                                        <button type="button"
-                                                class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-4" aria-expanded="false"
-                                                aria-controls="accordion-collapse-body-4">
-                                            <span class="text-black-200 font-bold">Typhography</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-4" aria-labelledby="accordion-collapse-heading-4"
-                                         class="hidden">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10 underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-5">
-                                        <button type="button"
-                                                class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-5" aria-expanded="false"
-                                                aria-controls="accordion-collapse-body-5">
-                                            <span class="text-black-200 font-bold">Color</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-5" aria-labelledby="accordion-collapse-heading-4"
-                                         class="hidden">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10 underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-6">
-                                        <button type="button"
-                                                class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-6" aria-expanded="false"
-                                                aria-controls="accordion-collapse-body-6">
-                                            <span class="text-black-200 font-bold">User Flow</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-6" aria-labelledby="accordion-collapse-heading-6"
-                                         class="hidden">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10 underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-7">
-                                        <button type="button"
-                                                class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-7" aria-expanded="false"
-                                                aria-controls="accordion-collapse-body-7">
-                                            <span class="text-black-200 font-bold">Sitemap</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-7" aria-labelledby="accordion-collapse-heading-6"
-                                         class="hidden">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10 underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-8">
-                                        <button type="button"
-                                                class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-8" aria-expanded="false"
-                                                aria-controls="accordion-collapse-body-8">
-                                            <span class="text-black-200 font-bold">Wireframes</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-8" aria-labelledby="accordion-collapse-heading-8"
-                                         class="hidden">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10 underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-9">
-                                        <button type="button"
-                                                class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-9" aria-expanded="false"
-                                                aria-controls="accordion-collapse-body-9">
-                                            <span class="text-black-200 font-bold">Phototyping</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-9" aria-labelledby="accordion-collapse-heading-9"
-                                         class="hidden">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10 underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-collapse-item border-b ">
-                                    <h2 id="accordion-collapse-heading-10">
-                                        <button type="button"
-                                                class="!bg-transparent text-black-200 flex items-center justify-between w-full p-5 font-medium text-left"
-                                                data-accordion-target="#accordion-collapse-body-10"
-                                                aria-expanded="false"
-                                                aria-controls="accordion-collapse-body-10">
-                                            <span class="text-black-200 font-bold">Feedback</span>
-                                            <svg data-accordion-icon="" class="w-4 h-4 rotate-180 shrink-0" width="16"
-                                                 height="8" viewBox="0 0 16 8" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 7L8 1L1 7" stroke="#5A5A5B" stroke-width="2"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-collapse-body-10" aria-labelledby="accordion-collapse-heading-8"
-                                         class="hidden">
-                                        <div class="p-5">
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="popup-youtube mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Introduction</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="popup-youtube pr-10 hover:text-blue-800  underline "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Preview</a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="curricullam-accordion-box flex justify-between mb-6">
-                                                <div class="flex-col  ">
-                                                    <div class="course-play flex items-center">
-                                                        <a class="mr-4"
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="16" height="16" rx="8" fill="#5A5A5B"/>
-                                                                <path
-                                                                    d="M10.25 7.56698C10.5833 7.75943 10.5833 8.24055 10.25 8.433L5.75 11.0311C5.41667 11.2235 5 10.983 5 10.5981V5.40191C5 5.01701 5.41667 4.77645 5.75 4.9689L10.25 7.56698Z"
-                                                                    fill="white"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="popup-youtube hover:text-blue-800 "
-                                                           href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">Section
-                                                            Intro</a>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-col">
-                                                    <div class="preview-box flex items-center">
-                                                        <a class="pr-10 underline " href="">
-                                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.5376 7.76923V4.69231C11.5376 3.71305 11.1486 2.77389 10.4561 2.08145C9.76367 1.38901 8.82451 1 7.84525 1C6.86599 1 5.92684 1.38901 5.2344 2.08145C4.54195 2.77389 4.15294 3.71305 4.15294 4.69231V7.76923M3.53756 17H12.1529C12.6426 17 13.1122 16.8055 13.4584 16.4593C13.8046 16.1131 13.9991 15.6435 13.9991 15.1538V9.61538C13.9991 9.12575 13.8046 8.65618 13.4584 8.30996C13.1122 7.96374 12.6426 7.76923 12.1529 7.76923H3.53756C3.04793 7.76923 2.57835 7.96374 2.23213 8.30996C1.88591 8.65618 1.69141 9.12575 1.69141 9.61538V15.1538C1.69141 15.6435 1.88591 16.1131 2.23213 16.4593C2.57835 16.8055 3.04793 17 3.53756 17Z"
-                                                                    stroke="#5A5A5B" stroke-width="1.5"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </a>
-                                                        <p class="">00.80</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                @endfor
+
                         </section>
                         {{--CURRICULAR SECTION END--}}
-
+                        @endif
                         {{--RESOURCES SECTION START--}}
                         <section class="resources   mt-20 pt-20" id="resources">
                             {{--Resource Heading--}}
@@ -1903,27 +1179,27 @@
                                 </div>
                             </div>
 
-                        <div class="client-rating mt-8">
-                            <div class="client-box">
-                                <div class="client-info flex justify-between">
-                                    <div class="author-box flex items-center">
-                                        <img class="w-10 h-10 rounded-full object-fit"
-                                             src="{{asset('frontend/assets/images/author/2.webp')}}"
-                                             alt="author">
-                                        <div class="course-content ml-2">
-                                            <h6
-                                                class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
-                                                Brooklyn Simmons
-                                            </h6>
-                                            <p class="text-sm  font-normal opacity-60">
-                                                Dog Trainer
-                                            </p>
+                            <div class="client-rating mt-8">
+                                <div class="client-box">
+                                    <div class="client-info flex justify-between">
+                                        <div class="author-box flex items-center">
+                                            <img class="w-10 h-10 rounded-full object-fit"
+                                                 src="{{asset('frontend/assets/images/author/2.webp')}}"
+                                                 alt="author">
+                                            <div class="course-content ml-2">
+                                                <h6
+                                                    class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
+                                                    Brooklyn Simmons
+                                                </h6>
+                                                <p class="text-sm  font-normal opacity-60">
+                                                    Dog Trainer
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="rating-number">
-                                        <p class="text-sm text-blue-50 mb-2">1 hour ago</p>
-                                        <div class="rating-box">
-                                            <div class="rating-star flex gap-1">
+                                        <div class="rating-number">
+                                            <p class="text-sm text-blue-50 mb-2">1 hour ago</p>
+                                            <div class="rating-box">
+                                                <div class="rating-star flex gap-1">
                                                  <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
@@ -1932,7 +1208,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -1940,7 +1216,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -1948,7 +1224,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -1956,7 +1232,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -1964,37 +1240,37 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <p class="mt-6">Separated where lane. Rival this no and the eminent we day
+                                        gradual two drunk if she never box around which time the pointing
+                                        forwards,
+                                    </p>
                                 </div>
-                                <p class="mt-6">Separated where lane. Rival this no and the eminent we day
-                                    gradual two drunk if she never box around which time the pointing
-                                    forwards,
-                                </p>
                             </div>
-                        </div>
-                        <div class="client-rating mt-8">
-                            <div class="client-box">
-                                <div class="client-info flex justify-between">
-                                    <div class="author-box flex items-center">
-                                        <img class="w-10 h-10 rounded-full object-fit"
-                                             src="{{asset('frontend/assets/images/author/4.webp')}}"
-                                             alt="author">
-                                        <div class="course-content ml-2">
-                                            <h6
-                                                class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
-                                                Jenny Wilson
-                                            </h6>
-                                            <p class="text-sm  font-normal opacity-60">
-                                                Medical Assistant
-                                            </p>
+                            <div class="client-rating mt-8">
+                                <div class="client-box">
+                                    <div class="client-info flex justify-between">
+                                        <div class="author-box flex items-center">
+                                            <img class="w-10 h-10 rounded-full object-fit"
+                                                 src="{{asset('frontend/assets/images/author/4.webp')}}"
+                                                 alt="author">
+                                            <div class="course-content ml-2">
+                                                <h6
+                                                    class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
+                                                    Jenny Wilson
+                                                </h6>
+                                                <p class="text-sm  font-normal opacity-60">
+                                                    Medical Assistant
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="rating-number">
-                                        <p class="text-sm text-blue-50 mb-2">2 hour ago</p>
-                                        <div class="rating-box">
-                                            <div class="rating-star flex gap-1">
+                                        <div class="rating-number">
+                                            <p class="text-sm text-blue-50 mb-2">2 hour ago</p>
+                                            <div class="rating-box">
+                                                <div class="rating-star flex gap-1">
                                                  <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
@@ -2003,7 +1279,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2011,7 +1287,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2019,7 +1295,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2027,7 +1303,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2035,36 +1311,36 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <p class="mt-6">Letters, hitting the feel analyzed in arm, that a clothes,
+                                        the ambushed continued so for and the out soft assets one trial.
+                                    </p>
                                 </div>
-                                <p class="mt-6">Letters, hitting the feel analyzed in arm, that a clothes,
-                                    the ambushed continued so for and the out soft assets one trial.
-                                </p>
                             </div>
-                        </div>
-                        <div class="client-rating mt-8">
-                            <div class="client-box">
-                                <div class="client-info flex justify-between">
-                                    <div class="author-box flex items-center">
-                                        <img class="w-10 h-10 rounded-full object-fit"
-                                             src="{{asset('frontend/assets/images/author/1.webp')}}"
-                                             alt="author">
-                                        <div class="course-content ml-2">
-                                            <h6
-                                                class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
-                                                Theresa Webb
-                                            </h6>
-                                            <p class="text-sm  font-normal opacity-60">
-                                                Nursing Assistant
-                                            </p>
+                            <div class="client-rating mt-8">
+                                <div class="client-box">
+                                    <div class="client-info flex justify-between">
+                                        <div class="author-box flex items-center">
+                                            <img class="w-10 h-10 rounded-full object-fit"
+                                                 src="{{asset('frontend/assets/images/author/1.webp')}}"
+                                                 alt="author">
+                                            <div class="course-content ml-2">
+                                                <h6
+                                                    class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
+                                                    Theresa Webb
+                                                </h6>
+                                                <p class="text-sm  font-normal opacity-60">
+                                                    Nursing Assistant
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="rating-number">
-                                        <p class="text-sm text-blue-50 mb-2">3 hour ago</p>
-                                        <div class="rating-box">
-                                            <div class="rating-star flex gap-1">
+                                        <div class="rating-number">
+                                            <p class="text-sm text-blue-50 mb-2">3 hour ago</p>
+                                            <div class="rating-box">
+                                                <div class="rating-star flex gap-1">
                                                  <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
@@ -2073,7 +1349,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2081,7 +1357,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2089,7 +1365,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2097,7 +1373,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2105,37 +1381,37 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <p class="mt-6">Covered client material. Train note it's to farther why he
+                                        him distressed we should way your her great their to not through are to
+                                        moving be.
+                                    </p>
                                 </div>
-                                <p class="mt-6">Covered client material. Train note it's to farther why he
-                                    him distressed we should way your her great their to not through are to
-                                    moving be.
-                                </p>
                             </div>
-                        </div>
-                        <div class="client-rating mt-8">
-                            <div class="client-box">
-                                <div class="client-info flex justify-between">
-                                    <div class="author-box flex items-center">
-                                        <img class="w-10 h-10 rounded-full object-fit"
-                                             src="{{asset('frontend/assets/images/author/3.webp')}}"
-                                             alt="author">
-                                        <div class="course-content ml-2">
-                                            <h6
-                                                class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
-                                                Floyd Miles
-                                            </h6>
-                                            <p class="text-sm  font-normal opacity-60">
-                                                Marketing Coordinator
-                                            </p>
+                            <div class="client-rating mt-8">
+                                <div class="client-box">
+                                    <div class="client-info flex justify-between">
+                                        <div class="author-box flex items-center">
+                                            <img class="w-10 h-10 rounded-full object-fit"
+                                                 src="{{asset('frontend/assets/images/author/3.webp')}}"
+                                                 alt="author">
+                                            <div class="course-content ml-2">
+                                                <h6
+                                                    class="font-serif text-base text-black-200 hover:text-blue-800 font-medium duration-300">
+                                                    Floyd Miles
+                                                </h6>
+                                                <p class="text-sm  font-normal opacity-60">
+                                                    Marketing Coordinator
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="rating-number">
-                                        <p class="text-sm text-blue-50 mb-2">4 hour ago</p>
-                                        <div class="rating-box">
-                                            <div class="rating-star flex gap-1">
+                                        <div class="rating-number">
+                                            <p class="text-sm text-blue-50 mb-2">4 hour ago</p>
+                                            <div class="rating-box">
+                                                <div class="rating-star flex gap-1">
                                                  <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
@@ -2144,7 +1420,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2152,7 +1428,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2160,7 +1436,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2168,7 +1444,7 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
-                                                <span>
+                                                    <span>
                                                     <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                        <path
@@ -2176,21 +1452,21 @@
                                                            fill="#FFA800"/>
                                                     </svg>
                                                  </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <p class="mt-6">Burden satisfaction before various synthesizers might or
+                                        small of on a and he could handpainted, what her sort in me into and in
+                                        had.
+                                    </p>
                                 </div>
-                                <p class="mt-6">Burden satisfaction before various synthesizers might or
-                                    small of on a and he could handpainted, what her sort in me into and in
-                                    had.
-                                </p>
                             </div>
-                        </div>
-                        <div class="dropdown-wrap">
-                            <a class="flex items-center hover:text-blue-600  justify-center mt-10 transition duration-500 text-black-200 group"
-                               href="#">
-                                Show more
-                                <span>
+                            <div class="dropdown-wrap">
+                                <a class="flex items-center hover:text-blue-600  justify-center mt-10 transition duration-500 text-black-200 group"
+                                   href="#">
+                                    Show more
+                                    <span>
                                         <svg class="ml-2" width="15" height="8" viewBox="0 0 15 8" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                            <path class="group-hover:stroke-blue-600" d="M1.5 1L7.5 7L13.5 1"
@@ -2198,20 +1474,27 @@
                                                  stroke-linejoin="round"/>
                                         </svg>
                                      </span>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
                         </section>
                         {{--REVIEW SECTION END--}}
                     </div>
                 </div>
                 <div class="col-span-4">
                     <div class="courses-info-right p-6 shadow-4xl sticky top-32 transition duration-500">
-                        <div class="video-box bg-blue-600 h-60 w-full relative object-cover bg-cente rounded-md"
-                             style="background-image:url({{asset('frontend/assets/images/lessons-images-1.webp')}})">
-                            <div class="youtube-button  flex items-center justify-center relative h-full gap-4 ">
-                                <a class="popup-youtube  popup-icon-2 relative bg-white font-semibold w-10 h-10 rounded-full items-center justify-center flex"
-                                   href="https://www.youtube.com/watch?v=bY-mOdgz7zQ">
-                              <span>
+
+                        @if($course->video != null || $course->youtube_video_id != null)
+
+                            @if($course->intro_video_check == 2)
+                                <div class="video-box bg-blue-600 h-60 w-full relative object-cover bg-cente rounded-md"
+                                     style="background-image:url({{getImageFile(@$course->image)}})">
+                                    <div
+                                        class="youtube-button  flex items-center justify-center relative h-full gap-4 ">
+
+
+                                        <a class="popup-youtube  popup-icon-2 relative bg-white font-semibold w-10 h-10 rounded-full items-center justify-center flex"
+                                           href="{{ $course->youtube_video_id }}">
+                                            <span>
                                  <svg width="11" height="12" viewBox="0 0 11 12" fill="none"
                                       xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -2220,21 +1503,39 @@
                                           #035AE0"></path>
                                  </svg>
                               </span>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="md:text-3xl text-2xl font-bold text-black-200 py-4">
-                            @if($course->price != 0.00)
-                                $ {{$course->price}}
-                            @else
-                                Free
-                            @endif
-                        </h3>
+                                        </a>
+                                    </div>
 
-                        <div class="flex flex-wrap gap-7 mb-4">
-                            <div class="share-button inline-block"
-                                 style="border: 2px dotted gray;">
-                                <a class="flex items-center gap-4 text-black-200 py-1 px-8 bg-blue-100" href="#">
+                                    @endif
+
+                                </div>
+
+
+                                @if($course->intro_video_check == 1)
+                                    <video class="videoPlayer" id="myVideo"
+                                           controls controlsList="nodownload"
+                                           style="margin: 8px;">
+                                        <source class="xdPlayer lectureVideo"
+                                                src="{{ getVideoFile($course->video) }}"
+                                                type="video/mp4">
+                                    </video>
+                                @endif
+
+                            @endif
+
+
+                            <h3 class="md:text-3xl text-2xl font-bold text-black-200 py-4">
+                                @if($course->price != 0.00)
+                                    $ {{$course->price}}
+                                @else
+                                    Free
+                                @endif
+                            </h3>
+
+                            <div class="flex flex-wrap gap-7 mb-4">
+                                <div class="share-button inline-block"
+                                     style="border: 2px dotted gray;">
+                                    <a class="flex items-center gap-4 text-black-200 py-1 px-8 bg-blue-100" href="#">
                                  <span>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -2243,22 +1544,22 @@
                                            fill="#223655"/>
                                     </svg>
                                  </span>
-                                    Share
-                                </a>
+                                        Share
+                                    </a>
+                                </div>
+                                <div class="share-button inline-block" data-bs-toggle="modal"
+                                     data-bs-target="#writeReviewModal"
+                                     style="border: 2px dotted gray;">
+                                    <a class="flex items-center gap-4 text-black-200 py-1 px-8 bg-blue-100" href="#">
+                                        Give Review
+                                    </a>
+                                </div>
                             </div>
-                            <div class="share-button inline-block" data-bs-toggle="modal"
-                                 data-bs-target="#writeReviewModal"
-                                 style="border: 2px dotted gray;">
-                                <a class="flex items-center gap-4 text-black-200 py-1 px-8 bg-blue-100" href="#">
-                                    Give Review
-                                </a>
-                            </div>
-                        </div>
 
-                        <div class="courses-info">
-                            <h2 class="text-lg font-bold text-black-200">This course includes:</h2>
-                            <div class="grid grid-cols-2 my-5">
-                                <div class="flex-col">
+                            <div class="courses-info">
+                                <h2 class="text-lg font-bold text-black-200">This course includes:</h2>
+                                <div class="grid grid-cols-2 my-5">
+                                    <div class="flex-col">
                               <span class="flex gap-3 items-center ">
                                  <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                       xmlns="http://www.w3.org/2000/svg">
@@ -2270,13 +1571,19 @@
                                  </svg>
                                  Course Duration
                               </span>
+                                    </div>
+                                    <div class="flex-col">
+                                        <p class="">
+                                            @if($course->course_duration != 0 || $course->course_duration != null)
+                                                {{ Carbon\CarbonInterval::seconds($course->course_duration)->cascade()->forHumans()  ?? '' }}
+                                            @else
+                                                0 Second
+                                            @endif
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="flex-col">
-                                    <p class="">2 Hour 10 Min</p>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 my-5">
-                                <div class="flex-col">
+                                <div class="grid grid-cols-2 my-5">
+                                    <div class="flex-col">
                               <span class="flex gap-3 items-center ">
                                  <svg width="18" height="19" viewBox="0 0 18 19" fill="none"
                                       xmlns="http://www.w3.org/2000/svg">
@@ -2286,13 +1593,13 @@
                                  </svg>
                                  Category
                               </span>
+                                    </div>
+                                    <div class="flex-col">
+                                        <a href="{{route('main.categoryWiseCourses1', $course->category->slug)}}"><p class="">{{ $course->category->name }}</p></a>
+                                    </div>
                                 </div>
-                                <div class="flex-col">
-                                    <p class="">Graphics Designer</p>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 my-5">
-                                <div class="flex-col">
+                                {{--<div class="grid grid-cols-2 my-5">
+                                    <div class="flex-col">
                               <span class="flex gap-3 items-center ">
                                  <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                       xmlns="http://www.w3.org/2000/svg">
@@ -2302,13 +1609,13 @@
                                  </svg>
                                  Higher
                               </span>
-                                </div>
-                                <div class="flex-col">
-                                    <p class="">Graphics Designer</p>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 my-5">
-                                <div class="flex-col">
+                                    </div>
+                                    <div class="flex-col">
+                                        <p class="">Graphics Designer</p>
+                                    </div>
+                                </div>--}}
+                                <div class="grid grid-cols-2 my-5">
+                                    <div class="flex-col">
                               <span class="flex gap-3 items-center ">
                                  <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                                       xmlns="http://www.w3.org/2000/svg">
@@ -2318,13 +1625,13 @@
                                  </svg>
                                  Student Enrolled
                               </span>
+                                    </div>
+                                    <div class="flex-col">
+                                        <p class="">{{$total_enrolled_students}}</p>
+                                    </div>
                                 </div>
-                                <div class="flex-col">
-                                    <p class="">50</p>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 my-5">
-                                <div class="flex-col">
+                                <div class="grid grid-cols-2 my-5">
+                                    <div class="flex-col">
                               <span class="flex gap-3 items-center ">
                                  <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                                       xmlns="http://www.w3.org/2000/svg">
@@ -2334,25 +1641,13 @@
                                  </svg>
                                  Last Update
                               </span>
+                                    </div>
+                                    <div class="flex-col">
+                                        <p class="">{{ date('d M Y', strtotime(@$course->updated_at)) }}</p>
+                                    </div>
                                 </div>
-                                <div class="flex-col">
-                                    <p class="">Aug 05, 2022</p>
-                                </div>
-                            </div>
 
-                            <div class="course-info-item mb-5">
-                           <span class="flex gap-3 items-center ">
-                              <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <rect y="0.5" width="16" height="16" rx="8" fill="#757F8F"/>
-                                 <path
-                                     d="M10.25 8.06722C10.5833 8.25967 10.5833 8.7408 10.25 8.93325L5.75 11.5313C5.41667 11.7238 5 11.4832 5 11.0983V5.90216C5 5.51726 5.41667 5.2767 5.75 5.46915L10.25 8.06722Z"
-                                     fill="white"/>
-                              </svg>
-                              2 Hour 10 Min video lectures
-                           </span>
-                            </div>
-                            <div class="course-info-item mb-5">
+                                <div class="course-info-item mb-5">
                            <span class="flex gap-3 items-center ">
                               <svg width="16" height="15" viewBox="0 0 16 15" fill="none"
                                    xmlns="http://www.w3.org/2000/svg">
@@ -2362,8 +1657,8 @@
                               </svg>
                               5 assignments
                            </span>
-                            </div>
-                            <div class="course-info-item mb-5">
+                                </div>
+                                <div class="course-info-item mb-5">
                            <span class="flex gap-3 items-center ">
                               <svg width="20" height="19" viewBox="0 0 20 19" fill="none"
                                    xmlns="http://www.w3.org/2000/svg">
@@ -2373,8 +1668,8 @@
                               </svg>
                               Downloadable resources
                            </span>
-                            </div>
-                            <div class="course-info-item mb-5">
+                                </div>
+                                <div class="course-info-item mb-5">
                            <span class="flex gap-3 items-center ">
                               <svg width="11" height="17" viewBox="0 0 11 17" fill="none"
                                    xmlns="http://www.w3.org/2000/svg">
@@ -2385,8 +1680,8 @@
                               </svg>
                               Access on mobile and TV
                            </span>
-                            </div>
-                            <div class="course-info-item mb-5">
+                                </div>
+                                <div class="course-info-item mb-5">
                            <span class="flex gap-3 items-center ">
                               <svg width="15" height="17" viewBox="0 0 15 17" fill="none"
                                    xmlns="http://www.w3.org/2000/svg">
@@ -2396,9 +1691,9 @@
                               </svg>
                               Certificate of completion
                            </span>
-                            </div>
+                                </div>
 
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
